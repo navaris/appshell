@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@navaris/*": ["./packages/*/src"]
+    },
+    "allowJs": true,
+    "alwaysStrict": true,
+    "declaration": true,
+    "declarationMap": true,
+    "emitDeclarationOnly": false,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "esnext",
+    "plugins": [{ "name": "@typescript-eslint"}]
+  },
+  "include": ["./packages/*/src", "./examples/**/src", "./**/__tests__", "./**/__fixtures__"],
+  "exclude": ["dist", "node_modules"]
+}

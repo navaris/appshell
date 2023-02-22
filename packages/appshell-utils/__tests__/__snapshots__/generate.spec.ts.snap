@@ -1,0 +1,153 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generate should generate an appshell manifest from a collection of app manifests 1`] = `
+{
+  "modules": {
+    "BarModule": {
+      "exposes": {
+        "./Bar": "./src/Entry2",
+      },
+      "filename": "remoteEntry.js",
+      "library": {
+        "name": "some shared lib",
+        "type": "umd",
+      },
+      "name": "BarModule",
+      "remoteType": "amd",
+      "remotes": {
+        "./Remote1": {
+          "external": "external module",
+          "shareScope": "@shared",
+        },
+      },
+      "runtime": "runtimeChunk",
+      "shareScope": "@sharedscope",
+      "shared": {
+        "package1": {
+          "requiredVersion": "0.1.0",
+          "singleton": true,
+        },
+        "package2": {
+          "requiredVersion": "1.1.0",
+          "singleton": true,
+        },
+      },
+    },
+    "BizModule": {
+      "exposes": {
+        "./Biz": "./src/Entry1",
+      },
+      "filename": "remoteEntry.js",
+      "library": {
+        "name": "some shared lib",
+        "type": "umd",
+      },
+      "name": "BizModule",
+      "remoteType": "amd",
+      "remotes": {
+        "./Remote1": {
+          "external": "external module",
+          "shareScope": "@shared",
+        },
+      },
+      "runtime": "runtimeChunk",
+      "shareScope": "@sharedscope",
+      "shared": {
+        "package1": {
+          "requiredVersion": "0.1.0",
+          "singleton": true,
+        },
+        "package2": {
+          "requiredVersion": "1.1.0",
+          "singleton": true,
+        },
+      },
+    },
+    "FooModule": {
+      "exposes": {
+        "./Bing": "./src/Entry1",
+        "./Foo": "./src/Entry1",
+      },
+      "filename": "remoteEntry.js",
+      "library": {
+        "name": "some shared lib",
+        "type": "umd",
+      },
+      "name": "FooModule",
+      "remoteType": "amd",
+      "remotes": {
+        "./Remote1": {
+          "external": "external module",
+          "shareScope": "@shared",
+        },
+      },
+      "runtime": "runtimeChunk",
+      "shareScope": "@sharedscope",
+      "shared": {
+        "package1": {
+          "requiredVersion": "0.1.0",
+          "singleton": true,
+        },
+        "package2": {
+          "requiredVersion": "1.1.0",
+          "singleton": true,
+        },
+      },
+    },
+  },
+  "remotes": {
+    "BarModule/Bar": {
+      "id": "BarModule/Bar",
+      "metadata": {
+        "displayGroup": "main",
+        "displayName": "Bar App",
+        "icon": "ViewList",
+        "order": 20,
+        "route": "/bar",
+      },
+      "module": "./Bar",
+      "scope": "BarModule",
+      "url": "http://remote-module.com/remoteEntry.js",
+    },
+    "BizModule/Biz": {
+      "id": "BizModule/Biz",
+      "metadata": {
+        "displayGroup": "auxiliary",
+        "displayName": "Biz App",
+        "icon": "ViewList",
+        "order": 30,
+        "route": "/biz",
+      },
+      "module": "./Biz",
+      "scope": "BizModule",
+      "url": "http://localhost:4040/remoteEntry.js",
+    },
+    "FooModule/Bing": {
+      "id": "FooModule/Bing",
+      "metadata": {
+        "displayGroup": "main",
+        "displayName": "Foo App",
+        "icon": "ViewList",
+        "order": 10,
+        "route": "/foo",
+      },
+      "module": "./Bing",
+      "scope": "FooModule",
+      "url": "http://remote-module.com/remoteEntry.js",
+    },
+    "FooModule/Foo": {
+      "id": "FooModule/Foo",
+      "metadata": {
+        "displayGroup": "main",
+        "displayName": "Foo App",
+        "icon": "ViewList",
+        "order": 10,
+        "route": "/foo",
+      },
+      "module": "./Foo",
+      "scope": "FooModule",
+      "url": "http://remote-module.com/remoteEntry.js",
+    },
+  },
+}
+`;

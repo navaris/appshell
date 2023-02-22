@@ -1,0 +1,32 @@
+{
+  "name": "@navaris/appshell-manifest-webpack-plugin",
+  "version": "0.0.0",
+  "description": "Webpack plugin used to generate a global Appshell manifest for module federation micro-frontends",
+  "main": "dist/main.js",
+  "types": "dist/types/appshell-manifest-webpack-plugin/src/index.d.ts",
+  "repository": "https://github.com/navaris/module-federation.git",
+  "author": "Robert Hamilton <rh@navaris.com>",
+  "private": true,
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "webpack --mode production && yarn build:types",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:code": "cross-env NODE_ENV=production babel-typescript src -d dist --copy-files",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "start": "webpack --watch --mode development && npm run build:types",
+    "stats": "webpack --json > stats.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "webpack",
+    "module federation",
+    "micro-frontends"
+  ],
+  "license": "MIT"
+}

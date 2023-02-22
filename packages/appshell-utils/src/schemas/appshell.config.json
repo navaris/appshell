@@ -1,0 +1,51 @@
+{
+  "title": "AppshellConfig",
+  "type": "object",
+  "properties": {
+    "name": {
+      "description": "Name of the module",
+      "type": "string"
+    },
+    "remotes": {
+      "description": "Collection of remote entrypoints",
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Entrypoint"
+          }
+        ]
+      }
+    },
+    "module": {
+      "description": "Module federation configuration",
+      "type": "object"
+    }
+  },
+  "definitions": {
+    "Entrypoint": {
+      "title": "Module entrypoint",
+      "type": "object",
+      "properties": {
+        "id": {
+          "description": "ID of the remote app",
+          "type": "string"
+        },
+        "url": {
+          "description": "Url of the remote app",
+          "type": "string"
+        },
+        "metadata": {
+          "description": "Metadata associated with the remote app",
+          "type": "object",
+          "additionalProperties": true
+        }
+      },
+      "required": [
+        "url"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

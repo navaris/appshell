@@ -1,0 +1,31 @@
+{
+  "name": "@navaris/appshell-utils",
+  "version": "0.0.0",
+  "description": "Utility for producing a global appshell manifest for module federation micro-frontends",
+  "main": "dist/main.js",
+  "types": "dist/types/index.d.ts",
+  "repository": "https://github.com/navaris/module-federation.git",
+  "author": "Robert Hamilton <rh@navaris.com>",
+  "private": true,
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "webpack --mode development && yarn build:types",
+    "build:types": "tsc --emitDeclarationOnly",
+    "clean": "rm -rf dist",
+    "generate": "node dist/generate.js",
+    "start": "webpack --watch --mode development && yarn build:types",
+    "stats": "webpack --json > stats.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "webpack",
+    "module federation",
+    "micro-frontends"
+  ],
+  "license": "MIT"
+}

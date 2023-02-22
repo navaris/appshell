@@ -1,0 +1,27 @@
+remotes:
+  TestModule/Foo:
+    url: ${APPS_TEST_URL}/remoteEntry.js
+    metadata:
+      route: /foo
+      displayName: Foo App
+      displayGroup: main
+      order: 10
+      icon: ViewList
+
+  TestModule/Bar:
+    url: ${APPS_TEST_URL}/remoteEntry.js
+    metadata:
+      route: /bar
+      displayName: Bar App
+      displayGroup: main
+      order: 20
+      icon: ViewList
+
+  BizModule/Biz:
+    url: http://localhost:4040/remoteEntry.js
+    metadata:
+      route: /biz
+      displayName: Biz App
+      displayGroup: auxiliary
+      order: 30
+      icon: ViewList

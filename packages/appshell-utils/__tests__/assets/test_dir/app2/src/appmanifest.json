@@ -1,0 +1,44 @@
+{
+  "remotes": {
+    "BizModule/Biz": {
+      "url": "http://localhost:4040/remoteEntry.js",
+      "metadata": {
+        "route": "/biz",
+        "displayName": "Biz App",
+        "displayGroup": "auxiliary",
+        "order": 30,
+        "icon": "ViewList"
+      }
+    }
+  },
+  "module": {
+    "exposes": {
+      "./Biz": "./src/Entry1"
+    },
+    "filename": "remoteEntry.js",
+    "library": {
+      "name": "some shared lib",
+      "type": "umd"
+    },
+    "name": "BizModule",
+    "remotes": {
+      "./Remote1": {
+        "external": "external module",
+        "shareScope": "@shared"
+      }
+    },
+    "remoteType": "amd",
+    "runtime": "runtimeChunk",
+    "shared": {
+      "package1": {
+        "singleton": true,
+        "requiredVersion": "0.1.0"
+      },
+      "package2": {
+        "singleton": true,
+        "requiredVersion": "1.1.0"
+      }
+    },
+    "shareScope": "@sharedscope"
+  }
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="jest tests" tests="28" failures="0" errors="0" time="9.82">
+  <testsuite name="mapping configurations to domain objects" errors="0" failures="0" skipped="0" timestamp="2023-02-27T13:28:44" time="6.838" tests="2">
+    <testcase classname="mapping configurations to domain objects should match snapshot" name="mapping configurations to domain objects should match snapshot" time="0.01">
+    </testcase>
+    <testcase classname="mapping configurations to domain objects should replace url placeholders with environment variables" name="mapping configurations to domain objects should replace url placeholders with environment variables" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="generate" errors="0" failures="0" skipped="0" timestamp="2023-02-27T13:28:44" time="8.608" tests="4">
+    <testcase classname="generate should generate an appshell manifest from a collection of app manifests" name="generate should generate an appshell manifest from a collection of app manifests" time="0.022">
+    </testcase>
+    <testcase classname="generate should contain all remotes" name="generate should contain all remotes" time="0.004">
+    </testcase>
+    <testcase classname="generate should apply environment variables to configuration" name="generate should apply environment variables to configuration" time="0.004">
+    </testcase>
+    <testcase classname="generate should merge module configurations" name="generate should merge module configurations" time="0.003">
+    </testcase>
+  </testsuite>
+  <testsuite name="utils" errors="0" failures="0" skipped="0" timestamp="2023-02-27T13:28:44" time="8.713" tests="13">
+    <testcase classname="utils load consuming the configuration should read and parse the configuration file" name="utils load consuming the configuration should read and parse the configuration file" time="0.048">
+    </testcase>
+    <testcase classname="utils load consuming the configuration should reject configuration file cannot be found" name="utils load consuming the configuration should reject configuration file cannot be found" time="0.017">
+    </testcase>
+    <testcase classname="utils load consuming the configuration should read and parse the configuration file" name="utils load consuming the configuration should read and parse the configuration file" time="0.018">
+    </testcase>
+    <testcase classname="utils load consuming the configuration should reject configuration file cannot be found" name="utils load consuming the configuration should reject configuration file cannot be found" time="0.001">
+    </testcase>
+    <testcase classname="utils copy should not copy if source file does not exist" name="utils copy should not copy if source file does not exist" time="0.003">
+    </testcase>
+    <testcase classname="utils copy should create the destination directory if it does not exist" name="utils copy should create the destination directory if it does not exist" time="0.003">
+    </testcase>
+    <testcase classname="utils copy should copy if source file exists" name="utils copy should copy if source file exists" time="0.001">
+    </testcase>
+    <testcase classname="utils merge should merge multiple valid configurations" name="utils merge should merge multiple valid configurations" time="0.018">
+    </testcase>
+    <testcase classname="utils merge should reject when no validator is found for schema" name="utils merge should reject when no validator is found for schema" time="0.005">
+    </testcase>
+    <testcase classname="utils merge should validate add documents individually" name="utils merge should validate add documents individually" time="0.003">
+    </testcase>
+    <testcase classname="utils merge should validate merged document" name="utils merge should validate merged document" time="0.001">
+    </testcase>
+    <testcase classname="utils merge appshell configs should merge multiple valid configurations" name="utils merge appshell configs should merge multiple valid configurations" time="0.001">
+    </testcase>
+    <testcase classname="utils merge appshell configs should reject configurations with remotes collisions" name="utils merge appshell configs should reject configurations with remotes collisions" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="AppshellManifestPlugin" errors="0" failures="0" skipped="0" timestamp="2023-02-27T13:28:44" time="9.25" tests="9">
+    <testcase classname="AppshellManifestPlugin validate should throw if config is missing remote entrypoints defined in the MF plugin" name="AppshellManifestPlugin validate should throw if config is missing remote entrypoints defined in the MF plugin" time="0.03">
+    </testcase>
+    <testcase classname="AppshellManifestPlugin validate should throw if config has remote entrypoints not defined in the MF plugin" name="AppshellManifestPlugin validate should throw if config has remote entrypoints not defined in the MF plugin" time="0.002">
+    </testcase>
+    <testcase classname="AppshellManifestPlugin validate should throw if entrypoint url does not align with the MF plugin" name="AppshellManifestPlugin validate should throw if entrypoint url does not align with the MF plugin" time="0.002">
+    </testcase>
+    <testcase classname="AppshellManifestPlugin findModuleFederationPlugin should find ModuleFederationPlugin if it exists" name="AppshellManifestPlugin findModuleFederationPlugin should find ModuleFederationPlugin if it exists" time="0.001">
+    </testcase>
+    <testcase classname="AppshellManifestPlugin findModuleFederationPlugin should return undefined if ModuleFederationPlugin does not exist" name="AppshellManifestPlugin findModuleFederationPlugin should return undefined if ModuleFederationPlugin does not exist" time="0.001">
+    </testcase>
+    <testcase classname="AppshellManifestPlugin defaults should default config to appshell.config.yaml" name="AppshellManifestPlugin defaults should default config to appshell.config.yaml" time="0.001">
+    </testcase>
+    <testcase classname="AppshellManifestPlugin defaults should default configsDir to &lt;project&gt;/appshell_configs" name="AppshellManifestPlugin defaults should default configsDir to &lt;project&gt;/appshell_configs" time="0.001">
+    </testcase>
+    <testcase classname="AppshellManifestPlugin apply should throw if ModuleFederationPlugin is not found" name="AppshellManifestPlugin apply should throw if ModuleFederationPlugin is not found" time="0.038">
+    </testcase>
+    <testcase classname="AppshellManifestPlugin apply should write configuration to configsDir" name="AppshellManifestPlugin apply should write configuration to configsDir" time="0.019">
+    </testcase>
+  </testsuite>
+</testsuites>

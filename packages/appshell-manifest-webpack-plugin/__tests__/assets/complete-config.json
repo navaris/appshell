@@ -1,0 +1,68 @@
+{
+  "remotes": {
+    "TestModule/Foo": {
+      "url": "${APPS_TEST_URL}/remoteEntry.js",
+      "metadata": {
+        "route": "/foo",
+        "displayName": "Foo App",
+        "displayGroup": "main",
+        "order": 10,
+        "icon": "ViewList"
+      },
+      "id": "4278464b"
+    },
+    "TestModule/Bar": {
+      "url": "${APPS_TEST_URL}/remoteEntry.js",
+      "metadata": {
+        "route": "/bar",
+        "displayName": "Bar App",
+        "displayGroup": "main",
+        "order": 20,
+        "icon": "ViewList"
+      },
+      "id": "42783598"
+    },
+    "BizModule/Biz": {
+      "url": "http://localhost:4040/remoteEntry.js",
+      "metadata": {
+        "route": "/biz",
+        "displayName": "Biz App",
+        "displayGroup": "auxiliary",
+        "order": 30,
+        "icon": "ViewList"
+      },
+      "id": "373793ed"
+    }
+  },
+  "module": {
+    "exposes": {
+      "./Foo": "./src/Entry1",
+      "./Bar": "./src/Entry2"
+    },
+    "filename": "remoteEntry.js",
+    "library": {
+      "name": "some shared lib",
+      "type": "umd"
+    },
+    "name": "TestModule",
+    "remotes": {
+      "./Remote1": {
+        "external": "external module",
+        "shareScope": "@shared"
+      }
+    },
+    "remoteType": "amd",
+    "runtime": "runtimeChunk",
+    "shared": {
+      "package1": {
+        "singleton": true,
+        "requiredVersion": "0.1.0"
+      },
+      "package2": {
+        "singleton": true,
+        "requiredVersion": "1.1.0"
+      }
+    },
+    "shareScope": "@sharedscope"
+  }
+}

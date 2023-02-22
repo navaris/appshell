@@ -1,0 +1,44 @@
+{
+  "remotes": {
+    "BarModule/Bar": {
+      "url": "${APPS_TEST_URL}/remoteEntry.js",
+      "metadata": {
+        "route": "/bar",
+        "displayName": "Bar App",
+        "displayGroup": "main",
+        "order": 20,
+        "icon": "ViewList"
+      }
+    }
+  },
+  "module": {
+    "exposes": {
+      "./Bar": "./src/Entry2"
+    },
+    "filename": "remoteEntry.js",
+    "library": {
+      "name": "some shared lib",
+      "type": "umd"
+    },
+    "name": "BarModule",
+    "remotes": {
+      "./Remote1": {
+        "external": "external module",
+        "shareScope": "@shared"
+      }
+    },
+    "remoteType": "amd",
+    "runtime": "runtimeChunk",
+    "shared": {
+      "package1": {
+        "singleton": true,
+        "requiredVersion": "0.1.0"
+      },
+      "package2": {
+        "singleton": true,
+        "requiredVersion": "1.1.0"
+      }
+    },
+    "shareScope": "@sharedscope"
+  }
+}
