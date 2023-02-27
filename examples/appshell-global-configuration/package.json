@@ -12,7 +12,7 @@
     "bootstrap": "npx lerna bootstrap",
     "build": "dotenv -- lerna run build",
     "postbuild": "yarn generate-manifest",
-    "generate-manifest": "dotenv -- appshell generate appshell_configs && cp appshell.manifest.json apps/appshell-host/public",
+    "generate-manifest": "dotenv -- appshell generate manifest --configsDir appshell_configs && cp appshell.manifest.json apps/appshell-host/public",
     "clean": "lerna run --parallel clean && rm -rf coverage",
     "lint": "eslint apps/**/*.ts",
     "serve": "dotenv -- lerna run --parallel serve",

@@ -8,39 +8,51 @@ import { hideBin } from 'yargs/helpers';
 
 yargs(hideBin(process.argv))
   .command(
-    'generate [configsDir] [options]',
-    'generate the global appshell config',
+    'generate [target] [options]',
+    "supported targets: 'manifest'",
     // eslint-disable-next-line @typescript-eslint/no-shadow
     (yargs) => {
-      return yargs.positional('configsDir', {
+      return yargs.positional('target', {
         type: 'string',
         requiresArg: true,
-        describe: 'configs directory to process',
+        describe: 'generate command target',
       });
     },
     (
       argv: yargs.ArgumentsCamelCase<{
+        target: string;
         configsDir: string | undefined;
         depth: number;
         outDir: string;
         outFile: string;
       }>,
     ) => {
-      if (argv.configsDir) {
-        const outDir = argv.outDir;
-        const filename = argv.outFile;
+      switch (argv.target) {
+        case 'manifest':
+          if (argv.configsDir) {
+            const outDir = argv.outDir;
+            const filename = argv.outFile;
 
-        console.log(`generating ${filename} configsDir=${argv.configsDir} --outDir=${outDir}`);
+            console.log(`generating ${filename} configsDir=${argv.configsDir} --outDir=${outDir}`);
 
-        const config = generate(argv.configsDir, argv.depth);
+            const config = generate(argv.configsDir, argv.depth);
 
-        if (!fs.existsSync(outDir)) {
-          fs.mkdirSync(outDir);
-        }
-        fs.writeFileSync(path.join(outDir, filename), JSON.stringify(config));
+            if (!fs.existsSync(outDir)) {
+              fs.mkdirSync(outDir);
+            }
+            fs.writeFileSync(path.join(outDir, filename), JSON.stringify(config));
+          }
+        default:
+          console.log(`Unsupported target '${argv.target}'`);
       }
     },
   )
+  .option('configsDir', {
+    alias: 'c',
+    default: 'appshell_configs',
+    type: 'string',
+    description: 'Path to configs dir to process',
+  })
   .option('depth', {
     alias: 'd',
     default: 1,

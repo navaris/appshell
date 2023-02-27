@@ -1,6 +1,6 @@
 # @navaris/appshell-cli
 
-CLI utility for generating the global configuration for an Appshell host using Webpack's Module Federation. This utility works in conjunction with `@navaris/appshell-manifest-webpack-plugin`.
+CLI utility for generating the global Appshell configuration for Webpack Module Federation. This utility works in conjunction with `@navaris/appshell-manifest-webpack-plugin`.
 
 ## Getting Started
 
@@ -28,12 +28,17 @@ pnpm add -D @navaris/appshell-cli
 appshell [command]
 
 Commands:
-  appshell generate [configsDir] [options]  generate the global appshell config
+  appshell generate [target] [options]  supported targets: 'manifest'
 
 Options:
-      --help     Show help [boolean]
-      --version  Show version number [boolean]
-  -d, --depth    Depth to search for app manifests to include [number][default: 1]
-  -o, --outDir   Output location for the appshell manifest [string][default: "."]
-  -f, --outFile  Output filename for the appshell manifest [string]  [default: "appshell.manifest.json"]
+      --help        Show help                                          [boolean]
+      --version     Show version number                                [boolean]
+  -c, --configsDir  Path to configs dir to process
+                                          [string] [default: "appshell_configs"]
+  -d, --depth       Depth to search for app manifests to include
+                                                           [number] [default: 1]
+  -o, --outDir      Output location for the appshell manifest
+                                                         [string] [default: "."]
+  -f, --outFile     Output filename for the appshell manifest
+                                    [string] [default: "appshell.manifest.json"]
 ```

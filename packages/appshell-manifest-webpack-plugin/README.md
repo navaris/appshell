@@ -1,10 +1,3 @@
-[![npm][npm]][npm-url]
-[![node][node]][node-url]
-[![tests][tests]][tests-url]
-[![cover][cover]][cover-url]
-[![chat][chat]][chat-url]
-[![size][size]][size-url]
-
 # @navaris/appshell-manifest-webpack-plugin
 
 Used to generate a global Appshell manifest for Webpack's Module Federation and provide additional information to the Appshell about remote entrypoints, routing, display names, etc.
@@ -48,7 +41,7 @@ module.exports = {
 
 > **Note**
 >
-> `@navaris/appshell-manifest-webpack-plugin` requires an `appshell.yaml` file in your project directory and the ModuleFederationPlugin.
+> `@navaris/appshell-manifest-webpack-plugin` requires an `appshell.config.yaml` file in your project directory and the ModuleFederationPlugin.
 
 > **Note**
 >
@@ -56,7 +49,7 @@ module.exports = {
 
 > **Note**
 >
-> Add a post build step like `"generate-manifest": "dotenv -- appshell generate appshell_configs"` to generate the global Appshell manifest.
+> Add a post build step like `"generate-manifest": "dotenv -- appshell generate manifest --configsDir appshell_configs"` to generate the global Appshell manifest.
 
 ## Options
 
@@ -106,7 +99,7 @@ type configsDir = string;
 
 Default: `<output-dir>/appshell_configs`
 
-Location where the plugin will write the app manifests. For mono-repo solutions it makes sense to configure a single location for all of the plugins to write. The global Appshell configuration will be generated based on the contents of this directory.
+Location where the plugin will output the appshell configs. For mono-repo solutions it makes sense to configure a single location for all of the plugins to write. The global Appshell manifest will be generated based on the contents of this directory.
 
 ## appshell.config.yaml
 
@@ -231,16 +224,3 @@ Configure a post build step to generate the Appshell manifest. See `appshell --h
 ## License
 
 [MIT](./LICENSE)
-
-[npm]: https://img.shields.io/npm/v/@navaris/appshell-manifest-webpack-plugin.svg
-[npm-url]: https://npmjs.com/package/@navaris/appshell-manifest-webpack-plugin
-[node]: https://img.shields.io/node/v/@navaris/appshell-manifest-webpack-plugin.svg
-[node-url]: https://nodejs.org
-[tests]: https://github.com/navaris/module-federation/packages/appshell-manifest-webpack-plugin/badge.svg
-[tests-url]: https://github.com/navaris/module-federation/packages/appshell-manifest-webpack-plugin/actions
-[cover]: https://codecov.io/gh/navaris/module-federation/packages/appshell-manifest-webpack-plugin/branch/master/graph/badge.svg
-[cover-url]: https://codecov.io/gh/navaris/module-federation/packages/appshell-manifest-webpack-plugin
-[chat]: https://img.shields.io/badge/gitter-webpack%2Fwebpack-brightgreen.svg
-[chat-url]: https://gitter.im/navaris/module-federation
-[size]: https://packagephobia.now.sh/badge?p=appshell-manifest-webpack-plugin
-[size-url]: https://packagephobia.now.sh/result?p=appshell-manifest-webpack-plugin
