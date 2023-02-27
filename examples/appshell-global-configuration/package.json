@@ -1,0 +1,46 @@
+{
+  "name": "appshell-global-config",
+  "version": "1.0.0",
+  "description": "Example how to use appshell-manifest-webpack-plugin to generate global Appshell configurations",
+  "main": "index.js",
+  "workspaces": [
+    "apps/*"
+  ],
+  "repository": "https://github.com/navaris/module-federation.git",
+  "author": "Robert Hamilton <rh@navaris.com>",
+  "scripts": {
+    "bootstrap": "npx lerna bootstrap",
+    "build": "dotenv -- lerna run build",
+    "postbuild": "yarn generate-manifest",
+    "generate-manifest": "dotenv -- appshell generate appshell_configs && cp appshell.manifest.json apps/appshell-host/public",
+    "clean": "lerna run --parallel clean && rm -rf coverage",
+    "lint": "eslint apps/**/*.ts",
+    "serve": "dotenv -- lerna run --parallel serve",
+    "start": "dotenv -- lerna run --parallel start",
+    "stats": "lerna run --parallel stats",
+    "test": "jest",
+    "test:ci": "yarn test a --watchAll=false --coverage --reporters=jest-junit"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "5.16.5",
+    "@testing-library/react": "13.4.0",
+    "@testing-library/user-event": "13.5.0",
+    "@types/jest": "27.5.2",
+    "@types/node": "16.18.12",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
+    "craco": "0.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "tsconfig-paths-webpack-plugin": "4.0.0",
+    "typescript": "4.9.5",
+    "web-vitals": "2.1.4",
+    "webpack": "5.75.0",
+    "webpack-cli": "5.0.1",
+    "webpack-dev-server": "4.11.1"
+  },
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {}
+}

@@ -10,7 +10,7 @@
     "bootstrap": "npx lerna bootstrap",
     "build": "lerna run --scope=@navaris/appshell-manifest-webpack-plugin build && lerna run --ignore=@navaris/appshell-manifest-webpack-plugin build",
     "clean": "lerna run --parallel clean && rm -rf coverage",
-    "lint": "eslint packages/**/*.ts",
+    "lint": "eslint packages/**/*.ts examples/**/*.ts",
     "serve": "dotenv -- lerna run --parallel serve",
     "start": "dotenv -- lerna run --parallel start",
     "stats": "lerna run --parallel stats",

@@ -1,0 +1,9 @@
+remotes:
+  VanillaModule/Vanilla:
+    url: ${VANILLA_MFE_URL}/remoteEntry.js
+    metadata:
+      route: /vanilla
+      displayName: Example React App
+      displayGroup: main
+      order: 10
+      icon: ViewList
