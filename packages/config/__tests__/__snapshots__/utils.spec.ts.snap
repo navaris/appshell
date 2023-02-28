@@ -119,6 +119,8 @@ exports[`utils merge appshell configs should merge multiple valid configurations
         "order": 30,
         "route": "/biz",
       },
+      "module": "./Biz",
+      "scope": "BizModule",
       "url": "http://localhost:4040/remoteEntry.js",
     },
     "TestModule/Bar": {
@@ -130,6 +132,8 @@ exports[`utils merge appshell configs should merge multiple valid configurations
         "order": 20,
         "route": "/bar",
       },
+      "module": "./Bar",
+      "scope": "TestModule",
       "url": "\${APPS_TEST_URL}/remoteEntry.js",
     },
     "TestModule/Foo": {
@@ -141,6 +145,8 @@ exports[`utils merge appshell configs should merge multiple valid configurations
         "order": 10,
         "route": "/foo",
       },
+      "module": "./Foo",
+      "scope": "TestModule",
       "url": "\${APPS_TEST_URL}/remoteEntry.js",
     },
   },
@@ -192,6 +198,8 @@ exports[`utils merge should merge multiple valid configurations 1`] = `
         "order": 30,
         "route": "/biz",
       },
+      "module": "./Biz",
+      "scope": "BizModule",
       "url": "http://localhost:4040/remoteEntry.js",
     },
     "TestModule/Bar": {
@@ -203,6 +211,8 @@ exports[`utils merge should merge multiple valid configurations 1`] = `
         "order": 20,
         "route": "/bar",
       },
+      "module": "./Bar",
+      "scope": "TestModule",
       "url": "\${APPS_TEST_URL}/remoteEntry.js",
     },
     "TestModule/Foo": {
@@ -214,6 +224,8 @@ exports[`utils merge should merge multiple valid configurations 1`] = `
         "order": 10,
         "route": "/foo",
       },
+      "module": "./Foo",
+      "scope": "TestModule",
       "url": "\${APPS_TEST_URL}/remoteEntry.js",
     },
   },

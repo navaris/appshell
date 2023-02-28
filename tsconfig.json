@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@navaris/*": ["./packages/*/src"]
+      "@appshell/*": ["./packages/*/src"]
     },
     "allowJs": true,
     "alwaysStrict": true,

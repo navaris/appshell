@@ -1,25 +1,25 @@
-# @navaris/appshell-manifest-webpack-plugin
+# @appshell/manifest-webpack-plugin
 
 Used to generate a global Appshell manifest for Webpack's Module Federation and provide additional information to the Appshell about remote entrypoints, routing, display names, etc.
 
 ## Getting Started
 
-To begin, you'll need to install `@navaris/appshell-manifest-webpack-plugin` and `@navaris/appshell-cli`:
+To begin, you'll need to install `@appshell/manifest-webpack-plugin` and `@appshell/cli`:
 
 ```console
-npm install @navaris/appshell-manifest-webpack-plugin @navaris/appshell-cli --save-dev
+npm install @appshell/manifest-webpack-plugin @appshell/cli --save-dev
 ```
 
 or
 
 ```console
-yarn add -D @navaris/appshell-manifest-webpack-plugin @navaris/appshell-cli
+yarn add -D @appshell/manifest-webpack-plugin @appshell/cli
 ```
 
 or
 
 ```console
-pnpm add -D @navaris/appshell-manifest-webpack-plugin @navaris/appshell-cli
+pnpm add -D @appshell/manifest-webpack-plugin @appshell/cli
 ```
 
 Then add the plugin to the `webpack` config of each remote app module. For example:
@@ -27,7 +27,7 @@ Then add the plugin to the `webpack` config of each remote app module. For examp
 **webpack.config.js**
 
 ```js
-const AppshellManifestPlugin = require('@navaris/appshell-manifest-webpack-plugin');
+const AppshellManifestPlugin = require('@appshell/manifest-webpack-plugin');
 
 module.exports = {
   plugins: [
@@ -41,7 +41,7 @@ module.exports = {
 
 > **Note**
 >
-> `@navaris/appshell-manifest-webpack-plugin` requires an `appshell.config.yaml` file in your project directory and the ModuleFederationPlugin.
+> `@appshell/manifest-webpack-plugin` requires an `appshell.config.yaml` file in your project directory and the ModuleFederationPlugin.
 
 > **Note**
 >
@@ -60,7 +60,7 @@ The plugin's signature:
 **webpack.config.js**
 
 ```js
-const AppshellManifestPlugin = require('@navaris/appshell-manifest-webpack-plugin');
+const AppshellManifestPlugin = require('@appshell/manifest-webpack-plugin');
 
 module.exports = {
   plugins: [

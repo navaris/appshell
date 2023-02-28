@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { generate } from '@navaris/appshell-utils';
+import { generate } from '@appshell/config';
 import fs from 'fs';
 import path from 'path';
 import yargs from 'yargs';

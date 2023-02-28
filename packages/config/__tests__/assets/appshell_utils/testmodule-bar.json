@@ -1,13 +1,15 @@
 {
   "remotes": {
-    "BizModule/Biz": {
-      "id": "BizModule/Biz",
-      "url": "http://localhost:4040/remoteEntry.js",
+    "TestModule/Bar": {
+      "id": "TestModule/Bar",
+      "url": "${APPS_TEST_URL}/remoteEntry.js",
+      "scope": "TestModule",
+      "module": "./Bar",
       "metadata": {
-        "route": "/biz",
-        "displayName": "Biz App",
-        "displayGroup": "auxiliary",
-        "order": 30,
+        "route": "/bar",
+        "displayName": "Bar App",
+        "displayGroup": "main",
+        "order": 20,
         "icon": "ViewList"
       }
     }

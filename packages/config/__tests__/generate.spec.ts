@@ -7,7 +7,7 @@ import bing from './assets/appshell_configs/FooModule-Bing.json';
 import foo from './assets/appshell_configs/FooModule-Foo.json';
 
 describe('generate', () => {
-  const packageName = 'appshell-utils';
+  const packageName = 'config';
   const configsDir = path.resolve(`packages/${packageName}/__tests__/assets/appshell_configs`);
   process.env.APPS_TEST_URL = 'http://remote-module.com';
 

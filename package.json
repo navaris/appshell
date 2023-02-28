@@ -8,7 +8,7 @@
   "repository": "https://github.com/navaris/module-federation.git",
   "scripts": {
     "bootstrap": "npx lerna bootstrap",
-    "build": "lerna run --scope=@navaris/appshell-manifest-webpack-plugin build && lerna run --ignore=@navaris/appshell-manifest-webpack-plugin build",
+    "build": "lerna run --scope=@appshell/manifest-webpack-plugin build && lerna run --ignore=@appshell/manifest-webpack-plugin build",
     "clean": "lerna run --parallel clean && rm -rf coverage",
     "lint": "eslint packages/**/*.ts examples/**/*.ts",
     "serve": "dotenv -- lerna run --parallel serve",

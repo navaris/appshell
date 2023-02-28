@@ -1,13 +1,15 @@
 {
   "remotes": {
-    "TestModule/Bar": {
-      "id": "TestModule/Bar",
+    "TestModule/Foo": {
+      "id": "TestModule/Foo",
       "url": "${APPS_TEST_URL}/remoteEntry.js",
+      "scope": "TestModule",
+      "module": "./Foo",
       "metadata": {
-        "route": "/bar",
-        "displayName": "Bar App",
+        "route": "/foo",
+        "displayName": "Foo App",
         "displayGroup": "main",
-        "order": 20,
+        "order": 10,
         "icon": "ViewList"
       }
     }

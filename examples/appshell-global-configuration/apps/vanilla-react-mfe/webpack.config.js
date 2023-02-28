@@ -1,4 +1,4 @@
-const { AppshellManifestPlugin } = require('@navaris/appshell-manifest-webpack-plugin');
+const { AppshellManifestPlugin } = require('@appshell/manifest-webpack-plugin');
 const { container } = require('webpack');
 const pkg = require('../../package.json');
 const path = require('path');

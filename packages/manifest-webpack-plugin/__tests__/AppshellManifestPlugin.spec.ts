@@ -37,7 +37,7 @@ class MockCompiler {
 }
 
 describe('AppshellManifestPlugin', () => {
-  const packageName = 'appshell-manifest-webpack-plugin';
+  const packageName = 'manifest-webpack-plugin';
   const config = `packages/${packageName}/__tests__/assets/appshell.config.yaml`;
   const configsDir = `packages/${packageName}/__tests__/assets/app_manifests`;
 

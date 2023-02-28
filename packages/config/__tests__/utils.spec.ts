@@ -5,13 +5,13 @@ import { merge } from '../src/utils';
 import copy from '../src/utils/copy';
 import load from '../src/utils/load';
 import validator from '../src/validators/appshell.manifest';
-import biz from './assets/appshell_utils/bizmodule-biz.json';
+import bizManifest from './assets/appshell_utils/bizmodule-biz.json';
 import remoteCollisions from './assets/appshell_utils/remote-collisions.json';
-import bar from './assets/appshell_utils/testmodule-bar.json';
-import foo from './assets/appshell_utils/testmodule-foo.json';
+import barManifest from './assets/appshell_utils/testmodule-bar.json';
+import fooManifest from './assets/appshell_utils/testmodule-foo.json';
 
 describe('utils', () => {
-  const packageName = 'appshell-utils';
+  const packageName = 'config';
 
   describe('load', () => {
     describe('consuming the configuration', () => {
@@ -106,7 +106,7 @@ describe('utils', () => {
 
   describe('merge', () => {
     test('should merge multiple valid configurations', () => {
-      const config = merge<AppshellManifest>(validator, foo, bar, biz);
+      const config = merge<AppshellManifest>(validator, fooManifest, barManifest, bizManifest);
       expect(config).toMatchSnapshot();
     });
 
@@ -115,40 +115,40 @@ describe('utils', () => {
         merge<AppshellManifest>(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           undefined as any,
-          foo,
-          bar,
-          biz,
+          fooManifest,
+          barManifest,
+          bizManifest,
         ),
       ).toThrow(/No validator provided/);
     });
 
     test('should validate add documents individually', () => {
       const validateSpy = jest.spyOn(validator, 'validate');
-      merge<AppshellManifest>(validator, foo, bar, biz);
+      merge<AppshellManifest>(validator, fooManifest, barManifest, bizManifest);
 
-      expect(validateSpy).toHaveBeenCalledWith(foo);
-      expect(validateSpy).toHaveBeenCalledWith(bar);
-      expect(validateSpy).toHaveBeenCalledWith(biz);
+      expect(validateSpy).toHaveBeenCalledWith(fooManifest);
+      expect(validateSpy).toHaveBeenCalledWith(barManifest);
+      expect(validateSpy).toHaveBeenCalledWith(bizManifest);
     });
 
     test('should validate merged document', () => {
       const validateSpy = jest.spyOn(validator, 'validate');
-      const config = merge<AppshellManifest>(validator, foo, bar, biz);
+      const config = merge<AppshellManifest>(validator, fooManifest, barManifest, bizManifest);
 
       expect(validateSpy).toHaveBeenLastCalledWith(config);
     });
 
     describe('appshell configs', () => {
       test('should merge multiple valid configurations', () => {
-        const config = merge<AppshellManifest>(validator, foo, bar, biz);
+        const config = merge<AppshellManifest>(validator, fooManifest, barManifest, bizManifest);
 
         expect(config).toMatchSnapshot();
       });
 
       test('should reject configurations with remotes collisions', () => {
-        expect(() => merge<AppshellManifest>(validator, foo, bar, remoteCollisions)).toThrow(
-          'Multiple remotes with the same key',
-        );
+        expect(() =>
+          merge<AppshellManifest>(validator, fooManifest, barManifest, remoteCollisions),
+        ).toThrow('Multiple remotes with the same key');
       });
     });
   });

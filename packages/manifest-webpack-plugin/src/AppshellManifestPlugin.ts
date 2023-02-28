@@ -4,7 +4,7 @@ import {
   ModuleFederationPluginOptions,
   Schema,
   validators,
-} from '@navaris/appshell-utils';
+} from '@appshell/config';
 import fs from 'fs';
 import hash_sum from 'hash-sum';
 import { entries, keys, values } from 'lodash';

@@ -1,7 +1,7 @@
 {
   "name": "appshell-global-config",
   "version": "1.0.0",
-  "description": "Example how to use appshell-manifest-webpack-plugin to generate global Appshell configurations",
+  "description": "Example how to use @appshell/manifest-webpack-plugin to generate global Appshell configurations",
   "main": "index.js",
   "workspaces": [
     "apps/*"
@@ -13,7 +13,7 @@
     "build": "dotenv -- lerna run build",
     "postbuild": "yarn generate-manifest",
     "generate-manifest": "dotenv -- appshell generate manifest --configsDir appshell_configs && cp appshell.manifest.json apps/appshell-host/public",
-    "clean": "lerna run --parallel clean && rm -rf coverage",
+    "clean": "lerna run --parallel clean && rm -rf coverage appshell_configs appshell.manifest.json",
     "lint": "eslint apps/**/*.ts",
     "serve": "dotenv -- lerna run --parallel serve",
     "start": "dotenv -- lerna run --parallel start",

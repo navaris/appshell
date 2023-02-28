@@ -1,13 +1,15 @@
 {
   "remotes": {
     "TestModule/Foo": {
-      "id": "TestModule/Foo",
-      "url": "${APPS_TEST_URL}/remoteEntry.js",
+      "id": "BizModule/Biz",
+      "url": "http://localhost:4040/remoteEntry.js",
+      "scope": "BizModule",
+      "module": "./Biz",
       "metadata": {
-        "route": "/foo",
-        "displayName": "Foo App",
-        "displayGroup": "main",
-        "order": 10,
+        "route": "/biz",
+        "displayName": "Biz App",
+        "displayGroup": "auxiliary",
+        "order": 30,
         "icon": "ViewList"
       }
     }

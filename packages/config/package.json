@@ -1,8 +1,9 @@
 {
-  "name": "@navaris/appshell-cli",
+  "name": "@appshell/config",
   "version": "0.0.0",
-  "description": "cli utility to generate a global Appshell manifest for module federation micro-frontends",
+  "description": "Utility for producing a global appshell manifest for module federation micro-frontends",
   "main": "dist/main.js",
+  "types": "dist/types/index.d.ts",
   "repository": "https://github.com/navaris/module-federation.git",
   "author": "Robert Hamilton <rh@navaris.com>",
   "private": true,
@@ -11,18 +12,16 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "build": "webpack --mode development",
+    "build": "webpack --mode development && yarn build:types",
+    "build:types": "tsc --emitDeclarationOnly",
     "clean": "rm -rf dist",
-    "prebuild": "npm run clean",
-    "start": "webpack --watch --mode development",
+    "generate": "node dist/generate.js",
+    "start": "webpack --watch --mode development && yarn build:types",
     "stats": "webpack --json > stats.json"
   },
   "files": [
     "dist"
   ],
-  "bin": {
-    "appshell": "./dist/main.js"
-  },
   "keywords": [
     "webpack",
     "module federation",

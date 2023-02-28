@@ -1,8 +1,10 @@
 {
   "remotes": {
-    "TestModule/Foo": {
+    "BizModule/Biz": {
       "id": "BizModule/Biz",
       "url": "http://localhost:4040/remoteEntry.js",
+      "scope": "BizModule",
+      "module": "./Biz",
       "metadata": {
         "route": "/biz",
         "displayName": "Biz App",

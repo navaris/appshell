@@ -1,4 +1,4 @@
-import { ModuleFederationPluginOptions } from '@navaris/appshell-utils';
+import { ModuleFederationPluginOptions } from '@appshell/config';
 
 // eslint-disable-next-line import/prefer-default-export
 export const MODULE_FEDERATION_PLUGIN_OPTIONS: ModuleFederationPluginOptions = {

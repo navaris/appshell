@@ -1,25 +1,25 @@
-# @navaris/appshell-cli
+# @appshell/cli
 
-CLI utility for generating the global Appshell configuration for Webpack Module Federation. This utility works in conjunction with `@navaris/appshell-manifest-webpack-plugin`.
+CLI utility for generating the global Appshell configuration for Webpack Module Federation. This utility works in conjunction with `@appshell/manifest-webpack-plugin`.
 
 ## Getting Started
 
-To begin, you'll need to install `@navaris/appshell-cli`:
+To begin, you'll need to install `@appshell/cli`:
 
 ```console
-npm install @navaris/appshell-cli --save-dev
+npm install @appshell/cli --save-dev
 ```
 
 or
 
 ```console
-yarn add -D @navaris/appshell-cli
+yarn add -D @appshell/cli
 ```
 
 or
 
 ```console
-pnpm add -D @navaris/appshell-cli
+pnpm add -D @appshell/cli
 ```
 
 ## Usage
