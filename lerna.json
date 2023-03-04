@@ -8,14 +8,14 @@
       "message": "chore: release [skip ci] %s"
     }
   },
+  "packages": [
+    "packages/*"
+  ],
   "ignoreChanges": [
     "**/__fixtures__/**",
     "**/__tests__/**",
     "**/*.md",
-    "**/examples/**"
-  ],
-  "packages": [
-    "examples/*",
-    "packages/*"
+    "**/examples/**",
+    ".github/**"
   ]
 }

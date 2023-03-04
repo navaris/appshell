@@ -1,8 +1,8 @@
 import {
   AppshellConfig,
-  load,
   ModuleFederationPluginOptions,
   Schema,
+  utils,
   validators,
 } from '@appshell/config';
 import fs from 'fs';
@@ -77,7 +77,12 @@ export default class AppshellManifestPlugin {
   }
 
   validate(config: AppshellConfig) {
+    if (!config.module.name) {
+      throw new Error('Module name is required.');
+    }
+
     validators.appshell_config.validate(config);
+
     const pluginRemotes = keys(config.module.exposes).map((key) =>
       path.join(`${config.module.name}/${path.basename(key)}`),
     );
@@ -118,7 +123,7 @@ export default class AppshellManifestPlugin {
   apply(compiler: Compiler) {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const configPath = path.resolve(this.options.config!);
-    const config = load<AppshellConfig>(configPath);
+    const config = utils.load<AppshellConfig>(configPath);
     const plugin = this.findModuleFederationPlugin(compiler.options);
 
     if (!plugin) {
@@ -126,18 +131,14 @@ export default class AppshellManifestPlugin {
       throw new Error('Webpack ModuleFederationPlugin is required to use this plugin.');
     }
 
-    if (!plugin._options?.name) {
-      throw new Error('Module name is required.');
-    }
+    this.prepare(config, plugin);
+    this.validate(config);
 
     compiler.hooks.afterEmit.tap(PLUGIN_NAME, (compilation) => {
       const configsDir =
         this.options.configsDir && this.options.configsDir !== this.defaults.configsDir
           ? path.resolve(this.options.configsDir)
           : path.resolve(compilation.outputOptions.path || '', this.defaults.configsDir);
-
-      this.prepare(config, plugin);
-      this.validate(config);
 
       if (!fs.existsSync(configsDir)) {
         fs.mkdirSync(configsDir);

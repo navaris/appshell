@@ -6,6 +6,14 @@ import biz from './assets/appshell_configs/BizModule-Biz.json';
 import bing from './assets/appshell_configs/FooModule-Bing.json';
 import foo from './assets/appshell_configs/FooModule-Foo.json';
 
+type TestMetadata = {
+  route: string;
+  displayName: string;
+  displayGroup: string;
+  order: number;
+  icon: string;
+};
+
 describe('generate', () => {
   const packageName = 'config';
   const configsDir = path.resolve(`packages/${packageName}/__tests__/assets/appshell_configs`);
@@ -42,5 +50,11 @@ describe('generate', () => {
     const actualEntrypoints = values(config.modules).flatMap((remote) => keys(remote.exposes));
 
     expect(expectedEntrypoints).toEqual(actualEntrypoints);
+  });
+
+  it('should capture metadata', () => {
+    const config = generate<TestMetadata>(configsDir);
+
+    expect(values(config.remotes).flatMap((remote) => remote.metadata)).toHaveLength(4);
   });
 });

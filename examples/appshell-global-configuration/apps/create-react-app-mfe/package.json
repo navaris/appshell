@@ -1,6 +1,6 @@
 {
   "name": "create-react-app-mfe",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "start": "BROWSER=none PORT=3001 craco start",

@@ -1,3 +1,6 @@
+/**
+ * @appshell/config package API
+ */
 export { default as configmap } from './configmap';
 export { default as generate } from './generate';
 export type {
@@ -8,5 +11,5 @@ export type {
   ModuleFederationPluginOptions,
   Schema,
 } from './types';
-export { default as load } from './utils/load';
+export * as utils from './utils';
 export * as validators from './validators';
