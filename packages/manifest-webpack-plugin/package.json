@@ -25,7 +25,8 @@
   "keywords": [
     "webpack",
     "module federation",
-    "micro-frontends"
+    "micro-frontends",
+    "appshell"
   ],
   "license": "MIT"
 }
