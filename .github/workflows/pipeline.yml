@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
-      - staging
+      - develop
   pull_request:
     branches:
       - main
-      - staging
+      - develop
 
 permissions:
   contents: write
@@ -43,7 +43,7 @@ jobs:
 
   publish:
     needs: build
-    if: contains('["refs/heads/main", "refs/heads/staging"]', github.ref)
+    if: contains('["refs/heads/main", "refs/heads/develop"]', github.ref)
     runs-on: ubuntu-latest
 
     steps:
@@ -79,7 +79,7 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Version and tag pre-release
-        if: ${{ github.ref == 'refs/heads/staging' }}
+        if: ${{ github.ref == 'refs/heads/develop' }}
         run: npx lerna version --no-push --conventional-prerelease --yes
 
       - name: Version and tag release
