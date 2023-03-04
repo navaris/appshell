@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+/**
+ * @appshell/cli package API
+ */
+
 import { generate } from '@appshell/config';
 import fs from 'fs';
 import path from 'path';

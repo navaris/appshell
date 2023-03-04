@@ -61,8 +61,11 @@ createMap<AppshellConfig, AppshellManifest>(
 );
 
 // eslint-disable-next-line import/prefer-default-export
-export const toAppshellManifest = (config: AppshellConfig, args: ConfigMap) => {
-  const manifest = mapper.map<AppshellConfig, AppshellManifest>(
+export const toAppshellManifest = <TMetadata extends Record<string, unknown>>(
+  config: AppshellConfig,
+  args: ConfigMap,
+) => {
+  const manifest = mapper.map<AppshellConfig, AppshellManifest<TMetadata>>(
     config,
     'AppshellConfig',
     'AppshellManifest',

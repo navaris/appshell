@@ -1,25 +1,39 @@
+<div align="center">
+  <a href="https://github.com/navaris/appshell">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/navaris/appshell/blob/main/assets/branding/appshell-logo-white_2x.png">
+      <img alt="appshell" src="https://github.com/navaris/appshell/blob/main/assets/branding/appshell-logo_2x.png">
+    </picture>
+  </a>
+</div>
+
+[![Appshell CI](https://github.com/navaris/appshell/actions/workflows/pipeline.yml/badge.svg)](https://github.com/navaris/appshell/actions/workflows/pipeline.yml)
+
 # @appshell/manifest-webpack-plugin
 
-Used to generate a global Appshell manifest for Webpack's Module Federation and provide additional information to the Appshell about remote entrypoints, routing, display names, etc.
+Emits remote module configurations used to generate a `global runtime manifest` for Webpack Module Federation micro-frontends.
+
+A working example can be found [here](https://github.com/navaris/appshell/tree/main/examples/appshell-global-configuration).
 
 ## Getting Started
 
-To begin, you'll need to install `@appshell/manifest-webpack-plugin` and `@appshell/cli`:
+To begin, you'll need to install `@appshell/manifest-webpack-plugin`:
+To begin, you'll need to install `@appshell/manifest-webpack-plugin`:
 
 ```console
-npm install @appshell/manifest-webpack-plugin @appshell/cli --save-dev
+npm install @appshell/manifest-webpack-plugin --save-dev
 ```
 
 or
 
 ```console
-yarn add -D @appshell/manifest-webpack-plugin @appshell/cli
+yarn add -D @appshell/manifest-webpack-plugin
 ```
 
 or
 
 ```console
-pnpm add -D @appshell/manifest-webpack-plugin @appshell/cli
+pnpm add -D @appshell/manifest-webpack-plugin
 ```
 
 Then add the plugin to the `webpack` config of each remote app module. For example:
@@ -27,7 +41,7 @@ Then add the plugin to the `webpack` config of each remote app module. For examp
 **webpack.config.js**
 
 ```js
-const AppshellManifestPlugin = require('@appshell/manifest-webpack-plugin');
+const { AppshellManifestPlugin } = require('@appshell/manifest-webpack-plugin');
 
 module.exports = {
   plugins: [
@@ -39,77 +53,19 @@ module.exports = {
 };
 ```
 
-> **Note**
->
-> `@appshell/manifest-webpack-plugin` requires an `appshell.config.yaml` file in your project directory and the ModuleFederationPlugin.
+**What is appshell.config.yaml?**
 
-> **Note**
->
-> During the build, the plugin emits manifest files that are subsequently used to generate the global configuration for your Appshell.
+> A configuration file consumed by the plugin to provide additional information to the Appshell host about remote entrypoints, routing, display names, etc.
 
-> **Note**
->
-> Add a post build step like `"generate-manifest": "dotenv -- appshell generate manifest --configsDir appshell_configs"` to generate the global Appshell manifest.
-
-## Options
-
-- **[`options`](#options-1)**
-
-The plugin's signature:
-
-**webpack.config.js**
-
-```js
-const AppshellManifestPlugin = require('@appshell/manifest-webpack-plugin');
-
-module.exports = {
-  plugins: [
-    new AppshellManifestPlugin({
-      config: './path/to/appshell.config.yaml',
-      configsDir: '<root>/appshell_configs',
-    }),
-  ],
-};
-```
-
-### `Options`
-
-- [`config`](#config)
-- [`configsDir`](#configsDir)
-
-#### `config`
-
-Type:
-
-```ts
-type config = string;
-```
-
-Default: `appshell.config.yaml`
-
-Location of the `appshell.config.yaml` file.
-
-#### `configsDir`
-
-Type:
-
-```ts
-type configsDir = string;
-```
-
-Default: `<output-dir>/appshell_configs`
-
-Location where the plugin will output the appshell configs. For mono-repo solutions it makes sense to configure a single location for all of the plugins to write. The global Appshell manifest will be generated based on the contents of this directory.
-
-## appshell.config.yaml
-
-Configuration file that associates additional data with each remote defined in the ModuleFederationPlugin.
+Sample appshell.config.yaml
 
 ```yaml
 remotes:
   TestModule/Foo: # Must match the scope/module defined in ModuleFederationPlugin
-    url: ${APPS_TEST_URL}/remoteEntry.js # Environment variables will be expanded when the global Appshell configuration is generated, typically on start or deployment.
-    metadata: # Metadata will be included in the global Appshell configuration
+    url: ${APPS_TEST_URL}/remoteEntry.js # Environment variables will be expanded when the global runtime manifest is generated.
+    metadata: # Use metadata to provide additional information
+    url: ${APPS_TEST_URL}/remoteEntry.js # Environment variables will be expanded when the global runtime manifest is generated.
+    metadata: # Use metadata to provide additional information
       route: ${FOO_ROUTE}
       displayName: Foo App
       displayGroup: main
@@ -135,9 +91,70 @@ remotes:
       icon: ViewList
 ```
 
+> **Note** the variable expansion syntax `${CRA_MFE_URL}`. When `global runtime manifest` is generated the actual runtime environment values are injected and all configurations are merged into a `global runtime manifest`.
+
+**What happens at build time?**
+
+> The plugin emits files that are subsequently used to generate the `global runtime manifest` at runtime.
+
+![Sample APPSHELL_CONFIGS_DIR](https://github.com/navaris/appshell/blob/main/assets/docs/appshell_configs_dir.png 'APPSHELL_CONFIGS_DIR')
+
 ## Sample output
 
-Configure a post build step to generate the Appshell manifest. See `appshell --help` for more information.
+```json
+{
+  "remotes": {
+    "CraModule/App": {
+      "url": "${CRA_MFE_URL}/remoteEntry.js",
+      "metadata": {
+        "route": "/cra",
+        "displayName": "Example App",
+        "displayGroup": "${CRA_MFE_DISPLAY_GROUP}",
+        "order": 10,
+        "icon": "ViewList"
+      },
+      "id": "3eb81a0c"
+    }
+  },
+  "module": {
+    "exposes": {
+      "./App": "./src/App"
+    },
+    "filename": "remoteEntry.js",
+    "name": "CraModule",
+    "shared": {
+      "react": {
+        "singleton": true,
+        "requiredVersion": "^18.2.0"
+      },
+      "react-dom": {
+        "singleton": true,
+        "requiredVersion": "^18.2.0"
+      }
+    }
+  }
+}
+```
+
+**How do I generate the global runtime manifest?**
+
+> Use [@appshell/cli](https://www.npmjs.com/package/@appshell/config) in a startup script:
+
+```bash
+appshell generate manifest --configsDir appshell_configs
+```
+
+**What if I want to generate the global runtime manifest programmatically?**
+
+> Use the `generate` function found in [@appshell/config](https://www.npmjs.com/package/@appshell/config).
+
+```ts
+import { generate } from '@appshell/config';
+
+const manifest = generate<MyMetadata>(process.env.APPSHELL_CONFIGS_DIR);
+```
+
+Sample `global runtime manifest`:
 
 ```json
 {
@@ -220,6 +237,56 @@ Configure a post build step to generate the Appshell manifest. See `appshell --h
   }
 }
 ```
+
+## Options
+
+- **[`options`](#options-1)**
+
+The plugin's signature:
+
+**webpack.config.js**
+
+```js
+const { AppshellManifestPlugin } = require('@appshell/manifest-webpack-plugin');
+
+module.exports = {
+  plugins: [
+    new AppshellManifestPlugin({
+      config: './path/to/appshell.config.yaml',
+      configsDir: '<root>/appshell_configs',
+    }),
+  ],
+};
+```
+
+### `Options`
+
+- [`config`](#config)
+- [`configsDir`](#configsDir)
+
+#### `config`
+
+Type:
+
+```ts
+type config = string;
+```
+
+Default: `appshell.config.yaml`
+
+Location of the `appshell.config.yaml` file.
+
+#### `configsDir`
+
+Type:
+
+```ts
+type configsDir = string;
+```
+
+Default: `<output-dir>/appshell_configs`
+
+Location where the plugin will emit the module configurations. For mono-repo solutions it makes sense to configure a single location for all of the plugins to write. The `global runtime manifest` will be generated based on the contents of this directory.
 
 ## License
 

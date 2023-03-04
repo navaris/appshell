@@ -2,10 +2,7 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  entry: {
-    main: './src/index.ts',
-    generate: './src/generate.ts',
-  },
+  entry: './src/index.ts',
   mode: 'development',
   target: 'node',
   externals: [nodeExternals()],

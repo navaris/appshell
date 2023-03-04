@@ -1,12 +1,12 @@
 {
   "name": "appshell-global-config",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Example how to use @appshell/manifest-webpack-plugin to generate global Appshell configurations",
   "main": "index.js",
   "workspaces": [
     "apps/*"
   ],
-  "repository": "https://github.com/navaris/module-federation.git",
+  "repository": "https://github.com/navaris/appshell.git",
   "author": "Robert Hamilton <rh@navaris.com>",
   "scripts": {
     "bootstrap": "npx lerna bootstrap",

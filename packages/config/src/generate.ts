@@ -11,8 +11,8 @@ import validator from './validators/appshell.manifest';
  * @param searchDepth depth to which app configs should be searched in configsDir
  * @returns an appshell manifest
  */
-export default (configsDir: string, searchDepth = 1) => {
-  const manifests = list(configsDir, searchDepth).map<AppshellManifest>((configPath) => {
+export default <TMetadata extends Record<string, unknown>>(configsDir: string, searchDepth = 1) => {
+  const manifests = list(configsDir, searchDepth).map<AppshellManifest<TMetadata>>((configPath) => {
     if (!fs.existsSync(configPath)) {
       throw new Error(`Configuration not found at ${configPath}`);
     }
@@ -20,8 +20,8 @@ export default (configsDir: string, searchDepth = 1) => {
     const config = JSON.parse(fs.readFileSync(configPath).toString());
     const configMap = configmap.create(config);
 
-    return toAppshellManifest(config, configMap);
+    return toAppshellManifest<TMetadata>(config, configMap);
   });
 
-  return merge(validator, ...manifests);
+  return merge<AppshellManifest<TMetadata>>(validator, ...manifests);
 };
