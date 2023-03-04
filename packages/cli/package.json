@@ -1,6 +1,6 @@
 {
   "name": "@appshell/cli",
-  "version": "0.1.5-alpha.0",
+  "version": "0.1.5",
   "description": "cli utility to generate a global Appshell manifest for module federation micro-frontends",
   "main": "dist/main.js",
   "repository": "https://github.com/navaris/appshell.git",
