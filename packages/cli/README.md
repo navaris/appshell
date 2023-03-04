@@ -14,9 +14,6 @@
 Utitliy for generating a `global runtime manifest` for Webpack Module federation micro-frontends.
 
 A working example can be found [here](https://github.com/navaris/appshell/tree/main/examples/appshell-global-configuration).
-Utitliy for generating a `global runtime manifest` for Webpack Module federation micro-frontends.
-
-A working example can be found [here](https://github.com/navaris/appshell/tree/main/examples/appshell-global-configuration).
 
 ## Getting Started
 
