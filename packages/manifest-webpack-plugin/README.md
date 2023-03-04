@@ -18,7 +18,6 @@ A working example can be found [here](https://github.com/navaris/appshell/tree/m
 ## Getting Started
 
 To begin, you'll need to install `@appshell/manifest-webpack-plugin`:
-To begin, you'll need to install `@appshell/manifest-webpack-plugin`:
 
 ```console
 npm install @appshell/manifest-webpack-plugin --save-dev
