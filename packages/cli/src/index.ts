@@ -19,7 +19,7 @@ yargs(hideBin(process.argv))
       return yargs.positional('target', {
         type: 'string',
         requiresArg: true,
-        describe: 'generate command target',
+        describe: 'target for the generate command',
       });
     },
     (
