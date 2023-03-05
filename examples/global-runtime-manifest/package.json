@@ -1,7 +1,7 @@
 {
-  "name": "appshell-global-config",
+  "name": "global-runtime-manifest",
   "version": "0.0.1",
-  "description": "Example how to use @appshell/manifest-webpack-plugin to generate global Appshell configurations",
+  "description": "Example how to use @appshell/manifest-webpack-plugin and @appshell/cli to generate global runtime manifests for Module Federation applications",
   "main": "index.js",
   "workspaces": [
     "apps/*"
@@ -11,8 +11,8 @@
   "scripts": {
     "bootstrap": "npx lerna bootstrap",
     "build": "dotenv -- lerna run build",
-    "postbuild": "yarn generate-manifest",
-    "generate-manifest": "dotenv -- appshell generate manifest --configsDir appshell_configs && cp appshell.manifest.json apps/appshell-host/public",
+    "postbuild": "yarn generate-manifest && cp appshell.manifest.json apps/appshell-host/public",
+    "generate-manifest": "dotenv -- appshell generate manifest --configsDir appshell_configs",
     "clean": "lerna run --parallel clean && rm -rf coverage appshell_configs appshell.manifest.json",
     "lint": "eslint apps/**/*.ts",
     "serve": "dotenv -- lerna run --parallel serve",
@@ -22,6 +22,8 @@
     "test:ci": "yarn test a --watchAll=false --coverage --reporters=jest-junit"
   },
   "dependencies": {
+    "@appshell/cli": "0.1.5",
+    "@appshell/manifest-webpack-plugin": "0.1.5",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@testing-library/user-event": "13.5.0",

@@ -24,6 +24,16 @@
     jsonpointer "^5.0.0"
     leven "^3.1.0"
 
+"@appshell/cli@0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@appshell/cli/-/cli-0.1.5.tgz#ae0ceeb80c441bc7c6c3a8e0c924d58851558482"
+  integrity sha512-9PqPPBJTGYbCWTzdc99y2wimuzg76xJKg8pihirb4OKc8jhWADl4sQKUFJRHG/khpMTFI0PuZeoDyHaYZQrY6w==
+
+"@appshell/manifest-webpack-plugin@0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@appshell/manifest-webpack-plugin/-/manifest-webpack-plugin-0.1.5.tgz#77713750fa8a77a224efc8424de574fabbbed4e2"
+  integrity sha512-UvJIMOx3hGCeRIAN8i7juVa89Cg99nGglQ4uGagEAW7y5YQ7t3FUzZYiWOzALToYN3NtWICVEN5hGaOfaE0hMw==
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.10.4", "@babel/code-frame@^7.12.13", "@babel/code-frame@^7.16.0", "@babel/code-frame@^7.18.6", "@babel/code-frame@^7.8.3":
   version "7.18.6"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.18.6.tgz#3b25d38c89600baa2dcc219edfa88a74eb2c427a"
