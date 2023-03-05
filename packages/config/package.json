@@ -1,6 +1,6 @@
 {
   "name": "@appshell/config",
-  "version": "0.1.4",
+  "version": "0.1.5-alpha.0",
   "description": "Utility for producing a global appshell manifest for module federation micro-frontends",
   "main": "dist/main.js",
   "types": "dist/types/index.d.ts",
@@ -14,7 +14,6 @@
     "build": "webpack --mode production && yarn build:types",
     "build:types": "tsc --emitDeclarationOnly",
     "clean": "rm -rf dist",
-    "generate": "node dist/generate.js",
     "start": "webpack --watch --mode development && yarn build:types",
     "stats": "webpack --json > stats.json"
   },

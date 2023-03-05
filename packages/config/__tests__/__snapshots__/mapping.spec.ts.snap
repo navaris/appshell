@@ -47,6 +47,7 @@ exports[`mapping configurations to domain objects should match snapshot 1`] = `
       },
       "module": "./Biz",
       "scope": "BizModule",
+      "shareScope": "@sharedscope",
       "url": "http://localhost:4040/remoteEntry.js",
     },
     "TestModule/Bar": {
@@ -60,6 +61,7 @@ exports[`mapping configurations to domain objects should match snapshot 1`] = `
       },
       "module": "./Bar",
       "scope": "TestModule",
+      "shareScope": "@sharedscope",
       "url": "http://remote-endpoint.com/remoteEntry.js",
     },
     "TestModule/Foo": {
@@ -73,6 +75,7 @@ exports[`mapping configurations to domain objects should match snapshot 1`] = `
       },
       "module": "./Foo",
       "scope": "TestModule",
+      "shareScope": "@sharedscope",
       "url": "http://remote-endpoint.com/remoteEntry.js",
     },
   },

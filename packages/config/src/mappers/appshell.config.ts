@@ -28,12 +28,15 @@ const mapAppshellEntrypoint = (
 ) => {
   const moduleName = key.replace(/\/.+/, '');
   const moduleKey = key.replace(moduleName, '.');
+  const { id, url } = remote;
+  const { shareScope } = source.module;
 
   return {
-    id: remote.id,
-    url: remote.url,
+    id,
+    url,
     scope: moduleName,
     module: moduleKey,
+    shareScope,
     metadata: remote.metadata,
   };
 };

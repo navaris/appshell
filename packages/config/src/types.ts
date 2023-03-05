@@ -27,6 +27,7 @@ export type AppshellRemote<TMetadata = Record<string, unknown>> = {
   url: string;
   scope: string;
   module: string;
+  shareScope?: string;
   metadata: TMetadata;
 };
 
