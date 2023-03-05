@@ -43,6 +43,10 @@
           "description": "Module key of the remote app",
           "type": "string"
         },
+        "shareScope": {
+          "description": "Share scope",
+          "type": "string"
+        },
         "metadata": {
           "description": "Metadata associated with the remote app",
           "type": "object",

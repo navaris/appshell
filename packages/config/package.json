@@ -14,7 +14,6 @@
     "build": "webpack --mode production && yarn build:types",
     "build:types": "tsc --emitDeclarationOnly",
     "clean": "rm -rf dist",
-    "generate": "node dist/generate.js",
     "start": "webpack --watch --mode development && yarn build:types",
     "stats": "webpack --json > stats.json"
   },

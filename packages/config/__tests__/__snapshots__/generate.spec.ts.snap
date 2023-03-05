@@ -107,6 +107,7 @@ exports[`generate should generate an appshell manifest from a collection of app 
       },
       "module": "./Bar",
       "scope": "BarModule",
+      "shareScope": "@sharedscope",
       "url": "http://remote-module.com/remoteEntry.js",
     },
     "BizModule/Biz": {
@@ -120,6 +121,7 @@ exports[`generate should generate an appshell manifest from a collection of app 
       },
       "module": "./Biz",
       "scope": "BizModule",
+      "shareScope": "@sharedscope",
       "url": "http://localhost:4040/remoteEntry.js",
     },
     "FooModule/Bing": {
@@ -133,6 +135,7 @@ exports[`generate should generate an appshell manifest from a collection of app 
       },
       "module": "./Bing",
       "scope": "FooModule",
+      "shareScope": "@sharedscope",
       "url": "http://remote-module.com/remoteEntry.js",
     },
     "FooModule/Foo": {
@@ -146,6 +149,7 @@ exports[`generate should generate an appshell manifest from a collection of app 
       },
       "module": "./Foo",
       "scope": "FooModule",
+      "shareScope": "@sharedscope",
       "url": "http://remote-module.com/remoteEntry.js",
     },
   },
