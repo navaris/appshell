@@ -11,7 +11,7 @@ module.exports = {
     static: {
       directory: path.join(__dirname, 'dist'),
     },
-    port: 3002,
+    port: process.env.VANILLA_MFE_PORT,
   },
   output: {
     publicPath: 'auto',
@@ -40,6 +40,7 @@ module.exports = {
     new container.ModuleFederationPlugin({
       exposes: {
         './Vanilla': './src/App',
+        './CoolComponent': './src/CoolRemoteComponent',
       },
       filename: 'remoteEntry.js',
       name: 'VanillaModule',

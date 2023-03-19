@@ -248,8 +248,7 @@ export interface ModuleFederationPluginOptions {
     | 'system'
     | 'promise'
     | 'script'
-    | 'node-commonjs'
-    | string;
+    | 'node-commonjs';
 
   /**
    * Container locations and request scopes from which modules should be resolved and loaded at runtime. When provided, property name is used as request scope, otherwise request scope is automatically inferred from container location.

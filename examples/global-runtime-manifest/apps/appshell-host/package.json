@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "craco start",
+    "prestart": "cp appshell.manifest.json public",
+    "start": "BROWSER=none PORT=$APPSHELL_HOST_PORT craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
-    "clean": "rm -rf build",
+    "clean": "rm -rf build appshell.manifest.json public/appshell.manifest.json",
     "prebuild": "npm run clean"
   },
   "dependencies": {

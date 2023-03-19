@@ -13,7 +13,7 @@
 
 Utitliy for generating a `global runtime manifest` for Webpack Module federation micro-frontends.
 
-A working example can be found [here](https://github.com/navaris/appshell/tree/main/examples/appshell-global-configuration).
+Working examples can be found [here](https://github.com/navaris/appshell/tree/main/examples).
 
 ## Getting Started
 
@@ -38,25 +38,39 @@ pnpm add -D @appshell/cli
 ## Usage
 
 ```bash
-appshell [command]
+appshell generate [target]
+
+Generates a resource
 
 Commands:
-  appshell generate [target] [options]  supported targets: 'manifest'
+  appshell generate manifest  Generate the appshell global runtime manifest
+  appshell generate env       Generate the runtime environment js file that refl
+                              ects the current process.env
 
 Options:
-      --help        Show help                                          [boolean]
-      --version     Show version number                                [boolean]
-  -c, --configsDir  Path to configs dir to process
-                                          [string] [default: "appshell_configs"]
-  -d, --depth       Depth to search for app manifests to include
-                                                           [number] [default: 1]
-  -o, --outDir      Output location for the appshell manifest
-                                                         [string] [default: "."]
-  -f, --outFile     Output filename for the appshell manifest
-                                    [string] [default: "appshell.manifest.json"]
+  --help     Show help                                                 [boolean]
+  --version  Show version number                                       [boolean]
 ```
 
-Sample usage
+## Generate manifest
+
+Generates the appshell global runtime manifest.
+
+```bash
+appshell generate manifest
+
+Generate the appshell global runtime manifest
+
+Options:
+      --help        Show help                                           [boolean]
+      --version     Show version number                                 [boolean]
+  -c, --configsDir  Path to the appshell configs dir to process         [string] [default: "appshell_configs"]
+  -d, --depth       Depth to search for app manifests in configsDir     [number] [default: 1]
+  -o, --outDir      Output location for the appshell manifest           [string] [default: "."]
+  -f, --outFile     Output filename for the appshell manifest           [string] [default: "appshell.manifest.json"]
+```
+
+### Sample usage
 
 ```bash
 appshell generate manifest --configsDir /path/to/appshell_configs
@@ -74,7 +88,7 @@ Sample content from APPSHELL_CONFIGS_DIR:
 {
   "remotes": {
     "CraModule/App": {
-      "url": "${CRA_MFE_URL}/remoteEntry.js",
+      "url": "${CRA_MFE_URL}",
       "metadata": {
         "route": "/cra",
         "displayName": "Example App",
@@ -198,3 +212,43 @@ This global runtime manifest can be consumed by your micro-frontend Appshell hos
 **What if I want to generate the manifest programmatically instead?**
 
 > This functionality is exposed by the [@appshell/config](https://www.npmjs.com/package/@appshell/config) package.
+
+## Generate runtime env
+
+Generates a runtime env js file that can be consumed by the application at runtime.
+
+```bash
+appshell generate env
+
+Generate the runtime environment js file that reflects the current process.env
+
+Options:
+      --help     Show help                                                  [boolean]
+      --version  Show version number                                        [boolean]
+  -e, --env      The .env file to process                                   [string] [default: ".env"]
+  -o, --outDir   Output location for the runtime environment js             [string] [default: "."]
+  -f, --outFile  Output filename for the runtime environment js             [string] [default: "runtime.env.js"]
+  -p, --prefix   Only capture environment variables that start with prefix  [string] [default: ""]
+  -g, --globalName     Global variable name window[globalName] used in the output js    [string] [default: "appshell_env"]
+```
+
+### Sample usage
+
+```bash
+appshell generate env -e .env --prefix APPSHELL_ --outDir dist
+```
+
+Sample output `runtime.env.js`
+
+```js
+window.appshell_env = {
+  APPSHELL_VAR_1 = 'val 1',
+  APPSHELL_VAR_2 = 'val 2'
+};
+```
+
+Include in the public html
+
+```html
+<script src="runtime.env.js"></script>
+```

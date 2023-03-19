@@ -21,7 +21,7 @@ exports[`utils load consuming the configuration should read and parse the config
         "order": 20,
         "route": "/bar",
       },
-      "url": "\${APPS_TEST_URL}/remoteEntry.js",
+      "url": "\${APPS_TEST_URL}",
     },
     "TestModule/Foo": {
       "metadata": {
@@ -31,7 +31,7 @@ exports[`utils load consuming the configuration should read and parse the config
         "order": 10,
         "route": "/foo",
       },
-      "url": "\${APPS_TEST_URL}/remoteEntry.js",
+      "url": "\${APPS_TEST_URL}",
     },
   },
 }
@@ -58,7 +58,7 @@ exports[`utils load consuming the configuration should read and parse the config
         "order": 20,
         "route": "/bar",
       },
-      "url": "\${APPS_TEST_URL}/remoteEntry.js",
+      "url": "\${APPS_TEST_URL}",
     },
     "TestModule/Foo": {
       "metadata": {
@@ -68,7 +68,7 @@ exports[`utils load consuming the configuration should read and parse the config
         "order": 10,
         "route": "/foo",
       },
-      "url": "\${APPS_TEST_URL}/remoteEntry.js",
+      "url": "\${APPS_TEST_URL}",
     },
   },
 }
@@ -134,7 +134,7 @@ exports[`utils merge appshell configs should merge multiple valid configurations
       },
       "module": "./Bar",
       "scope": "TestModule",
-      "url": "\${APPS_TEST_URL}/remoteEntry.js",
+      "url": "\${APPS_TEST_URL}",
     },
     "TestModule/Foo": {
       "id": "TestModule/Foo",
@@ -147,7 +147,7 @@ exports[`utils merge appshell configs should merge multiple valid configurations
       },
       "module": "./Foo",
       "scope": "TestModule",
-      "url": "\${APPS_TEST_URL}/remoteEntry.js",
+      "url": "\${APPS_TEST_URL}",
     },
   },
 }
@@ -213,7 +213,7 @@ exports[`utils merge should merge multiple valid configurations 1`] = `
       },
       "module": "./Bar",
       "scope": "TestModule",
-      "url": "\${APPS_TEST_URL}/remoteEntry.js",
+      "url": "\${APPS_TEST_URL}",
     },
     "TestModule/Foo": {
       "id": "TestModule/Foo",
@@ -226,7 +226,7 @@ exports[`utils merge should merge multiple valid configurations 1`] = `
       },
       "module": "./Foo",
       "scope": "TestModule",
-      "url": "\${APPS_TEST_URL}/remoteEntry.js",
+      "url": "\${APPS_TEST_URL}",
     },
   },
 }

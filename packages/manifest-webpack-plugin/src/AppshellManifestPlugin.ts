@@ -1,13 +1,10 @@
-import {
-  AppshellConfig,
-  ModuleFederationPluginOptions,
-  Schema,
-  utils,
-  validators,
-} from '@appshell/config';
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-underscore-dangle */
+import { AppshellConfig, Schema, utils, validators } from '@appshell/config';
+import { ModuleFederationPluginOptions } from '@appshell/config/src/types';
 import fs from 'fs';
 import hash_sum from 'hash-sum';
-import { entries, keys, values } from 'lodash';
+import { entries, keys } from 'lodash';
 import path from 'path';
 import { validate } from 'schema-utils';
 import { Compiler, container, WebpackOptionsNormalized, WebpackPluginInstance } from 'webpack';
@@ -61,7 +58,7 @@ export default class AppshellManifestPlugin {
     };
   }
 
-  findModuleFederationPlugin(webpackConfig: WebpackOptionsNormalized) {
+  static findModuleFederationPlugin(webpackConfig: WebpackOptionsNormalized) {
     const mfPlugin: ModuleFederationPluginInstance | undefined = webpackConfig.plugins?.find(
       (plugin) => plugin.constructor.name === container.ModuleFederationPlugin.name,
     );
@@ -69,14 +66,14 @@ export default class AppshellManifestPlugin {
     return mfPlugin;
   }
 
-  prepare(config: AppshellConfig, plugin: ModuleFederationPluginInstance) {
+  static prepare(config: AppshellConfig, plugin: ModuleFederationPluginInstance) {
     entries(config.remotes).forEach(([key, remote]) => {
       remote.id = hash_sum(key);
     });
     config.module = plugin._options || {};
   }
 
-  validate(config: AppshellConfig) {
+  static validate(config: AppshellConfig) {
     if (!config.module.name) {
       throw new Error('Module name is required.');
     }
@@ -105,13 +102,6 @@ export default class AppshellManifestPlugin {
       );
     }
 
-    const configuredUrls = values(config.remotes).map((entrypoint) => entrypoint.url);
-    if (!configuredUrls.every((url) => path.basename(url) === config.module.filename)) {
-      throw new Error(
-        `Validation error: Mismatched remote url filename in appshell.config.yaml. Expected: ${config.module.filename}, Found: ${configuredUrls}`,
-      );
-    }
-
     return true;
   }
 
@@ -124,15 +114,15 @@ export default class AppshellManifestPlugin {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const configPath = path.resolve(this.options.config!);
     const config = utils.load<AppshellConfig>(configPath);
-    const plugin = this.findModuleFederationPlugin(compiler.options);
+    const plugin = AppshellManifestPlugin.findModuleFederationPlugin(compiler.options);
 
     if (!plugin) {
       // could hook in mmf plugin here and work off of config too
       throw new Error('Webpack ModuleFederationPlugin is required to use this plugin.');
     }
 
-    this.prepare(config, plugin);
-    this.validate(config);
+    AppshellManifestPlugin.prepare(config, plugin);
+    AppshellManifestPlugin.validate(config);
 
     compiler.hooks.afterEmit.tap(PLUGIN_NAME, (compilation) => {
       const configsDir =
@@ -141,7 +131,7 @@ export default class AppshellManifestPlugin {
           : path.resolve(compilation.outputOptions.path || '', this.defaults.configsDir);
 
       if (!fs.existsSync(configsDir)) {
-        fs.mkdirSync(configsDir);
+        fs.mkdirSync(configsDir, { recursive: true });
       }
 
       fs.writeFileSync(

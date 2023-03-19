@@ -13,20 +13,17 @@ const findVariable = (val: string) =>
 const findVariablePlaceholders = (
   obj: object | string | number | undefined,
   results: Record<string, string> = {},
-): Record<string, string> => {
-  return values(obj).reduce(
-    (acc: Record<string, string>, val: object | string | number | undefined) => {
-      if (typeof val === 'string') {
-        const VAR = findVariable(val);
-        return VAR ? set<string>(acc, VAR, process.env[VAR]) : acc;
-      } else if (typeof val === 'object') {
-        return findVariablePlaceholders(val, acc);
-      }
-      return acc;
-    },
-    results,
-  );
-};
+): Record<string, string> =>
+  values(obj).reduce((acc: Record<string, string>, val: object | string | number | undefined) => {
+    if (typeof val === 'string') {
+      const VAR = findVariable(val);
+      return VAR ? set<string>(acc, VAR, process.env[VAR]) : acc;
+    }
+    if (typeof val === 'object') {
+      return findVariablePlaceholders(val, acc);
+    }
+    return acc;
+  }, results);
 
 const apply = <T extends object>(obj: T, configMap: ConfigMap): T => {
   entries(obj).forEach(([key, val]) => {
@@ -35,9 +32,10 @@ const apply = <T extends object>(obj: T, configMap: ConfigMap): T => {
       if (VAR) {
         const value = configMap[VAR];
         if (!value) {
+          // eslint-disable-next-line no-console
           console.log(`warning: value for ${VAR} is ${value}`);
         }
-        set<string>(obj, key, val.replace(`$\{${VAR}\}`, configMap[VAR]));
+        set<string>(obj, key, val.replace(`$\{${VAR}}`, configMap[VAR]));
       }
     } else if (typeof val === 'object') {
       apply(val, configMap);

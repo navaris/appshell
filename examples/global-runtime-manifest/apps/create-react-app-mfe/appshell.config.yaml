@@ -1,6 +1,6 @@
 remotes:
   CraModule/App:
-    url: ${CRA_MFE_URL}/remoteEntry.js
+    url: ${CRA_MFE_URL}
     metadata:
       route: /cra
       displayName: Example App

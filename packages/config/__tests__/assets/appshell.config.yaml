@@ -1,6 +1,6 @@
 remotes:
   TestModule/Foo:
-    url: ${APPS_TEST_URL}/remoteEntry.js
+    url: ${APPS_TEST_URL}
     metadata:
       route: /foo
       displayName: Foo App
@@ -9,7 +9,7 @@ remotes:
       icon: ViewList
 
   TestModule/Bar:
-    url: ${APPS_TEST_URL}/remoteEntry.js
+    url: ${APPS_TEST_URL}
     metadata:
       route: /bar
       displayName: Bar App

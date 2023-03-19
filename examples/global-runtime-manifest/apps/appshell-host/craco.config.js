@@ -10,6 +10,10 @@ module.exports = {
       webpackConfig.plugins.push(
         new container.ModuleFederationPlugin({
           name: 'Appshell',
+          exposes: {
+            './Host': './src/App',
+          },
+          filename: 'remoteEntry.js',
           shared: {
             react: {
               singleton: true,

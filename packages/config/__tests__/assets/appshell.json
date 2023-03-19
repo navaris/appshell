@@ -2,7 +2,7 @@
   "remotes": {
     "TestModule/Foo": {
       "id": "TestModule/Foo",
-      "url": "${APPS_TEST_URL}/remoteEntry.js",
+      "url": "${APPS_TEST_URL}",
       "metadata": {
         "route": "/foo",
         "displayName": "Foo App",
@@ -13,7 +13,7 @@
     },
     "TestModule/Bar": {
       "id": "TestModule/Bar",
-      "url": "${APPS_TEST_URL}/remoteEntry.js",
+      "url": "${APPS_TEST_URL}",
       "metadata": {
         "route": "/bar",
         "displayName": "Bar App",

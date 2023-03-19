@@ -27,7 +27,7 @@ export default {
 
     // logical validation
     if (hasIDCollisions(...documents)) {
-      throw new Error('Multiple routes with the same ID');
+      throw new Error('Multiple remotes with the same ID');
     }
 
     if (hasRemoteCollisions(...documents)) {

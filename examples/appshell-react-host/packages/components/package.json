@@ -1,0 +1,20 @@
+{
+  "name": "react-appshell-host-components",
+  "version": "0.0.2",
+  "description": "React components for sample app",
+  "main": "dist/main.js",
+  "types": "dist/types/index.d.ts",
+  "private": true,
+  "scripts": {
+    "build": "webpack --mode production && tsc --emitDeclarationOnly",
+    "clean": "rm -rf dist",
+    "start": "webpack --watch --mode development --stats-error-details",
+    "stats": "webpack --json > stats.json"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "styled-components": "^5.3.8"
+  }
+}

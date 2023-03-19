@@ -1,7 +1,7 @@
 {
   "name": "global-runtime-manifest",
   "version": "0.0.1",
-  "description": "Example how to use @appshell/manifest-webpack-plugin and @appshell/cli to generate global runtime manifests for Module Federation applications",
+  "description": "Full example using @appshell/manifest-webpack-plugin, @appshell/cli and @appshell/react-host to build Module Federation micro-frontends",
   "main": "index.js",
   "workspaces": [
     "apps/*"
@@ -11,8 +11,7 @@
   "scripts": {
     "bootstrap": "npx lerna bootstrap",
     "build": "dotenv -- lerna run build",
-    "postbuild": "yarn generate-manifest && cp appshell.manifest.json apps/appshell-host/public",
-    "generate-manifest": "dotenv -- appshell generate manifest --configsDir appshell_configs",
+    "postbuild": "dotenv -- appshell generate manifest --configsDir appshell_configs --outDir apps/appshell-host",
     "clean": "lerna run --parallel clean && rm -rf coverage appshell_configs appshell.manifest.json",
     "lint": "eslint apps/**/*.ts",
     "serve": "dotenv -- lerna run --parallel serve",

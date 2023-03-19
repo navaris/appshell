@@ -5,11 +5,10 @@ import { rimrafSync } from 'rimraf';
 import { Compilation, container, WebpackOptionsNormalized } from 'webpack';
 import AppshellManifestPlugin from '../src/AppshellManifestPlugin';
 import sampleConfig from './assets/complete-config.json';
-import invalidRemoteUrlFilename from './assets/invalid-remote-url-filename.json';
 import missingConfiguredEntrypoint from './assets/missing-configured-entrypoint.json';
 import missingRemoteEntrypoint from './assets/missing-remote-entrypoint.json';
 import { MODULE_FEDERATION_PLUGIN_OPTIONS } from './assets/module-federation-plugin-options';
-import webpackConfig from './assets/webpack.config';
+import webpackConfig from './assets/webpack.config.js';
 
 class MockCompiler {
   options: Partial<WebpackOptionsNormalized>;
@@ -53,44 +52,32 @@ describe('AppshellManifestPlugin', () => {
 
   describe('validate', () => {
     it('should throw if config is missing remote entrypoints defined in the MF plugin', () => {
-      const plugin = new AppshellManifestPlugin({ config, configsDir });
-
-      expect(() => plugin.validate(missingRemoteEntrypoint as any)).toThrowError(
+      expect(() => AppshellManifestPlugin.validate(missingRemoteEntrypoint as any)).toThrowError(
         /Validation error: Missing entrypoint/i,
       );
     });
 
     it('should throw if config has remote entrypoints not defined in the MF plugin', () => {
-      const plugin = new AppshellManifestPlugin({ config, configsDir });
-
-      expect(() => plugin.validate(missingConfiguredEntrypoint as any)).toThrowError(
-        /Validation error: Missing exposed entrypoint in ModuleFederationPlugin/i,
-      );
-    });
-
-    it('should throw if entrypoint url does not align with the MF plugin', () => {
-      const plugin = new AppshellManifestPlugin({ config, configsDir });
-
-      expect(() => plugin.validate(invalidRemoteUrlFilename as any)).toThrowError(
-        /Validation error: Mismatched remote url filename/i,
-      );
+      expect(() =>
+        AppshellManifestPlugin.validate(missingConfiguredEntrypoint as any),
+      ).toThrowError(/Validation error: Missing exposed entrypoint in ModuleFederationPlugin/i);
     });
   });
 
   describe('findModuleFederationPlugin', () => {
     it('should find ModuleFederationPlugin if it exists', () => {
-      const plugin = new AppshellManifestPlugin({ config, configsDir });
-
-      const moduleFederationPlugin = plugin.findModuleFederationPlugin(webpackConfig as any);
+      const moduleFederationPlugin = AppshellManifestPlugin.findModuleFederationPlugin(
+        webpackConfig as any,
+      );
 
       expect(moduleFederationPlugin).toBeTruthy();
     });
 
     it('should return undefined if ModuleFederationPlugin does not exist', () => {
-      const plugin = new AppshellManifestPlugin({ config, configsDir });
-
       webpackConfig.plugins = [];
-      expect(plugin.findModuleFederationPlugin(webpackConfig as any)).toBeUndefined();
+      expect(
+        AppshellManifestPlugin.findModuleFederationPlugin(webpackConfig as any),
+      ).toBeUndefined();
     });
   });
 

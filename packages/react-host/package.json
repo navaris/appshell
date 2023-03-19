@@ -1,0 +1,40 @@
+{
+  "name": "@appshell/react-host",
+  "version": "0.0.0",
+  "description": "Appshell host for React",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "generate:env": "appshell generate env -e .env --prefix APPSHELL_ --outDir dist",
+    "generate:manifest": "appshell generate manifest --configsDir $APPSHELL_CONFIGS_DIR --outDir dist",
+    "start": "dotenv -- run-s generate:* start:run",
+    "start:run": "webpack-cli serve --mode development",
+    "prebuild": "yarn clean",
+    "build": "webpack --mode production",
+    "build:development": "webpack --mode development",
+    "serve": "dotenv -- run-s generate:* serve:run",
+    "serve:run": "serve dist -p $APPSHELL_PORT",
+    "serve:developer": "dotenv -- run-s generate:* build:development serve:run",
+    "clean": "rm -rf dist"
+  },
+  "author": "Robert Hamilton <rh@navaris.com>",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "keywords": [
+    "webpack",
+    "module federation",
+    "micro-frontends",
+    "appshell"
+  ],
+  "license": "MIT"
+}
