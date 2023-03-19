@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.6-alpha.1](https://github.com/navaris/appshell/compare/@appshell/config@0.1.6-alpha.0...@appshell/config@0.1.6-alpha.1) (2023-03-19)
+
+**Note:** Version bump only for package @appshell/config
+
+
+
+
+
 ## [0.1.6-alpha.0](https://github.com/navaris/appshell/compare/@appshell/config@0.1.5-alpha.0...@appshell/config@0.1.6-alpha.0) (2023-03-19)
 
 **Note:** Version bump only for package @appshell/config
