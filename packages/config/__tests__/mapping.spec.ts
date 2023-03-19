@@ -5,7 +5,7 @@ import { AppshellConfig, AppshellManifest } from '../src/types';
 import config from './assets/appshell.config.json';
 
 describe('mapping configurations to domain objects', () => {
-  const APPS_TEST_URL = 'http://remote-endpoint.com';
+  const APPS_TEST_URL = 'http://remote-endpoint.com/remoteEntry.js';
 
   let appshellManifest: AppshellManifest;
   beforeEach(() => {

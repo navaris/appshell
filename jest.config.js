@@ -4,10 +4,10 @@ const { compilerOptions } = require('./tsconfig');
 module.exports = {
   testRegex: '/__tests__/.+\\.spec\\.(js|tsx?)$',
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, { prefix: '<rootDir>' }),
-  moduleFileExtensions: ['ts', 'js', 'json'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'json'],
   transform: {
-    '^.+\\.js?$': 'babel-jest',
-    '^.+\\.ts?$': [
+    '^.+\\.jsx?$': 'babel-jest',
+    '^.+\\.tsx?$': [
       'ts-jest',
       {
         diagnostics: false,

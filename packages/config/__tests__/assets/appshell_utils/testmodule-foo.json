@@ -2,7 +2,7 @@
   "remotes": {
     "TestModule/Foo": {
       "id": "TestModule/Foo",
-      "url": "${APPS_TEST_URL}/remoteEntry.js",
+      "url": "${APPS_TEST_URL}",
       "scope": "TestModule",
       "module": "./Foo",
       "metadata": {

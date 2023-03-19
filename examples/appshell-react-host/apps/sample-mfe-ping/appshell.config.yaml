@@ -1,0 +1,9 @@
+remotes:
+  PingModule/App:
+    url: ${SAMPLE_MFE_PING_URL}
+    metadata:
+      route: /ping
+      displayName: Ping Micro-Frontend
+      displayGroup: main
+      order: 10
+      icon: ViewList

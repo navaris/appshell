@@ -13,7 +13,7 @@
 
 Utitliy for generating a `global runtime manifest` for Webpack Module federation micro-frontends.
 
-A working example can be found [here](https://github.com/navaris/appshell/tree/main/examples/appshell-global-configuration).
+Working examples can be found [here](https://github.com/navaris/appshell/tree/main/examples).
 
 ## Getting Started
 
@@ -55,7 +55,7 @@ Sample content from APPSHELL_CONFIGS_DIR:
 {
   "remotes": {
     "CraModule/App": {
-      "url": "${CRA_MFE_URL}/remoteEntry.js",
+      "url": "${CRA_MFE_URL}",
       "metadata": {
         "route": "/cra",
         "displayName": "Example App",

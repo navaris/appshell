@@ -1,7 +1,7 @@
 {
   "name": "@appshell/cli",
   "version": "0.1.5",
-  "description": "cli utility to generate a global Appshell manifest for module federation micro-frontends",
+  "description": "cli utility to generate a global appshell artifacts for module federation micro-frontends",
   "main": "dist/main.js",
   "repository": "https://github.com/navaris/appshell.git",
   "author": "Robert Hamilton <rh@navaris.com>",
@@ -11,6 +11,7 @@
   },
   "scripts": {
     "build": "webpack --mode production",
+    "postbuild": "chmod +x dist/main.js",
     "clean": "rm -rf dist",
     "prebuild": "npm run clean",
     "start": "webpack --watch --mode development",
@@ -25,7 +26,8 @@
   "keywords": [
     "webpack",
     "module federation",
-    "micro-frontends"
+    "micro-frontends",
+    "appshell"
   ],
   "license": "MIT"
 }

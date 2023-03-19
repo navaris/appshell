@@ -1,4 +1,4 @@
-import { ModuleFederationPluginOptions } from '@appshell/config';
+import { ModuleFederationPluginOptions } from '@appshell/config/src/types';
 
 // eslint-disable-next-line import/prefer-default-export
 export const MODULE_FEDERATION_PLUGIN_OPTIONS: ModuleFederationPluginOptions = {
