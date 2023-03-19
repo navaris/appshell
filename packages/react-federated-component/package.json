@@ -4,7 +4,6 @@
   "description": "React utilities for loading federated components",
   "main": "dist/main.js",
   "types": "dist/types/react-federated-component/src/index.d.ts",
-  "private": true,
   "scripts": {
     "build": "webpack --mode production && yarn build:types",
     "build:types": "tsc --emitDeclarationOnly",
