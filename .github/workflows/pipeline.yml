@@ -41,7 +41,7 @@ jobs:
       - name: Build
         run: yarn build
 
-  publish:
+  publish_npm_packages:
     needs: build
     if: contains('["refs/heads/main", "refs/heads/develop"]', github.ref)
     runs-on: ubuntu-latest
@@ -50,6 +50,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
       - name: Use Node.js 16.x
         uses: actions/setup-node@v3
         with:
@@ -97,3 +98,52 @@ jobs:
 
       - name: Push CI commit
         run: git push --follow-tags
+
+  push_docker_images:
+    name: Push Docker images to Docker Hub
+    needs: publish_npm_packages
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        package-dir: [react-host]
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Get the version
+        id: vars
+        run: echo ::set-output name=version::$(cat packages/${{ matrix.package-dir }}/package.json | grep \"version\" | sed 's/.*\://' | tr -d '",')
+
+      - name: Build and push Docker production image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile
+          push: ${{ github.event_name != 'pull_request' }}
+          target: production
+          build-args: |
+            SOURCE_DIR=packages/${{ matrix.package-dir }}
+          tags: |
+            ${{ secrets.DOCKER_ORG }}/appshell-${{ matrix.package-dir }}:latest
+            ${{ secrets.DOCKER_ORG }}/appshell-${{ matrix.package-dir }}:${{ steps.vars.outputs.version }}
+
+      - name: Build and push Docker development image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile
+          push: ${{ github.event_name != 'pull_request' }}
+          target: development
+          build-args: |
+            SOURCE_DIR=packages/${{ matrix.package-dir }}
+          tags: |
+            ${{ secrets.DOCKER_ORG }}/appshell-${{ matrix.package-dir }}-developer:latest
+            ${{ secrets.DOCKER_ORG }}/appshell-${{ matrix.package-dir }}-developer:${{ steps.vars.outputs.version }}
