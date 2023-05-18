@@ -6,6 +6,11 @@ WORKDIR /appshell
 # Install global dependencies
 RUN yarn global add dotenv-cli serve npm-run-all
 
+# Expose application port
+EXPOSE ${APPSHELL_PORT}
+
+CMD ${APPSHELL_CONTAINER_COMMAND}
+
 ### DEPENDENCIES
 FROM base AS dependencies
 # Copy source
@@ -64,8 +69,3 @@ COPY --from=build /appshell/packages /appshell/packages
 COPY --from=build /appshell/node_modules /appshell/node_modules
 
 RUN yarn global add file:/appshell/packages/cli
-
-# Expose application port
-EXPOSE ${APPSHELL_PORT}
-
-CMD ${APPSHELL_CONTAINER_COMMAND}
