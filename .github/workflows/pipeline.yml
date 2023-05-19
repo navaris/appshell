@@ -132,8 +132,8 @@ jobs:
           build-args: |
             SOURCE_DIR=packages/${{ matrix.package-dir }}
           tags: |
-            ${{ secrets.DOCKER_ORG }}/appshell-${{ matrix.package-dir }}:latest
-            ${{ secrets.DOCKER_ORG }}/appshell-${{ matrix.package-dir }}:${{ steps.vars.outputs.version }}
+            ${{ secrets.DOCKER_ORG }}/${{ matrix.package-dir }}:latest
+            ${{ secrets.DOCKER_ORG }}/${{ matrix.package-dir }}:${{ steps.vars.outputs.version }}
 
       - name: Build and push Docker development image
         uses: docker/build-push-action@v4
@@ -145,5 +145,5 @@ jobs:
           build-args: |
             SOURCE_DIR=packages/${{ matrix.package-dir }}
           tags: |
-            ${{ secrets.DOCKER_ORG }}/appshell-${{ matrix.package-dir }}-developer:latest
-            ${{ secrets.DOCKER_ORG }}/appshell-${{ matrix.package-dir }}-developer:${{ steps.vars.outputs.version }}
+            ${{ secrets.DOCKER_ORG }}/${{ matrix.package-dir }}-developer:latest
+            ${{ secrets.DOCKER_ORG }}/${{ matrix.package-dir }}-developer:${{ steps.vars.outputs.version }}
