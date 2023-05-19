@@ -51,6 +51,9 @@ Add the following properties to your .env
 APPSHELL_PORT=3030
 # Location the @appshell/cli processes to generate the global runtime manifest
 APPSHELL_CONFIGS_DIR=/appshell/appshell_configs
+# Prefix used to specify which env vars to include when generating runtime.env.js. Leaving this empty
+# will include ALL variables in the .env
+APPSHELL_ENV_PREFIX=APPSHELL_
 # Host will fetch the manifest on startup. This can be generated on startup by
 # providing $APPSHELL_CONFIGS_DIR, or generated on deployment and referenced by $APPSHELL_MANIFEST_URL.
 APPSHELL_MANIFEST_URL=appshell.manifest.json

@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "generate:env": "appshell generate env -e .env --prefix APPSHELL_ --outDir dist",
+    "generate:env": "appshell generate env -e .env --prefix $APPSHELL_ENV_PREFIX --outDir dist",
     "generate:manifest": "appshell generate manifest --configsDir $APPSHELL_CONFIGS_DIR --outDir dist",
     "start": "dotenv -- run-s generate:* start:run",
     "start:run": "webpack-cli serve --mode development",
