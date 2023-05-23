@@ -26,6 +26,7 @@ module.exports = (env, { mode }) => {
         directory: path.join(__dirname, 'dist'),
       },
       port: process.env.APPSHELL_PORT,
+      historyApiFallback: true,
     },
     output: {
       publicPath: 'auto',
@@ -68,10 +69,11 @@ module.exports = (env, { mode }) => {
           { from: 'public/manifest.json', to: '.' },
           { from: 'public/logo192.png', to: '.' },
           { from: 'public/logo512.png', to: '.' },
+          { from: 'serve.json', to: '.' },
         ],
       }),
       new HtmlWebpackPlugin({
-        publicPath: process.env.APPSHELL_PUBLIC_URL || 'auto',
+        publicPath: path.join(process.env.APPSHELL_PUBLIC_URL || '', '/'),
         title: process.env.APPSHELL_TITLE,
         favicon: './public/favicon.ico',
         template: './public/index.html',
