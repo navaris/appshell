@@ -19,7 +19,7 @@ At build time, each `AppshellManifestPlugin` emits appshell configs into `APPSHE
 
 ## Runtime
 
-At runtime or deployment, `@appshell/cli` processes `APPSHELL_CONFIGS_DIR` to generate the `global runtime manifest`.
+At runtime or deployment, `@appshell/cli` processes `APPSHELL_CONFIGS_DIR` to generate the `global runtime manifest`. In this example, this is done automatically by the appshell react host `@appshell/react-host`
 
 ## Metadata
 
@@ -39,16 +39,19 @@ Uses `@appshell/react-federated-component` to dynamically load remote frontends.
 **To run the example**
 
 ```bash
-npm install # install dependencies
-
 cp sample.env .env # create a .env
 
-npm run build
-# 1. webpack plugins emit configurations to the appshell_configs directory
-# 2. generate:manifest gets called as a post build step - appshell.manifest.json is created
+# 1. start the micro-frontends
+# note: the appshell webpack plugins emit configurations to the appshell_configs directory.
+docker compose --profile apps up
 
-npm run start
-# 1. starts the appshell-react-host container
-# 2. starts the frontends in this workspace
+# OR
 
+npm run start # start locally
+
+# 2. start the appshell host
+# note: the host MUST be started after the appshell_configs directory has been populated
+#       by the previous step (at least on the initial run) - as the appshell host generates
+#       it's manifest file based on the contents of the appshell_configs directory.
+docker compose --profile host up
 ```

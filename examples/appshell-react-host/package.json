@@ -12,22 +12,20 @@
   "scripts": {
     "bootstrap": "npx lerna bootstrap",
     "build": "dotenv -- lerna run --scope=react-appshell-host-components build && dotenv -- lerna run --ignore=react-appshell-host-components build",
-    "postbuild": "dotenv -- yarn generate:manifest",
-    "generate:manifest": "appshell generate manifest --configsDir appshell_configs --outDir apps/sample-mfe-container",
-    "clean": "lerna run --parallel clean && rm -rf coverage appshell_configs appshell.manifest.json",
+    "clean": "lerna run --parallel clean && rm -rf coverage appshell_configs",
+    "generate:env": "appshell generate env",
+    "generate:manifest": "appshell generate manifest --configsDir appshell_configs",
     "lint": "eslint apps/**/*.ts",
     "serve": "dotenv -- lerna run --parallel serve",
-    "prestart": "dotenv -- yarn generate:manifest",
-    "start": "dotenv -- run-p start:apps start:host",
-    "start:apps": "lerna run --parallel start",
-    "start:host": "docker compose up",
+    "prestart": "dotenv -- lerna run --scope=react-appshell-host-components build",
+    "start": "dotenv -- lerna run --parallel start",
     "stats": "lerna run --parallel stats",
     "test": "jest",
-    "test:ci": "yarn test a --watchAll=false --coverage --reporters=jest-junit"
+    "test:ci": "yarn test a --watchAll=false"
   },
   "dependencies": {
-    "@appshell/cli": "0.1.5",
-    "@appshell/manifest-webpack-plugin": "0.1.5",
+    "@appshell/config": "0.1.6-alpha.1",
+    "@appshell/react-federated-component": "0.0.1-alpha.1",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@testing-library/user-event": "13.5.0",
@@ -50,6 +48,17 @@
     "webpack-cli": "5.0.1",
     "webpack-dev-server": "4.11.1"
   },
+  "devDependencies": {
+    "@appshell/manifest-webpack-plugin": "0.1.6-alpha.0",
+    "@pmmmwh/react-refresh-webpack-plugin": "0.5.10",
+    "@types/styled-components": "5.1.26",
+    "dotenv-cli": "7.2.1",
+    "jest-transform-stub": "2.0.0",
+    "lerna": "6.6.2",
+    "serve": "14.2.0",
+    "ts-jest": "29.1.0",
+    "webpack-visualizer-plugin2": "1.0.0"
+  },
   "resolutions": {
     "react-refresh": "0.14.0"
   },
@@ -59,10 +68,5 @@
     }
   },
   "license": "MIT",
-  "private": true,
-  "devDependencies": {
-    "@pmmmwh/react-refresh-webpack-plugin": "0.5.10",
-    "@types/styled-components": "5.1.26",
-    "webpack-visualizer-plugin2": "1.0.0"
-  }
+  "private": true
 }

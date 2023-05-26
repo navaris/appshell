@@ -24,7 +24,8 @@ Add a section in your docker-compose.yml to start the react host.
 ```yaml
 services:
   appshell:
-    image: appshell-react-host
+    image: appshell/react-host-developer # developer image
+    # image: appshell/react-host            # production image
     env_file: './${ENV_TARGET}.env'
     deploy:
       mode: replicated

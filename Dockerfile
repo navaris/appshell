@@ -21,7 +21,7 @@ RUN yarn --pure-lockfile
 ### BUILD
 FROM dependencies as build
 # Validate the build
-RUN yarn clean && yarn lint && yarn test:ci && yarn build
+RUN yarn lint && yarn test:ci && yarn build
 
 ### RELEASE
 FROM base AS production
@@ -36,8 +36,9 @@ ENV APPSHELL_ENV_PREFIX=${APPSHELL_ENV_PREFIX}
 
 WORKDIR /appshell/${SOURCE_DIR}
 
-# Symlink .env
+# Symlink resources
 RUN ln -s /appshell/${ENV_TARGET}.env .env
+RUN ln -s /appshell/appshell_configs ./appshell_configs
 
 COPY --from=build /appshell/${SOURCE_DIR}/package.json .
 COPY --from=build /appshell/${SOURCE_DIR}/dist ./dist
@@ -60,8 +61,9 @@ ENV APPSHELL_ENV_PREFIX=${APPSHELL_ENV_PREFIX}
 
 WORKDIR /appshell/${SOURCE_DIR}
 
-# Symlink .env
+# Symlink resources
 RUN ln -s /appshell/${ENV_TARGET}.env .env
+RUN ln -s /appshell/appshell_configs ./appshell_configs
 
 # Copy dependencies
 COPY --from=build /appshell/package.json /appshell/package.json

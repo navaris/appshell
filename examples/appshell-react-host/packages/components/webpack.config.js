@@ -7,7 +7,6 @@ module.exports = (env, { mode }) => {
   return {
     entry: './src/index',
     mode,
-    devtool: isDevelopment ? 'eval-source-map' : false,
     output: {
       filename: '[name].js',
       pathinfo: false,

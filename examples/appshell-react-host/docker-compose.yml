@@ -1,6 +1,8 @@
 services:
   appshell:
-    image: appshell-react-host
+    profiles:
+      - host
+    image: appshell/react-host:latest
     env_file: './${ENV_TARGET}.env'
     deploy:
       mode: replicated
@@ -11,3 +13,20 @@ services:
       - ./${ENV_TARGET}.env/:/appshell/${ENV_TARGET}.env
       - ./appshell_configs:/appshell/appshell_configs
 
+  appshell-sample-mfe-apps:
+    profiles:
+      - apps
+    env_file: './${ENV_TARGET}.env'
+    build:
+      context: '.'
+      target: ${BUILD_TARGET}
+    deploy:
+      mode: replicated
+      replicas: ${CONTAINER_SCALE}
+    ports:
+      - ${SAMPLE_MFE_CONTAINER_PORT}:${SAMPLE_MFE_CONTAINER_PORT}
+      - ${SAMPLE_MFE_PING_PORT}:${SAMPLE_MFE_PING_PORT}
+      - ${SAMPLE_MFE_PONG_PORT}:${SAMPLE_MFE_PONG_PORT}
+    volumes:
+      - ./${ENV_TARGET}.env/:/appshell/${ENV_TARGET}.env
+      - ./appshell_configs:/appshell/appshell_configs

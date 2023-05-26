@@ -4,7 +4,7 @@ const { AppshellManifestPlugin } = require('@appshell/manifest-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const Visualizer = require('webpack-visualizer-plugin2');
-const { dependencies, devDependencies } = require('../../package.json');
+const { dependencies } = require('../../package.json');
 
 module.exports = (env, { mode }) => {
   const isDevelopment = mode === 'development';
@@ -12,7 +12,6 @@ module.exports = (env, { mode }) => {
   return {
     entry: './src/App',
     mode,
-    devtool: isDevelopment ? 'eval-source-map' : false,
     devServer: {
       hot: true,
       headers: {

@@ -3,14 +3,12 @@
   "version": "0.0.2",
   "private": true,
   "scripts": {
-    "prestart": "cp appshell.manifest.json public/",
     "start": "BROWSER=none PORT=$SAMPLE_MFE_CONTAINER_PORT craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",
-    "preserve": "cp appshell.manifest.json build/",
     "serve": "serve build -p $SAMPLE_MFE_CONTAINER_PORT",
-    "clean": "rm -rf build appshell.manifest.json public/appshell.manifest.json",
+    "clean": "rm -rf build",
     "prebuild": "npm run clean"
   },
   "dependencies": {
