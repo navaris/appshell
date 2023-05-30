@@ -34,6 +34,9 @@ ENV APPSHELL_ROOT=${APPSHELL_ROOT:-'Appshell/Root'}
 ENV APPSHELL_MANIFEST_URL=${APPSHELL_MANIFEST_URL:-'/appshell.manifest.json'}
 ENV APPSHELL_ENV_PREFIX=${APPSHELL_ENV_PREFIX}
 
+# Install global dependencies
+RUN yarn global add dotenv-cli serve
+
 WORKDIR /appshell/${SOURCE_DIR}
 
 # Symlink resources
