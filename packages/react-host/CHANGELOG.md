@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.1-alpha.3](https://github.com/navaris/appshell/compare/@appshell/react-host@0.0.1-alpha.2...@appshell/react-host@0.0.1-alpha.3) (2023-05-30)
+
+
+### Bug Fixes
+
+* enable relative appshell_configs dir, containerize appshell host example ([79926f5](https://github.com/navaris/appshell/commit/79926f5e2b1ae29c4d7349c0babcb93d3b147485))
+
+
+
+
+
 ## [0.0.1-alpha.2](https://github.com/navaris/appshell/compare/@appshell/react-host@0.0.1-alpha.1...@appshell/react-host@0.0.1-alpha.2) (2023-05-23)
 
 
