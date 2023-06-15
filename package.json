@@ -7,7 +7,7 @@
   "repository": "https://github.com/navaris/appshell.git",
   "scripts": {
     "bootstrap": "npx lerna bootstrap",
-    "build": "lerna run --scope=@appshell/manifest-webpack-plugin build && lerna run --ignore=@appshell/manifest-webpack-plugin build",
+    "build": "lerna run --scope=@appshell/manifest-webpack-plugin --scope=@appshell/react-refresh-singleton-plugin build && lerna run --ignore=@appshell/manifest-webpack-plugin --ignore=@appshell/react-refresh-singleton-plugin build",
     "clean": "lerna run --parallel clean && rm -rf coverage",
     "lint": "eslint 'packages/**/*.{ts,tsx}'",
     "serve": "dotenv -- lerna run --parallel serve",

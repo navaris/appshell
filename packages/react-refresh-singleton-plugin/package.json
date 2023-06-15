@@ -9,15 +9,6 @@
     "access": "restricted",
     "registry": "https://registry.npmjs.org/"
   },
-  "scripts": {
-    "build": "webpack --mode production && yarn build:types",
-    "build:types": "tsc --emitDeclarationOnly",
-    "build:code": "cross-env NODE_ENV=production babel-typescript src -d dist --copy-files",
-    "clean": "rm -rf dist",
-    "prebuild": "npm run clean",
-    "start": "webpack --watch --mode development && npm run build:types",
-    "stats": "webpack --json > stats.json"
-  },
   "files": [
     "src"
   ],
