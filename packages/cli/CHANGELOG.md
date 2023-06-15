@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.6](https://github.com/navaris/appshell/compare/@appshell/cli@0.1.5...@appshell/cli@0.1.6) (2023-06-15)
+
+**Note:** Version bump only for package @appshell/cli
+
+
+
+
+
 ## [0.1.6-alpha.0](https://github.com/navaris/appshell/compare/@appshell/cli@0.1.5...@appshell/cli@0.1.6-alpha.0) (2023-03-19)
 
 **Note:** Version bump only for package @appshell/cli
