@@ -2592,6 +2592,17 @@
   resolved "https://registry.npmjs.org/@types/aria-query/-/aria-query-5.0.1.tgz"
   integrity sha512-XTIieEY+gvJ39ChLcB4If5zHtPxt3Syj5rgZR+e1ctpmK8NjPf0zFqsz4JpLJT0xla9GFDKjy8Cpu331nrmE1Q==
 
+"@types/babel__core@*":
+  version "7.20.1"
+  resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.20.1.tgz#916ecea274b0c776fec721e333e55762d3a9614b"
+  integrity sha512-aACu/U/omhdk15O4Nfb+fHgH/z3QsfQzpnvRZhYhThms83ZnAOZz7zZAWO7mn2yyNQaA4xTO8GLK3uqFU4bYYw==
+  dependencies:
+    "@babel/parser" "^7.20.7"
+    "@babel/types" "^7.20.7"
+    "@types/babel__generator" "*"
+    "@types/babel__template" "*"
+    "@types/babel__traverse" "*"
+
 "@types/babel__core@^7.1.14":
   version "7.20.0"
   resolved "https://registry.npmjs.org/@types/babel__core/-/babel__core-7.20.0.tgz"
@@ -2852,6 +2863,14 @@
   integrity sha512-O38bPbI2CWtgw/OoQoY+BRelw7uysmXbWvw3nLWO21H1HSh+GOlqPuXshJfjmpNlKiiSDG9cc1JZAaMmVdcTlw==
   dependencies:
     "@types/react" "*"
+
+"@types/react-refresh@0.14.0":
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/@types/react-refresh/-/react-refresh-0.14.0.tgz#09fbf0faf4c31086616f9aa5dee981ed5f47c0a8"
+  integrity sha512-Lkn0lde3joqS+Cf1fa1B7ROEeiYi12xmE6VPBEbyJalOE8PkozGNOC1chqXljhM9UXo8SLwtVTBpmmdvzGTbtg==
+  dependencies:
+    "@types/babel__core" "*"
+    csstype "^3.0.2"
 
 "@types/react@*", "@types/react@18.0.28":
   version "18.0.28"
