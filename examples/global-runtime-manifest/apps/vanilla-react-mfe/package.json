@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-cli serve",
     "build": "webpack --mode production",
-    "serve": "serve dist -p 3002",
+    "serve": "serve dist -p $VANILLA_MFE_PORT",
     "clean": "rm -rf build",
     "prebuild": "npm run clean"
   },

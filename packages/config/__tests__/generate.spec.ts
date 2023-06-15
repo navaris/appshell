@@ -17,7 +17,7 @@ type TestMetadata = {
 describe('generate', () => {
   const packageName = 'config';
   const configsDir = path.resolve(`packages/${packageName}/__tests__/assets/appshell_configs`);
-  process.env.APPS_TEST_URL = 'http://remote-module.com';
+  process.env.APPS_TEST_URL = 'http://remote-module.com/remoteEntry.js';
 
   it('should generate an appshell manifest from a collection of app manifests', () => {
     const config = generate(configsDir, 2);

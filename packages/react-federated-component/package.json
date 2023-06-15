@@ -1,0 +1,26 @@
+{
+  "name": "@appshell/react-federated-component",
+  "version": "0.0.1-alpha.2",
+  "description": "React utilities for loading federated components",
+  "main": "dist/main.js",
+  "types": "dist/types/react-federated-component/src/index.d.ts",
+  "scripts": {
+    "build": "webpack --mode production && yarn build:types",
+    "build:types": "tsc --emitDeclarationOnly",
+    "clean": "rm -rf dist",
+    "start": "webpack --watch --mode development --stats-error-details",
+    "stats": "webpack --json > stats.json"
+  },
+  "keywords": [
+    "webpack",
+    "module federation",
+    "micro-frontends",
+    "appshell"
+  ],
+  "author": "Robert Hamilton <rh@navaris.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}

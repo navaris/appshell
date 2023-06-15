@@ -1,0 +1,89 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot 1`] = `
+<div>
+  <div
+    class="sc-kPNBzt exowiH"
+  >
+    <header
+      class="sc-bXxmBy cZLDGE"
+    >
+      <pre>
+        sample-mfe-container
+         v
+        0.0.2
+      </pre>
+      <div
+        class="sc-jlOLRj fKRsZZ"
+      >
+        <a
+          class="sc-laEPQd iJpuIt"
+          href="https://reactjs.org"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <img
+            class="sc-dMnqAs dsXfas"
+            src=""
+          />
+        </a>
+        <div
+          class="sc-eErDDp jnOBHW"
+        />
+        <a
+          class="sc-laEPQd iJpuIt"
+          href="https://github.com/navaris/appshell"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <img
+            class="sc-dMnqAs dsXfas"
+            src=""
+          />
+        </a>
+        <div
+          class="sc-eErDDp jnOBHW"
+        />
+        <a
+          class="sc-laEPQd iJpuIt"
+          href="https://webpack.js.org/"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <img
+            class="sc-dMnqAs dsXfas"
+            src=""
+          />
+        </a>
+      </div>
+      <pre>
+        This application is composed from 3 micro-frontends.
+      </pre>
+      <div
+        class="sc-jlOLRj fKRsZZ"
+      >
+        <span
+          style="display: inherit; position: relative; width: 77.14285714285714px; height: 77.14285714285714px; animation: react-spinners-MoonLoader-moon 0.6s 0s infinite linear; animation-fill-mode: forwards;"
+        >
+          <span
+            style="width: 8.571428571428571px; height: 8.571428571428571px; border-radius: 100%; background-color: orangered; opacity: 0.8; position: absolute; top: 25.714285714285715px; animation: react-spinners-MoonLoader-moon 0.6s 0s infinite linear; animation-fill-mode: forwards;"
+          />
+          <span
+            style="width: 60px; height: 60px; border-radius: 100%; border: 8.571428571428571px solid orangered; opacity: 0.1; box-sizing: content-box; position: absolute;"
+          />
+        </span>
+        <span
+          style="display: inherit; position: relative; width: 77.14285714285714px; height: 77.14285714285714px; animation: react-spinners-MoonLoader-moon 0.6s 0s infinite linear; animation-fill-mode: forwards;"
+        >
+          <span
+            style="width: 8.571428571428571px; height: 8.571428571428571px; border-radius: 100%; background-color: orangered; opacity: 0.8; position: absolute; top: 25.714285714285715px; animation: react-spinners-MoonLoader-moon 0.6s 0s infinite linear; animation-fill-mode: forwards;"
+          />
+          <span
+            style="width: 60px; height: 60px; border-radius: 100%; border: 8.571428571428571px solid orangered; opacity: 0.1; box-sizing: content-box; position: absolute;"
+          />
+        </span>
+      </div>
+    </header>
+  </div>
+</div>
+`;

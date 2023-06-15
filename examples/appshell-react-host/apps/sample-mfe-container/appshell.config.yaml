@@ -1,0 +1,9 @@
+remotes:
+  ContainerModule/Container:
+    url: ${SAMPLE_MFE_CONTAINER_URL}
+    metadata:
+      route: /
+      displayName: Host App
+      displayGroup: main
+      order: 0
+      icon: ViewList

@@ -1,0 +1,17 @@
+services:
+  appshell-react-host:
+    image: appshell-react-host:${BUILD_TARGET}
+    build:
+      context: '.'
+      target: ${BUILD_TARGET}
+      args:
+        SOURCE_DIR: packages/react-host
+    env_file: './${ENV_TARGET}.env'
+    command: ${CONTAINER_COMMAND}
+    deploy:
+      mode: replicated
+      replicas: ${CONTAINER_SCALE}
+    ports:
+      - ${APPSHELL_PORT}:${APPSHELL_PORT}
+    volumes:
+      - ./${ENV_TARGET}.env:/appshell/${ENV_TARGET}.env

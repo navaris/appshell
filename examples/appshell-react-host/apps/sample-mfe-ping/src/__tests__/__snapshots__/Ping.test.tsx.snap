@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should match snapshot 1`] = `
+<div>
+  <div
+    class="sc-fBEEOr jxkmG"
+  >
+    <header
+      class="sc-hfDuwB gXOGqX"
+    >
+      <pre>
+        sample-mfe-ping
+         v
+        0.0.1
+      </pre>
+    </header>
+    <div
+      class="sc-jCIOXC eelIQs"
+    >
+      <textarea
+        class="sc-dBwcjI dFAvjM"
+        readonly=""
+      >
+        {
+  "id": "2009efad",
+  "url": "http://localhost:3001/remoteEntry.js",
+  "scope": "PingModule",
+  "module": "./Ping",
+  "metadata": {
+    "route": "/ping",
+    "displayName": "Ping Micro-Frontend",
+    "displayGroup": "main",
+    "order": 10,
+    "icon": "ViewList"
+  }
+}
+      </textarea>
+    </div>
+  </div>
+</div>
+`;

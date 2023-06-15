@@ -29,7 +29,7 @@ const list = (dirPath: string, depth = 1, target: string | RegExp = /.*/) => {
   if (!fs.existsSync(dirPath)) {
     return [];
   }
-  const regex = target instanceof RegExp ? target : new RegExp(`^(${target})\$`);
+  const regex = target instanceof RegExp ? target : new RegExp(`^(${target})$`);
   return findFiles(dirPath, [], depth, regex);
 };
 

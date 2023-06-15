@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "BROWSER=none PORT=3001 craco start",
+    "start": "BROWSER=none PORT=$CRA_MFE_PORT craco start",
     "build": "craco build",
     "test": "craco test",
     "eject": "craco eject",

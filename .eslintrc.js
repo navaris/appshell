@@ -7,13 +7,17 @@ module.exports = {
     browser: true,
   },
   extends: [
+    'airbnb',
     'airbnb-typescript',
+    'airbnb/hooks',
+    'eslint:recommended',
+    'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:import/recommended',
     'prettier',
   ],
-  ignorePatterns: ['dist', 'node_modules', '.eslintrc.js', '*.config.js'],
+  ignorePatterns: ['dist', 'node_modules', '.eslintrc.js', '*.config.js', '*.config.cjs'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     debugLevel: false,
@@ -27,12 +31,12 @@ module.exports = {
   },
   settings: {
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts'],
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
     },
     'import/resolver': {
       node: {
         paths: ['src'],
-        extensions: ['.ts'],
+        extensions: ['.ts', '.tsx'],
       },
       typescript: {
         alwaysTryTypes: true,
@@ -54,6 +58,13 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'warn',
     'no-param-reassign': 'warn',
+    'react/function-component-definition': [
+      'error',
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
     'react/jsx-filename-extension': 'off',
   },
 };

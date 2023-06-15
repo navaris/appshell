@@ -1,0 +1,13 @@
+{
+  "name": "sample-mfe-container",
+  "version": "0.0.2",
+  "main": "dist/main.js",
+  "scripts": {
+    "build": "webpack --mode production && tsc --emitDeclarationOnly",
+    "clean": "rm -rf dist",
+    "serve": "serve dist -p $SAMPLE_MFE_CONTAINER_PORT",
+    "start": "webpack serve --mode development --stats-error-details",
+    "stats": "webpack --json > stats.json"
+  },
+  "license": "MIT"
+}

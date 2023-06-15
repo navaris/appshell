@@ -1,0 +1,18 @@
+remotes:
+  PongModule/Pong:
+    url: ${SAMPLE_MFE_PONG_URL}
+    metadata:
+      route: /pong
+      displayName: Pong Micro-Frontend
+      displayGroup: main
+      order: 20
+      icon: ViewList
+
+  PongModule/CoolComponent:
+    url: ${SAMPLE_MFE_PONG_URL}
+    metadata:
+      route: /cool
+      displayName: Cool Shared Component
+      displayGroup: main
+      order: 30
+      icon: ViewList

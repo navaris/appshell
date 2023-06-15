@@ -1,9 +1,18 @@
 remotes:
   VanillaModule/Vanilla:
-    url: ${VANILLA_MFE_URL}/remoteEntry.js
+    url: ${VANILLA_MFE_URL}
     metadata:
       route: /vanilla
       displayName: Example React App
       displayGroup: main
       order: 10
+      icon: ViewList
+
+  VanillaModule/CoolComponent:
+    url: ${VANILLA_MFE_URL}
+    metadata:
+      route: /cool
+      displayName: Cool Shared Component
+      displayGroup: main
+      order: 20
       icon: ViewList

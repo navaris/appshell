@@ -2,7 +2,7 @@
   "remotes": {
     "BarModule/Bar": {
       "id": "BarModule/Bar",
-      "url": "${APPS_TEST_URL}/remoteEntry.js",
+      "url": "${APPS_TEST_URL}",
       "metadata": {
         "route": "/bar",
         "displayName": "Bar App",

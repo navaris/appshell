@@ -13,7 +13,7 @@
 
 Emits remote module configurations used to generate a `global runtime manifest` for Webpack Module Federation micro-frontends.
 
-A working example can be found [here](https://github.com/navaris/appshell/tree/main/examples/appshell-global-configuration).
+Working examples can be found [here](https://github.com/navaris/appshell/tree/main/examples).
 
 ## Getting Started
 
@@ -104,7 +104,7 @@ remotes:
 {
   "remotes": {
     "CraModule/App": {
-      "url": "${CRA_MFE_URL}/remoteEntry.js",
+      "url": "${CRA_MFE_URL}",
       "metadata": {
         "route": "/cra",
         "displayName": "Example App",

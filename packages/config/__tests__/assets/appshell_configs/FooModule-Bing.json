@@ -2,7 +2,7 @@
   "remotes": {
     "FooModule/Bing": {
       "id": "FooModule/Bing",
-      "url": "${APPS_TEST_URL}/remoteEntry.js",
+      "url": "${APPS_TEST_URL}",
       "metadata": {
         "route": "/foo",
         "displayName": "Foo App",

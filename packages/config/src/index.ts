@@ -8,7 +8,6 @@ export type {
   AppshellConfigRemote,
   AppshellManifest,
   AppshellRemote,
-  ModuleFederationPluginOptions,
   Schema,
 } from './types';
 export * as utils from './utils';
