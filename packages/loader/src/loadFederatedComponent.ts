@@ -42,7 +42,7 @@ export default async <TComponent>(scope: string, module: string, shareScope = 'd
     `federated component loaded: { scope: ${scope}, module: ${module}, shareScope: ${shareScope} }`,
   );
 
-  const Component = Module[shareScope as ShareScopes];
+  const Component = Module.default;
 
   return Component;
 };

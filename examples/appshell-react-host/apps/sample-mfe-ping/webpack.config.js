@@ -1,20 +1,17 @@
+const { container } = require('webpack');
 const path = require('path');
-const { container, DefinePlugin } = require('webpack');
-const CopyPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { AppshellManifestPlugin } = require('@appshell/manifest-webpack-plugin');
 const ReactRefreshSingleton = require('single-react-refresh-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const { dependencies } = require('../../package.json');
-const federatedComponentPkg = require('../react-federated-component/package.json');
 
 module.exports = (env, { mode }) => {
   const isDevelopment = mode === 'development';
 
   return {
-    entry: './src/index',
+    entry: './src/Ping',
     mode,
-    devtool: isDevelopment ? 'eval-source-map' : false,
     devServer: {
       hot: true,
       allowedHosts: 'all',
@@ -23,16 +20,14 @@ module.exports = (env, { mode }) => {
         'Access-Control-Allow-Methods': '*',
         'Access-Control-Allow-Headers': '*',
       },
-      compress: true,
       static: {
         directory: path.join(__dirname, 'dist'),
       },
-      port: process.env.APPSHELL_PORT,
-      historyApiFallback: true,
+      port: process.env.SAMPLE_MFE_PING_PORT,
     },
     output: {
       publicPath: 'auto',
-      uniqueName: `appshell-react-host`,
+      uniqueName: `sample-mfe-ping`,
     },
     resolve: {
       extensions: ['.js', '.ts', '.tsx'],
@@ -61,28 +56,12 @@ module.exports = (env, { mode }) => {
     },
     plugins: [
       isDevelopment && new ReactRefreshWebpackPlugin(),
-      new DefinePlugin({
-        APPSHELL_TITLE: JSON.stringify(process.env.APPSHELL_TITLE),
-        APPSHELL_DESCRIPTION: JSON.stringify(process.env.APPSHELL_DESCRIPTION),
-        APPSHELL_PUBLIC_URL: JSON.stringify(process.env.APPSHELL_PUBLIC_URL),
-        APPSHELL_THEME_COLOR: JSON.stringify(process.env.APPSHELL_THEME_COLOR),
-      }),
-      new CopyPlugin({
-        patterns: [
-          { from: 'public/manifest.json', to: '.' },
-          { from: 'public/logo192.png', to: '.' },
-          { from: 'public/logo512.png', to: '.' },
-          { from: 'serve.json', to: '.' },
-        ],
-      }),
-      new HtmlWebpackPlugin({
-        publicPath: path.join(process.env.APPSHELL_PUBLIC_URL || '', '/'),
-        title: process.env.APPSHELL_TITLE,
-        favicon: './public/favicon.ico',
-        template: './public/index.html',
-      }),
       new container.ModuleFederationPlugin({
-        name: 'Appshell',
+        name: 'PingModule',
+        exposes: {
+          './Ping': './src/Ping',
+        },
+        filename: 'remoteEntry.js',
         shared: {
           react: {
             singleton: true,
@@ -96,11 +75,18 @@ module.exports = (env, { mode }) => {
             singleton: true,
             requiredVersion: dependencies['react-refresh'],
           },
+          'styled-components': {
+            singleton: true,
+            requiredVersion: dependencies['styled-components'],
+          },
           '@appshell/react-federated-component': {
             singleton: true,
-            requiredVersion: federatedComponentPkg.version,
+            requiredVersion: dependencies['@appshell/react-federated-component'],
           },
         },
+      }),
+      new AppshellManifestPlugin({
+        configsDir: process.env.CONFIGS_DIR,
       }),
       isDevelopment && new ReactRefreshSingleton(),
     ].filter(Boolean),

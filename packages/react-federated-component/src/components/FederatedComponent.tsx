@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { ReactElement, ReactNode, Suspense } from 'react';
+import remoteLoader from '@appshell/loader';
+import React, { ComponentType, ReactElement, ReactNode, useEffect, useState } from 'react';
 import useManifest from '../hooks/useManifest';
-import componentResource from '../resources/componentResource';
-import ComponentLoader from './ComponentLoader';
+import LoadingError from './LoadingError';
 
 export type ExtendedProps = Record<string, unknown>;
 
@@ -18,15 +18,41 @@ const FederatedComponent = <TProps extends ExtendedProps>({
   ...rest
 }: FederatedComponentProps<TProps>): ReactElement<TProps> => {
   const manifest = useManifest();
-  const resource = componentResource(remote, manifest);
+  const [element, setElement] = useState<ReactElement>();
+
+  useEffect(() => {
+    let active = false;
+    const loadComponent = remoteLoader(manifest);
+
+    async function load() {
+      try {
+        active = true;
+        setElement(undefined);
+        const Component = await loadComponent<ComponentType>(remote);
+        if (!Component) {
+          return;
+        }
+        active = false;
+        setElement(React.createElement(Component, rest));
+      } catch (err) {
+        setElement(<LoadingError remote={remote} reason={`${err}`} />);
+      }
+    }
+
+    if (!active) {
+      load();
+    }
+
+    return () => {
+      active = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // eslint-disable-next-line no-console
-  console.debug(`rendering FederatedComponent[${remote}]`);
-  return (
-    <Suspense fallback={fallback}>
-      <ComponentLoader resource={resource} remote={remote} manifest={manifest} {...rest} />
-    </Suspense>
-  );
+  console.debug(`rendering FederatedComponent[${remote}], loading=${!element}`);
+  // eslint-disable-next-line react/jsx-no-useless-fragment
+  return <>{element || fallback}</>;
 };
 
 FederatedComponent.defaultProps = {

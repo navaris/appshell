@@ -5,52 +5,32 @@ exports[`LoadingError should match snapshot 1`] = `
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <div>
-        <h3>
+      <div
+        style="border: 3px solid red;"
+      >
+        <h5>
           Error loading federated component 'TestModule/TestComponent.'
-        </h3>
-        <span>
+        </h5>
+        <span
+          style="font-size: 1rem;"
+        >
           Could not find component
         </span>
-        <pre>
-          {
-  "remotes": {
-    "TestModule/TestComponent": {
-      "id": "test-component",
-      "scope": "TestModule",
-      "module": "./TestComponent",
-      "url": "http://test.com/remoteEntry.js",
-      "metadata": {}
-    }
-  },
-  "modules": {}
-}
-        </pre>
       </div>
     </div>
   </body>,
   "container": <div>
-    <div>
-      <h3>
+    <div
+      style="border: 3px solid red;"
+    >
+      <h5>
         Error loading federated component 'TestModule/TestComponent.'
-      </h3>
-      <span>
+      </h5>
+      <span
+        style="font-size: 1rem;"
+      >
         Could not find component
       </span>
-      <pre>
-        {
-  "remotes": {
-    "TestModule/TestComponent": {
-      "id": "test-component",
-      "scope": "TestModule",
-      "module": "./TestComponent",
-      "url": "http://test.com/remoteEntry.js",
-      "metadata": {}
-    }
-  },
-  "modules": {}
-}
-      </pre>
     </div>
   </div>,
   "debug": [Function],

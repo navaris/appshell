@@ -9917,6 +9917,11 @@ signal-exit@^3.0.0, signal-exit@^3.0.2, signal-exit@^3.0.3, signal-exit@^3.0.7:
   resolved "https://registry.npmjs.org/signal-exit/-/signal-exit-3.0.7.tgz"
   integrity sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==
 
+single-react-refresh-plugin@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/single-react-refresh-plugin/-/single-react-refresh-plugin-1.0.4.tgz#1736f066d4969de2bdd9ce090b455713746b9ea2"
+  integrity sha512-bzPKLvdcxahIAs5PQFBmikBGMUiTxrkETzB6nVZco1r51m4SlrB1mFBgFhvixTeYPDkJ0CDrJ7uC7n2unbb3Mw==
+
 sisteransi@^1.0.5:
   version "1.0.5"
   resolved "https://registry.npmjs.org/sisteransi/-/sisteransi-1.0.5.tgz"

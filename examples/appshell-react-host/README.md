@@ -48,7 +48,6 @@ docker compose --profile apps up
 # OR
 
 npm run bootstrap
-npm run build
 npm run start # start locally
 
 # 2. start the appshell host

@@ -2,9 +2,8 @@ import { AppshellManifest } from '@appshell/manifest-webpack-plugin';
 import { jsonResource, ManifestProvider } from '@appshell/react-federated-component';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import Container from './Container';
 import './index.css';
-import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 const resource = jsonResource<AppshellManifest>('appshell.manifest.json');
@@ -14,7 +13,7 @@ const RenderApp = () => {
 
   return manifest instanceof Error || !manifest ? null : (
     <ManifestProvider manifest={manifest}>
-      <App />
+      <Container />
     </ManifestProvider>
   );
 };
@@ -26,8 +25,3 @@ root.render(
     </React.Suspense>
   </React.StrictMode>,
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

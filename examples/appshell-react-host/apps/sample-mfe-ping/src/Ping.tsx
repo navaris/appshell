@@ -5,7 +5,7 @@ import pkg from '../package.json';
 
 const App = () => {
   const manifest = useManifest();
-  const remote = manifest.remotes['PongModule/App'];
+  const remote = manifest.remotes['PingModule/Ping'];
   return (
     <AppShowcase header={<PackageBlock name={pkg.name} version={pkg.version} />}>
       <Remote remote={remote} />

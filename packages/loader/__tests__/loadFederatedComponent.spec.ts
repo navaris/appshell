@@ -80,16 +80,6 @@ describe('loadFederatedComponent', () => {
     expect(Component).toBe(TestComponent);
   });
 
-  it('should load the federated component from the share scope', async () => {
-    const scope = 'TestModule2';
-    const module = './TestComponent';
-    const shareScope = 'test_scope';
-
-    const Component = await loadFederatedComponent<ComponentType>(scope, module, shareScope);
-
-    expect(Component).toBe(TestComponent);
-  });
-
   it('should throw if the share scope does not exist', async () => {
     const scope = 'TestModule';
     const module = './TestComponent';

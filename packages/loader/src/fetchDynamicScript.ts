@@ -4,30 +4,36 @@ export default async (url: string) => {
   const element = document.createElement('script');
 
   const cleanup = (): void => {
-    urlCache.delete(url);
-    document.head.removeChild(element);
+    if (document.head.contains(element)) {
+      document.head.removeChild(element);
+    }
   };
 
   return new Promise<boolean>((resolve, reject) => {
-    element.src = url;
-    element.type = 'text/javascript';
-    element.async = true;
-
-    element.onload = () => {
+    if (urlCache.has(url)) {
+      resolve(false);
+    } else {
       urlCache.add(url);
-      // eslint-disable-next-line no-console
-      console.debug(`Remote entry fetched from '${url}'.`);
 
-      resolve(true);
-    };
+      element.src = url;
+      element.type = 'text/javascript';
+      element.async = true;
 
-    element.onerror = () => {
-      const message = `Failed to fetch remote entry from '${url}'.`;
-      // eslint-disable-next-line no-console
-      console.error(message);
-      reject(message);
-    };
+      element.onload = () => {
+        // eslint-disable-next-line no-console
+        console.debug(`Remote entry fetched from '${url}'.`);
 
-    document.head.appendChild(element);
+        resolve(true);
+      };
+
+      element.onerror = () => {
+        const message = `Failed to fetch remote entry from '${url}'.`;
+        // eslint-disable-next-line no-console
+        console.error(message);
+        reject(message);
+      };
+
+      document.head.appendChild(element);
+    }
   }).finally(cleanup);
 };

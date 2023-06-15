@@ -1,5 +1,5 @@
 remotes:
-  PingModule/App:
+  PingModule/Ping:
     url: ${SAMPLE_MFE_PING_URL}
     metadata:
       route: /ping

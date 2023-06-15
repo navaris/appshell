@@ -1,5 +1,5 @@
 remotes:
-  PongModule/App:
+  PongModule/Pong:
     url: ${SAMPLE_MFE_PONG_URL}
     metadata:
       route: /pong

@@ -1,5 +1,6 @@
 /** @jest-environment jsdom */
 import { AppshellManifest } from '@appshell/config';
+import * as fetchDynamicScript from '../src/fetchDynamicScript';
 import * as loadFederatedComponent from '../src/loadFederatedComponent';
 import remoteLoader from '../src/remoteLoader';
 
@@ -22,12 +23,33 @@ describe('remoteLoader', () => {
 
   it('should return the federated component if it is found in the manifest', async () => {
     const ExpectedComponent = () => 'test component';
-    jest.spyOn(loadFederatedComponent, 'default').mockResolvedValue(ExpectedComponent);
+    jest.spyOn(fetchDynamicScript, 'default').mockReturnValueOnce(Promise.resolve(true));
+    jest
+      .spyOn(loadFederatedComponent, 'default')
+      .mockResolvedValue(Promise.resolve(ExpectedComponent));
 
     const loadRemote = remoteLoader(manifest);
     const ActualComponent = await loadRemote('TestModule/TestComponent');
 
     expect(ActualComponent).toEqual(ExpectedComponent);
+  });
+
+  it('should not fetch remote entry more than once', async () => {
+    const ExpectedComponent = () => 'test component';
+    const fetchDynamicScriptSpy = jest
+      .spyOn(fetchDynamicScript, 'default')
+      .mockReturnValueOnce(Promise.resolve(true));
+    jest
+      .spyOn(loadFederatedComponent, 'default')
+      .mockResolvedValue(Promise.resolve(ExpectedComponent));
+
+    const loadRemote = remoteLoader(manifest);
+
+    await loadRemote('TestModule/TestComponent');
+    await loadRemote('TestModule/TestComponent');
+    await loadRemote('TestModule/TestComponent');
+
+    expect(fetchDynamicScriptSpy).toHaveBeenCalledTimes(1);
   });
 
   it('should throw if remote key is not found in the manifest', async () => {

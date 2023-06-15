@@ -3,10 +3,10 @@
 exports[`should match snapshot 1`] = `
 <div>
   <div
-    class="sc-eDLJxc cdDYL"
+    class="sc-kPNBzt exowiH"
   >
     <header
-      class="sc-jTQDnj kPdmOm"
+      class="sc-bXxmBy cZLDGE"
     >
       <pre>
         sample-mfe-container
@@ -14,47 +14,44 @@ exports[`should match snapshot 1`] = `
         0.0.2
       </pre>
       <div
-        class="sc-gLLvby ephpFL"
+        class="sc-jlOLRj fKRsZZ"
       >
         <a
-          class="sc-fsYeqs eYtcFy"
+          class="sc-laEPQd iJpuIt"
           href="https://reactjs.org"
           rel="noopener noreferrer"
           target="_blank"
         >
           <img
-            alt="react"
-            class="sc-iBdmCd gOqNlU"
+            class="sc-dMnqAs dsXfas"
             src=""
           />
         </a>
         <div
-          class="sc-qZqnM itlcxQ"
+          class="sc-eErDDp jnOBHW"
         />
         <a
-          class="sc-fsYeqs eYtcFy"
+          class="sc-laEPQd iJpuIt"
           href="https://github.com/navaris/appshell"
           rel="noopener noreferrer"
           target="_blank"
         >
           <img
-            alt="appshell"
-            class="sc-iBdmCd gOqNlU"
+            class="sc-dMnqAs dsXfas"
             src=""
           />
         </a>
         <div
-          class="sc-qZqnM itlcxQ"
+          class="sc-eErDDp jnOBHW"
         />
         <a
-          class="sc-fsYeqs eYtcFy"
+          class="sc-laEPQd iJpuIt"
           href="https://webpack.js.org/"
           rel="noopener noreferrer"
           target="_blank"
         >
           <img
-            alt="webpack"
-            class="sc-iBdmCd gOqNlU"
+            class="sc-dMnqAs dsXfas"
             src=""
           />
         </a>
@@ -63,7 +60,7 @@ exports[`should match snapshot 1`] = `
         This application is composed from 3 micro-frontends.
       </pre>
       <div
-        class="sc-gLLvby ephpFL"
+        class="sc-jlOLRj fKRsZZ"
       >
         <span
           style="display: inherit; position: relative; width: 77.14285714285714px; height: 77.14285714285714px; animation: react-spinners-MoonLoader-moon 0.6s 0s infinite linear; animation-fill-mode: forwards;"

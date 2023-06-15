@@ -1,17 +1,14 @@
-import { AppshellManifest } from '@appshell/config';
 import React, { FC } from 'react';
 
 type ErrorProps = {
   remote: string;
   reason: string;
-  manifest: AppshellManifest;
 };
 
-const LoadingError: FC<ErrorProps> = ({ remote, reason, manifest }) => (
-  <div>
-    <h3>{`Error loading federated component '${remote}.'`}</h3>
-    <span>{reason}</span>
-    <pre>{JSON.stringify(manifest, null, 2)}</pre>
+const LoadingError: FC<ErrorProps> = ({ remote, reason }) => (
+  <div style={{ border: '3px solid red' }}>
+    <h5>{`Error loading federated component '${remote}.'`}</h5>
+    <span style={{ fontSize: '1rem' }}>{reason}</span>
   </div>
 );
 

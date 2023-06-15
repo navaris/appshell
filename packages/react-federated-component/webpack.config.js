@@ -33,7 +33,7 @@ module.exports = (env, { mode }) => {
         },
       ],
     },
-    plugins: [isDevelopment && new Visualizer()].filter(Boolean),
+    // plugins: [isDevelopment && new Visualizer()].filter(Boolean),
     externals: {
       react: 'react',
       'react-dom': 'reactDOM',

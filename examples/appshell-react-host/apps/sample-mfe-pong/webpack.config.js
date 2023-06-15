@@ -1,19 +1,20 @@
 const { container } = require('webpack');
 const path = require('path');
 const { AppshellManifestPlugin } = require('@appshell/manifest-webpack-plugin');
+const ReactRefreshSingleton = require('single-react-refresh-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-const Visualizer = require('webpack-visualizer-plugin2');
 const { dependencies } = require('../../package.json');
 
 module.exports = (env, { mode }) => {
   const isDevelopment = mode === 'development';
 
   return {
-    entry: './src/App',
+    entry: './src/Pong',
     mode,
     devServer: {
       hot: true,
+      allowedHosts: 'all',
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Methods': '*',
@@ -26,6 +27,7 @@ module.exports = (env, { mode }) => {
     },
     output: {
       publicPath: 'auto',
+      uniqueName: `sample-mfe-pong`,
     },
     resolve: {
       extensions: ['.js', '.ts', '.tsx'],
@@ -53,15 +55,15 @@ module.exports = (env, { mode }) => {
       ],
     },
     plugins: [
+      isDevelopment && new ReactRefreshWebpackPlugin(),
       new container.ModuleFederationPlugin({
         name: 'PongModule',
         exposes: {
-          './App': './src/App',
+          './Pong': './src/Pong',
           './CoolComponent': './src/CoolRemoteComponent',
         },
         filename: 'remoteEntry.js',
         shared: {
-          ...dependencies,
           react: {
             singleton: true,
             requiredVersion: dependencies['react'],
@@ -80,15 +82,14 @@ module.exports = (env, { mode }) => {
           },
           '@appshell/react-federated-component': {
             singleton: true,
-            requiredVersion: false,
+            requiredVersion: dependencies['@appshell/react-federated-component'],
           },
         },
       }),
       new AppshellManifestPlugin({
         configsDir: process.env.CONFIGS_DIR,
       }),
-      isDevelopment && new ReactRefreshWebpackPlugin(),
-      isDevelopment && new Visualizer(),
+      isDevelopment && new ReactRefreshSingleton(),
     ].filter(Boolean),
   };
 };

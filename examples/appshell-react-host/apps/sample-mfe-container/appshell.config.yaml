@@ -1,5 +1,5 @@
 remotes:
-  ContainerModule/App:
+  ContainerModule/Container:
     url: ${SAMPLE_MFE_CONTAINER_URL}
     metadata:
       route: /

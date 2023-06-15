@@ -75,6 +75,7 @@
     "prettier": "2.8.4",
     "prettier-plugin-organize-imports": "3.2.2",
     "rimraf": "4.1.2",
+    "single-react-refresh-plugin": "1.0.4",
     "style-loader": "3.3.1",
     "ts-jest": "29.0.5",
     "tsconfig-paths-webpack-plugin": "4.0.0",
