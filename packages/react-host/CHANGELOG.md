@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.1-alpha.4](https://github.com/navaris/appshell/compare/@appshell/react-host@0.0.1-alpha.3...@appshell/react-host@0.0.1-alpha.4) (2023-06-15)
+
+
+### Bug Fixes
+
+* hot module replacement support, example updates ([a67d230](https://github.com/navaris/appshell/commit/a67d2303b40f5911373225cc0b4ccf9b67c33d11))
+
+
+
+
+
 ## [0.0.1-alpha.3](https://github.com/navaris/appshell/compare/@appshell/react-host@0.0.1-alpha.2...@appshell/react-host@0.0.1-alpha.3) (2023-05-30)
 
 
