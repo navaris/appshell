@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.1 (2023-06-15)
+
+**Note:** Version bump only for package @appshell/react-host
+
+
+
+
+
 ## [0.0.1-alpha.4](https://github.com/navaris/appshell/compare/@appshell/react-host@0.0.1-alpha.3...@appshell/react-host@0.0.1-alpha.4) (2023-06-15)
 
 

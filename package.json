@@ -84,5 +84,12 @@
     "webpack-dev-server": "4.11.1",
     "webpack-node-externals": "3.0.0",
     "webpack-visualizer-plugin2": "1.0.0"
-  }
+  },
+  "keywords": [
+    "webpack",
+    "module federation",
+    "micro-frontends",
+    "appshell"
+  ],
+  "license": "MIT"
 }

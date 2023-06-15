@@ -1,6 +1,6 @@
 {
   "name": "@appshell/manifest-webpack-plugin",
-  "version": "0.1.6-alpha.0",
+  "version": "0.1.6",
   "description": "Webpack plugin used to generate a global Appshell manifest for module federation micro-frontends",
   "main": "dist/main.js",
   "types": "dist/types/manifest-webpack-plugin/src/index.d.ts",

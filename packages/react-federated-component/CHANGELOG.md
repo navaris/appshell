@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 0.0.1 (2023-06-15)
+
+**Note:** Version bump only for package @appshell/react-federated-component
+
+
+
+
+
 ## [0.0.1-alpha.2](https://github.com/navaris/appshell/compare/@appshell/react-federated-component@0.0.1-alpha.1...@appshell/react-federated-component@0.0.1-alpha.2) (2023-06-15)
 
 
