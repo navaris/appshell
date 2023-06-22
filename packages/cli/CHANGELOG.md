@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-alpha.1](https://github.com/navaris/appshell/compare/@appshell/cli@0.1.7-alpha.0...@appshell/cli@0.2.0-alpha.1) (2023-06-22)
+
+
+### Features
+
+* support manifest merging and config watch ([5431d10](https://github.com/navaris/appshell/commit/5431d100ec7f5106cab66d3009ce5f836e452715))
+
+
+
+
+
 ## [0.1.7-alpha.0](https://github.com/navaris/appshell/compare/@appshell/cli@0.1.6...@appshell/cli@0.1.7-alpha.0) (2023-06-15)
 
 **Note:** Version bump only for package @appshell/cli
