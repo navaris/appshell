@@ -153,6 +153,82 @@ exports[`utils merge appshell configs should merge multiple valid configurations
 }
 `;
 
+exports[`utils merge should merge manifests from right to left with merge validator 1`] = `
+{
+  "modules": {
+    "TestModule": {
+      "exposes": {
+        "./Bang": "./src/Entry3",
+        "./Bar": "./src/Entry2",
+        "./Foo": "./src/Entry1",
+      },
+      "filename": "remoteEntry.js",
+      "library": {
+        "name": "some shared lib",
+        "type": "umd",
+      },
+      "name": "TestModule",
+      "remoteType": "amd",
+      "remotes": {
+        "./Remote1": {
+          "external": "external module",
+          "shareScope": "@shared",
+        },
+      },
+      "runtime": "runtimeChunk",
+      "shareScope": "@sharedscope",
+      "shared": {
+        "package1": {
+          "requiredVersion": "0.1.0",
+          "singleton": true,
+        },
+        "package2": {
+          "requiredVersion": "1.1.0",
+          "singleton": true,
+        },
+      },
+    },
+  },
+  "remotes": {
+    "BizModule/Biz": {
+      "id": "BizModule/Biz",
+      "metadata": {
+        "displayGroup": "auxiliary",
+        "displayName": "Biz App",
+        "icon": "ViewList",
+        "order": 30,
+        "route": "/biz",
+      },
+      "module": "./Biz",
+      "scope": "BizModule",
+      "url": "http://localhost:4040/remoteEntry.js",
+    },
+    "TestModule/Bar": {
+      "id": "TestModule/Bar",
+      "metadata": {
+        "displayGroup": "main",
+        "displayName": "Foo App",
+        "icon": "ViewList",
+        "order": 10,
+        "route": "/foo",
+      },
+      "url": "http://localhost:8080/bar/remoteEntry.js",
+    },
+    "TestModule/Foo": {
+      "id": "TestModule/Foo",
+      "metadata": {
+        "displayGroup": "main",
+        "displayName": "Foo App",
+        "icon": "ViewList",
+        "order": 30,
+        "route": "/foo_c",
+      },
+      "url": "http://localhost:8080/foo_c/remoteEntry.js",
+    },
+  },
+}
+`;
+
 exports[`utils merge should merge multiple valid configurations 1`] = `
 {
   "modules": {

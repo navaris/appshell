@@ -14,6 +14,10 @@ describe('generate.manifest', () => {
   const outDir = 'assets/';
   const outFile = 'appshell.manifest.json';
 
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('should process configsDir', () => {
     jest.spyOn(fs, 'existsSync').mockImplementation((dir) => dir === configsDir);
     generateManifestHandler({
@@ -73,5 +77,23 @@ describe('generate.manifest', () => {
     expect(consoleSpy).toHaveBeenLastCalledWith(
       `configsDir not found 'undefined'. skipping manifest generation.`,
     );
+  });
+
+  it('should handle gracefully any errors', () => {
+    jest.spyOn(fs, 'existsSync').mockImplementation((dir) => dir === configsDir);
+    jest.spyOn(fs, 'mkdirSync');
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementationOnce(jest.fn());
+    generateSpy.mockImplementationOnce(() => {
+      throw new Error('test error');
+    });
+
+    generateManifestHandler({
+      configsDir,
+      depth,
+      outDir,
+      outFile,
+    });
+
+    expect(consoleSpy).toHaveBeenCalledWith('Error generating manifest', 'test error');
   });
 });

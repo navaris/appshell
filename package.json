@@ -19,6 +19,7 @@
   "dependencies": {
     "@automapper/core": "8.7.7",
     "@automapper/pojos": "8.7.7",
+    "axios": "1.4.0",
     "cross-env": "7.0.3",
     "dotenv-cli": "7.0.0",
     "hash-sum": "2.0.0",
@@ -51,6 +52,7 @@
     "@types/react-refresh": "0.14.0",
     "@typescript-eslint/eslint-plugin": "5.53.0",
     "@typescript-eslint/parser": "5.53.0",
+    "axios-mock-adapter": "1.21.5",
     "babel-loader": "9.1.2",
     "browserslist": "4.21.5",
     "copy-webpack-plugin": "11.0.0",
@@ -70,6 +72,7 @@
     "jest-junit": "15.0.0",
     "json-schema-to-typescript": "12.0.0",
     "lerna": "^4.0.0",
+    "nodemon": "2.0.22",
     "postcss": "8.4.21",
     "postcss-loader": "7.0.2",
     "postcss-preset-env": "8.0.1",

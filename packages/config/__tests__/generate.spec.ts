@@ -17,10 +17,17 @@ type TestMetadata = {
 describe('generate', () => {
   const packageName = 'config';
   const configsDir = path.resolve(`packages/${packageName}/__tests__/assets/appshell_configs`);
+  const emptyDir = path.resolve(`packages/${packageName}/__tests__/assets/empty_dir`);
   process.env.APPS_TEST_URL = 'http://remote-module.com/remoteEntry.js';
 
   it('should generate an appshell manifest from a collection of app manifests', () => {
     const config = generate(configsDir, 2);
+
+    expect(config).toMatchSnapshot();
+  });
+
+  it('should produce an empty manifest when no configs are available to process', () => {
+    const config = generate(emptyDir, 2);
 
     expect(config).toMatchSnapshot();
   });

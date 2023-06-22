@@ -6,8 +6,11 @@
   "private": true,
   "scripts": {
     "generate:env": "appshell generate env -e .env --prefix $APPSHELL_ENV_PREFIX --outDir dist",
-    "generate:manifest": "appshell generate manifest --configsDir $APPSHELL_CONFIGS_DIR --outDir dist",
-    "start": "dotenv -- run-s generate:* start:run",
+    "generate:manifest": "appshell generate manifest --configsDir $APPSHELL_CONFIGS_DIR --outDir dist --depth $APPSHELL_CONFIGS_DEPTH && yarn merge:manifest",
+    "merge:manifest": "appshell merge manifest --outDir dist --manifest $APPSHELL_BASE_MANIFESTS dist/appshell.manifest.json",
+    "watch:configs": "nodemon --watch $APPSHELL_CONFIGS_DIR --ext json --exec yarn generate:manifest",
+    "watch:run": "yarn generate:manifest",
+    "start": "dotenv -- run-p generate:env watch:configs start:run",
     "start:run": "webpack-cli serve --mode development",
     "prebuild": "yarn clean",
     "build": "webpack --mode production",

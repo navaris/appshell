@@ -5,6 +5,11 @@ import { merge } from '../src/utils';
 import copy from '../src/utils/copy';
 import load from '../src/utils/load';
 import validator from '../src/validators/appshell.manifest';
+import mergeValidator from '../src/validators/merge.manifests';
+import manifestA from './assets/appshell_manifests/test_a.manifest.json';
+import manifestB from './assets/appshell_manifests/test_b.manifest.json';
+import manifestC from './assets/appshell_manifests/test_c.manifest.json';
+import manifestD from './assets/appshell_manifests/test_d.manifest.json';
 import bizManifest from './assets/appshell_utils/bizmodule-biz.json';
 import remoteCollisions from './assets/appshell_utils/remote-collisions.json';
 import barManifest from './assets/appshell_utils/testmodule-bar.json';
@@ -107,6 +112,18 @@ describe('utils', () => {
   describe('merge', () => {
     test('should merge multiple valid configurations', () => {
       const config = merge<AppshellManifest>(validator, fooManifest, barManifest, bizManifest);
+      expect(config).toMatchSnapshot();
+    });
+
+    test('should merge manifests from right to left with merge validator', () => {
+      const config = merge<AppshellManifest>(
+        mergeValidator,
+        manifestA,
+        manifestB,
+        manifestC,
+        manifestD,
+      );
+
       expect(config).toMatchSnapshot();
     });
 

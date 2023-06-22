@@ -8,6 +8,35 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import generateEnvHandler, { GenerateEnvArgs } from './handlers/generate.env';
 import generateManifestHandler, { GenerateManifestArgs } from './handlers/generate.manifest';
+import mergeManifestHandler, { MergeManifestArgs } from './handlers/merge.manifest';
+
+const mergeManifestCommand: yargs.CommandModule<unknown, MergeManifestArgs> = {
+  command: 'manifest',
+  describe: 'Merge one or more appshell manifests',
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  builder: (yargs) =>
+    yargs
+      .option('outDir', {
+        alias: 'o',
+        default: '.',
+        requiresArg: true,
+        type: 'string',
+        description: 'Output location for the appshell manifest',
+      })
+      .option('outFile', {
+        alias: 'f',
+        default: 'appshell.manifest.json',
+        type: 'string',
+        description: 'Output filename for the appshell manifest',
+      })
+      .option('manifest', {
+        alias: 'm',
+        type: 'array',
+        requiresArg: true,
+        description: 'One or more manifests to merge into a single appshell manifest',
+      }),
+  handler: mergeManifestHandler,
+};
 
 const generateManifestCommand: yargs.CommandModule<unknown, GenerateManifestArgs> = {
   command: 'manifest',
@@ -91,5 +120,12 @@ yargs(hideBin(process.argv))
     // eslint-disable-next-line @typescript-eslint/no-shadow
     builder: (yargs) =>
       yargs.command(generateManifestCommand).command(generateEnvCommand).demandCommand(),
+  })
+  .command({
+    command: 'merge [target]',
+    describe: 'Merges a resource',
+    handler: () => {},
+    // eslint-disable-next-line @typescript-eslint/no-shadow
+    builder: (yargs) => yargs.command(mergeManifestCommand).demandCommand(),
   })
   .parse();

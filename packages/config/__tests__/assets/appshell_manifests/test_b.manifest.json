@@ -1,0 +1,59 @@
+{
+  "remotes": {
+    "TestModule/Foo": {
+      "id": "TestModule/Foo",
+      "url": "http://localhost:8080/foo/remoteEntry.js",
+      "metadata": {
+        "route": "/foo",
+        "displayName": "Foo App",
+        "displayGroup": "main",
+        "order": 20,
+        "icon": "ViewList"
+      }
+    },
+    "TestModule/Bar": {
+      "id": "TestModule/Bar",
+      "url": "http://localhost:8080/bar/remoteEntry.js",
+      "metadata": {
+        "route": "/foo",
+        "displayName": "Foo App",
+        "displayGroup": "main",
+        "order": 10,
+        "icon": "ViewList"
+      }
+    }
+  },
+  "modules": {
+    "TestModule": {
+      "exposes": {
+        "./Foo": "./src/Entry1",
+        "./Bar": "./src/Entry2"
+      },
+      "filename": "remoteEntry.js",
+      "library": {
+        "name": "some shared lib",
+        "type": "umd"
+      },
+      "name": "TestModule",
+      "remotes": {
+        "./Remote1": {
+          "external": "external module",
+          "shareScope": "@shared"
+        }
+      },
+      "remoteType": "amd",
+      "runtime": "runtimeChunk",
+      "shared": {
+        "package1": {
+          "singleton": true,
+          "requiredVersion": "0.1.0"
+        },
+        "package2": {
+          "singleton": true,
+          "requiredVersion": "1.1.0"
+        }
+      },
+      "shareScope": "@sharedscope"
+    }
+  }
+}

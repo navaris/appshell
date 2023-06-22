@@ -41,18 +41,14 @@ Uses `@appshell/react-federated-component` to dynamically load remote frontends.
 ```bash
 cp sample.env .env # create a .env
 
-# 1. start the micro-frontends
 # note: the appshell webpack plugins emit configurations to the appshell_configs directory.
-docker compose --profile apps up
+docker compose --profile host --profile apps up
 
 # OR
 
 npm run bootstrap
 npm run start # start locally
 
-# 2. start the appshell host
-# note: the host MUST be started after the appshell_configs directory has been populated
-#       by the previous step (at least on the initial run) - as the appshell host generates
-#       it's manifest file based on the contents of the appshell_configs directory.
+# start the appshell host
 docker compose --profile host up
 ```
