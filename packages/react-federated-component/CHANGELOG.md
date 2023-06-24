@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-alpha.1](https://github.com/navaris/appshell/compare/@appshell/react-federated-component@0.0.2-alpha.0...@appshell/react-federated-component@0.0.2-alpha.1) (2023-06-24)
+
+
+### Bug Fixes
+
+* add useEffect dependencies for federated component ([616039e](https://github.com/navaris/appshell/commit/616039ebb3f46f34db0b82acfb6ee5438a6b4731))
+
+
+
+
+
 ## [0.0.2-alpha.0](https://github.com/navaris/appshell/compare/@appshell/react-federated-component@0.0.1...@appshell/react-federated-component@0.0.2-alpha.0) (2023-06-15)
 
 
