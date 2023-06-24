@@ -47,7 +47,7 @@ const FederatedComponent = <TProps extends ExtendedProps>({
       active = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [remote, manifest]);
 
   // eslint-disable-next-line no-console
   console.debug(`rendering FederatedComponent[${remote}], loading=${!element}`);
