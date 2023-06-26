@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.1](https://github.com/navaris/appshell/compare/@appshell/react-host@0.1.0-alpha.0...@appshell/react-host@0.1.0-alpha.1) (2023-06-26)
+
+
+### Bug Fixes
+
+* ignore manifest changes that force refresh ([ccb2155](https://github.com/navaris/appshell/commit/ccb2155a26bd3f6861f43805bb674ae4906375c1))
+
+
+
+
+
 # [0.1.0-alpha.0](https://github.com/navaris/appshell/compare/@appshell/react-host@0.0.2-alpha.0...@appshell/react-host@0.1.0-alpha.0) (2023-06-22)
 
 
