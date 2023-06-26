@@ -27,7 +27,7 @@ module.exports = (env, { mode }) => {
       static: {
         directory: path.join(__dirname, 'dist'),
         watch: {
-          ignored: [/node_modules/, /dist\/appshell.manifest.json/],
+          ignored: [/node_modules/, /dist/],
         },
       },
       port: process.env.APPSHELL_PORT,
