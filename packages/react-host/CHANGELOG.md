@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.2](https://github.com/navaris/appshell/compare/@appshell/react-host@0.1.0-alpha.1...@appshell/react-host@0.1.0-alpha.2) (2023-06-26)
+
+
+### Bug Fixes
+
+* ignore dist from dev server ([66eaa4f](https://github.com/navaris/appshell/commit/66eaa4f0f7909de289aa25bd8962d0d018be8c89))
+
+
+
+
+
 # [0.1.0-alpha.1](https://github.com/navaris/appshell/compare/@appshell/react-host@0.1.0-alpha.0...@appshell/react-host@0.1.0-alpha.1) (2023-06-26)
 
 
