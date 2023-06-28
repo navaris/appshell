@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-alpha.2](https://github.com/navaris/appshell/compare/@appshell/cli@0.2.0-alpha.1...@appshell/cli@0.2.0-alpha.2) (2023-06-28)
+
+
+### Bug Fixes
+
+* update quotation around values during runtime env generation ([05f792e](https://github.com/navaris/appshell/commit/05f792efd163b2196d5c790e92dfa8f85afc1073))
+
+
+
+
+
 # [0.2.0-alpha.1](https://github.com/navaris/appshell/compare/@appshell/cli@0.1.7-alpha.0...@appshell/cli@0.2.0-alpha.1) (2023-06-22)
 
 
