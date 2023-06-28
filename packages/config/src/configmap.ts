@@ -17,7 +17,7 @@ const findVariablePlaceholders = (
   values(obj).reduce((acc: Record<string, string>, val: object | string | number | undefined) => {
     if (typeof val === 'string') {
       const VARS = findVariables(val);
-      return VARS.length > 0 ? VARS.reduce((a, v) => set<string>(a, v, process.env[v]), acc) : acc;
+      return VARS.length > 0 ? VARS.reduce((a, v) => set(a, v, process.env[v]), acc) : acc;
     }
     if (typeof val === 'object') {
       return findVariablePlaceholders(val, acc);
@@ -31,7 +31,7 @@ const apply = <T extends object>(obj: T, configMap: ConfigMap): T => {
       const VARS = findVariables(val);
       if (VARS.length > 0) {
         VARS.forEach((v) => {
-          const cur = obj[key];
+          const cur = obj[key as keyof T] as string;
           const value = configMap[v];
           if (!value) {
             // eslint-disable-next-line no-console
