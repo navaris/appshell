@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.3](https://github.com/navaris/appshell/compare/@appshell/react-host@0.1.0-alpha.2...@appshell/react-host@0.1.0-alpha.3) (2023-06-28)
+
+
+### Features
+
+* enable props to be passed to federated component rendered by react host ([e3a7273](https://github.com/navaris/appshell/commit/e3a72738455e179c9cc0b3f1ae29cf61b7c6d765))
+
+
+
+
+
 # [0.1.0-alpha.2](https://github.com/navaris/appshell/compare/@appshell/react-host@0.1.0-alpha.1...@appshell/react-host@0.1.0-alpha.2) (2023-06-26)
 
 
