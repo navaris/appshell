@@ -76,7 +76,7 @@ exports[`mapping configurations to domain objects should match snapshot 1`] = `
       "module": "./Foo",
       "scope": "TestModule",
       "shareScope": "@sharedscope",
-      "url": "http://remote-endpoint.com/remoteEntry.js",
+      "url": "http://remote-endpoint.com",
     },
   },
 }

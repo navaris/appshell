@@ -13,7 +13,7 @@
     },
     "TestModule/Bar": {
       "id": "TestModule/Bar",
-      "url": "${APPS_TEST_URL}",
+      "url": "${APPS_TEST_URL}/${APPS_TEST_REMOTE_ENTRY_PATH}",
       "metadata": {
         "route": "/bar",
         "displayName": "Bar App",
