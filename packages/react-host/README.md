@@ -64,6 +64,8 @@ APPSHELL_MANIFEST_URL=/appshell.manifest.json
 APPSHELL_BASE_MANIFESTS=http://prod.url.com/appshell.manifest.json ./path/to/manifest.json
 # Remote module to load from the global runtime manifest
 APPSHELL_ROOT=ContainerModule/App
+# Props to be passed to federated component specified by APPSHELL_ROOT, as a serialized JSON string.
+APPSHELL_ROOT_PROPS='{"foo":"bar"}'
 APPSHELL_CONTAINER_SCALE=1
 APPSHELL_THEME_COLOR= # Background color of splash screen
 APPSHELL_PRIMARY_COLOR= # Color of splash screen loading
