@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { AppshellManifest } from '@appshell/config';
 import {
   FederatedComponent,
@@ -11,6 +12,7 @@ import ErrorMessage from './ErrorMessage';
 import Splash from './Splash';
 
 const resource = jsonResource<AppshellManifest>(env.APPSHELL_MANIFEST_URL);
+const props = JSON.parse(env.APPSHELL_ROOT_PROPS);
 
 const RenderHost = () => {
   const value = resource.read();
@@ -25,7 +27,7 @@ const RenderHost = () => {
 
   return (
     <ManifestProvider manifest={value}>
-      <FederatedComponent remote={env.APPSHELL_ROOT} fallback={<Splash />} />
+      <FederatedComponent remote={env.APPSHELL_ROOT} fallback={<Splash />} {...props} />
     </ManifestProvider>
   );
 };

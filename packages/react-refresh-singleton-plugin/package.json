@@ -1,0 +1,26 @@
+{
+  "name": "@appshell/react-refresh-singleton-plugin",
+  "version": "0.1.0-alpha.0",
+  "description": "Webpack plugin used to enable react-refresh hot module replacement for distributed frontends using Module Federation",
+  "main": "src/ReactRefreshSingletonPlugin.js",
+  "repository": "https://github.com/navaris/appshell.git",
+  "author": "Robert Hamilton <rh@navaris.com>",
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "src"
+  ],
+  "peerDependencies": {
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10"
+  },
+  "keywords": [
+    "webpack",
+    "react-refresh",
+    "module federation",
+    "micro-frontends",
+    "appshell"
+  ],
+  "license": "MIT"
+}

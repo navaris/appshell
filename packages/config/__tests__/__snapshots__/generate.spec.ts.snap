@@ -155,3 +155,10 @@ exports[`generate should generate an appshell manifest from a collection of app 
   },
 }
 `;
+
+exports[`generate should produce an empty manifest when no configs are available to process 1`] = `
+{
+  "modules": {},
+  "remotes": {},
+}
+`;

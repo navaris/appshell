@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-alpha.0](https://github.com/navaris/appshell/compare/@appshell/loader@0.0.1...@appshell/loader@0.0.2-alpha.0) (2023-06-15)
+
+
+### Bug Fixes
+
+* hot module replacement support, example updates ([a67d230](https://github.com/navaris/appshell/commit/a67d2303b40f5911373225cc0b4ccf9b67c33d11))
+
+
+
+
+
+=======
 ## 0.0.1 (2023-06-15)
 
 **Note:** Version bump only for package @appshell/loader

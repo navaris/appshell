@@ -8,12 +8,14 @@ import manifest from './fixtures/Manifest';
 jest.mock('../src/runtime.env', () => ({
   APPSHELL_CONFIGS_DIR: 'appshell_configs',
   APPSHELL_MANIFEST_URL: 'http://test.com/manifest.json',
+  APPSHELL_ROOT: 'TestModule/TestComponent',
+  APPSHELL_ROOT_PROPS: '{"foo":"bar"}',
 }));
 
 type FederatedComponentModuleType = typeof FederatedComponentModule;
 
 const resourceValue = jest.fn();
-const TestComponent = () => <div>test component</div>;
+const TestComponent = jest.fn(() => <div>test component</div>);
 
 describe('RenderHost', () => {
   let RenderHost: ComponentType;
@@ -52,6 +54,18 @@ describe('RenderHost', () => {
     render(<RenderHost />);
 
     await expect(screen.getByText(/test component/i)).toBeInTheDocument();
+  });
+
+  it('should pass props to federated component when available', async () => {
+    resourceValue.mockReturnValueOnce(manifest);
+    render(<RenderHost />);
+
+    await expect(screen.getByText(/test component/i)).toBeInTheDocument();
+
+    expect(TestComponent).toHaveBeenCalledWith(
+      { fallback: expect.anything(), foo: 'bar', remote: 'TestModule/TestComponent' },
+      {},
+    );
   });
 
   it('should render error when manifest is available', async () => {

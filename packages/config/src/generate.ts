@@ -12,16 +12,25 @@ import validator from './validators/appshell.manifest';
  * @returns an appshell manifest
  */
 export default <TMetadata extends Record<string, unknown>>(configsDir: string, searchDepth = 1) => {
-  const manifests = list(configsDir, searchDepth).map<AppshellManifest<TMetadata>>((configPath) => {
-    if (!fs.existsSync(configPath)) {
-      throw new Error(`Configuration not found at ${configPath}`);
-    }
+  const manifests = list(configsDir, searchDepth, /\.json$/i).map<AppshellManifest<TMetadata>>(
+    (configPath) => {
+      if (!fs.existsSync(configPath)) {
+        throw new Error(`Configuration not found at ${configPath}`);
+      }
 
-    const config = JSON.parse(fs.readFileSync(configPath).toString());
-    const configMap = configmap.create(config);
+      const config = JSON.parse(fs.readFileSync(configPath).toString());
+      const configMap = configmap.create(config);
 
-    return toAppshellManifest<TMetadata>(config, configMap);
-  });
+      return toAppshellManifest<TMetadata>(config, configMap);
+    },
+  );
+
+  if (!manifests.length) {
+    // eslint-disable-next-line no-console
+    console.log(`No config files found in '${configsDir}'`);
+
+    return { remotes: {}, modules: {} };
+  }
 
   return merge<AppshellManifest<TMetadata>>(validator, ...manifests);
 };

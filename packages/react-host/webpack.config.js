@@ -26,6 +26,9 @@ module.exports = (env, { mode }) => {
       compress: true,
       static: {
         directory: path.join(__dirname, 'dist'),
+        watch: {
+          ignored: [/node_modules/, /dist/],
+        },
       },
       port: process.env.APPSHELL_PORT,
       historyApiFallback: true,

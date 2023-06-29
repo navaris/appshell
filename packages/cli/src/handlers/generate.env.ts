@@ -45,7 +45,7 @@ export default async (argv: GenerateEnvArgs): Promise<void> =>
           if (!currentValue) {
             currentValue = VALUE;
           }
-          outputFile.write(`\t${NAME}: "${currentValue}",\n`);
+          outputFile.write(`\t${NAME}: '${currentValue}',\n`);
         }
       });
 

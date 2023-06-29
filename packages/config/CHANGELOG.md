@@ -3,31 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-alpha.2](https://github.com/navaris/appshell/compare/@appshell/config@0.2.0-alpha.1...@appshell/config@0.2.0-alpha.2) (2023-06-28)
+
+
+### Bug Fixes
+
+* Fixed parsing of strings with more than one variable. ([#10](https://github.com/navaris/appshell/issues/10)) ([af21588](https://github.com/navaris/appshell/commit/af215886b858742ecf170a6e06a1d6bcba3fd39c))
+
+
+
+
+
+# [0.2.0-alpha.1](https://github.com/navaris/appshell/compare/@appshell/config@0.1.7-alpha.0...@appshell/config@0.2.0-alpha.1) (2023-06-22)
+
+
+### Features
+
+* support manifest merging and config watch ([5431d10](https://github.com/navaris/appshell/commit/5431d100ec7f5106cab66d3009ce5f836e452715))
+
+
+
+
+
+## [0.1.7-alpha.0](https://github.com/navaris/appshell/compare/@appshell/config@0.1.6...@appshell/config@0.1.7-alpha.0) (2023-06-15)
+
+**Note:** Version bump only for package @appshell/config
+
+
+
+
+
 ## [0.1.6](https://github.com/navaris/appshell/compare/@appshell/config@0.1.5...@appshell/config@0.1.6) (2023-06-15)
 
 **Note:** Version bump only for package @appshell/config
 
-
-
-
-
 ## [0.1.6-alpha.2](https://github.com/navaris/appshell/compare/@appshell/config@0.1.6-alpha.1...@appshell/config@0.1.6-alpha.2) (2023-06-15)
 
-**Note:** Version bump only for package @appshell/config
-
-
-
-
-
 ## [0.1.6-alpha.1](https://github.com/navaris/appshell/compare/@appshell/config@0.1.6-alpha.0...@appshell/config@0.1.6-alpha.1) (2023-03-19)
-
-## [0.1.5](https://github.com/navaris/appshell/compare/@appshell/config@0.1.5-alpha.0...@appshell/config@0.1.5) (2023-03-05)
-
-**Note:** Version bump only for package @appshell/config
-
-## [0.1.5-alpha.0](https://github.com/navaris/appshell/compare/@appshell/config@0.1.4...@appshell/config@0.1.5-alpha.0) (2023-03-05)
-
-**Note:** Version bump only for package @appshell/config
 
 ## [0.1.6-alpha.0](https://github.com/navaris/appshell/compare/@appshell/config@0.1.5-alpha.0...@appshell/config@0.1.6-alpha.0) (2023-03-19)
 
@@ -38,6 +50,8 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 **Note:** Version bump only for package @appshell/config
 
 ## [0.1.5-alpha.0](https://github.com/navaris/appshell/compare/@appshell/config@0.1.4...@appshell/config@0.1.5-alpha.0) (2023-03-05)
+
+**Note:** Version bump only for package @appshell/config
 
 ### Bug Fixes
 
