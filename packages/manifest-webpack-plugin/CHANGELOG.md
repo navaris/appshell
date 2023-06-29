@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.1.8-alpha.2](https://github.com/navaris/appshell/compare/@appshell/manifest-webpack-plugin@0.1.7...@appshell/manifest-webpack-plugin@0.1.8-alpha.2) (2023-06-29)
+
+**Note:** Version bump only for package @appshell/manifest-webpack-plugin
+
+
+
+
+
 
 ## [0.1.8-alpha.1](https://github.com/navaris/appshell/compare/@appshell/manifest-webpack-plugin@0.1.8-alpha.0...@appshell/manifest-webpack-plugin@0.1.8-alpha.1) (2023-06-29)
 
