@@ -7,7 +7,7 @@
   "repository": "https://github.com/navaris/appshell.git",
   "author": "Robert Hamilton <rh@navaris.com>",
   "publishConfig": {
-    "access": "restricted",
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
