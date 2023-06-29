@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+
+## [0.0.3-alpha.1](https://github.com/navaris/appshell/compare/@appshell/react-federated-component@0.0.3-alpha.0...@appshell/react-federated-component@0.0.3-alpha.1) (2023-06-29)
+
+
+### Bug Fixes
+
+* update npm package visibility ([1ef4119](https://github.com/navaris/appshell/commit/1ef411903dd038dfc781e8ce0700811e5460c903))
+
+
+
+
+
+## [0.0.3-alpha.0](https://github.com/navaris/appshell/compare/@appshell/react-federated-component@0.0.2-alpha.1...@appshell/react-federated-component@0.0.3-alpha.0) (2023-06-29)
+
+**Note:** Version bump only for package @appshell/react-federated-component
+
+
+
+
+
 ## [0.0.2](https://github.com/navaris/appshell/compare/@appshell/react-federated-component@0.0.2-alpha.1...@appshell/react-federated-component@0.0.2) (2023-06-29)
 
 **Note:** Version bump only for package @appshell/react-federated-component

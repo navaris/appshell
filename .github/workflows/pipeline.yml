@@ -4,11 +4,10 @@ on:
   push:
     branches:
       - main
-      - develop
+      - 'feature/**'
   pull_request:
     branches:
       - main
-      - develop
 
 permissions:
   contents: write
@@ -43,7 +42,7 @@ jobs:
 
   publish_npm_packages:
     needs: build
-    if: contains('["refs/heads/main", "refs/heads/develop"]', github.ref)
+    if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/feature/') }}
     runs-on: ubuntu-latest
 
     steps:
@@ -80,7 +79,7 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Version and tag pre-release
-        if: ${{ github.ref == 'refs/heads/develop' }}
+        if: startsWith(github.ref, 'refs/heads/feature/')
         run: npx lerna version --no-push --conventional-prerelease --yes
 
       - name: Version and tag release
@@ -102,6 +101,7 @@ jobs:
   push_docker_images:
     name: Push Docker images to Docker Hub
     needs: publish_npm_packages
+    if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/feature/') }}
     runs-on: ubuntu-latest
 
     strategy:

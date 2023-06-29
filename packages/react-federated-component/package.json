@@ -1,9 +1,15 @@
 {
   "name": "@appshell/react-federated-component",
-  "version": "0.0.2",
+  "version": "0.0.3-alpha.1",
   "description": "React utilities for loading federated components",
   "main": "dist/main.js",
   "types": "dist/types/react-federated-component/src/index.d.ts",
+  "repository": "https://github.com/navaris/appshell.git",
+  "author": "Robert Hamilton <rh@navaris.com>",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build": "webpack --mode production && yarn build:types",
     "build:types": "tsc --emitDeclarationOnly",
@@ -17,7 +23,6 @@
     "micro-frontends",
     "appshell"
   ],
-  "author": "Robert Hamilton <rh@navaris.com>",
   "license": "MIT",
   "peerDependencies": {
     "react": "^18.2.0",
