@@ -42,7 +42,7 @@ jobs:
 
   publish_npm_packages:
     needs: build
-    if: contains('["refs/heads/main", "refs/heads/feature"]', github.ref)
+    if: contains('["refs/heads/main", "refs/heads/feature/*"]', github.ref)
     runs-on: ubuntu-latest
 
     steps:
@@ -101,6 +101,7 @@ jobs:
   push_docker_images:
     name: Push Docker images to Docker Hub
     needs: publish_npm_packages
+    if: contains('["refs/heads/main", "refs/heads/feature/*"]', github.ref)
     runs-on: ubuntu-latest
 
     strategy:
