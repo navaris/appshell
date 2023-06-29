@@ -42,7 +42,7 @@ jobs:
 
   publish_npm_packages:
     needs: build
-    if: contains(github.ref, fromJSON('["refs/heads/main", "refs/heads/feature"]'))
+    if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/feature/') }}
     runs-on: ubuntu-latest
 
     steps:
@@ -79,7 +79,7 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Version and tag pre-release
-        if: startsWith(github.ref, 'refs/heads/feature')
+        if: startsWith(github.ref, 'refs/heads/feature/')
         run: npx lerna version --no-push --conventional-prerelease --yes
 
       - name: Version and tag release
@@ -101,7 +101,7 @@ jobs:
   push_docker_images:
     name: Push Docker images to Docker Hub
     needs: publish_npm_packages
-    if: contains(github.ref, fromJSON('["refs/heads/main", "refs/heads/feature"]'))
+    if: ${{ github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/feature/') }}
     runs-on: ubuntu-latest
 
     strategy:
