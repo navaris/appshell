@@ -1,6 +1,6 @@
 {
   "useWorkspaces": true,
-  "version": "fixed",
+  "version": "independent",
   "npmClient": "yarn",
   "command": {
     "version": {
