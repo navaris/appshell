@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-alpha.1](https://github.com/navaris/appshell/compare/@appshell/cli@0.2.1...@appshell/cli@0.3.0-alpha.1) (2023-07-05)
+
+
+### Features
+
+* foundation refactor wip ([339b930](https://github.com/navaris/appshell/commit/339b9306accaa9aba1712f3a0dee6c4cab7ed273))
+
+
+
+
+
 # [0.3.0-alpha.0](https://github.com/navaris/appshell/compare/@appshell/cli@0.2.1...@appshell/cli@0.3.0-alpha.0) (2023-07-05)
 
 
