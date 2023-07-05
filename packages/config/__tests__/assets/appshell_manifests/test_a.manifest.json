@@ -1,6 +1,6 @@
 {
   "remotes": {
-    "TestModule/Foo": {
+    "TestModuleA/Foo": {
       "id": "TestModule/Foo",
       "url": "http://localhost:8080/remoteEntry.js",
       "metadata": {
@@ -12,8 +12,14 @@
       }
     }
   },
+  "environment": {
+    "test_module_a": {
+      "RUNTIME_ENV": "${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "${RUNTIME_ENV_VERSION}"
+    }
+  },
   "modules": {
-    "TestModule": {
+    "TestModuleA": {
       "exposes": {
         "./Foo": "./src/Entry1"
       },

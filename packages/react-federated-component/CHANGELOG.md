@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.0](https://github.com/navaris/appshell/compare/@appshell/react-federated-component@0.0.3...@appshell/react-federated-component@0.1.0-alpha.0) (2023-07-05)
+
+
+### Features
+
+* registry index ([8e6ee0a](https://github.com/navaris/appshell/commit/8e6ee0a6a377584efa2ee702168025f46108b8c5))
+
+
+
+
+
 ## [0.0.3](https://github.com/navaris/appshell/compare/@appshell/react-federated-component@0.0.3-alpha.2...@appshell/react-federated-component@0.0.3) (2023-06-29)
 
 **Note:** Version bump only for package @appshell/react-federated-component

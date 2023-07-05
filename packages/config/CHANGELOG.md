@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-alpha.0](https://github.com/navaris/appshell/compare/@appshell/config@0.2.1...@appshell/config@0.3.0-alpha.0) (2023-07-05)
+
+
+### Bug Fixes
+
+* package dependencies ([49f1ace](https://github.com/navaris/appshell/commit/49f1ace6fd63b35ea3c866315123054517687158))
+
+
+### Features
+
+* registry index ([8e6ee0a](https://github.com/navaris/appshell/commit/8e6ee0a6a377584efa2ee702168025f46108b8c5))
+
+
+
+
+
 ## [0.2.1](https://github.com/navaris/appshell/compare/@appshell/config@0.2.1-alpha.2...@appshell/config@0.2.1) (2023-06-29)
 
 **Note:** Version bump only for package @appshell/config

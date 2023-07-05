@@ -12,6 +12,12 @@
       }
     }
   },
+  "environment": {
+    "foo_module": {
+      "RUNTIME_ENV": "${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "${RUNTIME_ENV_VERSION}"
+    }
+  },
   "module": {
     "exposes": {
       "./Bing": "./src/Entry1"

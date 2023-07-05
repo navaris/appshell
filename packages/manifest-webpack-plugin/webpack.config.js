@@ -49,5 +49,11 @@ module.exports = {
       amd: 'webpack',
       root: 'Webpack',
     },
+    esbuild: {
+      commonjs: 'esbuild',
+      commonjs2: 'esbuild',
+      amd: 'esbuild',
+      root: 'esbuild',
+    },
   },
 };

@@ -9,32 +9,40 @@ export type ConfigValidator = {
 export type ConfigMap = Record<string, string>;
 
 /* appshell.config.yaml types */
-export type AppshellConfigRemote<TMetadata = Record<string, unknown>> = {
+export type AppshellConfigRemote<TMetadata = Metadata> = {
   id: string;
   url: string;
+  filename: string;
   metadata: TMetadata;
 };
 
-export type AppshellConfig<TMetadata = Record<string, unknown>> = {
+export type AppshellConfig<TMetadata = Metadata> = {
   name?: string;
   remotes?: Record<string, AppshellConfigRemote<TMetadata>>;
   module: ModuleFederationPluginOptions;
+  environment?: Record<string, unknown>;
 };
 
 /** Appshell manifest types */
-export type AppshellRemote<TMetadata = Record<string, unknown>> = {
+export type AppshellRemote<TMetadata = Metadata> = {
   id: string;
-  url: string;
+  manifestUrl: string;
+  remoteEntryUrl: string;
   scope: string;
   module: string;
   shareScope?: string;
   metadata: TMetadata;
 };
 
-export type AppshellManifest<TMetadata = Record<string, unknown>> = {
+export type AppshellManifest<TMetadata = Metadata> = {
   remotes: Record<string, AppshellRemote<TMetadata>>;
   modules: Record<string, ModuleFederationPluginOptions>;
+  environment: Record<string, Record<string, string | number | undefined>>;
 };
+
+export type AppshellIndex = Record<string, string>;
+
+export type Metadata = Record<string, unknown>;
 
 /**
  * Advanced configuration for modules that should be exposed by this container.

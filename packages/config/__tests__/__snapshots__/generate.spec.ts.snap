@@ -1,117 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generate should generate an appshell manifest from a collection of app manifests 1`] = `
+exports[`generate should generate an appshell manifest from the appshell config 1`] = `
 {
+  "environment": {},
   "modules": {
-    "BarModule": {
+    "TestModule": {
       "exposes": {
-        "./Bar": "./src/Entry2",
+        "./Bar": "./src/Bar",
+        "./Foo": "./src/Foo",
       },
       "filename": "remoteEntry.js",
-      "library": {
-        "name": "some shared lib",
-        "type": "umd",
-      },
-      "name": "BarModule",
-      "remoteType": "amd",
-      "remotes": {
-        "./Remote1": {
-          "external": "external module",
-          "shareScope": "@shared",
-        },
-      },
-      "runtime": "runtimeChunk",
-      "shareScope": "@sharedscope",
-      "shared": {
-        "package1": {
-          "requiredVersion": "0.1.0",
-          "singleton": true,
-        },
-        "package2": {
-          "requiredVersion": "1.1.0",
-          "singleton": true,
-        },
-      },
-    },
-    "BizModule": {
-      "exposes": {
-        "./Biz": "./src/Entry1",
-      },
-      "filename": "remoteEntry.js",
-      "library": {
-        "name": "some shared lib",
-        "type": "umd",
-      },
-      "name": "BizModule",
-      "remoteType": "amd",
-      "remotes": {
-        "./Remote1": {
-          "external": "external module",
-          "shareScope": "@shared",
-        },
-      },
-      "runtime": "runtimeChunk",
-      "shareScope": "@sharedscope",
-      "shared": {
-        "package1": {
-          "requiredVersion": "0.1.0",
-          "singleton": true,
-        },
-        "package2": {
-          "requiredVersion": "1.1.0",
-          "singleton": true,
-        },
-      },
-    },
-    "FooModule": {
-      "exposes": {
-        "./Bing": "./src/Entry1",
-        "./Foo": "./src/Entry1",
-      },
-      "filename": "remoteEntry.js",
-      "library": {
-        "name": "some shared lib",
-        "type": "umd",
-      },
-      "name": "FooModule",
-      "remoteType": "amd",
-      "remotes": {
-        "./Remote1": {
-          "external": "external module",
-          "shareScope": "@shared",
-        },
-      },
-      "runtime": "runtimeChunk",
-      "shareScope": "@sharedscope",
-      "shared": {
-        "package1": {
-          "requiredVersion": "0.1.0",
-          "singleton": true,
-        },
-        "package2": {
-          "requiredVersion": "1.1.0",
-          "singleton": true,
-        },
-      },
+      "name": "TestModule",
+      "shared": {},
     },
   },
   "remotes": {
-    "BarModule/Bar": {
-      "id": "BarModule/Bar",
-      "metadata": {
-        "displayGroup": "main",
-        "displayName": "Bar App",
-        "icon": "ViewList",
-        "order": 20,
-        "route": "/bar",
-      },
-      "module": "./Bar",
-      "scope": "BarModule",
-      "shareScope": "@sharedscope",
-      "url": "http://remote-module.com/remoteEntry.js",
-    },
     "BizModule/Biz": {
-      "id": "BizModule/Biz",
+      "id": "373793ed",
       "metadata": {
         "displayGroup": "auxiliary",
         "displayName": "Biz App",
@@ -121,25 +26,25 @@ exports[`generate should generate an appshell manifest from a collection of app 
       },
       "module": "./Biz",
       "scope": "BizModule",
-      "shareScope": "@sharedscope",
+      "shareScope": undefined,
       "url": "http://localhost:4040/remoteEntry.js",
     },
-    "FooModule/Bing": {
-      "id": "FooModule/Bing",
+    "TestModule/Bar": {
+      "id": "42783598",
       "metadata": {
         "displayGroup": "main",
-        "displayName": "Foo App",
+        "displayName": "Bar App",
         "icon": "ViewList",
-        "order": 10,
-        "route": "/foo",
+        "order": 20,
+        "route": "/bar",
       },
-      "module": "./Bing",
-      "scope": "FooModule",
-      "shareScope": "@sharedscope",
+      "module": "./Bar",
+      "scope": "TestModule",
+      "shareScope": undefined,
       "url": "http://remote-module.com/remoteEntry.js",
     },
-    "FooModule/Foo": {
-      "id": "FooModule/Foo",
+    "TestModule/Foo": {
+      "id": "4278464b",
       "metadata": {
         "displayGroup": "main",
         "displayName": "Foo App",
@@ -148,17 +53,10 @@ exports[`generate should generate an appshell manifest from a collection of app 
         "route": "/foo",
       },
       "module": "./Foo",
-      "scope": "FooModule",
-      "shareScope": "@sharedscope",
+      "scope": "TestModule",
+      "shareScope": undefined,
       "url": "http://remote-module.com/remoteEntry.js",
     },
   },
-}
-`;
-
-exports[`generate should produce an empty manifest when no configs are available to process 1`] = `
-{
-  "modules": {},
-  "remotes": {},
 }
 `;

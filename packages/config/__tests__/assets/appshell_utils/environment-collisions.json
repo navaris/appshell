@@ -1,0 +1,56 @@
+{
+  "remotes": {
+    "TestModuleBiz/Biz": {
+      "id": "BizModule/Biz",
+      "url": "http://localhost:4040/remoteEntry.js",
+      "scope": "BizModule",
+      "module": "./Biz",
+      "metadata": {
+        "route": "/biz",
+        "displayName": "Biz App",
+        "displayGroup": "auxiliary",
+        "order": 30,
+        "icon": "ViewList"
+      }
+    }
+  },
+  "environment": {
+    "test_module_bar": {
+      "RUNTIME_ENV": "${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "${RUNTIME_ENV_VERSION}"
+    }
+  },
+  "modules": {
+    "TestModuleBiz": {
+      "exposes": {
+        "./Foo": "./src/Entry1",
+        "./Bar": "./src/Entry2"
+      },
+      "filename": "remoteEntry.js",
+      "library": {
+        "name": "some shared lib",
+        "type": "umd"
+      },
+      "name": "TestModuleBiz",
+      "remotes": {
+        "./Remote1": {
+          "external": "external module",
+          "shareScope": "@shared"
+        }
+      },
+      "remoteType": "amd",
+      "runtime": "runtimeChunk",
+      "shared": {
+        "package1": {
+          "singleton": true,
+          "requiredVersion": "0.1.0"
+        },
+        "package2": {
+          "singleton": true,
+          "requiredVersion": "1.1.0"
+        }
+      },
+      "shareScope": "@sharedscope"
+    }
+  }
+}

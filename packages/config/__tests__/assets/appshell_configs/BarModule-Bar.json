@@ -12,6 +12,12 @@
       }
     }
   },
+  "environment": {
+    "bar_module": {
+      "RUNTIME_ENV": "${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "${RUNTIME_ENV_VERSION}"
+    }
+  },
   "module": {
     "exposes": {
       "./Bar": "./src/Entry2"

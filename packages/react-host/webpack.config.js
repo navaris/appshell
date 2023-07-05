@@ -63,7 +63,6 @@ module.exports = (env, { mode }) => {
       ],
     },
     plugins: [
-      isDevelopment && new ReactRefreshWebpackPlugin(),
       new DefinePlugin({
         APPSHELL_TITLE: JSON.stringify(process.env.APPSHELL_TITLE),
         APPSHELL_DESCRIPTION: JSON.stringify(process.env.APPSHELL_DESCRIPTION),
@@ -105,6 +104,7 @@ module.exports = (env, { mode }) => {
           },
         },
       }),
+      isDevelopment && new ReactRefreshWebpackPlugin(),
       isDevelopment && new ReactRefreshSingleton(),
     ].filter(Boolean),
   };

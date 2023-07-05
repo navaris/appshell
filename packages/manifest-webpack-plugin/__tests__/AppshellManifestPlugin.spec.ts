@@ -31,7 +31,7 @@ class MockCompiler {
   }
 
   invokeHandlers() {
-    values(this.handlers).forEach((handler) => handler.call(this.compilation));
+    values(this.handlers).forEach((handler) => handler.call(null, this.compilation));
   }
 }
 
@@ -43,7 +43,7 @@ describe('AppshellManifestPlugin', () => {
   let compiler: MockCompiler;
   beforeEach(() => {
     const plugins = [new container.ModuleFederationPlugin(MODULE_FEDERATION_PLUGIN_OPTIONS)];
-    compiler = new MockCompiler({ plugins }, {});
+    compiler = new MockCompiler({ plugins }, { outputOptions: { path: '' } });
   });
 
   afterEach(() => {
@@ -87,17 +87,11 @@ describe('AppshellManifestPlugin', () => {
 
       expect(plugin.options.config).toEqual('appshell.config.yaml');
     });
-
-    it('should default configsDir to <project>/appshell_configs', () => {
-      const plugin = new AppshellManifestPlugin({ config });
-
-      expect(plugin.options.configsDir).toEqual('appshell_configs');
-    });
   });
 
   describe('apply', () => {
     it('should throw if ModuleFederationPlugin is not found', () => {
-      const plugin = new AppshellManifestPlugin({ config, configsDir });
+      const plugin = new AppshellManifestPlugin({ config });
 
       compiler.options.plugins = [];
 
@@ -108,7 +102,7 @@ describe('AppshellManifestPlugin', () => {
 
     it('should write configuration to configsDir', () => {
       const writeFileSyncSpy = jest.spyOn(fs, 'writeFileSync');
-      const plugin = new AppshellManifestPlugin({ config, configsDir });
+      const plugin = new AppshellManifestPlugin({ config });
 
       plugin.apply(compiler as any);
       compiler.invokeHandlers();

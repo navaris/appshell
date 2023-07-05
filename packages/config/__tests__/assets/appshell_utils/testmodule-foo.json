@@ -1,6 +1,6 @@
 {
   "remotes": {
-    "TestModule/Foo": {
+    "TestModuleFoo/Foo": {
       "id": "TestModule/Foo",
       "url": "${APPS_TEST_URL}",
       "scope": "TestModule",
@@ -14,8 +14,14 @@
       }
     }
   },
+  "environment": {
+    "test_module_foo": {
+      "RUNTIME_ENV": "${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "${RUNTIME_ENV_VERSION}"
+    }
+  },
   "modules": {
-    "TestModule": {
+    "TestModuleFoo": {
       "exposes": {
         "./Foo": "./src/Entry1",
         "./Bar": "./src/Entry2"
@@ -25,7 +31,7 @@
         "name": "some shared lib",
         "type": "umd"
       },
-      "name": "TestModule",
+      "name": "TestModuleBar",
       "remotes": {
         "./Remote1": {
           "external": "external module",

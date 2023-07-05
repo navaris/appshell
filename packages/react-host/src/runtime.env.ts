@@ -7,9 +7,9 @@ declare global {
 
 const env = window.appshell_env;
 
-if (!env.APPSHELL_CONFIGS_DIR && !env.APPSHELL_MANIFEST_URL) {
+if (!env.APPSHELL_REGISTRY && !env.APPSHELL_MANIFEST_URL) {
   throw new Error(
-    `Missing runtime environment value. 'APPSHELL_MANIFEST_URL' is required if 'APPSHELL_CONFIGS_DIR' is not provided.`,
+    `Missing runtime environment value. 'APPSHELL_MANIFEST_URL' is required if 'APPSHELL_REGISTRY' is not provided.`,
   );
 }
 
@@ -20,7 +20,7 @@ if (!env.APPSHELL_ROOT) {
 }
 
 export default {
-  APPSHELL_CONFIGS_DIR: env.APPSHELL_CONFIGS_DIR,
+  APPSHELL_REGISTRY: env.APPSHELL_REGISTRY,
   APPSHELL_ROOT: env.APPSHELL_ROOT,
   APPSHELL_ROOT_PROPS: env.APPSHELL_ROOT_PROPS || '{}',
   APPSHELL_MANIFEST_URL: env.APPSHELL_MANIFEST_URL || 'appshell.manifest.json',

@@ -11,7 +11,7 @@
 
 # @appshell/cli
 
-Utitliy for generating a `global runtime manifest` for Webpack Module federation micro-frontends.
+Appshell utilities for building micro-frontends with Appshell and Webpack Module federation.
 
 Working examples can be found [here](https://github.com/navaris/appshell/tree/main/examples).
 
@@ -43,7 +43,7 @@ appshell generate [target]
 Generates a resource
 
 Commands:
-  appshell generate manifest  Generate the appshell global runtime manifest
+  appshell generate manifest  Generate the appshell manifest
   appshell generate env       Generate the runtime environment js file that refl
                               ects the current process.env
 
@@ -73,16 +73,14 @@ Options:
 ### Sample usage
 
 ```bash
-appshell generate manifest --configsDir /path/to/appshell_configs
+appshell generate manifest --configsDir $CONFIGS_DIR
 ```
 
-![Sample APPSHELL_CONFIGS_DIR](https://github.com/navaris/appshell/blob/main/assets/docs/appshell_configs_dir.png 'APPSHELL_CONFIGS_DIR')
-
-**Where does the content of APPSHELL_CONFIGS_DIR come from?**
+**Where does the content of CONFIGS_DIR come from?**
 
 > Each micro-frontend configured to use [@appshell/manifest-webpack-plugin](https://www.npmjs.com/package/@appshell/manifest-webpack-plugin) emits it's configuration to the configs directory at build time, which is subsequently processed with this utility to reflect the current runtime environment.
 
-Sample content from APPSHELL_CONFIGS_DIR:
+Sample content from CONFIGS_DIR:
 
 ```json
 {
@@ -115,15 +113,21 @@ Sample content from APPSHELL_CONFIGS_DIR:
         "requiredVersion": "^18.2.0"
       }
     }
+  },
+  "environment": {
+    "RUNTIME_ARG_1": "${RUNTIME_ARG_1}",
+    "RUNTIME_ARG_2": "${RUNTIME_ARG_2}"
   }
 }
 ```
 
-**How does my runtime environment get reflected in the global runtime manifest?**
+**How does my runtime environment get reflected in the appshell manifest?**
 
-> Note the variable expansion syntax `${CRA_MFE_URL}`. When `generate` is called the actual runtime environment values are injected and all configurations are merged into a global runtime manifest.
+> Note the variable expansion syntax `${CRA_MFE_URL}`. When `generate` is called the actual runtime environment values are injected and all configurations are ultimately merged into a global appshell manifest.
 
-Sample global runtime manifest produced by the `generate` function:
+> **Note** the `environment` section defines runtime environment variables that are injected into the global namesapce `window.__appshell_env__[module_name]` when a federated component is loaded. See the examples for a use case.
+
+Sample global appshell manifest produced by the `generate` function:
 
 ```json
 {
@@ -203,15 +207,57 @@ Sample global runtime manifest produced by the `generate` function:
         }
       }
     }
+  },
+  "environment": {
+    "CraModule": {
+      "RUNTIME_ARG_1": "Foo",
+      "RUNTIME_ARG_2": "Biz"
+    },
+    "VanillaModule": {
+      "RUNTIME_ARG_1": "Bar"
+    }
   }
 }
 ```
 
-This global runtime manifest can be consumed by your micro-frontend Appshell host and used to configure the Appshell accordingly.
+This global appshell manifest can be consumed by your micro-frontend Appshell host and used to configure the Appshell accordingly.
 
-**What if I want to generate the manifest programmatically instead?**
+## Register a manifest
 
-> This functionality is exposed by the [@appshell/config](https://www.npmjs.com/package/@appshell/config) package.
+Register on or more appshell manifests with the global registry.
+
+```bash
+appshell register
+
+Register one or more appshell manifests
+
+Options:
+      --help      Show help                                            [boolean]
+      --version   Show version number                                  [boolean]
+  -m, --manifest  One or more manifests to register                      [array]
+  -r, --registry  Registry path for the appshell manifests
+                                         [string] [default: "appshell_registry"]
+```
+
+## Merge manifests
+
+Merge one or more appshell manifests to produce one global appshell manifest.
+
+```bash
+appshell merge
+
+Merge one or more appshell manifests
+
+Options:
+      --help      Show help                                            [boolean]
+      --version   Show version number                                  [boolean]
+  -o, --outDir    Output location for the appshell manifest
+                                                         [string] [default: "."]
+  -f, --outFile   Output filename for the appshell manifest
+                                    [string] [default: "appshell.manifest.json"]
+  -m, --manifest  One or more manifests to merge into a single appshell manifest
+                                                                         [array]
+```
 
 ## Generate runtime env
 

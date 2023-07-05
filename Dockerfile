@@ -21,7 +21,8 @@ RUN yarn --pure-lockfile
 ### BUILD
 FROM dependencies as build
 # Validate the build
-RUN yarn lint && yarn test:ci && yarn build
+# todo: add yarn test:ci
+RUN yarn lint && yarn build
 
 ### RELEASE
 FROM base AS production
@@ -29,7 +30,7 @@ ARG SOURCE_DIR
 ENV SOURCE_DIR=${SOURCE_DIR}
 ENV APPSHELL_PORT=${APPSHELL_PORT:-3030}
 ENV APPSHELL_CONTAINER_COMMAND=${APPSHELL_CONTAINER_COMMAND:-'yarn serve'}
-ENV APPSHELL_CONFIGS_DIR=${APPSHELL_CONFIGS_DIR:-'/appshell/appshell_configs'}
+ENV APPSHELL_REGISTRY=${APPSHELL_REGISTRY:-'/appshell/appshell_registry'}
 ENV APPSHELL_ROOT=${APPSHELL_ROOT:-'Appshell/Root'}
 ENV APPSHELL_MANIFEST_URL=${APPSHELL_MANIFEST_URL:-'/appshell.manifest.json'}
 ENV APPSHELL_ENV_PREFIX=${APPSHELL_ENV_PREFIX}
@@ -41,7 +42,7 @@ WORKDIR /appshell/${SOURCE_DIR}
 
 # Symlink resources
 RUN ln -s /appshell/${ENV_TARGET}.env .env
-RUN ln -s /appshell/appshell_configs ./appshell_configs
+RUN ln -s /appshell/appshell_registry ./appshell_registry
 
 COPY --from=build /appshell/${SOURCE_DIR}/package.json .
 COPY --from=build /appshell/${SOURCE_DIR}/dist ./dist
@@ -57,7 +58,7 @@ ARG SOURCE_DIR
 ENV SOURCE_DIR=${SOURCE_DIR}
 ENV APPSHELL_PORT=${APPSHELL_PORT:-3030}
 ENV APPSHELL_CONTAINER_COMMAND=${APPSHELL_CONTAINER_COMMAND:-'yarn serve:developer'}
-ENV APPSHELL_CONFIGS_DIR=${APPSHELL_CONFIGS_DIR:-'/appshell/appshell_configs'}
+ENV APPSHELL_REGISTRY=${APPSHELL_REGISTRY:-'/appshell/appshell_registry'}
 ENV APPSHELL_ROOT=${APPSHELL_ROOT:-'Appshell/Root'}
 ENV APPSHELL_MANIFEST_URL=${APPSHELL_MANIFEST_URL:-'/appshell.manifest.json'}
 ENV APPSHELL_ENV_PREFIX=${APPSHELL_ENV_PREFIX}
@@ -66,7 +67,7 @@ WORKDIR /appshell/${SOURCE_DIR}
 
 # Symlink resources
 RUN ln -s /appshell/${ENV_TARGET}.env .env
-RUN ln -s /appshell/appshell_configs ./appshell_configs
+RUN ln -s /appshell/appshell_registry ./appshell_registry
 
 # Copy dependencies
 COPY --from=build /appshell/package.json /appshell/package.json

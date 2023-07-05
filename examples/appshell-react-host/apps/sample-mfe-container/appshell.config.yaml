@@ -1,9 +1,13 @@
 remotes:
   ContainerModule/Container:
     url: ${SAMPLE_MFE_CONTAINER_URL}
+    filename: ${REMOTE_ENTRY_PATH}
     metadata:
       route: /
       displayName: Host App
       displayGroup: main
       order: 0
       icon: ViewList
+
+environment:
+  BACKGROUND_COLOR: ${BACKGROUND_COLOR}

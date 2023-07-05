@@ -66,5 +66,6 @@
       },
       "shareScope": "@sharedscope"
     }
-  }
+  },
+  "environment": {}
 }

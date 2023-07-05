@@ -1,6 +1,7 @@
 remotes:
   PingModule/Ping:
     url: ${SAMPLE_MFE_PING_URL}
+    filename: ${REMOTE_ENTRY_PATH}
     metadata:
       route: /ping
       displayName: Ping Micro-Frontend

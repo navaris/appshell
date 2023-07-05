@@ -12,16 +12,15 @@
   "scripts": {
     "bootstrap": "npx lerna bootstrap",
     "build": "dotenv -- lerna run --scope=react-appshell-host-components build && dotenv -- lerna run --ignore=react-appshell-host-components build",
-    "clean": "lerna run --parallel clean && rm -rf coverage appshell_configs",
-    "generate:env": "appshell generate env",
-    "generate:manifest": "appshell generate manifest --configsDir appshell_configs",
+    "clean": "lerna run --parallel clean && rm -rf coverage appshell_registry",
     "lint": "eslint apps/**/*.ts",
+    "generate:index": "appshell generate index --registry ./appshell_registry --outDir dist",
+    "generate:metadata": "appshell generate metadata --registry ./appshell_registry --outDir dist",
+    "generate:manifest": "dotenv -- lerna run --parallel generate:manifest",
+    "register": "dotenv -- lerna run --parallel register:manifest",
     "serve": "dotenv -- lerna run --parallel serve",
     "prestart": "dotenv -- lerna run --scope=react-appshell-host-components build",
     "start": "dotenv -- lerna run --parallel start",
-    "start:1": "dotenv -- lerna run --scope=sample-mfe-container --parallel start",
-    "start:2": "dotenv -- lerna run --scope=sample-mfe-ping --parallel start",
-    "start:3": "dotenv -- lerna run --scope=sample-mfe-pong --parallel start",
     "stats": "lerna run --parallel stats",
     "test": "jest",
     "test:ci": "yarn test a --watchAll=false"
@@ -50,7 +49,6 @@
     "webpack-dev-server": "^4.0.0"
   },
   "devDependencies": {
-    "@appshell/manifest-webpack-plugin": "^0.1.6-alpha.0",
     "@babel/core": "^7.14.3",
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.22.5",

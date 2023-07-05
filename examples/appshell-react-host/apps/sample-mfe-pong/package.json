@@ -4,10 +4,14 @@
   "description": "",
   "main": "dist/main.js",
   "scripts": {
+    "generate:manifest": "appshell generate manifest --config appshell.config.yaml --outDir dist --mode production",
+    "register:manifest": "appshell register --manifest dist/appshell.manifest.json --registry $APPSHELL_REGISTRY",
+    "watch:configs": "nodemon --watch appshell.config.yaml --exec run-s generate:manifest register:manifest",
+    "start": "dotenv -- run-p watch:configs start:run",
+    "start:run": "webpack-cli serve --mode development",
     "build": "webpack --mode production && tsc --emitDeclarationOnly",
     "clean": "rm -rf dist",
     "serve": "serve dist -p $SAMPLE_MFE_PONG_PORT",
-    "start": "webpack serve --mode development --stats-error-details",
     "stats": "webpack --json > stats.json"
   },
   "keywords": [],

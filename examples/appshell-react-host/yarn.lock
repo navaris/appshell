@@ -20,11 +20,6 @@
   resolved "https://registry.yarnpkg.com/@appshell/config/-/config-0.1.6-alpha.1.tgz#61735dee696da5e3f64a67ac812687513401c60b"
   integrity sha512-FCP5Qq3PSTzIBz+qV22idmV7zW+uM5RpNYrERTmTM4WxZEN8bV2kmqwk1a1RadcxmiMKN1y6sjfb2FUiugQoGg==
 
-"@appshell/manifest-webpack-plugin@^0.1.6-alpha.0":
-  version "0.1.6-alpha.0"
-  resolved "https://registry.yarnpkg.com/@appshell/manifest-webpack-plugin/-/manifest-webpack-plugin-0.1.6-alpha.0.tgz#9694ea92f0b7e557a2f15ee40997dbda20e6ef0b"
-  integrity sha512-fRqd9JNGmmBStzndML5cup3SiHVGVsBLrGx3qTxDaRpVjXQ7BBSon5sFTlchHYOX9gt1ri8Km9Y3Z4TbFiKwfw==
-
 "@appshell/react-federated-component@^0.0.1-alpha.1":
   version "0.0.1-alpha.1"
   resolved "https://registry.yarnpkg.com/@appshell/react-federated-component/-/react-federated-component-0.0.1-alpha.1.tgz#fd25b79445fbf54e8bcebf7043e08c7d55b36a26"

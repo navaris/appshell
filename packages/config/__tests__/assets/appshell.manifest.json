@@ -1,0 +1,55 @@
+{
+  "remotes": {
+    "TestModule/Foo": {
+      "id": "4278464b",
+      "url": "http://remote-module.com/remoteEntry.js",
+      "scope": "TestModule",
+      "module": "./Foo",
+      "metadata": {
+        "route": "/foo",
+        "displayName": "Foo App",
+        "displayGroup": "main",
+        "order": 10,
+        "icon": "ViewList"
+      }
+    },
+    "TestModule/Bar": {
+      "id": "42783598",
+      "url": "http://remote-module.com/remoteEntry.js",
+      "scope": "TestModule",
+      "module": "./Bar",
+      "metadata": {
+        "route": "/bar",
+        "displayName": "Bar App",
+        "displayGroup": "main",
+        "order": 20,
+        "icon": "ViewList"
+      }
+    },
+    "BizModule/Biz": {
+      "id": "373793ed",
+      "url": "http://localhost:4040/remoteEntry.js",
+      "scope": "BizModule",
+      "module": "./Biz",
+      "metadata": {
+        "route": "/biz",
+        "displayName": "Biz App",
+        "displayGroup": "auxiliary",
+        "order": 30,
+        "icon": "ViewList"
+      }
+    }
+  },
+  "modules": {
+    "TestModule": {
+      "name": "TestModule",
+      "exposes": {
+        "./Foo": "./src/Foo",
+        "./Bar": "./src/Bar"
+      },
+      "filename": "remoteEntry.js",
+      "shared": {}
+    }
+  },
+  "environment": {}
+}

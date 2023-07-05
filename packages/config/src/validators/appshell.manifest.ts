@@ -20,6 +20,13 @@ const hasRemoteCollisions = (...documents: AppshellManifest[]) => {
   return uniqueRemotes.length !== allRemoteKeys.length;
 };
 
+const hasEnvironmentCollisions = (...documents: AppshellManifest[]) => {
+  const allEnvironmentKeys = documents.flatMap((document) => keys(document.environment));
+  const uniqueEnvironments = uniq(allEnvironmentKeys);
+
+  return uniqueEnvironments.length !== allEnvironmentKeys.length;
+};
+
 export default {
   validate: (...documents: AppshellManifest[]) => {
     // schema validation
@@ -32,6 +39,10 @@ export default {
 
     if (hasRemoteCollisions(...documents)) {
       throw new Error('Multiple remotes with the same key');
+    }
+
+    if (hasEnvironmentCollisions(...documents)) {
+      throw new Error('Multiple environments with the same key');
     }
   },
 } as ConfigValidator;

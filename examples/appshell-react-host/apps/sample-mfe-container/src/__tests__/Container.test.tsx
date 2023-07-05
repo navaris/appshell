@@ -4,6 +4,10 @@ import React from 'react';
 import Container from '../Container';
 import manifest from './test.manifest.json';
 
+jest.mock('../env', () => ({
+  BACKGROUND_COLOR: 'red',
+}));
+
 test('should match snapshot', async () => {
   const { container } = await act(() =>
     render(

@@ -19,6 +19,7 @@ describe('remoteLoader', () => {
       },
     },
     modules: {},
+    environment: {},
   };
 
   it('should return the federated component if it is found in the manifest', async () => {

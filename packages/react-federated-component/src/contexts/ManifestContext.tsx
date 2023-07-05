@@ -7,7 +7,11 @@ interface ManifestProviderProps {
   children: ReactNode;
 }
 
-export const ManifestContext = createContext<AppshellManifest>({ remotes: {}, modules: {} });
+export const ManifestContext = createContext<AppshellManifest>({
+  remotes: {},
+  modules: {},
+  environment: {},
+});
 
 export const ManifestProvider: FC<ManifestProviderProps> = ({ manifest, children }) => (
   <ManifestContext.Provider value={manifest}>{children}</ManifestContext.Provider>

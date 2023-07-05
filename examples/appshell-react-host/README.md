@@ -15,11 +15,11 @@ Consists of 3 micro-frontends, each is configured with `@appshell/manifest-webpa
 
 ## Build time
 
-At build time, each `AppshellManifestPlugin` emits appshell configs into `APPSHELL_CONFIGS_DIR`.
+At build time, each `AppshellManifestPlugin` emits an appshell config to `CONFIGS_DIR`.
 
 ## Runtime
 
-At runtime or deployment, `@appshell/cli` processes `APPSHELL_CONFIGS_DIR` to generate the `global runtime manifest`. In this example, this is done automatically by the appshell react host `@appshell/react-host`
+At runtime or deployment, `@appshell/cli` processes `CONFIGS_DIR` to generate an `appshell manifest` and registers it to `APPSHELL_REGISTRY`. The appshell react host `@appshell/react-host` operates on the contents of the `APPSHELL_REGISTRY` and produces a `global appshell manifest` that is served up to the application at runtime.
 
 ## Metadata
 
@@ -41,7 +41,6 @@ Uses `@appshell/react-federated-component` to dynamically load remote frontends.
 ```bash
 cp sample.env .env # create a .env
 
-# note: the appshell webpack plugins emit configurations to the appshell_configs directory.
 docker compose --profile host --profile apps up
 
 # OR

@@ -25,3 +25,7 @@ remotes:
       displayGroup: auxiliary
       order: 30
       icon: ViewList
+
+environment:
+  RUNTIME_ENV: ${RUNTIME_ENV}
+  RUNTIME_ENV_VERSION: ${RUNTIME_ENV_VERSION}

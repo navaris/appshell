@@ -9,7 +9,7 @@ import path from 'path';
 import { validate } from 'schema-utils';
 import { Compiler, container, WebpackOptionsNormalized, WebpackPluginInstance } from 'webpack';
 
-type AppManifestPluginOptions = { config?: string; configsDir?: string };
+type AppManifestPluginOptions = { config?: string };
 
 type ModuleFederationPluginInstance = WebpackPluginInstance & {
   _options?: ModuleFederationPluginOptions;
@@ -25,10 +25,6 @@ const schema: Schema = {
       description: 'The path to the appshell.config.yaml to process',
       type: 'string',
     },
-    configsDir: {
-      description: 'The output directory for all of the configurations',
-      type: 'string',
-    },
   },
 };
 
@@ -39,12 +35,10 @@ const schema: Schema = {
 export default class AppshellManifestPlugin {
   defaults = {
     config: 'appshell.config.yaml',
-    configsDir: 'appshell_configs',
   };
 
   options: AppManifestPluginOptions = {
     config: this.defaults.config,
-    configsDir: this.defaults.configsDir,
   };
 
   constructor(options?: AppManifestPluginOptions) {
@@ -71,6 +65,12 @@ export default class AppshellManifestPlugin {
       remote.id = hash_sum(key);
     });
     config.module = plugin._options || {};
+    config.name = config.name || config.module.name;
+    config.environment = config.environment
+      ? {
+          [config.name || 'unknown']: config.environment,
+        }
+      : {};
   }
 
   static validate(config: AppshellConfig) {
@@ -125,19 +125,10 @@ export default class AppshellManifestPlugin {
     AppshellManifestPlugin.validate(config);
 
     compiler.hooks.afterEmit.tap(PLUGIN_NAME, (compilation) => {
-      const configsDir =
-        this.options.configsDir && this.options.configsDir !== this.defaults.configsDir
-          ? path.resolve(this.options.configsDir)
-          : path.resolve(compilation.outputOptions.path || '', this.defaults.configsDir);
+      const configName = path.basename(this.defaults.config, path.extname(this.defaults.config));
+      const outputFile = path.resolve(compilation.outputOptions.path || '', `${configName}.json`);
 
-      if (!fs.existsSync(configsDir)) {
-        fs.mkdirSync(configsDir, { recursive: true });
-      }
-
-      fs.writeFileSync(
-        path.join(configsDir, `${config.module.name}-${hash_sum(configPath)}.json`),
-        JSON.stringify(config),
-      );
+      fs.writeFileSync(outputFile, JSON.stringify(config));
     });
   }
 }

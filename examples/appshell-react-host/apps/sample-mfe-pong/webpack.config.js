@@ -1,6 +1,5 @@
 const { container } = require('webpack');
 const path = require('path');
-const { AppshellManifestPlugin } = require('@appshell/manifest-webpack-plugin');
 const ReactRefreshSingleton = require('single-react-refresh-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
@@ -22,6 +21,9 @@ module.exports = (env, { mode }) => {
       },
       static: {
         directory: path.join(__dirname, 'dist'),
+        watch: {
+          ignored: [/node_modules/, /dist/],
+        },
       },
       port: process.env.SAMPLE_MFE_PONG_PORT,
     },
@@ -62,7 +64,7 @@ module.exports = (env, { mode }) => {
           './Pong': './src/Pong',
           './CoolComponent': './src/CoolRemoteComponent',
         },
-        filename: 'remoteEntry.js',
+        filename: process.env.REMOTE_ENTRY_PATH,
         shared: {
           react: {
             singleton: true,
@@ -85,9 +87,6 @@ module.exports = (env, { mode }) => {
             requiredVersion: dependencies['@appshell/react-federated-component'],
           },
         },
-      }),
-      new AppshellManifestPlugin({
-        configsDir: process.env.CONFIGS_DIR,
       }),
       isDevelopment && new ReactRefreshSingleton(),
     ].filter(Boolean),

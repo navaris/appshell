@@ -1,11 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
+import { AppshellIndex } from '@appshell/config';
 import remoteLoader from '@appshell/loader';
 import React, { ComponentType, ReactElement, ReactNode, useEffect, useState } from 'react';
-import useManifest from '../hooks/useManifest';
+import { ManifestProvider } from '../contexts/ManifestContext';
 import LoadingError from './LoadingError';
 
 export type ExtendedProps = Record<string, unknown>;
 
+declare global {
+  interface Window {
+    __appshell_index__: AppshellIndex;
+  }
+}
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
 export type FederatedComponentProps<TProps extends ExtendedProps = ExtendedProps> = {
   remote: string;
@@ -17,23 +23,28 @@ const FederatedComponent = <TProps extends ExtendedProps>({
   fallback,
   ...rest
 }: FederatedComponentProps<TProps>): ReactElement<TProps> => {
-  const manifest = useManifest();
+  // eslint-disable-next-line no-underscore-dangle
+  const index = window.__appshell_index__;
   const [element, setElement] = useState<ReactElement>();
 
   useEffect(() => {
     let active = false;
-    const loadComponent = remoteLoader(manifest);
+    const loadComponent = remoteLoader(index);
 
     async function load() {
       try {
         active = true;
         setElement(undefined);
-        const Component = await loadComponent<ComponentType>(remote);
+        const [Component, manifest] = await loadComponent<ComponentType>(remote);
         if (!Component) {
           return;
         }
         active = false;
-        setElement(React.createElement(Component, rest));
+        setElement(
+          <ManifestProvider manifest={manifest}>
+            <Component {...rest} />
+          </ManifestProvider>,
+        );
       } catch (err) {
         setElement(<LoadingError remote={remote} reason={`${err}`} />);
       }
@@ -47,7 +58,7 @@ const FederatedComponent = <TProps extends ExtendedProps>({
       active = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [remote, manifest]);
+  }, [remote, index]);
 
   // eslint-disable-next-line no-console
   console.debug(`rendering FederatedComponent[${remote}], loading=${!element}`);

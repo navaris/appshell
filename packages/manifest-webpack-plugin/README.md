@@ -63,8 +63,6 @@ remotes:
   TestModule/Foo: # Must match the scope/module defined in ModuleFederationPlugin
     url: ${APPS_TEST_URL}/remoteEntry.js # Environment variables will be expanded when the global runtime manifest is generated.
     metadata: # Use metadata to provide additional information
-    url: ${APPS_TEST_URL}/remoteEntry.js # Environment variables will be expanded when the global runtime manifest is generated.
-    metadata: # Use metadata to provide additional information
       route: ${FOO_ROUTE}
       displayName: Foo App
       displayGroup: main
@@ -88,15 +86,20 @@ remotes:
       displayGroup: auxiliary
       order: 30
       icon: ViewList
+
+environment:
+  RUNTIME_ARG_1: ${RUNTIME_ARG_1}
+  RUNTIME_ARG_2: ${RUNTIME_ARG_2}
+  RUNTIME_ARG_3: ${RUNTIME_ARG_3}
 ```
 
-> **Note** the variable expansion syntax `${CRA_MFE_URL}`. When `global runtime manifest` is generated the actual runtime environment values are injected and all configurations are merged into a `global runtime manifest`.
+> **Note** the variable expansion syntax `${CRA_MFE_URL}`. When the `appshell manifest` is generated the actual runtime environment values are injected.
+
+> **Note** the `environment` section defines runtime environment variables that are injected into the global namesapce `window.__appshell_env__[module_name]` when a federated component is loaded. See the examples for a use case.
 
 **What happens at build time?**
 
-> The plugin emits files that are subsequently used to generate the `global runtime manifest` at runtime.
-
-![Sample APPSHELL_CONFIGS_DIR](https://github.com/navaris/appshell/blob/main/assets/docs/appshell_configs_dir.png 'APPSHELL_CONFIGS_DIR')
+> The plugin emits files that are subsequently used to generate the `global appshell manifest` at runtime.
 
 ## Sample output
 
@@ -150,10 +153,10 @@ appshell generate manifest --configsDir appshell_configs
 ```ts
 import { generate } from '@appshell/config';
 
-const manifest = generate<MyMetadata>(process.env.APPSHELL_CONFIGS_DIR);
+const manifest = generate<MyMetadata>(process.env.CONFIGS_DIR);
 ```
 
-Sample `global runtime manifest`:
+Sample `global appshell manifest`:
 
 ```json
 {
@@ -233,6 +236,15 @@ Sample `global runtime manifest`:
         }
       }
     }
+  },
+  "environment": {
+    "CraModule": {
+      "RUNTIME_ARG_1": "Foo",
+      "RUNTIME_ARG_2": "Biz"
+    },
+    "VanillaModule": {
+      "RUNTIME_ARG_1": "Bar"
+    }
   }
 }
 ```
@@ -285,7 +297,7 @@ type configsDir = string;
 
 Default: `<output-dir>/appshell_configs`
 
-Location where the plugin will emit the module configurations. For mono-repo solutions it makes sense to configure a single location for all of the plugins to write. The `global runtime manifest` will be generated based on the contents of this directory.
+Location where the plugin will emit the module configurations. The `appshell manifest` will be generated based on the contents of this directory.
 
 ## License
 

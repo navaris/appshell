@@ -1,9 +1,0 @@
-remotes:
-  Appshell/Host:
-    url: ${APPSHELL_HOST_URL}
-    metadata:
-      route: /
-      displayName: Host App
-      displayGroup: main
-      order: 0
-      icon: ViewList

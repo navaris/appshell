@@ -20,6 +20,10 @@
     "module": {
       "description": "Module federation configuration",
       "type": "object"
+    },
+    "environment": {
+      "description": "Runtime environment configuration",
+      "type": "object"
     }
   },
   "definitions": {
@@ -35,6 +39,10 @@
           "description": "Url of the remote app",
           "type": "string"
         },
+        "filename": {
+          "description": "Path to the module federation entrypoint",
+          "type": "string"
+        },
         "metadata": {
           "description": "Metadata associated with the remote app",
           "type": "object",
@@ -42,7 +50,8 @@
         }
       },
       "required": [
-        "url"
+        "url",
+        "filename"
       ],
       "additionalProperties": false
     }

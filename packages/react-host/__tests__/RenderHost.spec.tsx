@@ -6,7 +6,7 @@ import React, { ComponentType } from 'react';
 import manifest from './fixtures/Manifest';
 
 jest.mock('../src/runtime.env', () => ({
-  APPSHELL_CONFIGS_DIR: 'appshell_configs',
+  APPSHELL_REGISTRY: 'appshell_registry',
   APPSHELL_MANIFEST_URL: 'http://test.com/manifest.json',
   APPSHELL_ROOT: 'TestModule/TestComponent',
   APPSHELL_ROOT_PROPS: '{"foo":"bar"}',

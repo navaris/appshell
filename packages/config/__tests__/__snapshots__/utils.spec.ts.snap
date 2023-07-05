@@ -76,8 +76,22 @@ exports[`utils load consuming the configuration should read and parse the config
 
 exports[`utils merge appshell configs should merge multiple valid configurations 1`] = `
 {
+  "environment": {
+    "biz_module": {
+      "RUNTIME_ENV": "\${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+    },
+    "test_module_bar": {
+      "RUNTIME_ENV": "\${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+    },
+    "test_module_foo": {
+      "RUNTIME_ENV": "\${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+    },
+  },
   "modules": {
-    "TestModule": {
+    "BizModule": {
       "exposes": {
         "./Bar": "./src/Entry2",
         "./Foo": "./src/Entry1",
@@ -87,7 +101,69 @@ exports[`utils merge appshell configs should merge multiple valid configurations
         "name": "some shared lib",
         "type": "umd",
       },
-      "name": "TestModule",
+      "name": "BizModule",
+      "remoteType": "amd",
+      "remotes": {
+        "./Remote1": {
+          "external": "external module",
+          "shareScope": "@shared",
+        },
+      },
+      "runtime": "runtimeChunk",
+      "shareScope": "@sharedscope",
+      "shared": {
+        "package1": {
+          "requiredVersion": "0.1.0",
+          "singleton": true,
+        },
+        "package2": {
+          "requiredVersion": "1.1.0",
+          "singleton": true,
+        },
+      },
+    },
+    "TestModuleBar": {
+      "exposes": {
+        "./Bar": "./src/Entry2",
+        "./Foo": "./src/Entry1",
+      },
+      "filename": "remoteEntry.js",
+      "library": {
+        "name": "some shared lib",
+        "type": "umd",
+      },
+      "name": "TestModuleBar",
+      "remoteType": "amd",
+      "remotes": {
+        "./Remote1": {
+          "external": "external module",
+          "shareScope": "@shared",
+        },
+      },
+      "runtime": "runtimeChunk",
+      "shareScope": "@sharedscope",
+      "shared": {
+        "package1": {
+          "requiredVersion": "0.1.0",
+          "singleton": true,
+        },
+        "package2": {
+          "requiredVersion": "1.1.0",
+          "singleton": true,
+        },
+      },
+    },
+    "TestModuleFoo": {
+      "exposes": {
+        "./Bar": "./src/Entry2",
+        "./Foo": "./src/Entry1",
+      },
+      "filename": "remoteEntry.js",
+      "library": {
+        "name": "some shared lib",
+        "type": "umd",
+      },
+      "name": "TestModuleBar",
       "remoteType": "amd",
       "remotes": {
         "./Remote1": {
@@ -123,7 +199,7 @@ exports[`utils merge appshell configs should merge multiple valid configurations
       "scope": "BizModule",
       "url": "http://localhost:4040/remoteEntry.js",
     },
-    "TestModule/Bar": {
+    "TestModuleBar/Bar": {
       "id": "TestModule/Bar",
       "metadata": {
         "displayGroup": "main",
@@ -136,7 +212,7 @@ exports[`utils merge appshell configs should merge multiple valid configurations
       "scope": "TestModule",
       "url": "\${APPS_TEST_URL}",
     },
-    "TestModule/Foo": {
+    "TestModuleFoo/Foo": {
       "id": "TestModule/Foo",
       "metadata": {
         "displayGroup": "main",
@@ -155,11 +231,89 @@ exports[`utils merge appshell configs should merge multiple valid configurations
 
 exports[`utils merge should merge manifests from right to left with merge validator 1`] = `
 {
+  "environment": {
+    "biz_module": {
+      "RUNTIME_ENV": "\${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+    },
+    "test_module_a": {
+      "RUNTIME_ENV": "\${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+    },
+    "test_module_b": {
+      "RUNTIME_ENV": "\${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+    },
+    "test_module_c": {
+      "RUNTIME_ENV": "\${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+    },
+  },
   "modules": {
     "TestModule": {
       "exposes": {
-        "./Bang": "./src/Entry3",
         "./Bar": "./src/Entry2",
+        "./Foo": "./src/Entry1",
+      },
+      "filename": "remoteEntry.js",
+      "library": {
+        "name": "some shared lib",
+        "type": "umd",
+      },
+      "name": "TestModule",
+      "remoteType": "amd",
+      "remotes": {
+        "./Remote1": {
+          "external": "external module",
+          "shareScope": "@shared",
+        },
+      },
+      "runtime": "runtimeChunk",
+      "shareScope": "@sharedscope",
+      "shared": {
+        "package1": {
+          "requiredVersion": "0.1.0",
+          "singleton": true,
+        },
+        "package2": {
+          "requiredVersion": "1.1.0",
+          "singleton": true,
+        },
+      },
+    },
+    "TestModuleA": {
+      "exposes": {
+        "./Foo": "./src/Entry1",
+      },
+      "filename": "remoteEntry.js",
+      "library": {
+        "name": "some shared lib",
+        "type": "umd",
+      },
+      "name": "TestModule",
+      "remoteType": "amd",
+      "remotes": {
+        "./Remote1": {
+          "external": "external module",
+          "shareScope": "@shared",
+        },
+      },
+      "runtime": "runtimeChunk",
+      "shareScope": "@sharedscope",
+      "shared": {
+        "package1": {
+          "requiredVersion": "0.1.0",
+          "singleton": true,
+        },
+        "package2": {
+          "requiredVersion": "1.1.0",
+          "singleton": true,
+        },
+      },
+    },
+    "TestModuleC": {
+      "exposes": {
+        "./Bang": "./src/Entry3",
         "./Foo": "./src/Entry1",
       },
       "filename": "remoteEntry.js",
@@ -203,7 +357,18 @@ exports[`utils merge should merge manifests from right to left with merge valida
       "scope": "BizModule",
       "url": "http://localhost:4040/remoteEntry.js",
     },
-    "TestModule/Bar": {
+    "TestModuleA/Foo": {
+      "id": "TestModule/Foo",
+      "metadata": {
+        "displayGroup": "main",
+        "displayName": "Foo App",
+        "icon": "ViewList",
+        "order": 10,
+        "route": "/foo",
+      },
+      "url": "http://localhost:8080/remoteEntry.js",
+    },
+    "TestModuleB/Bar": {
       "id": "TestModule/Bar",
       "metadata": {
         "displayGroup": "main",
@@ -214,7 +379,18 @@ exports[`utils merge should merge manifests from right to left with merge valida
       },
       "url": "http://localhost:8080/bar/remoteEntry.js",
     },
-    "TestModule/Foo": {
+    "TestModuleB/Foo": {
+      "id": "TestModule/Foo",
+      "metadata": {
+        "displayGroup": "main",
+        "displayName": "Foo App",
+        "icon": "ViewList",
+        "order": 20,
+        "route": "/foo",
+      },
+      "url": "http://localhost:8080/foo/remoteEntry.js",
+    },
+    "TestModuleC/Foo": {
       "id": "TestModule/Foo",
       "metadata": {
         "displayGroup": "main",
@@ -231,8 +407,22 @@ exports[`utils merge should merge manifests from right to left with merge valida
 
 exports[`utils merge should merge multiple valid configurations 1`] = `
 {
+  "environment": {
+    "biz_module": {
+      "RUNTIME_ENV": "\${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+    },
+    "test_module_bar": {
+      "RUNTIME_ENV": "\${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+    },
+    "test_module_foo": {
+      "RUNTIME_ENV": "\${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+    },
+  },
   "modules": {
-    "TestModule": {
+    "BizModule": {
       "exposes": {
         "./Bar": "./src/Entry2",
         "./Foo": "./src/Entry1",
@@ -242,7 +432,69 @@ exports[`utils merge should merge multiple valid configurations 1`] = `
         "name": "some shared lib",
         "type": "umd",
       },
-      "name": "TestModule",
+      "name": "BizModule",
+      "remoteType": "amd",
+      "remotes": {
+        "./Remote1": {
+          "external": "external module",
+          "shareScope": "@shared",
+        },
+      },
+      "runtime": "runtimeChunk",
+      "shareScope": "@sharedscope",
+      "shared": {
+        "package1": {
+          "requiredVersion": "0.1.0",
+          "singleton": true,
+        },
+        "package2": {
+          "requiredVersion": "1.1.0",
+          "singleton": true,
+        },
+      },
+    },
+    "TestModuleBar": {
+      "exposes": {
+        "./Bar": "./src/Entry2",
+        "./Foo": "./src/Entry1",
+      },
+      "filename": "remoteEntry.js",
+      "library": {
+        "name": "some shared lib",
+        "type": "umd",
+      },
+      "name": "TestModuleBar",
+      "remoteType": "amd",
+      "remotes": {
+        "./Remote1": {
+          "external": "external module",
+          "shareScope": "@shared",
+        },
+      },
+      "runtime": "runtimeChunk",
+      "shareScope": "@sharedscope",
+      "shared": {
+        "package1": {
+          "requiredVersion": "0.1.0",
+          "singleton": true,
+        },
+        "package2": {
+          "requiredVersion": "1.1.0",
+          "singleton": true,
+        },
+      },
+    },
+    "TestModuleFoo": {
+      "exposes": {
+        "./Bar": "./src/Entry2",
+        "./Foo": "./src/Entry1",
+      },
+      "filename": "remoteEntry.js",
+      "library": {
+        "name": "some shared lib",
+        "type": "umd",
+      },
+      "name": "TestModuleBar",
       "remoteType": "amd",
       "remotes": {
         "./Remote1": {
@@ -278,7 +530,7 @@ exports[`utils merge should merge multiple valid configurations 1`] = `
       "scope": "BizModule",
       "url": "http://localhost:4040/remoteEntry.js",
     },
-    "TestModule/Bar": {
+    "TestModuleBar/Bar": {
       "id": "TestModule/Bar",
       "metadata": {
         "displayGroup": "main",
@@ -291,7 +543,7 @@ exports[`utils merge should merge multiple valid configurations 1`] = `
       "scope": "TestModule",
       "url": "\${APPS_TEST_URL}",
     },
-    "TestModule/Foo": {
+    "TestModuleFoo/Foo": {
       "id": "TestModule/Foo",
       "metadata": {
         "displayGroup": "main",

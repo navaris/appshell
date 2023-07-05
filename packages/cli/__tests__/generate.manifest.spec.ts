@@ -1,16 +1,19 @@
-import * as config from '@appshell/config';
+import * as configModule from '@appshell/config';
 import * as fs from 'fs';
 import generateManifestHandler from '../src/handlers/generate.manifest';
 
 jest.mock('@appshell/config');
 jest.mock('fs');
 
-const generateSpy = jest.spyOn(config, 'generate').mockReturnValue({ remotes: {}, modules: {} });
+const generateSpy = jest
+  .spyOn(configModule, 'generateManifest')
+  .mockResolvedValue({ remotes: {}, modules: {}, environment: {} });
 const writeFileSyncSpy = jest.spyOn(fs, 'writeFileSync');
 
 describe('generate.manifest', () => {
-  const configsDir = 'assets/appshell_configs';
-  const depth = 1;
+  const config = 'assets/appshell.config.yaml';
+  const webpack = 'webpack.config.js';
+  const env = [];
   const outDir = 'assets/';
   const outFile = 'appshell.manifest.json';
 
@@ -18,11 +21,12 @@ describe('generate.manifest', () => {
     jest.clearAllMocks();
   });
 
-  it('should process configsDir', () => {
-    jest.spyOn(fs, 'existsSync').mockImplementation((dir) => dir === configsDir);
-    generateManifestHandler({
-      configsDir,
-      depth,
+  it('should process config', async () => {
+    jest.spyOn(fs, 'existsSync').mockImplementation((file) => file === config);
+    await generateManifestHandler({
+      config,
+      webpack,
+      env,
       outDir,
       outFile,
     });
@@ -31,14 +35,15 @@ describe('generate.manifest', () => {
     expect(writeFileSyncSpy).toHaveBeenCalled();
   });
 
-  it('should create outDir if it does not exist', () => {
+  it('should create outDir if it does not exist', async () => {
     const existsSyncSpy = jest
       .spyOn(fs, 'existsSync')
-      .mockImplementation((dir) => dir === configsDir);
+      .mockImplementation((file) => file === config);
     const mkdirSyncSpy = jest.spyOn(fs, 'mkdirSync');
-    generateManifestHandler({
-      configsDir,
-      depth,
+    await generateManifestHandler({
+      config,
+      webpack,
+      env,
       outDir,
       outFile,
     });
@@ -47,49 +52,52 @@ describe('generate.manifest', () => {
     expect(mkdirSyncSpy).toHaveBeenCalled();
   });
 
-  it('should notify if configsDir does not exist', () => {
+  it('should notify if config does not exist', async () => {
     jest.spyOn(fs, 'existsSync').mockReturnValue(false);
     const consoleSpy = jest.spyOn(console, 'log').mockImplementationOnce(jest.fn());
 
-    generateManifestHandler({
-      configsDir,
-      depth,
+    await generateManifestHandler({
+      config,
+      webpack,
+      env,
       outDir,
       outFile,
     });
 
     expect(consoleSpy).toHaveBeenLastCalledWith(
-      `configsDir not found '${configsDir}'. skipping manifest generation.`,
+      `config not found '${config}'. skipping manifest generation.`,
     );
   });
 
-  it('should notify if configsDir is not provided', () => {
+  it('should notify if config is not provided', async () => {
     const consoleSpy = jest.spyOn(console, 'log').mockImplementationOnce(jest.fn());
 
-    generateManifestHandler({
+    await generateManifestHandler({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      configsDir: undefined as any,
-      depth,
+      config: undefined as any,
+      webpack,
+      env,
       outDir,
       outFile,
     });
 
     expect(consoleSpy).toHaveBeenLastCalledWith(
-      `configsDir not found 'undefined'. skipping manifest generation.`,
+      `config not found 'undefined'. skipping manifest generation.`,
     );
   });
 
-  it('should handle gracefully any errors', () => {
-    jest.spyOn(fs, 'existsSync').mockImplementation((dir) => dir === configsDir);
+  it('should handle gracefully any errors', async () => {
+    jest.spyOn(fs, 'existsSync').mockImplementation((file) => file === config);
     jest.spyOn(fs, 'mkdirSync');
     const consoleSpy = jest.spyOn(console, 'error').mockImplementationOnce(jest.fn());
     generateSpy.mockImplementationOnce(() => {
       throw new Error('test error');
     });
 
-    generateManifestHandler({
-      configsDir,
-      depth,
+    await generateManifestHandler({
+      config,
+      webpack,
+      env,
       outDir,
       outFile,
     });

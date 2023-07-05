@@ -34,6 +34,12 @@
       "id": "373793ed"
     }
   },
+  "environment": {
+    "TestModule": {
+      "RUNTIME_ENV": "${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "${RUNTIME_ENV_VERSION}"
+    }
+  },
   "module": {
     "exposes": {
       "./Foo": "./src/Entry1",
@@ -64,5 +70,6 @@
       }
     },
     "shareScope": "@sharedscope"
-  }
+  },
+  "name": "TestModule"
 }

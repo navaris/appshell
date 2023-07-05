@@ -7,13 +7,14 @@ import pkg from '../package.json';
 import AppshellLogo from './assets/appshell-logo.svg';
 import ReactLogo from './assets/react-logo.svg';
 import WebpackLogo from './assets/webpack-logo.svg';
+import env from './env';
 
 const AppContainer = styled.div`
   text-align: center;
 `;
 
 const Header = styled.header`
-  background-color: #282c34;
+  background-color: ${env.BACKGROUND_COLOR};
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -48,7 +49,7 @@ const Plus = styled.div`
   }
 `;
 
-const App = () => (
+const Container = () => (
   <AppContainer>
     <Header>
       <PackageBlock name={pkg.name} version={pkg.version} />
@@ -74,4 +75,4 @@ const App = () => (
   </AppContainer>
 );
 
-export default App;
+export default Container;
