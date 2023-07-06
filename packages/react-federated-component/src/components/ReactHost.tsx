@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { AppshellIndex } from '@appshell/config';
-import { FederatedComponent, RegistryProvider } from '@appshell/react-federated-component';
 import React, { FC, ReactNode, useEffect, useState } from 'react';
+import { RegistryProvider } from '../contexts/RegistryContext';
+import FederatedComponent from './FederatedComponent';
 
 const ReactHost: FC<{
   indexUrl: string;
