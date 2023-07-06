@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.4](https://github.com/navaris/appshell/compare/@appshell/react-federated-component@0.1.0-alpha.3...@appshell/react-federated-component@0.1.0-alpha.4) (2023-07-06)
+
+
+### Bug Fixes
+
+* metadata urls ([efcce1c](https://github.com/navaris/appshell/commit/efcce1ce4cb1745afa83661cae1414a73f837483))
+
+
+
+
+
 # [0.1.0-alpha.3](https://github.com/navaris/appshell/compare/@appshell/react-federated-component@0.1.0-alpha.2...@appshell/react-federated-component@0.1.0-alpha.3) (2023-07-06)
 
 

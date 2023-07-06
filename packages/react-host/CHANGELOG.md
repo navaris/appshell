@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-alpha.5](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.0-alpha.4...@appshell/react-host@0.2.0-alpha.5) (2023-07-06)
+
+
+### Bug Fixes
+
+* metadata urls ([efcce1c](https://github.com/navaris/appshell/commit/efcce1ce4cb1745afa83661cae1414a73f837483))
+
+
+
+
+
 # [0.2.0-alpha.4](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.0-alpha.3...@appshell/react-host@0.2.0-alpha.4) (2023-07-06)
 
 
