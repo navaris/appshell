@@ -6,16 +6,17 @@ import { RegistryProvider } from '../contexts/RegistryContext';
 import FederatedComponent from './FederatedComponent';
 
 const ReactHost: FC<{
-  publicUrl: string;
+  indexUrl: string;
+  metadataUrl: string;
   remote: string;
   fallback?: ReactNode;
-}> = ({ publicUrl, remote, fallback, ...rest }) => {
+}> = ({ indexUrl, metadataUrl, remote, fallback, ...rest }) => {
   const [index, setIndex] = useState<AppshellIndex>();
   const [metadata, setMetadata] = useState<Metadata>();
 
   useEffect(() => {
     const fetchIndex = async () => {
-      const res = await fetch(`${publicUrl}/appshell.index.json`);
+      const res = await fetch(indexUrl);
 
       if (res.ok) {
         const data = await res.json();
@@ -28,11 +29,11 @@ const ReactHost: FC<{
     if (!index) {
       fetchIndex();
     }
-  }, [index, publicUrl]);
+  }, [index, indexUrl]);
 
   useEffect(() => {
     const fetchMetadata = async () => {
-      const res = await fetch(`${publicUrl}/appshell.metadata.json`);
+      const res = await fetch(metadataUrl);
 
       if (res.ok) {
         const data = await res.json();
@@ -45,7 +46,7 @@ const ReactHost: FC<{
     if (!metadata) {
       fetchMetadata();
     }
-  }, [metadata, publicUrl]);
+  }, [metadata, metadataUrl]);
 
   if (!index || !metadata) {
     return null;

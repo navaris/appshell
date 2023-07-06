@@ -8,7 +8,7 @@
     "generate:env": "appshell generate env -e .env --prefix $APPSHELL_ENV_PREFIX",
     "generate:index": "appshell generate index --registry $APPSHELL_EXTERNAL_INDEXES $APPSHELL_REGISTRY",
     "start": "dotenv -- run-p start:appshell start:run",
-    "start:appshell": "appshell start --host --registry $APPSHELL_REGISTRY",
+    "start:appshell": "appshell start --host --metadata $APPSHELL_FETCH_METADATA --registry $APPSHELL_REGISTRY",
     "start:run": "webpack-cli serve --mode development",
     "prebuild": "yarn clean",
     "build": "webpack --mode production",
