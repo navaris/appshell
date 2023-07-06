@@ -26,8 +26,9 @@
     "test:ci": "yarn test a --watchAll=false"
   },
   "dependencies": {
-    "@appshell/config": "^0.1.6-alpha.1",
-    "@appshell/react-federated-component": "^0.0.1-alpha.1",
+    "@appshell/config": "^0.3.0-alpha.1",
+    "@appshell/core": "^0.0.0",
+    "@appshell/react-federated-component": "^0.1.0-alpha.1",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@testing-library/user-event": "13.5.0",
@@ -49,6 +50,7 @@
     "webpack-dev-server": "^4.0.0"
   },
   "devDependencies": {
+    "@appshell/manifest-webpack-plugin": "^0.2.0-alpha.1",
     "@babel/core": "^7.14.3",
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.22.5",

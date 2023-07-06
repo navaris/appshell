@@ -1,27 +1,19 @@
-import { AppshellManifest } from '@appshell/manifest-webpack-plugin';
-import { jsonResource, ManifestProvider } from '@appshell/react-federated-component';
+/* eslint-disable react/jsx-props-no-spreading */
+import { APPSHELL_ENV } from '@appshell/core';
+import { ReactHost } from '@appshell/react-federated-component';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Container from './Container';
-import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-const resource = jsonResource<AppshellManifest>('appshell.manifest.json');
-
-const RenderApp = () => {
-  const manifest = resource.read();
-
-  return manifest instanceof Error || !manifest ? null : (
-    <ManifestProvider manifest={manifest}>
-      <Container />
-    </ManifestProvider>
-  );
-};
+const props = JSON.parse(APPSHELL_ENV.APPSHELL_ROOT_PROPS);
 
 root.render(
   <React.StrictMode>
-    <React.Suspense fallback="Loading...">
-      <RenderApp />
-    </React.Suspense>
+    <ReactHost
+      indexUrl={APPSHELL_ENV.APPSHELL_INDEX_URL}
+      remote={APPSHELL_ENV.APPSHELL_ROOT}
+      fallback="Loading..."
+      {...props}
+    />
   </React.StrictMode>,
 );

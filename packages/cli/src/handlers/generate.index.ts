@@ -11,7 +11,6 @@ export type GenerateIndexArgs = {
 
 export default async (argv: GenerateIndexArgs): Promise<void> => {
   const { registry, outDir, outFile } = argv;
-  const globalName = '__appshell_index__';
   const registries = (registry as string[]) || [];
 
   if (registries.length < 1) {
@@ -31,11 +30,7 @@ export default async (argv: GenerateIndexArgs): Promise<void> => {
       fs.mkdirSync(outDir);
     }
 
-    await new Promise<void>((resolve) => {
-      const outputFile = fs.createWriteStream(path.join(outDir, outFile));
-
-      outputFile.end(`window.${globalName} = ${JSON.stringify(index, null, 2)}`, resolve);
-    });
+    fs.writeFileSync(path.join(outDir, outFile), JSON.stringify(index));
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {

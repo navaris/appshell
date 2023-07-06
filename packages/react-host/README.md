@@ -55,11 +55,10 @@ APPSHELL_REGISTRY=/appshell/appshell_registry
 # Prefix used to specify which env vars to include when generating runtime.env.js. Leaving this empty
 # will include ALL variables in the .env
 APPSHELL_ENV_PREFIX=APPSHELL_
-# Host will fetch the manifest on startup. This can be generated on startup by
-# providing $APPSHELL_REGISTRY, or generated on deployment and referenced by $APPSHELL_MANIFEST_URL.
-APPSHELL_MANIFEST_URL=/appshell.manifest.json
-# Collection of paths or urls to manifests that will be merged with the current manifest (from right to left)
-APPSHELL_BASE_MANIFESTS=http://prod.url.com/appshell.manifest.json ./path/to/manifest.json
+# Host will fetch the registry index on startup.
+APPSHELL_INDEX_URL=/appshell.index.json
+# Collection of paths or urls to registry indexes that will be merged with the current registry index (from right to left)
+APPSHELL_EXTERNAL_INDEXES=http://prod.url.com/appshell.index.json ./path/to/appshell.index.json
 # Remote module to load from the global runtime manifest
 APPSHELL_ROOT=ContainerModule/App
 # Props to be passed to federated component specified by APPSHELL_ROOT, as a serialized JSON string.

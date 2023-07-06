@@ -3,6 +3,7 @@ import { AppshellIndex } from '@appshell/config';
 import remoteLoader from '@appshell/loader';
 import React, { ComponentType, ReactElement, ReactNode, useEffect, useState } from 'react';
 import { ManifestProvider } from '../contexts/ManifestContext';
+import useRegistry from '../hooks/useRegistry';
 import LoadingError from './LoadingError';
 
 export type ExtendedProps = Record<string, unknown>;
@@ -23,8 +24,7 @@ const FederatedComponent = <TProps extends ExtendedProps>({
   fallback,
   ...rest
 }: FederatedComponentProps<TProps>): ReactElement<TProps> => {
-  // eslint-disable-next-line no-underscore-dangle
-  const index = window.__appshell_index__;
+  const index = useRegistry();
   const [element, setElement] = useState<ReactElement>();
 
   useEffect(() => {
