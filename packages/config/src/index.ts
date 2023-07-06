@@ -13,6 +13,7 @@ export type {
   AppshellIndex,
   AppshellManifest,
   AppshellRemote,
+  Metadata,
   Schema,
 } from './types';
 export * as utils from './utils';

@@ -10,6 +10,7 @@ export type StartArgs = {
 
   remote: boolean;
   host: boolean;
+  metadata: boolean;
   config: string;
   manifest: string;
   registry: string;
@@ -17,8 +18,19 @@ export type StartArgs = {
 };
 
 export default async (argv: StartArgs): Promise<void> => {
-  const { env, envGlobalName, envPrefix, outDir, remote, host, manifest, config, registry, index } =
-    argv;
+  const {
+    env,
+    envGlobalName,
+    envPrefix,
+    outDir,
+    remote,
+    host,
+    metadata,
+    manifest,
+    config,
+    registry,
+    index,
+  } = argv;
 
   // eslint-disable-next-line no-console
   console.log(
@@ -29,14 +41,17 @@ export default async (argv: StartArgs): Promise<void> => {
       --outDir=${outDir}
       --remote=${remote}
       --host=${host}
+      --metadata=${metadata}
       --manifest=${manifest}
       --config=${config}
       --registry=${registry}
       --index=${index}`,
   );
 
+  const prefix = 'appshell';
+  const sources = index.concat(registry);
+
   if (remote) {
-    const prefix = 'appshell remote';
     const configPath = path.join(outDir, config);
     const manifestPath = path.join(outDir, manifest);
     const configDirname = path.dirname(configPath);
@@ -56,8 +71,6 @@ export default async (argv: StartArgs): Promise<void> => {
   }
 
   if (host) {
-    const prefix = 'appshell host';
-    const sources = index.concat(registry);
     exec(
       `appshell generate env -e ${env} --prefix ${envPrefix} --globalName ${envGlobalName}`,
       (error, stdout, stderr) => {
@@ -80,6 +93,16 @@ export default async (argv: StartArgs): Promise<void> => {
       `npm exec -- nodemon --watch ${registry} --ext json --exec "appshell generate index --registry ${sources}"`,
     );
     hostProcess.stdout?.on('data', (data) => {
+      // eslint-disable-next-line no-console
+      console.log(`${prefix}: ${data}`);
+    });
+  }
+
+  if (metadata) {
+    const childProcess = exec(
+      `npm exec -- nodemon --watch ${registry} --ext json --exec "appshell generate metadata --registry ${sources}"`,
+    );
+    childProcess.stdout?.on('data', (data) => {
       // eslint-disable-next-line no-console
       console.log(`${prefix}: ${data}`);
     });

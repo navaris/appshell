@@ -53,6 +53,11 @@ const startCommand: yargs.CommandModule<unknown, StartArgs> = {
         type: 'boolean',
         description: 'Flag if this app is a host',
       })
+      .option('metadata', {
+        default: false,
+        type: 'boolean',
+        description: 'Flag if metadata should be produced',
+      })
       .option('config', {
         alias: 'c',
         default: 'appshell.config.json',
@@ -136,7 +141,7 @@ const generateMetadataCommand: yargs.CommandModule<unknown, GenerateMetadataArgs
     yargs
       .option('outDir', {
         alias: 'o',
-        default: '.',
+        default: 'dist',
         requiresArg: true,
         type: 'string',
         description: 'Output location for the appshell manifest',
