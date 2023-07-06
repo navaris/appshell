@@ -14,6 +14,7 @@ root.render(
   <React.StrictMode>
     <ReactHost
       indexUrl={APPSHELL_ENV.APPSHELL_INDEX_URL}
+      metadataUrl={APPSHELL_ENV.APPSHELL_METADATA_URL}
       remote={APPSHELL_ENV.APPSHELL_ROOT}
       fallback={<Splash />}
       {...props}

@@ -57,6 +57,8 @@ APPSHELL_REGISTRY=/appshell/appshell_registry
 APPSHELL_ENV_PREFIX=APPSHELL_
 # Host will fetch the registry index on startup.
 APPSHELL_INDEX_URL=/appshell.index.json
+# Host will fetch the metadata on startup.
+APPSHELL_METADATA_URL=/appshell.metadata.json
 # Collection of paths or urls to registry indexes that will be merged with the current registry index (from right to left)
 APPSHELL_EXTERNAL_INDEXES=http://prod.url.com/appshell.index.json ./path/to/appshell.index.json
 # Remote module to load from the global runtime manifest
