@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-alpha.3](https://github.com/navaris/appshell/compare/@appshell/cli@0.3.0-alpha.2...@appshell/cli@0.3.0-alpha.3) (2023-07-06)
+
+
+### Bug Fixes
+
+* support metadata flag on cli start ([567cf02](https://github.com/navaris/appshell/commit/567cf02a52150054b855197371681f426382b454))
+
+
+
+
+
 # [0.3.0-alpha.2](https://github.com/navaris/appshell/compare/@appshell/cli@0.3.0-alpha.1...@appshell/cli@0.3.0-alpha.2) (2023-07-06)
 
 

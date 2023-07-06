@@ -1,6 +1,6 @@
 {
   "name": "@appshell/cli",
-  "version": "0.3.0-alpha.2",
+  "version": "0.3.0-alpha.3",
   "description": "cli utility to generate a global appshell artifacts for module federation micro-frontends",
   "main": "dist/main.js",
   "repository": "https://github.com/navaris/appshell.git",
