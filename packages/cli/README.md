@@ -54,7 +54,7 @@ appshell generate [target]
 Generates a resource
 
 Commands:
-  appshell generate manifest  Generate the appshell manifest by processing the template specified by --config
+  appshell generate manifest  Generate the appshell manifest by processing the template specified by --template
   appshell generate env       Generate the runtime environment js file that reflects the current process.env
   appshell generate index     Generate the appshell index file by merging sources specifed by --registry options
   appshell generate metadata  Generate the appshell metadata file by merging sources specifed by --registry options
@@ -72,16 +72,15 @@ Generate the appshell global runtime manifest
 Options:
       --help        Show help                                           [boolean]
       --version     Show version number                                 [boolean]
-  -c, --configsDir  Path to the appshell configs dir to process         [string] [default: "appshell_configs"]
-  -d, --depth       Depth to search for app manifests in configsDir     [number] [default: 1]
-  -o, --outDir      Output location for the appshell manifest           [string] [default: "."]
+  -t, --template  Path to the appshell manifest template to process     [string] [default: "appshell.config.json"]
+  -o, --outDir      Output location for the appshell manifest           [string] [default: "dist"]
   -f, --outFile     Output filename for the appshell manifest           [string] [default: "appshell.manifest.json"]
 ```
 
 ### Sample usage
 
 ```bash
-appshell generate manifest --configsDir $CONFIGS_DIR
+appshell generate manifest --template dist/appshell.config.json
 ```
 
 **Where does the content of CONFIGS_DIR come from?**

@@ -11,7 +11,7 @@
 
 # @appshell/manifest-webpack-plugin
 
-Emits remote module configurations used to generate a `global runtime manifest` for Webpack Module Federation micro-frontends.
+Emits appshell manifest template used to generate a `global appshell manifest` for building micro-frontends with Webpack Module Federation and Appshell.
 
 Working examples can be found [here](https://github.com/navaris/appshell/tree/main/examples).
 
@@ -46,7 +46,6 @@ module.exports = {
   plugins: [
     new AppshellManifestPlugin({
       config: './path/to/appshell.config.yaml',
-      configsDir: '<root>/appshell_configs',
     }),
   ],
 };
@@ -143,7 +142,7 @@ environment:
 > Use [@appshell/cli](https://www.npmjs.com/package/@appshell/config) in a startup script:
 
 ```bash
-appshell generate manifest --configsDir appshell_configs
+appshell generate manifest --template appshell.config.json
 ```
 
 **What if I want to generate the global runtime manifest programmatically?**

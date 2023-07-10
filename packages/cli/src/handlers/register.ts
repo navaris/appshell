@@ -3,7 +3,7 @@ import { AppshellManifest, register } from '@appshell/config';
 import fs from 'fs';
 
 export type RegisterManifestArgs = {
-  manifest: (string | number)[] | undefined;
+  manifest: string[] | undefined;
   registry: string;
 };
 

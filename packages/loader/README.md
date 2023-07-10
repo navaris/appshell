@@ -52,7 +52,7 @@ render(<Component />);
 > See [@appshell/cli](https://www.npmjs.com/package/@appshell/cli)
 
 ```bash
-appshell generate manifest --configsDir appshell_configs
+appshell generate manifest --template dist/appshell.config.json
 ```
 
 **Do you have any framework specific loaders?**

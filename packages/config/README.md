@@ -195,4 +195,4 @@ This `global appshell manifest` is consumed by your micro-frontend Appshell host
 
 **What if I want to generate the manifest by a startup script instead?**
 
-> This functionality is exposed by the [@appshell/cli](https://www.npmjs.com/package/@appshell/cli) package. You can simply call `appshell generate manifest --configsDir /path/to/appshell_configs` to produce the global runtime manifest on startup.
+> This functionality is exposed by the [@appshell/cli](https://www.npmjs.com/package/@appshell/cli) package. You can simply call `appshell generate manifest --template /path/to/appshell.config.json` to produce the runtime manifest on startup.

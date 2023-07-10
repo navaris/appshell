@@ -11,9 +11,7 @@ const generateSpy = jest
 const writeFileSyncSpy = jest.spyOn(fs, 'writeFileSync');
 
 describe('generate.manifest', () => {
-  const config = 'assets/appshell.config.yaml';
-  const webpack = 'webpack.config.js';
-  const env = [];
+  const template = 'assets/appshell.config.json';
   const outDir = 'assets/';
   const outFile = 'appshell.manifest.json';
 
@@ -22,11 +20,9 @@ describe('generate.manifest', () => {
   });
 
   it('should process config', async () => {
-    jest.spyOn(fs, 'existsSync').mockImplementation((file) => file === config);
+    jest.spyOn(fs, 'existsSync').mockImplementation((file) => file === template);
     await generateManifestHandler({
-      config,
-      webpack,
-      env,
+      template,
       outDir,
       outFile,
     });
@@ -38,12 +34,10 @@ describe('generate.manifest', () => {
   it('should create outDir if it does not exist', async () => {
     const existsSyncSpy = jest
       .spyOn(fs, 'existsSync')
-      .mockImplementation((file) => file === config);
+      .mockImplementation((file) => file === template);
     const mkdirSyncSpy = jest.spyOn(fs, 'mkdirSync');
     await generateManifestHandler({
-      config,
-      webpack,
-      env,
+      template,
       outDir,
       outFile,
     });
@@ -57,15 +51,13 @@ describe('generate.manifest', () => {
     const consoleSpy = jest.spyOn(console, 'log').mockImplementationOnce(jest.fn());
 
     await generateManifestHandler({
-      config,
-      webpack,
-      env,
+      template,
       outDir,
       outFile,
     });
 
     expect(consoleSpy).toHaveBeenLastCalledWith(
-      `config not found '${config}'. skipping manifest generation.`,
+      `template not found '${template}'. skipping manifest generation.`,
     );
   });
 
@@ -74,20 +66,18 @@ describe('generate.manifest', () => {
 
     await generateManifestHandler({
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      config: undefined as any,
-      webpack,
-      env,
+      template: undefined as any,
       outDir,
       outFile,
     });
 
     expect(consoleSpy).toHaveBeenLastCalledWith(
-      `config not found 'undefined'. skipping manifest generation.`,
+      `template not found 'undefined'. skipping manifest generation.`,
     );
   });
 
   it('should handle gracefully any errors', async () => {
-    jest.spyOn(fs, 'existsSync').mockImplementation((file) => file === config);
+    jest.spyOn(fs, 'existsSync').mockImplementation((file) => file === template);
     jest.spyOn(fs, 'mkdirSync');
     const consoleSpy = jest.spyOn(console, 'error').mockImplementationOnce(jest.fn());
     generateSpy.mockImplementationOnce(() => {
@@ -95,9 +85,7 @@ describe('generate.manifest', () => {
     });
 
     await generateManifestHandler({
-      config,
-      webpack,
-      env,
+      template,
       outDir,
       outFile,
     });

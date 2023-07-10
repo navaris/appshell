@@ -4,21 +4,23 @@ import fs from 'fs';
 import path from 'path';
 
 export type GenerateManifestArgs = {
-  config: string;
+  template: string;
   outDir: string;
   outFile: string;
 };
 
 export default async (argv: GenerateManifestArgs) => {
-  const { config, outDir, outFile } = argv;
+  const { template, outDir, outFile } = argv;
 
   try {
-    console.log(`generating manifest --config=${config} --out-dir=${outDir} --out-file=${outFile}`);
+    console.log(
+      `generating manifest --template=${template} --out-dir=${outDir} --out-file=${outFile}`,
+    );
 
-    if (!fs.existsSync(config)) {
-      console.log(`config not found '${config}'. skipping manifest generation.`);
+    if (!fs.existsSync(template)) {
+      console.log(`template not found '${template}'. skipping manifest generation.`);
     } else {
-      const manifest = await generateManifest(config);
+      const manifest = await generateManifest(template);
 
       if (manifest) {
         if (!fs.existsSync(outDir)) {

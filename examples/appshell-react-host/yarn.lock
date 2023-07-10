@@ -15,15 +15,25 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@appshell/config@^0.1.6-alpha.1":
-  version "0.1.6-alpha.1"
-  resolved "https://registry.yarnpkg.com/@appshell/config/-/config-0.1.6-alpha.1.tgz#61735dee696da5e3f64a67ac812687513401c60b"
-  integrity sha512-FCP5Qq3PSTzIBz+qV22idmV7zW+uM5RpNYrERTmTM4WxZEN8bV2kmqwk1a1RadcxmiMKN1y6sjfb2FUiugQoGg==
+"@appshell/cli@0.3.0-alpha.4":
+  version "0.3.0-alpha.4"
+  resolved "https://registry.yarnpkg.com/@appshell/cli/-/cli-0.3.0-alpha.4.tgz#5473043d795f11e3d59b5d05e3a7f318fd91bff1"
+  integrity sha512-TAqYNKEF7PpOwhzd6qHE1lO2/C/bp9XZ45W2Bg7iWmtPH6GUIqBvTjPBbGLAP7ulXT7M/PiBjSgnDigrX9bVnQ==
 
-"@appshell/react-federated-component@^0.0.1-alpha.1":
-  version "0.0.1-alpha.1"
-  resolved "https://registry.yarnpkg.com/@appshell/react-federated-component/-/react-federated-component-0.0.1-alpha.1.tgz#fd25b79445fbf54e8bcebf7043e08c7d55b36a26"
-  integrity sha512-xJHUne7TvkbNXWJdYtsJ3UvAobIzBAo5AZ5le1tFjymgkJ6cZzCD/1O351imhIBRjHA4ksPAA7fJq+l7v+/yuQ==
+"@appshell/core@0.1.0-alpha.3":
+  version "0.1.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/@appshell/core/-/core-0.1.0-alpha.3.tgz#07dd2d608688a0df71b031f8a3e5e1105b2ffe52"
+  integrity sha512-2/Z3nhuK4FnMLOMAH3nlB+oZvS66uGXmOhfwDbdONwS9Ui75Hk4n0nAXym5nWIuze3IMWSL4m0v/BKFk2bNagQ==
+
+"@appshell/manifest-webpack-plugin@^0.2.0-alpha.1":
+  version "0.2.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@appshell/manifest-webpack-plugin/-/manifest-webpack-plugin-0.2.0-alpha.2.tgz#20e4b789c09639d972db5f863bbd57bf86eb68c5"
+  integrity sha512-djb8SX6qV4sNl9WB2EtiWJ28kDf96O3oLHKO9FY16EyEu6pVSVEWYRNIyT7zE/L1PVSjII1PsGlab0K/MLi3Yg==
+
+"@appshell/react@^0.1.0-alpha.6":
+  version "0.1.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/@appshell/react/-/react-0.1.0-alpha.6.tgz#66fa719ef996548e3a8a2fb5f3257be5c6913529"
+  integrity sha512-sDrZL4GeDZAlNoc4xojq69SfeInCi1OAmcDNFGryyxoRJz0iKifuRd/mycKvWZVlPkyXLdnpPFVont88QFy3hg==
 
 "@babel/cli@^7.21.0":
   version "7.22.5"

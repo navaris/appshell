@@ -11,7 +11,7 @@ export type StartArgs = {
   remote: boolean;
   host: boolean;
   metadata: boolean;
-  config: string;
+  manifestTemplate: string;
   manifest: string;
   registry: string;
   adjunctRegistry: string[];
@@ -27,7 +27,7 @@ export default async (argv: StartArgs): Promise<void> => {
     host,
     metadata,
     manifest,
-    config,
+    manifestTemplate,
     registry,
     adjunctRegistry,
   } = argv;
@@ -43,7 +43,7 @@ export default async (argv: StartArgs): Promise<void> => {
       --host=${host}
       --metadata=${metadata}
       --manifest=${manifest}
-      --config=${config}
+      --manifest-template=${manifestTemplate}
       --registry=${registry}
       --adjunct-registry=${adjunctRegistry}`,
   );
@@ -52,17 +52,17 @@ export default async (argv: StartArgs): Promise<void> => {
   const sources = adjunctRegistry.concat(registry).join(' ');
 
   if (remote) {
-    const configPath = path.join(outDir, config);
+    const templatePath = path.join(outDir, manifestTemplate);
     const manifestPath = path.join(outDir, manifest);
-    const configDirname = path.dirname(configPath);
+    const templateDirname = path.dirname(templatePath);
 
-    if (!fs.existsSync(configDirname)) {
-      fs.mkdirSync(configDirname);
-      fs.writeFileSync(configPath, '');
+    if (!fs.existsSync(templateDirname)) {
+      fs.mkdirSync(templateDirname);
+      fs.writeFileSync(templatePath, '');
     }
 
     const watchTemplate = exec(
-      `npm exec -- nodemon --watch ${configPath} --exec "appshell generate manifest --config ${configPath} && appshell register --manifest ${manifestPath} --registry ${registry}"`,
+      `npm exec -- nodemon --watch ${templatePath} --exec "appshell generate manifest --template ${templatePath} && appshell register --manifest ${manifestPath} --registry ${registry}"`,
     );
     watchTemplate.stdout?.on('data', (data) => {
       // eslint-disable-next-line no-console

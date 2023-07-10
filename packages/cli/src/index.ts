@@ -58,11 +58,11 @@ const startCommand: yargs.CommandModule<unknown, StartArgs> = {
         type: 'boolean',
         description: 'Flag if metadata should be produced',
       })
-      .option('config', {
-        alias: 'c',
+      .option('manifestTemplate', {
+        alias: 't',
         default: 'appshell.config.json',
         type: 'string',
-        description: 'Path to the appshell config to process',
+        description: 'Path to the appshell manifest template to process',
       })
       .option('manifest', {
         alias: 'm',
@@ -94,6 +94,7 @@ const registerManifestCommand: yargs.CommandModule<unknown, RegisterManifestArgs
     yargs
       .option('manifest', {
         alias: 'm',
+        string: true,
         type: 'array',
         requiresArg: true,
         description: 'One or more manifests to register',
@@ -165,15 +166,15 @@ const generateMetadataCommand: yargs.CommandModule<unknown, GenerateMetadataArgs
 
 const generateManifestCommand: yargs.CommandModule<unknown, GenerateManifestArgs> = {
   command: 'manifest',
-  describe: 'Generate the appshell manifest by processing the template specified by --config',
+  describe: 'Generate the appshell manifest by processing the template specified by --template',
   // eslint-disable-next-line @typescript-eslint/no-shadow
   builder: (yargs) =>
     yargs
-      .option('config', {
-        alias: 'c',
+      .option('template', {
+        alias: 't',
         default: 'appshell.config.json',
         type: 'string',
-        description: 'Path to the appshell config to process',
+        description: 'Path to the appshell manifest template to process',
       })
       .option('outDir', {
         alias: 'o',

@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "dist/main.js",
   "scripts": {
-    "generate:manifest": "appshell generate manifest --config dist/appshell.config.json",
+    "generate:manifest": "appshell generate manifest --template dist/appshell.config.json",
     "register": "appshell register --manifest dist/appshell.manifest.json --registry $SAMPLE_MFE_REGISTRY",
     "watch:config": "nodemon --watch dist/appshell.config.json --exec run-s generate:manifest register",
     "start": "dotenv -- run-p start:appshell start:run",

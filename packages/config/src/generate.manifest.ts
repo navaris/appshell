@@ -7,19 +7,18 @@ import { AppshellConfig } from './types';
 
 /**
  * Generates an appshell manifest
- * @param configPath path of the appshell config to compile into an appshell manifest
- * @param webpackConfig path of the webpack config
+ * @param templatePath path of the appshell manifest template to compile into an appshell manifest
  * @returns an appshell manifest
  */
-export default async <TMetadata extends Record<string, unknown>>(configPath: string) => {
-  if (!fs.existsSync(configPath)) {
+export default async <TMetadata extends Record<string, unknown>>(templatePath: string) => {
+  if (!fs.existsSync(templatePath)) {
     // eslint-disable-next-line no-console
-    console.log(`No config file found '${configPath}'`);
+    console.log(`No template file found '${templatePath}'`);
 
     return null;
   }
 
-  const file = fs.readFileSync(path.resolve(configPath), 'utf-8');
+  const file = fs.readFileSync(path.resolve(templatePath), 'utf-8');
   const template = JSON.parse(file) as AppshellConfig;
   const configMap = configmap.create(template);
 
