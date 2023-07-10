@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-alpha.5](https://github.com/navaris/appshell/compare/@appshell/config@0.3.0-alpha.4...@appshell/config@0.3.0-alpha.5) (2023-07-10)
+
+
+### Bug Fixes
+
+* ship developer image with development build, urls for adjunct registries ([333f931](https://github.com/navaris/appshell/commit/333f9314854a93ab3f8e57dfde806baf26012e6c))
+
+
+
+
+
 # [0.3.0-alpha.4](https://github.com/navaris/appshell/compare/@appshell/config@0.3.0-alpha.3...@appshell/config@0.3.0-alpha.4) (2023-07-10)
 
 
