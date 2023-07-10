@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { Metadata } from './types';
-import { merge } from './utils';
+import { isValidUrl, merge } from './utils';
 import loadJson from './utils/loadJson';
 import { appshell_metadata } from './validators';
 
@@ -12,7 +12,10 @@ export default async <T = Record<string, Metadata>>(registries: string[]): Promi
 
   try {
     const metadata = await Promise.all(
-      registries.map((reg) => loadJson<T>(reg, /(.metadata.json)/i)),
+      registries.map((reg) => {
+        const registry = isValidUrl(reg) ? `${reg}/appshell.index.json` : reg;
+        return loadJson<T>(registry, /(.metadata.json)/i);
+      }),
     ).then((items) => items.flat());
     console.log(
       `Generating metadata from ${metadata.length} source${metadata.length === 1 ? '' : 's'}`,

@@ -10,7 +10,7 @@ RUN yarn global add dotenv-cli serve npm-run-all
 # Setup environment variables
 ENV APPSHELL_PORT=${APPSHELL_PORT:-3030}
 ENV APPSHELL_REGISTRY=${APPSHELL_REGISTRY:-'/appshell/appshell_registry'}
-ENV APPSHELL_ADJUNCT_REGISTRIES=${APPSHELL_ADJUNCT_REGISTRIES}
+ENV APPSHELL_ADJUNCT_REGISTRY=${APPSHELL_ADJUNCT_REGISTRY}
 ENV APPSHELL_ROOT=${APPSHELL_ROOT:-'Appshell/Root'}
 ENV APPSHELL_PUBLIC_URL=${APPSHELL_PUBLIC_URL:-''}
 ENV APPSHELL_ENV_PREFIX=${APPSHELL_ENV_PREFIX}
@@ -37,6 +37,7 @@ FROM dependencies as build
 # Validate the build
 # todo: add yarn test:ci
 RUN yarn lint && yarn build
+
 
 ### RELEASE
 FROM base AS production
@@ -82,3 +83,6 @@ COPY --from=build /appshell/packages /appshell/packages
 COPY --from=build /appshell/node_modules /appshell/node_modules
 
 RUN yarn global add file:/appshell/packages/cli
+
+# Overwrite production build with development build
+RUN yarn build:development

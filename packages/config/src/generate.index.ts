@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { AppshellIndex } from './types';
-import { merge } from './utils';
+import { isValidUrl, merge } from './utils';
 import loadJson from './utils/loadJson';
 import { appshell_index } from './validators';
 
@@ -14,7 +14,10 @@ export default async (registries: string[]): Promise<AppshellIndex> => {
 
   try {
     const indexes = await Promise.all(
-      registries.map((reg) => loadJson<AppshellIndex>(reg, /(.index.json)/i)),
+      registries.map((reg) => {
+        const registry = isValidUrl(reg) ? `${reg}/appshell.index.json` : reg;
+        return loadJson<AppshellIndex>(registry, /(.index.json)/i);
+      }),
     ).then((items) => items.flat());
     console.log(`Generating index from ${indexes.length} source${indexes.length === 1 ? '' : 's'}`);
 
