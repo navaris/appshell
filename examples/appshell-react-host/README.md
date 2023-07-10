@@ -27,7 +27,7 @@ Since you can associate any kind of metadata with each federated module (via `ap
 
 ## Consuming federated components
 
-Uses `@appshell/react-federated-component` to dynamically load remote frontends. It uses the remote key to lookup the runtime info for that particular federated component.
+Uses `FederatedComponent` from `@appshell/react` to dynamically load remote frontends. It uses the remote key to lookup the runtime info for that particular federated component.
 
 ```typescript
 <Grid>

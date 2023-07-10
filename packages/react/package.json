@@ -1,9 +1,9 @@
 {
-  "name": "@appshell/react-federated-component",
+  "name": "@appshell/react",
   "version": "0.1.0-alpha.5",
   "description": "React utilities for loading federated components",
   "main": "dist/main.js",
-  "types": "dist/types/react-federated-component/src/index.d.ts",
+  "types": "dist/types/react/src/index.d.ts",
   "repository": "https://github.com/navaris/appshell.git",
   "author": "Robert Hamilton <rh@navaris.com>",
   "publishConfig": {

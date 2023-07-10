@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { APPSHELL_ENV } from '@appshell/core';
-import { ReactHost } from '@appshell/react-federated-component';
+import { ReactHost } from '@appshell/react';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 

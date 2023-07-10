@@ -6,7 +6,7 @@ const ReactRefreshSingleton = require('single-react-refresh-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const { dependencies } = require('../../package.json');
-const federatedComponentPkg = require('../react-federated-component/package.json');
+const federatedComponentPkg = require('../react/package.json');
 
 module.exports = (env, { mode }) => {
   const isDevelopment = mode === 'development';
@@ -98,7 +98,7 @@ module.exports = (env, { mode }) => {
             singleton: true,
             requiredVersion: dependencies['react-refresh'],
           },
-          '@appshell/react-federated-component': {
+          '@appshell/react': {
             singleton: true,
             requiredVersion: federatedComponentPkg.version,
           },

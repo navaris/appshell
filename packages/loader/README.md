@@ -57,4 +57,4 @@ appshell generate manifest --configsDir appshell_configs
 
 **Do you have any framework specific loaders?**
 
-> See [@appshell/react-federated-component](https://www.npmjs.com/package/@appshell/react-federated-component) for a `React` loader.
+> See [@appshell/react](https://www.npmjs.com/package/@appshell/react) for a `React` loader.

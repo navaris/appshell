@@ -81,9 +81,9 @@ module.exports = (env, { mode }) => {
             singleton: true,
             requiredVersion: dependencies['styled-components'],
           },
-          '@appshell/react-federated-component': {
+          '@appshell/react': {
             singleton: true,
-            requiredVersion: dependencies['@appshell/react-federated-component'],
+            requiredVersion: dependencies['@appshell/react'],
           },
         },
       }),

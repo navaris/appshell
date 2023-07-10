@@ -1,4 +1,4 @@
-import { FederatedComponent } from '@appshell/react-federated-component';
+import { FederatedComponent } from '@appshell/react';
 import React from 'react';
 import { PackageBlock } from 'react-appshell-host-components';
 import Loading from 'react-spinners/MoonLoader';
