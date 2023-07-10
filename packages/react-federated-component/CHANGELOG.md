@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.5](https://github.com/navaris/appshell/compare/@appshell/react-federated-component@0.1.0-alpha.4...@appshell/react-federated-component@0.1.0-alpha.5) (2023-07-10)
+
+
+### Bug Fixes
+
+* registry projection, enable env overwrite, refactor docker workflow, consolidate env names ([33a28fe](https://github.com/navaris/appshell/commit/33a28fe76b58e05c5b6b6b33d4b402e52bb29e70))
+
+
+
+
+
 # [0.1.0-alpha.4](https://github.com/navaris/appshell/compare/@appshell/react-federated-component@0.1.0-alpha.3...@appshell/react-federated-component@0.1.0-alpha.4) (2023-07-06)
 
 

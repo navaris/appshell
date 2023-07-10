@@ -1,6 +1,6 @@
 {
   "name": "@appshell/react-federated-component",
-  "version": "0.1.0-alpha.4",
+  "version": "0.1.0-alpha.5",
   "description": "React utilities for loading federated components",
   "main": "dist/main.js",
   "types": "dist/types/react-federated-component/src/index.d.ts",
