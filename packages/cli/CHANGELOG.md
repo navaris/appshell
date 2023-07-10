@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-alpha.5](https://github.com/navaris/appshell/compare/@appshell/cli@0.3.0-alpha.4...@appshell/cli@0.3.0-alpha.5) (2023-07-10)
+
+
+### Bug Fixes
+
+* replace config intermediate file with template ([9b79e65](https://github.com/navaris/appshell/commit/9b79e65b355686a0cca273c89c7164bb031e8437))
+
+
+
+
+
 # [0.3.0-alpha.4](https://github.com/navaris/appshell/compare/@appshell/cli@0.3.0-alpha.3...@appshell/cli@0.3.0-alpha.4) (2023-07-10)
 
 
