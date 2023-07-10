@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 0.1.0-alpha.6 (2023-07-10)
+
+
+### Bug Fixes
+
+* rename @appshell/react-federated-component package to @appshell/react ([0b74498](https://github.com/navaris/appshell/commit/0b74498bf17ba73db4d936c8a012af1d3b111a28))
+
+
+
+
+
 # [0.1.0-alpha.5](https://github.com/navaris/appshell/compare/@appshell/react-federated-component@0.1.0-alpha.4...@appshell/react-federated-component@0.1.0-alpha.5) (2023-07-10)
 
 

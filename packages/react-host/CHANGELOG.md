@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-alpha.8](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.0-alpha.7...@appshell/react-host@0.2.0-alpha.8) (2023-07-10)
+
+
+### Bug Fixes
+
+* rename @appshell/react-federated-component package to @appshell/react ([0b74498](https://github.com/navaris/appshell/commit/0b74498bf17ba73db4d936c8a012af1d3b111a28))
+
+
+
+
+
 # [0.2.0-alpha.7](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.0-alpha.6...@appshell/react-host@0.2.0-alpha.7) (2023-07-10)
 
 
