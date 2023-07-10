@@ -1,0 +1,8 @@
+{
+  "TestModule1/Component1": {
+    "foo": "bar"
+  },
+  "TestModule1/Component2": {
+    "biz": "bang"
+  }
+}

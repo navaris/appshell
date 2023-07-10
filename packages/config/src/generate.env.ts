@@ -5,9 +5,9 @@ import readline from 'readline';
 const shouldProcess = (line: string, prefixRegex: RegExp) =>
   !line.match(/^(\s*|#.*)$/) && prefixRegex.test(line);
 
-export default async (env: string, prefix = '') =>
-  new Promise<Map<string, string | number | undefined>>((resolve, reject) => {
-    const map = new Map<string, string | number | undefined>();
+export default async (env: string, prefix = '', overwrite = false) =>
+  new Promise<Map<string, string>>((resolve, reject) => {
+    const map = new Map<string, string>();
     const dotenvPath = path.resolve(env);
 
     if (fs.existsSync(dotenvPath)) {
@@ -21,9 +21,10 @@ export default async (env: string, prefix = '') =>
         if (shouldProcess(line, prefixRegex)) {
           const [NAME, VALUE] = line.split('=');
           let currentValue = process.env[NAME];
-          if (!currentValue) {
+          if (!currentValue || overwrite) {
             currentValue = VALUE;
           }
+
           map.set(NAME, currentValue);
         }
       });

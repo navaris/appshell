@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
-import { AppshellIndex, AppshellManifest } from './types';
+import { AppshellIndex } from './types';
+import { merge } from './utils';
 import loadJson from './utils/loadJson';
+import { appshell_index } from './validators';
 
 export default async (registries: string[]): Promise<AppshellIndex> => {
   if (registries.length < 1) {
@@ -8,25 +10,15 @@ export default async (registries: string[]): Promise<AppshellIndex> => {
     return {};
   }
 
-  console.log(`generating appshell index --registry=${registries}`);
+  console.log(`generating appshell index --registry=${JSON.stringify(registries, null, 2)}`);
 
   try {
-    const manifests = await Promise.all(registries.map(loadJson<AppshellManifest>)).then((items) =>
-      items.flat(),
-    );
-    console.log(
-      `Generating index from ${manifests.length} manifest${manifests.length === 1 ? '' : 's'}`,
-    );
+    const indexes = await Promise.all(
+      registries.map((reg) => loadJson<AppshellIndex>(reg, /(.index.json)/i)),
+    ).then((items) => items.flat());
+    console.log(`Generating index from ${indexes.length} source${indexes.length === 1 ? '' : 's'}`);
 
-    return manifests.reduce((entries, manifest) => {
-      const res = Object.entries(manifest.remotes).reduce((acc, [key, val]) => {
-        acc[key] = val.manifestUrl;
-
-        return acc;
-      }, entries);
-
-      return res;
-    }, {} as Record<string, string>);
+    return merge(appshell_index, ...indexes) as AppshellIndex;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {

@@ -127,6 +127,7 @@ jobs:
         run: echo "version=$(cat packages/${{ matrix.package-dir }}/package.json | grep \"version\" | sed 's/.*\://' | tr -d '", ')" >> $GITHUB_OUTPUT
 
       - name: Build and push Docker production image
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: docker/build-push-action@v4
         with:
           context: .
@@ -139,15 +140,15 @@ jobs:
             ${{ secrets.DOCKER_ORG }}/${{ matrix.package-dir }}:latest
             ${{ secrets.DOCKER_ORG }}/${{ matrix.package-dir }}:${{ steps.vars.outputs.version }}
 
-      - name: Build and push Docker development image
+      - name: Build and push Docker developer image
         uses: docker/build-push-action@v4
         with:
           context: .
           file: ./Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
-          target: development
+          target: developer
           build-args: |
             SOURCE_DIR=packages/${{ matrix.package-dir }}
           tags: |
-            ${{ secrets.DOCKER_ORG }}/${{ matrix.package-dir }}-developer:latest
-            ${{ secrets.DOCKER_ORG }}/${{ matrix.package-dir }}-developer:${{ steps.vars.outputs.version }}
+            ${{ secrets.DOCKER_ORG }}/${{ matrix.package-dir }}:developer
+            ${{ secrets.DOCKER_ORG }}/${{ matrix.package-dir }}:${{ steps.vars.outputs.version }}-developer

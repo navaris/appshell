@@ -15,7 +15,7 @@ Consists of 3 micro-frontends, each is configured with `@appshell/manifest-webpa
 
 ## Build time
 
-At build time, each `AppshellManifestPlugin` emits an appshell config to `CONFIGS_DIR`.
+At build time, each `AppshellManifestPlugin` emits an appshell manifest template to `CONFIGS_DIR` (Defaults to dist).
 
 ## Runtime
 

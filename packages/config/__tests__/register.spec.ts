@@ -12,7 +12,7 @@ describe('register', () => {
 
   afterEach(() => {
     if (fs.existsSync(registryDir)) {
-      fs.rmdirSync(registryDir, { recursive: true });
+      fs.rmSync(registryDir, { recursive: true });
     }
   });
 
@@ -24,6 +24,8 @@ describe('register', () => {
 
     const registry = fs.readdirSync(registryDir);
 
-    expect(registry).toContain('test_module_a.manifest.json');
+    expect(registry).toContain('appshell.manifest.json');
+    expect(registry).toContain('appshell.index.json');
+    expect(registry).toContain('appshell.metadata.json');
   });
 });

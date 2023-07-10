@@ -8,16 +8,17 @@ export type GenerateEnvArgs = {
   outFile: string;
   prefix: string;
   globalName: string;
+  overwrite: boolean;
 };
 
 export default async (argv: GenerateEnvArgs): Promise<void> => {
-  const { env, globalName, outDir, outFile, prefix } = argv;
+  const { env, globalName, outDir, outFile, prefix, overwrite } = argv;
   // eslint-disable-next-line no-console
   console.log(
-    `generating runtime env js --env=${env} --prefix=${prefix} --outDir=${outDir} --outFile=${outFile} --globalName=${globalName}`,
+    `generating runtime env js --env=${env} --prefix=${prefix} --out-dir=${outDir} --out-file=${outFile} --global-name=${globalName} --overwrite=${overwrite}`,
   );
 
-  const environment = await generateEnv(env, prefix);
+  const environment = await generateEnv(env, prefix, overwrite);
 
   if (!fs.existsSync(outDir)) {
     fs.mkdirSync(outDir, { recursive: true });
@@ -29,7 +30,11 @@ export default async (argv: GenerateEnvArgs): Promise<void> => {
     outputFile.write(`window.${globalName} = {\n`);
 
     environment.forEach((value, key) => {
-      outputFile.write(`\t${key}: '${value}',\n`);
+      let formattedValue: string | number = parseFloat(value);
+      if (Number.isNaN(formattedValue)) {
+        formattedValue = `'${value.replaceAll("'", '')}'`;
+      }
+      outputFile.write(`\t${key}: ${formattedValue},\n`);
     });
 
     outputFile.end('}', resolve);

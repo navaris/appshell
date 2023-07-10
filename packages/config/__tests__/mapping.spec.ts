@@ -26,7 +26,7 @@ describe('mapping configurations to domain objects', () => {
 
   it('should replace url placeholders with environment variables', () => {
     expect(
-      values(appshellManifest.remotes).some((remote) => remote.url.includes(APPS_TEST_URL)),
+      values(appshellManifest.remotes).some((remote) => remote.manifestUrl.includes(APPS_TEST_URL)),
     ).toBeTruthy();
   });
 

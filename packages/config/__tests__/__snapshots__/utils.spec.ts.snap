@@ -4,6 +4,7 @@ exports[`utils load consuming the configuration should read and parse the config
 {
   "remotes": {
     "BizModule/Biz": {
+      "filename": "remoteEntry.js",
       "metadata": {
         "displayGroup": "auxiliary",
         "displayName": "Biz App",
@@ -11,9 +12,10 @@ exports[`utils load consuming the configuration should read and parse the config
         "order": 30,
         "route": "/biz",
       },
-      "url": "http://localhost:4040/remoteEntry.js",
+      "url": "http://localhost:4040",
     },
     "TestModule/Bar": {
+      "filename": "remoteEntry.js",
       "metadata": {
         "displayGroup": "main",
         "displayName": "Bar App",
@@ -24,6 +26,7 @@ exports[`utils load consuming the configuration should read and parse the config
       "url": "\${APPS_TEST_URL}",
     },
     "TestModule/Foo": {
+      "filename": "remoteEntry.js",
       "metadata": {
         "displayGroup": "main",
         "displayName": "Foo App",
@@ -41,6 +44,7 @@ exports[`utils load consuming the configuration should read and parse the config
 {
   "remotes": {
     "BizModule/Biz": {
+      "filename": "remoteEntry.js",
       "metadata": {
         "displayGroup": "auxiliary",
         "displayName": "Biz App",
@@ -48,9 +52,10 @@ exports[`utils load consuming the configuration should read and parse the config
         "order": 30,
         "route": "/biz",
       },
-      "url": "http://localhost:4040/remoteEntry.js",
+      "url": "http://localhost:4040",
     },
     "TestModule/Bar": {
+      "filename": "remoteEntry.js",
       "metadata": {
         "displayGroup": "main",
         "displayName": "Bar App",
@@ -61,6 +66,7 @@ exports[`utils load consuming the configuration should read and parse the config
       "url": "\${APPS_TEST_URL}",
     },
     "TestModule/Foo": {
+      "filename": "remoteEntry.js",
       "metadata": {
         "displayGroup": "main",
         "displayName": "Foo App",
@@ -78,16 +84,16 @@ exports[`utils merge appshell configs should merge multiple valid configurations
 {
   "environment": {
     "biz_module": {
-      "RUNTIME_ENV": "\${RUNTIME_ENV}",
-      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+      "RUNTIME_ENV": "Biz env",
+      "RUNTIME_ENV_VERSION": "Biz version",
     },
     "test_module_bar": {
-      "RUNTIME_ENV": "\${RUNTIME_ENV}",
-      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+      "RUNTIME_ENV": "Test env",
+      "RUNTIME_ENV_VERSION": "Test version",
     },
     "test_module_foo": {
-      "RUNTIME_ENV": "\${RUNTIME_ENV}",
-      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+      "RUNTIME_ENV": "Foo env",
+      "RUNTIME_ENV_VERSION": "Foo version",
     },
   },
   "modules": {
@@ -188,6 +194,7 @@ exports[`utils merge appshell configs should merge multiple valid configurations
   "remotes": {
     "BizModule/Biz": {
       "id": "BizModule/Biz",
+      "manifestUrl": "http://localhost:4040/appshell.manifest.json",
       "metadata": {
         "displayGroup": "auxiliary",
         "displayName": "Biz App",
@@ -196,11 +203,12 @@ exports[`utils merge appshell configs should merge multiple valid configurations
         "route": "/biz",
       },
       "module": "./Biz",
+      "remoteEntryUrl": "http://localhost:4040/remoteEntry.js",
       "scope": "BizModule",
-      "url": "http://localhost:4040/remoteEntry.js",
     },
     "TestModuleBar/Bar": {
       "id": "TestModule/Bar",
+      "manifestUrl": "http://localhost:4040/appshell.manifest.json",
       "metadata": {
         "displayGroup": "main",
         "displayName": "Bar App",
@@ -209,11 +217,12 @@ exports[`utils merge appshell configs should merge multiple valid configurations
         "route": "/bar",
       },
       "module": "./Bar",
+      "remoteEntryUrl": "http://localhost:4040/remoteEntry.js",
       "scope": "TestModule",
-      "url": "\${APPS_TEST_URL}",
     },
     "TestModuleFoo/Foo": {
       "id": "TestModule/Foo",
+      "manifestUrl": "http://localhost:4040/appshell.manifest.json",
       "metadata": {
         "displayGroup": "main",
         "displayName": "Foo App",
@@ -222,8 +231,8 @@ exports[`utils merge appshell configs should merge multiple valid configurations
         "route": "/foo",
       },
       "module": "./Foo",
+      "remoteEntryUrl": "http://localhost:4040/remoteEntry.js",
       "scope": "TestModule",
-      "url": "\${APPS_TEST_URL}",
     },
   },
 }
@@ -233,20 +242,20 @@ exports[`utils merge should merge manifests from right to left with merge valida
 {
   "environment": {
     "biz_module": {
-      "RUNTIME_ENV": "\${RUNTIME_ENV}",
-      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+      "RUNTIME_ENV": "Biz env",
+      "RUNTIME_ENV_VERSION": "Biz version",
     },
     "test_module_a": {
-      "RUNTIME_ENV": "\${RUNTIME_ENV}",
-      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+      "RUNTIME_ENV": "A env",
+      "RUNTIME_ENV_VERSION": "A version",
     },
     "test_module_b": {
-      "RUNTIME_ENV": "\${RUNTIME_ENV}",
-      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+      "RUNTIME_ENV": "B env",
+      "RUNTIME_ENV_VERSION": "B version",
     },
     "test_module_c": {
-      "RUNTIME_ENV": "\${RUNTIME_ENV}",
-      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+      "RUNTIME_ENV": "C env",
+      "RUNTIME_ENV_VERSION": "C version",
     },
   },
   "modules": {
@@ -346,6 +355,7 @@ exports[`utils merge should merge manifests from right to left with merge valida
   "remotes": {
     "BizModule/Biz": {
       "id": "BizModule/Biz",
+      "manifestUrl": "http://localhost:4040/appshell.manifest.json",
       "metadata": {
         "displayGroup": "auxiliary",
         "displayName": "Biz App",
@@ -354,11 +364,12 @@ exports[`utils merge should merge manifests from right to left with merge valida
         "route": "/biz",
       },
       "module": "./Biz",
+      "remoteEntryUrl": "http://localhost:4040/remoteEntry.js",
       "scope": "BizModule",
-      "url": "http://localhost:4040/remoteEntry.js",
     },
     "TestModuleA/Foo": {
       "id": "TestModule/Foo",
+      "manifestUrl": "http://localhost:8080/appshell.manifest.json",
       "metadata": {
         "displayGroup": "main",
         "displayName": "Foo App",
@@ -366,10 +377,11 @@ exports[`utils merge should merge manifests from right to left with merge valida
         "order": 10,
         "route": "/foo",
       },
-      "url": "http://localhost:8080/remoteEntry.js",
+      "remoteEntryUrl": "http://localhost:8080/remoteEntry.js",
     },
     "TestModuleB/Bar": {
       "id": "TestModule/Bar",
+      "manifestUrl": "http://localhost:8080/bar/appshell.manifest.json",
       "metadata": {
         "displayGroup": "main",
         "displayName": "Foo App",
@@ -377,10 +389,11 @@ exports[`utils merge should merge manifests from right to left with merge valida
         "order": 10,
         "route": "/foo",
       },
-      "url": "http://localhost:8080/bar/remoteEntry.js",
+      "remoteEntryUrl": "http://localhost:8080/bar/remoteEntry.js",
     },
     "TestModuleB/Foo": {
       "id": "TestModule/Foo",
+      "manifestUrl": "http://localhost:8080/foo/appshell.manifest.json",
       "metadata": {
         "displayGroup": "main",
         "displayName": "Foo App",
@@ -388,10 +401,11 @@ exports[`utils merge should merge manifests from right to left with merge valida
         "order": 20,
         "route": "/foo",
       },
-      "url": "http://localhost:8080/foo/remoteEntry.js",
+      "remoteEntryUrl": "http://localhost:8080/foo/remoteEntry.js",
     },
     "TestModuleC/Foo": {
       "id": "TestModule/Foo",
+      "manifestUrl": "http://localhost:8080/foo_c/appshell.manifest.json",
       "metadata": {
         "displayGroup": "main",
         "displayName": "Foo App",
@@ -399,7 +413,7 @@ exports[`utils merge should merge manifests from right to left with merge valida
         "order": 30,
         "route": "/foo_c",
       },
-      "url": "http://localhost:8080/foo_c/remoteEntry.js",
+      "remoteEntryUrl": "http://localhost:8080/foo_c/remoteEntry.js",
     },
   },
 }
@@ -409,16 +423,16 @@ exports[`utils merge should merge multiple valid configurations 1`] = `
 {
   "environment": {
     "biz_module": {
-      "RUNTIME_ENV": "\${RUNTIME_ENV}",
-      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+      "RUNTIME_ENV": "Biz env",
+      "RUNTIME_ENV_VERSION": "Biz version",
     },
     "test_module_bar": {
-      "RUNTIME_ENV": "\${RUNTIME_ENV}",
-      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+      "RUNTIME_ENV": "Test env",
+      "RUNTIME_ENV_VERSION": "Test version",
     },
     "test_module_foo": {
-      "RUNTIME_ENV": "\${RUNTIME_ENV}",
-      "RUNTIME_ENV_VERSION": "\${RUNTIME_ENV_VERSION}",
+      "RUNTIME_ENV": "Foo env",
+      "RUNTIME_ENV_VERSION": "Foo version",
     },
   },
   "modules": {
@@ -519,6 +533,7 @@ exports[`utils merge should merge multiple valid configurations 1`] = `
   "remotes": {
     "BizModule/Biz": {
       "id": "BizModule/Biz",
+      "manifestUrl": "http://localhost:4040/appshell.manifest.json",
       "metadata": {
         "displayGroup": "auxiliary",
         "displayName": "Biz App",
@@ -527,11 +542,12 @@ exports[`utils merge should merge multiple valid configurations 1`] = `
         "route": "/biz",
       },
       "module": "./Biz",
+      "remoteEntryUrl": "http://localhost:4040/remoteEntry.js",
       "scope": "BizModule",
-      "url": "http://localhost:4040/remoteEntry.js",
     },
     "TestModuleBar/Bar": {
       "id": "TestModule/Bar",
+      "manifestUrl": "http://localhost:4040/appshell.manifest.json",
       "metadata": {
         "displayGroup": "main",
         "displayName": "Bar App",
@@ -540,11 +556,12 @@ exports[`utils merge should merge multiple valid configurations 1`] = `
         "route": "/bar",
       },
       "module": "./Bar",
+      "remoteEntryUrl": "http://localhost:4040/remoteEntry.js",
       "scope": "TestModule",
-      "url": "\${APPS_TEST_URL}",
     },
     "TestModuleFoo/Foo": {
       "id": "TestModule/Foo",
+      "manifestUrl": "http://localhost:4040/appshell.manifest.json",
       "metadata": {
         "displayGroup": "main",
         "displayName": "Foo App",
@@ -553,8 +570,8 @@ exports[`utils merge should merge multiple valid configurations 1`] = `
         "route": "/foo",
       },
       "module": "./Foo",
+      "remoteEntryUrl": "http://localhost:4040/remoteEntry.js",
       "scope": "TestModule",
-      "url": "\${APPS_TEST_URL}",
     },
   },
 }

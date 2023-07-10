@@ -3,6 +3,7 @@
     "BizModule/Biz": {
       "id": "BizModule/Biz",
       "url": "http://localhost:4040/remoteEntry.js",
+      "filename": "remoteEntry.js",
       "metadata": {
         "route": "/biz",
         "displayName": "Biz App",

@@ -10,7 +10,7 @@ import generateEnvHandler, { GenerateEnvArgs } from './handlers/generate.env';
 import generateIndexHandler, { GenerateIndexArgs } from './handlers/generate.index';
 import generateManifestHandler, { GenerateManifestArgs } from './handlers/generate.manifest';
 import generateMetadataHandler, { GenerateMetadataArgs } from './handlers/generate.metadata';
-import registerManifestHandler, { RegisterManifestArgs } from './handlers/register.manifest';
+import registerManifestHandler, { RegisterManifestArgs } from './handlers/register';
 import startHandler, { StartArgs } from './handlers/start';
 
 const startCommand: yargs.CommandModule<unknown, StartArgs> = {
@@ -44,7 +44,7 @@ const startCommand: yargs.CommandModule<unknown, StartArgs> = {
         description: 'Global variable name window[globalName] used in the output js',
       })
       .option('remote', {
-        default: true,
+        default: false,
         type: 'boolean',
         description: 'Flag if this app is a remote',
       })
@@ -76,11 +76,12 @@ const startCommand: yargs.CommandModule<unknown, StartArgs> = {
         type: 'string',
         description: 'Registry with which the app is registered',
       })
-      .option('index', {
-        alias: 'i',
+      .option('adjunctRegistry', {
+        alias: 'a',
         default: [],
+        string: true,
         type: 'array',
-        description: 'One or more external registry indexes to incorporate',
+        description: 'One or more adjunct registries to incorporate',
       }),
   handler: startHandler,
 };
@@ -108,7 +109,7 @@ const registerManifestCommand: yargs.CommandModule<unknown, RegisterManifestArgs
 
 const generateIndexCommand: yargs.CommandModule<unknown, GenerateIndexArgs> = {
   command: 'index',
-  describe: 'Generate the appshell index',
+  describe: 'Generate the appshell index file by merging sources specifed by --registry options',
   // eslint-disable-next-line @typescript-eslint/no-shadow
   builder: (yargs) =>
     yargs
@@ -126,6 +127,7 @@ const generateIndexCommand: yargs.CommandModule<unknown, GenerateIndexArgs> = {
       })
       .option('registry', {
         alias: 'r',
+        string: true,
         type: 'array',
         requiresArg: true,
         description: 'One or more registies to merge into a single appshell index',
@@ -135,7 +137,7 @@ const generateIndexCommand: yargs.CommandModule<unknown, GenerateIndexArgs> = {
 
 const generateMetadataCommand: yargs.CommandModule<unknown, GenerateMetadataArgs> = {
   command: 'metadata',
-  describe: 'Generate the appshell metadata',
+  describe: 'Generate the appshell metadata file by merging sources specifed by --registry options',
   // eslint-disable-next-line @typescript-eslint/no-shadow
   builder: (yargs) =>
     yargs
@@ -163,7 +165,7 @@ const generateMetadataCommand: yargs.CommandModule<unknown, GenerateMetadataArgs
 
 const generateManifestCommand: yargs.CommandModule<unknown, GenerateManifestArgs> = {
   command: 'manifest',
-  describe: 'Generate the appshell manifest',
+  describe: 'Generate the appshell manifest by processing the template specified by --config',
   // eslint-disable-next-line @typescript-eslint/no-shadow
   builder: (yargs) =>
     yargs
@@ -225,6 +227,13 @@ const generateEnvCommand: yargs.CommandModule<unknown, GenerateEnvArgs> = {
         default: 'appshell_env',
         type: 'string',
         description: 'Global variable name window[globalName] used in the output js',
+      })
+      .option('overwrite', {
+        alias: 'w',
+        default: false,
+        type: 'boolean',
+        description:
+          'If true, values in --env take precendent over those currently set in the environment',
       }),
   handler: generateEnvHandler,
 };

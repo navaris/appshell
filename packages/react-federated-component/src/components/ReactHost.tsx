@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { AppshellIndex, Metadata } from '@appshell/config';
-import React, { FC, ReactNode, useEffect, useState } from 'react';
+import React, { FC, ReactNode, useEffect } from 'react';
 import { MetadataProvider } from '../contexts/MetadataContext';
 import { RegistryProvider } from '../contexts/RegistryContext';
 import FederatedComponent from './FederatedComponent';
@@ -10,9 +10,10 @@ const ReactHost: FC<{
   metadataUrl: string;
   remote: string;
   fallback?: ReactNode;
+  [x: string]: unknown;
 }> = ({ indexUrl, metadataUrl, remote, fallback, ...rest }) => {
-  const [index, setIndex] = useState<AppshellIndex>();
-  const [metadata, setMetadata] = useState<Metadata>();
+  const [index, setIndex] = React.useState<AppshellIndex>();
+  const [metadata, setMetadata] = React.useState<Metadata>();
 
   useEffect(() => {
     const fetchIndex = async () => {

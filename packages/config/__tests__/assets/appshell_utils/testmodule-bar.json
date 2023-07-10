@@ -2,7 +2,8 @@
   "remotes": {
     "TestModuleBar/Bar": {
       "id": "TestModule/Bar",
-      "url": "${APPS_TEST_URL}",
+      "manifestUrl": "http://localhost:4040/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:4040/remoteEntry.js",
       "scope": "TestModule",
       "module": "./Bar",
       "metadata": {
@@ -16,8 +17,8 @@
   },
   "environment": {
     "test_module_bar": {
-      "RUNTIME_ENV": "${RUNTIME_ENV}",
-      "RUNTIME_ENV_VERSION": "${RUNTIME_ENV_VERSION}"
+      "RUNTIME_ENV": "Test env",
+      "RUNTIME_ENV_VERSION": "Test version"
     }
   },
   "modules": {

@@ -6,9 +6,11 @@ export default {
       id: 'test-component',
       scope: 'TestModule',
       module: './TestComponent',
-      url: 'http://test.com/remoteEntry.js',
+      manifestUrl: 'http://test.com/appshell.manifest.json',
+      remoteEntryUrl: 'http://test.com/remoteEntry.js',
       metadata: {},
     },
   },
   modules: {},
+  environment: {},
 } as AppshellManifest;

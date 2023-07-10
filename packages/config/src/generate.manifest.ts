@@ -19,7 +19,8 @@ export default async <TMetadata extends Record<string, unknown>>(configPath: str
     return null;
   }
 
-  const template = JSON.parse(fs.readFileSync(path.resolve(configPath), 'utf-8')) as AppshellConfig;
+  const file = fs.readFileSync(path.resolve(configPath), 'utf-8');
+  const template = JSON.parse(file) as AppshellConfig;
   const configMap = configmap.create(template);
 
   return toAppshellManifest<TMetadata>(template, configMap);

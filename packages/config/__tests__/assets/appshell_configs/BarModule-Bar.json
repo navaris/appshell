@@ -3,6 +3,7 @@
     "BarModule/Bar": {
       "id": "BarModule/Bar",
       "url": "${APPS_TEST_URL}",
+      "filename": "remoteEntry.js",
       "metadata": {
         "route": "/bar",
         "displayName": "Bar App",

@@ -4,14 +4,14 @@ import fs from 'fs';
 import path from 'path';
 
 export type GenerateIndexArgs = {
-  registry: (string | number)[] | undefined;
+  registry: string[] | undefined;
   outDir: string;
   outFile: string;
 };
 
 export default async (argv: GenerateIndexArgs): Promise<void> => {
   const { registry, outDir, outFile } = argv;
-  const registries = (registry as string[]) || [];
+  const registries = registry || [];
 
   if (registries.length < 1) {
     console.log(`No registries found. skipping index generation.`);
@@ -19,7 +19,7 @@ export default async (argv: GenerateIndexArgs): Promise<void> => {
   }
 
   console.log(
-    `generating appshell index --outDir=${outDir} --outFile=${outFile} --registry=${registries}`,
+    `generating appshell index --out-dir=${outDir} --out-file=${outFile} --registry=${registries}`,
   );
 
   try {

@@ -11,7 +11,7 @@
 
 # @appshell/core
 
-Core types and components for Webpack Module federation micro-frontends with Appshell.
+Core types and components for building Webpack Module federation micro-frontends with Appshell.
 
 Working examples can be found [here](https://github.com/navaris/appshell/tree/main/examples).
 

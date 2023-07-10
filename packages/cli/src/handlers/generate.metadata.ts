@@ -14,7 +14,7 @@ export default async (argv: GenerateMetadataArgs): Promise<void> => {
 
   // eslint-disable-next-line no-console
   console.log(
-    `generating appshell metadata --registry=${registries} --outDir=${outDir} --outFile=${outFile}`,
+    `generating appshell metadata --registry=${registries} --out-dir=${outDir} --out-file=${outFile}`,
   );
 
   const metadata = await generateMetadata(registries);

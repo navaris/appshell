@@ -38,18 +38,26 @@ pnpm add -D @appshell/cli
 ## Usage
 
 ```bash
+appshell [command]
+
+Commands:
+  appshell generate [target]  Generates a resource
+  appshell register           Register one or more appshell manifests
+  appshell start              Start the appshell runtime environment
+```
+
+### appshell generate
+
+```bash
 appshell generate [target]
 
 Generates a resource
 
 Commands:
-  appshell generate manifest  Generate the appshell manifest
-  appshell generate env       Generate the runtime environment js file that refl
-                              ects the current process.env
-
-Options:
-  --help     Show help                                                 [boolean]
-  --version  Show version number                                       [boolean]
+  appshell generate manifest  Generate the appshell manifest by processing the template specified by --config
+  appshell generate env       Generate the runtime environment js file that reflects the current process.env
+  appshell generate index     Generate the appshell index file by merging sources specifed by --registry options
+  appshell generate metadata  Generate the appshell metadata file by merging sources specifed by --registry options
 ```
 
 ## Generate manifest

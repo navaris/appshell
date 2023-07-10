@@ -24,7 +24,7 @@ Add a section in your docker-compose.yml to start the react host.
 ```yaml
 services:
   appshell:
-    image: appshell/react-host-developer # developer image
+    image: appshell/react-host:developer # developer image
     # image: appshell/react-host            # production image
     env_file: './${ENV_TARGET}.env'
     deploy:
@@ -34,11 +34,11 @@ services:
       - ${APPSHELL_PORT}:${APPSHELL_PORT}
     volumes:
       - ./${ENV_TARGET}.env/:/appshell/${ENV_TARGET}.env
-      - ./appshell_configs:/appshell/appshell_configs
+      - ./appshell_registry:/appshell/appshell_registry
 ```
 
 > **Note**
-> During development, be sure to volume mount your projects appshell_configs directory so the host can generate the global runtime manifest. `./appshell_configs:/appshell/appshell_configs`
+> During development, volume mount your projects $APPSHELL_REGISTRY directory so the host can generate the global registry index. `./appshell_registry:/appshell/appshell_registry`
 
 ```bash
 docker compose up appshell
@@ -49,25 +49,34 @@ docker compose up appshell
 Add the following properties to your .env
 
 ```sh
+# Public url. Defaults to localhost
+APPSHELL_PUBLIC_URL=
+# Port on which the appshell host will run
 APPSHELL_PORT=3030
-# Location the @appshell/cli processes to generate the global runtime manifest
+# Location the appshell host processes to generate the global registry index
 APPSHELL_REGISTRY=/appshell/appshell_registry
-# Prefix used to specify which env vars to include when generating runtime.env.js. Leaving this empty
-# will include ALL variables in the .env
-APPSHELL_ENV_PREFIX=APPSHELL_
-# Host will fetch the registry index on startup.
-APPSHELL_INDEX_URL=/appshell.index.json
-# Host will fetch the metadata on startup.
-APPSHELL_METADATA_URL=/appshell.metadata.json
-# Collection of paths or urls to registry indexes that will be merged with the current registry index (from right to left)
-APPSHELL_EXTERNAL_INDEXES=http://prod.url.com/appshell.index.json ./path/to/appshell.index.json
-# Remote module to load from the global runtime manifest
+# Remote module to load from the global registry index
 APPSHELL_ROOT=ContainerModule/App
 # Props to be passed to federated component specified by APPSHELL_ROOT, as a serialized JSON string.
 APPSHELL_ROOT_PROPS='{"foo":"bar"}'
+# Collection of registries that will be incorporated into the current registry output
+APPSHELL_ADJUNCT_REGISTRIES=http://prod.url.com/registry ./path/to/appshell_registry
+# File to setup the environment. Defaults to .env
+APPSHELL_ENV=.env
+# Prefix used to specify which env vars to include when generating runtime.env.js. Leaving this empty will include ALL variables in the .env
+APPSHELL_ENV_PREFIX=APPSHELL_
+# Name of global variable used in the generated runtime.env.js. Defaults to window.__appshell_env__
+APPSHELL_ENV_GLOBAL_VAR=__appshell_env__
+# Background color of splash screen
+APPSHELL_THEME_COLOR=
+# Color of splash screen loading
+APPSHELL_PRIMARY_COLOR=
+# Title of the application
+APPSHELL_TITLE=My App
+# Description of the application
+APPSHELL_DESCRIPTION=Appshell React host
+
 APPSHELL_CONTAINER_SCALE=1
-APPSHELL_THEME_COLOR= # Background color of splash screen
-APPSHELL_PRIMARY_COLOR= # Color of splash screen loading
 ENV_TARGET=
 
 ```

@@ -20,6 +20,7 @@
     "@automapper/core": "8.7.7",
     "@automapper/pojos": "8.7.7",
     "axios": "1.4.0",
+    "cpy-cli": "5.0.0",
     "cross-env": "7.0.3",
     "dotenv-cli": "7.0.0",
     "hash-sum": "2.0.0",

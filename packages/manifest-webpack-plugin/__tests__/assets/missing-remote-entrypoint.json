@@ -1,8 +1,10 @@
 {
+  "name": "TestModule",
   "remotes": {
     "TestModule/Bar": {
       "id": "42783598",
-      "url": "${APPS_TEST_URL}/remoteEntry.js",
+      "url": "${APPS_TEST_URL}",
+      "filename": "remoteEntry.js",
       "metadata": {
         "route": "/bar",
         "displayName": "Bar App",
@@ -13,7 +15,8 @@
     },
     "BizModule/Biz": {
       "id": "373793ed",
-      "url": "http://localhost:4040/remoteEntry.js",
+      "url": "http://localhost:4040",
+      "filename": "remoteEntry.js",
       "metadata": {
         "route": "/biz",
         "displayName": "Biz App",

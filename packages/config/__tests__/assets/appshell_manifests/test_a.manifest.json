@@ -2,7 +2,8 @@
   "remotes": {
     "TestModuleA/Foo": {
       "id": "TestModule/Foo",
-      "url": "http://localhost:8080/remoteEntry.js",
+      "manifestUrl": "http://localhost:8080/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:8080/remoteEntry.js",
       "metadata": {
         "route": "/foo",
         "displayName": "Foo App",
@@ -14,8 +15,8 @@
   },
   "environment": {
     "test_module_a": {
-      "RUNTIME_ENV": "${RUNTIME_ENV}",
-      "RUNTIME_ENV_VERSION": "${RUNTIME_ENV_VERSION}"
+      "RUNTIME_ENV": "A env",
+      "RUNTIME_ENV_VERSION": "A version"
     }
   },
   "modules": {

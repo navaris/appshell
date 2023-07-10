@@ -13,7 +13,7 @@ export default async (argv: GenerateManifestArgs) => {
   const { config, outDir, outFile } = argv;
 
   try {
-    console.log(`generating manifest --config=${config} --outDir=${outDir} --outFile=${outFile}`);
+    console.log(`generating manifest --config=${config} --out-dir=${outDir} --out-file=${outFile}`);
 
     if (!fs.existsSync(config)) {
       console.log(`config not found '${config}'. skipping manifest generation.`);

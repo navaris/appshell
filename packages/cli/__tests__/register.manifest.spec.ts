@@ -1,6 +1,6 @@
 import * as config from '@appshell/config';
 import fs from 'fs';
-import registerManifestHandler from '../src/handlers/register.manifest';
+import registerManifestHandler from '../src/handlers/register';
 
 describe('register.manifest', () => {
   afterEach(() => {

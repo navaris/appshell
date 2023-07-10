@@ -1,0 +1,4 @@
+{
+  "PongModule/Pong": "http://localhost:30021/appshell.manifest.json",
+  "PongModule/CoolComponent": "http://localhost:30021/appshell.manifest.json"
+}

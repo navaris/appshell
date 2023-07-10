@@ -4,18 +4,19 @@ import '@testing-library/jest-dom';
 import { act, render, screen } from '@testing-library/react';
 import React from 'react';
 import FederatedComponent from '../src/components/FederatedComponent';
-import * as useManifest from '../src/hooks/useManifest';
+import * as useRegistry from '../src/hooks/useRegistry';
+import index from './fixtures/appshell.index';
 import manifest from './fixtures/Manifest';
 import TestComponent from './fixtures/TestComponent';
 
-jest.mock('../src/hooks/useManifest');
+jest.mock('../src/hooks/useRegistry');
 
 const TestFallback = () => <div>loading...</div>;
 
 describe('FederatedComponent', () => {
   it('should match snapshot', async () => {
-    jest.spyOn(useManifest, 'default').mockReturnValue(manifest);
-    jest.spyOn(remoteLoader, 'default').mockReturnValueOnce(async () => TestComponent);
+    jest.spyOn(useRegistry, 'default').mockReturnValue(index);
+    jest.spyOn(remoteLoader, 'default').mockReturnValueOnce(async () => [TestComponent, manifest]);
 
     const { container, findByText } = await act(() =>
       render(<FederatedComponent remote="TestModule/TestComponent" />),
@@ -27,8 +28,8 @@ describe('FederatedComponent', () => {
   });
 
   it('should render fallback while resource is pending', async () => {
-    jest.spyOn(useManifest, 'default').mockReturnValue(manifest);
-    jest.spyOn(remoteLoader, 'default').mockReturnValueOnce(() => null);
+    jest.spyOn(useRegistry, 'default').mockReturnValue(index);
+    jest.spyOn(remoteLoader, 'default').mockReturnValueOnce(() => [null, null]);
 
     await act(() =>
       render(<FederatedComponent remote="TestModule/TestComponent" fallback={<TestFallback />} />),
@@ -38,7 +39,7 @@ describe('FederatedComponent', () => {
   });
 
   it('should render error when resource fails', async () => {
-    jest.spyOn(useManifest, 'default').mockReturnValue(manifest);
+    jest.spyOn(useRegistry, 'default').mockReturnValue(index);
     jest
       .spyOn(remoteLoader, 'default')
       .mockImplementationOnce(() => new Error('Failed to get resource'));

@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
-import { AppshellManifest, Metadata } from './types';
+import { Metadata } from './types';
+import { merge } from './utils';
 import loadJson from './utils/loadJson';
+import { appshell_metadata } from './validators';
 
 export default async <T = Record<string, Metadata>>(registries: string[]): Promise<T> => {
   if (registries.length < 1) {
@@ -9,24 +11,14 @@ export default async <T = Record<string, Metadata>>(registries: string[]): Promi
   }
 
   try {
-    const manifests = await Promise.all(registries.map(loadJson<AppshellManifest>)).then((items) =>
-      items.flat(),
-    );
-
+    const metadata = await Promise.all(
+      registries.map((reg) => loadJson<T>(reg, /(.metadata.json)/i)),
+    ).then((items) => items.flat());
     console.log(
-      `Generating metadata from ${manifests.length} manifest${manifests.length === 1 ? '' : 's'}`,
+      `Generating metadata from ${metadata.length} source${metadata.length === 1 ? '' : 's'}`,
     );
 
-    return manifests.reduce((entries, manifest) => {
-      const res = Object.entries(manifest.remotes).reduce((acc, [key, val]) => {
-        // todo: fix type
-        (acc as any)[key] = val.metadata;
-
-        return acc;
-      }, entries);
-
-      return res;
-    }, {} as T);
+    return merge(appshell_metadata, ...metadata) as T;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
