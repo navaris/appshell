@@ -13,7 +13,7 @@ export default async <T = Record<string, Metadata>>(registries: string[]): Promi
   try {
     const metadata = await Promise.all(
       registries.map((reg) => {
-        const registry = isValidUrl(reg) ? `${reg}/appshell.index.json` : reg;
+        const registry = isValidUrl(reg) ? `${reg}/appshell.metadata.json` : reg;
         return loadJson<T>(registry, /(.metadata.json)/i);
       }),
     ).then((items) => items.flat());
