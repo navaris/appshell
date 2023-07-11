@@ -11,7 +11,7 @@
 
 # @appshell/loader
 
-Dynamically load federated components for Webpack Module federation micro-frontends.
+Dynamically load federated components for micro-frontends built with Appshell and Webpack Module federation.
 
 Working examples can be found [here](https://github.com/navaris/appshell/tree/main/examples).
 
@@ -40,19 +40,19 @@ The default export from this package is the loader function. It is given a manif
 ```ts
 import componentLoader from '@appshell/loader';
 
-const load = componentLoader(manifest);
+const load = componentLoader(index);
 
 const Component = load<MyComponent>('MyModule/MyComponent');
 
 render(<Component />);
 ```
 
-**Where does the manifest come from?**
+**Where does the index come from?**
 
 > See [@appshell/cli](https://www.npmjs.com/package/@appshell/cli)
 
 ```bash
-appshell generate manifest --template dist/appshell.config.json
+appshell generate index --manifest dist/appshell.manifest.json
 ```
 
 **Do you have any framework specific loaders?**

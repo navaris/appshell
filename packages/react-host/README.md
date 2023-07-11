@@ -11,11 +11,11 @@
 
 # @appshell/react-host
 
-Appshell React host for Webpack Module federation micro-frontends.
+Appshell React host for building micro-frontends with Appshell and Webpack Module federation.
 
 Working examples can be found [here](https://github.com/navaris/appshell/tree/main/examples).
 
-`@appshell/react-host` is intended to be run as a docker container that dynamically loads your micro-frontends.
+`@appshell/react-host` is published as a docker image and dynamically loads your micro-frontends.
 
 ## Getting started
 

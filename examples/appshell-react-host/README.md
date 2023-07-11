@@ -15,19 +15,21 @@ Consists of 3 micro-frontends, each is configured with `@appshell/manifest-webpa
 
 ## Build time
 
-At build time, each `AppshellManifestPlugin` emits an appshell manifest template to `CONFIGS_DIR` (Defaults to dist).
+At build time, each `AppshellManifestPlugin` emits an appshell manifest template to the build directory.
 
 ## Runtime
 
-At runtime or deployment, `@appshell/cli` processes `CONFIGS_DIR` to generate an `appshell manifest` and registers it to `APPSHELL_REGISTRY`. The appshell react host `@appshell/react-host` operates on the contents of the `APPSHELL_REGISTRY` and produces a `global appshell manifest` that is served up to the application at runtime.
+At runtime, the manifest template `dist/appshell.config.json` is processed to generate an `appshell manifest`, which has runtime environment variables injected. The manifest is subsequently registered to `APPSHELL_REGISTRY` where it is made available to the appshell host.
+
+The appshell host `@appshell/react-host` produces a `global appshell registry index` that is served up to the application at runtime.
 
 ## Metadata
 
-Since you can associate any kind of metadata with each federated module (via `appshell.config.yaml`), you can use the `global runtime manifest` to configure your appshell by supplying routing information, rendering details, etc.
+You can associate any kind of metadata with each remote module (via `appshell.config.yaml`) and use the metadata to configure your appshell by supplying routing information, rendering details, etc.
 
 ## Consuming federated components
 
-Uses `FederatedComponent` from `@appshell/react` to dynamically load remote frontends. It uses the remote key to lookup the runtime info for that particular federated component.
+Use `FederatedComponent` from `@appshell/react` to dynamically load remote frontends. It uses the remote key to lookup the runtime info for that particular federated component.
 
 ```typescript
 <Grid>

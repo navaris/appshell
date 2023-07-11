@@ -11,9 +11,11 @@
 
 # @appshell/config
 
-Utitliy for generating a `global appshell manifest` for Webpack Module federation micro-frontends.
+Utitliy to generate appshell configuration for building micro-frontends with Appshell and Webpack Module federation.
 
 Working examples can be found [here](https://github.com/navaris/appshell/tree/main/examples).
+
+**Note: This package is no longer published, and it's recommended to use the [@appshell/cli](https://www.npmjs.com/package/@appshell/cli) instead.**
 
 ## Getting Started
 
@@ -98,7 +100,7 @@ Sample content from CONFIGS_DIR:
 
 > **Note** the `environment` section defines runtime environment variables that are injected into the global namesapce `window.__appshell_env__[module_name]` when a federated component is loaded. See the examples for a use case.
 
-Sample global appshell manifest produced by the `generate` function:
+Sample appshell manifest produced by the `generateManifest` function:
 
 ```json
 {
@@ -191,7 +193,7 @@ Sample global appshell manifest produced by the `generate` function:
 }
 ```
 
-This `global appshell manifest` is consumed by your micro-frontend Appshell host and used to configure the Appshell accordingly.
+This `appshell manifest` is registered with `APPSHELL_REGISTRY` consumed by the appshell host.
 
 **What if I want to generate the manifest by a startup script instead?**
 

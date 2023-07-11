@@ -11,7 +11,7 @@
 
 # @appshell/manifest-webpack-plugin
 
-Emits appshell manifest template used to generate a `global appshell manifest` for building micro-frontends with Webpack Module Federation and Appshell.
+Emits an appshell manifest template for building micro-frontends with Appshell and Webpack Module Federation. The appshell manifest template is subseqently processed to generate an `appshell manifest`.
 
 Working examples can be found [here](https://github.com/navaris/appshell/tree/main/examples).
 
@@ -53,7 +53,7 @@ module.exports = {
 
 **What is appshell.config.yaml?**
 
-> A configuration file consumed by the plugin to provide additional information to the Appshell host about remote entrypoints, routing, display names, etc.
+> A configuration file consumed by the plugin to provide additional information and context to the Appshell host about remote entrypoints, routing, display names, etc.
 
 Sample appshell.config.yaml
 
@@ -98,7 +98,7 @@ environment:
 
 **What happens at build time?**
 
-> The plugin emits files that are subsequently used to generate the `global appshell manifest` at runtime.
+> The plugin emits a manifest template file that is subsequently used to generate the `appshell manifest` at runtime.
 
 ## Sample output
 
@@ -137,7 +137,7 @@ environment:
 }
 ```
 
-**How do I generate the global runtime manifest?**
+**How do I generate the appshell manifest?**
 
 > Use [@appshell/cli](https://www.npmjs.com/package/@appshell/config) in a startup script:
 
@@ -145,17 +145,7 @@ environment:
 appshell generate manifest --template appshell.config.json
 ```
 
-**What if I want to generate the global runtime manifest programmatically?**
-
-> Use the `generate` function found in [@appshell/config](https://www.npmjs.com/package/@appshell/config).
-
-```ts
-import { generate } from '@appshell/config';
-
-const manifest = generate<MyMetadata>(process.env.CONFIGS_DIR);
-```
-
-Sample `global appshell manifest`:
+Sample `appshell manifest`:
 
 ```json
 {
@@ -263,7 +253,6 @@ module.exports = {
   plugins: [
     new AppshellManifestPlugin({
       config: './path/to/appshell.config.yaml',
-      configsDir: '<root>/appshell_configs',
     }),
   ],
 };
@@ -272,7 +261,6 @@ module.exports = {
 ### `Options`
 
 - [`config`](#config)
-- [`configsDir`](#configsDir)
 
 #### `config`
 
@@ -285,18 +273,6 @@ type config = string;
 Default: `appshell.config.yaml`
 
 Location of the `appshell.config.yaml` file.
-
-#### `configsDir`
-
-Type:
-
-```ts
-type configsDir = string;
-```
-
-Default: `<output-dir>/appshell_configs`
-
-Location where the plugin will emit the module configurations. The `appshell manifest` will be generated based on the contents of this directory.
 
 ## License
 
