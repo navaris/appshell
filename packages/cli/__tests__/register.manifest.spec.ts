@@ -12,7 +12,7 @@ describe('register.manifest', () => {
     console.log('todo: figure out why this test fails without this console statement');
     const existsSyncSpy = jest.spyOn(fs, 'existsSync').mockImplementation(() => true);
     const readFileSyncSpy = jest.spyOn(fs, 'readFileSync').mockImplementation(() => '""');
-    const registerSpy = jest.spyOn(config, 'register').mockImplementation(() => {});
+    const registerSpy = jest.spyOn(config, 'register').mockImplementation(() => Promise.resolve());
     const registry = 'path/to/registry';
     const manifests = [
       'assets/appshell1.manifest.json',
@@ -30,7 +30,7 @@ describe('register.manifest', () => {
   });
 
   it('should reject when manifest does not exist', async () => {
-    const registerSpy = jest.spyOn(config, 'register').mockImplementation(() => {});
+    const registerSpy = jest.spyOn(config, 'register').mockImplementation(() => Promise.resolve());
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
 
     const registry = 'path/to/registry';

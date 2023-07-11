@@ -9,6 +9,7 @@ describe('generate.env', () => {
   const outDir = path.resolve('packages/cli/__tests__/assets/temp');
   const outFile = 'runtime.env.js';
   const globalName = 'appshell_env';
+  const overwrite = true;
 
   afterEach(() => {
     rimrafSync(outDir);
@@ -21,6 +22,7 @@ describe('generate.env', () => {
       outDir,
       outFile,
       globalName,
+      overwrite,
     });
     const actual = fs.readFileSync(path.join(outDir, outFile));
 
@@ -30,10 +32,11 @@ describe('generate.env', () => {
   it('should capture only prefixed environment vars when prefix is supplied', async () => {
     await generateEnvHandler({
       env,
-      prefix: 'APPSHELL_',
+      prefix: 'TEST_',
       outDir,
       outFile,
       globalName,
+      overwrite,
     });
     const actual = fs.readFileSync(path.join(outDir, outFile));
 
@@ -48,6 +51,7 @@ describe('generate.env', () => {
       outDir: testPath,
       outFile,
       globalName,
+      overwrite,
     });
     const actual = fs.readFileSync(path.join(testPath, outFile));
 
@@ -62,6 +66,7 @@ describe('generate.env', () => {
       outDir,
       outFile: filename,
       globalName,
+      overwrite,
     });
     const actual = fs.readFileSync(path.join(outDir, filename));
 
@@ -76,6 +81,7 @@ describe('generate.env', () => {
       outDir,
       outFile,
       globalName: testGlobalName,
+      overwrite,
     });
     const actual = fs.readFileSync(path.join(outDir, outFile));
 
@@ -90,6 +96,7 @@ describe('generate.env', () => {
         outDir,
         outFile: 'runtime.env.js',
         globalName,
+        overwrite,
       }),
     ).rejects.toThrow();
   });

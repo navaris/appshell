@@ -35,9 +35,7 @@ RUN yarn --pure-lockfile
 ### BUILD
 FROM dependencies as build
 # Validate the build
-# todo: add yarn test:ci
-RUN yarn lint && yarn build
-
+RUN yarn lint && yarn test:ci && yarn build
 
 ### RELEASE
 FROM base AS production

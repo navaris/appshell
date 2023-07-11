@@ -9,13 +9,14 @@ declare global {
   }
 }
 
-Object.defineProperty(window, '__appshell_env__', {
-  value: {
+jest.mock('@appshell/core', () => ({
+  APPSHELL_ENV: {
     APPSHELL_ROOT: 'TestModule/TestComponent',
     APPSHELL_THEME_COLOR: '#000000',
     APPSHELL_PRIMARY_COLOR: 'orangered',
   },
-});
+}));
+
 describe('Splash', () => {
   let Splash;
 
@@ -25,8 +26,8 @@ describe('Splash', () => {
   });
 
   it('should match snapshot', () => {
-    const view = render(<Splash />);
+    const { container } = render(<Splash />);
 
-    expect(view).toMatchSnapshot();
+    expect(container).toMatchSnapshot();
   });
 });

@@ -7,19 +7,19 @@ describe('generate.runtime', () => {
     const environment = await generateEnv(env);
 
     expect(Object.fromEntries(environment)).toStrictEqual({
-      APPSHELL_REGISTRY: 'packages/cli/__tests__/assets/appshell_registry',
-      APPSHELL_ROOT: 'TestModule/Workspace',
+      REGISTRY: 'packages/cli/__tests__/assets/appshell_registry',
+      ROOT: 'TestModule/Workspace',
       TEST_ENV_FOO: 'foo',
       TEST_ENV_BAR: 'bar',
     });
   });
 
   it('should capture only prefixed environment vars when prefix is supplied', async () => {
-    const environment = await generateEnv(env, 'APPSHELL_');
+    const environment = await generateEnv(env, 'TEST_');
 
     expect(Object.fromEntries(environment)).toStrictEqual({
-      APPSHELL_REGISTRY: 'packages/cli/__tests__/assets/appshell_registry',
-      APPSHELL_ROOT: 'TestModule/Workspace',
+      TEST_ENV_FOO: 'foo',
+      TEST_ENV_BAR: 'bar',
     });
   });
 
