@@ -37,9 +37,8 @@ jobs:
       - name: Lint
         run: yarn lint
 
-      # todo: re-enable tests
-      # - name: Test
-      #   run: yarn test:ci
+      - name: Test
+        run: yarn test:ci
 
       - name: Build
         run: yarn build
