@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/navaris/appshell/compare/@appshell/loader@0.1.0-alpha.1...@appshell/loader@0.1.0) (2023-07-11)
+
+
+### Bug Fixes
+
+* registry projection, enable env overwrite, refactor docker workflow, consolidate env names ([33a28fe](https://github.com/navaris/appshell/commit/33a28fe76b58e05c5b6b6b33d4b402e52bb29e70))
+* rename @appshell/react-federated-component package to @appshell/react ([0b74498](https://github.com/navaris/appshell/commit/0b74498bf17ba73db4d936c8a012af1d3b111a28))
+* replace config intermediate file with template ([9b79e65](https://github.com/navaris/appshell/commit/9b79e65b355686a0cca273c89c7164bb031e8437))
+
+
+
+
+
 # [0.1.0-alpha.1](https://github.com/navaris/appshell/compare/@appshell/loader@0.0.3...@appshell/loader@0.1.0-alpha.1) (2023-07-05)
 
 

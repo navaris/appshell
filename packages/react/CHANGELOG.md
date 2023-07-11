@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0](https://github.com/navaris/appshell/compare/@appshell/react@0.1.0-alpha.6...@appshell/react@0.1.0) (2023-07-11)
+
+**Note:** Version bump only for package @appshell/react
+
+
+
+
+
 # 0.1.0-alpha.6 (2023-07-10)
 
 

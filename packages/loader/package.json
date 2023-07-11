@@ -1,6 +1,6 @@
 {
   "name": "@appshell/loader",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0",
   "description": "Utility for loading federated components",
   "main": "dist/main.js",
   "types": "dist/loader/src/index.d.ts",

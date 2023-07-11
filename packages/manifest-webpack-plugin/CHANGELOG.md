@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/navaris/appshell/compare/@appshell/manifest-webpack-plugin@0.2.0-alpha.2...@appshell/manifest-webpack-plugin@0.2.0) (2023-07-11)
+
+
+### Bug Fixes
+
+* registry projection, enable env overwrite, refactor docker workflow, consolidate env names ([33a28fe](https://github.com/navaris/appshell/commit/33a28fe76b58e05c5b6b6b33d4b402e52bb29e70))
+* replace config intermediate file with template ([9b79e65](https://github.com/navaris/appshell/commit/9b79e65b355686a0cca273c89c7164bb031e8437))
+
+
+
+
+
 # [0.2.0-alpha.2](https://github.com/navaris/appshell/compare/@appshell/manifest-webpack-plugin@0.2.0-alpha.1...@appshell/manifest-webpack-plugin@0.2.0-alpha.2) (2023-07-06)
 
 

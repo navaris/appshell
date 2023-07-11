@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/navaris/appshell/compare/@appshell/config@0.3.0-alpha.7...@appshell/config@0.3.0) (2023-07-11)
+
+
+### Bug Fixes
+
+* reenable unit tests ([c00f581](https://github.com/navaris/appshell/commit/c00f581b2d71778378729f3bc42a4f5a1c0afe04))
+
+
+
+
+
 # [0.3.0-alpha.7](https://github.com/navaris/appshell/compare/@appshell/config@0.3.0-alpha.6...@appshell/config@0.3.0-alpha.7) (2023-07-10)
 
 

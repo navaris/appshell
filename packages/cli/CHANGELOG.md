@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0](https://github.com/navaris/appshell/compare/@appshell/cli@0.3.0-alpha.5...@appshell/cli@0.3.0) (2023-07-11)
+
+
+### Bug Fixes
+
+* reenable unit tests ([c00f581](https://github.com/navaris/appshell/commit/c00f581b2d71778378729f3bc42a4f5a1c0afe04))
+
+
+
+
+
 # [0.3.0-alpha.5](https://github.com/navaris/appshell/compare/@appshell/cli@0.3.0-alpha.4...@appshell/cli@0.3.0-alpha.5) (2023-07-10)
 
 
