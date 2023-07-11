@@ -1,9 +1,0 @@
-remotes:
-  CraModule/App:
-    url: ${CRA_MFE_URL}
-    metadata:
-      route: /cra
-      displayName: Example App
-      displayGroup: main
-      order: 10
-      icon: ViewList

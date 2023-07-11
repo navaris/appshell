@@ -23,7 +23,7 @@ RUN yarn build
 FROM build AS development
 
 # Environment
-ENV APPSHELL_CONFIGS_DIR=${APPSHELL_CONFIGS_DIR:-'/appshell/appshell_configs'}
+ENV APPSHELL_REGISTRY=${APPSHELL_REGISTRY:-'/appshell/appshell_registry'}
 ENV CONTAINER_COMMAND=${CONTAINER_COMMAND:-'yarn serve'}
 
 ENV SAMPLE_MFE_CONTAINER_PORT=${SAMPLE_MFE_CONTAINER_PORT:-3000}

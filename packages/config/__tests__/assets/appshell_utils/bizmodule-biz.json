@@ -2,7 +2,8 @@
   "remotes": {
     "BizModule/Biz": {
       "id": "BizModule/Biz",
-      "url": "http://localhost:4040/remoteEntry.js",
+      "manifestUrl": "http://localhost:4040/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:4040/remoteEntry.js",
       "scope": "BizModule",
       "module": "./Biz",
       "metadata": {
@@ -14,8 +15,14 @@
       }
     }
   },
+  "environment": {
+    "biz_module": {
+      "RUNTIME_ENV": "Biz env",
+      "RUNTIME_ENV_VERSION": "Biz version"
+    }
+  },
   "modules": {
-    "TestModule": {
+    "BizModule": {
       "exposes": {
         "./Foo": "./src/Entry1",
         "./Bar": "./src/Entry2"
@@ -25,7 +32,7 @@
         "name": "some shared lib",
         "type": "umd"
       },
-      "name": "TestModule",
+      "name": "BizModule",
       "remotes": {
         "./Remote1": {
           "external": "external module",

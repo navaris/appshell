@@ -44,4 +44,12 @@ module.exports = {
     ],
   },
   plugins: [new webpack.BannerPlugin({ banner: '#!/usr/bin/env node', raw: true })],
+  externals: {
+    webpack: {
+      commonjs: 'webpack',
+      commonjs2: 'webpack',
+      amd: 'webpack',
+      root: 'Webpack',
+    },
+  },
 };

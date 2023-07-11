@@ -3,6 +3,7 @@
     "FooModule/Bing": {
       "id": "FooModule/Bing",
       "url": "${APPS_TEST_URL}",
+      "filename": "remoteEntry.js",
       "metadata": {
         "route": "/foo",
         "displayName": "Foo App",
@@ -10,6 +11,12 @@
         "order": 10,
         "icon": "ViewList"
       }
+    }
+  },
+  "environment": {
+    "foo_module": {
+      "RUNTIME_ENV": "${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "${RUNTIME_ENV_VERSION}"
     }
   },
   "module": {

@@ -1,8 +1,9 @@
 {
   "remotes": {
-    "TestModule/Foo": {
+    "TestModuleC/Foo": {
       "id": "TestModule/Foo",
-      "url": "http://localhost:8080/foo_c/remoteEntry.js",
+      "manifestUrl": "http://localhost:8080/foo_c/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:8080/foo_c/remoteEntry.js",
       "metadata": {
         "route": "/foo_c",
         "displayName": "Foo App",
@@ -12,8 +13,14 @@
       }
     }
   },
+  "environment": {
+    "test_module_c": {
+      "RUNTIME_ENV": "C env",
+      "RUNTIME_ENV_VERSION": "C version"
+    }
+  },
   "modules": {
-    "TestModule": {
+    "TestModuleC": {
       "exposes": {
         "./Foo": "./src/Entry1",
         "./Bang": "./src/Entry3"

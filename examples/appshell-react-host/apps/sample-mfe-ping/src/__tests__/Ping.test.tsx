@@ -1,4 +1,4 @@
-import { ManifestProvider } from '@appshell/react-federated-component';
+import { ManifestProvider } from '@appshell/react';
 import { render } from '@testing-library/react';
 import React from 'react';
 import Ping from '../Ping';

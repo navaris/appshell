@@ -2,6 +2,10 @@
 
 exports[`mapping configurations to domain objects should match snapshot 1`] = `
 {
+  "environment": {
+    "RUNTIME_ENV": "development",
+    "RUNTIME_ENV_VERSION": "1.0.0",
+  },
   "modules": {
     "TestModule": {
       "exposes": {
@@ -38,6 +42,7 @@ exports[`mapping configurations to domain objects should match snapshot 1`] = `
   "remotes": {
     "BizModule/Biz": {
       "id": "BizModule/Biz",
+      "manifestUrl": "http://localhost:4040/appshell.manifest.json",
       "metadata": {
         "displayGroup": "auxiliary",
         "displayName": "Biz App",
@@ -46,12 +51,13 @@ exports[`mapping configurations to domain objects should match snapshot 1`] = `
         "route": "/biz",
       },
       "module": "./Biz",
+      "remoteEntryUrl": "http://localhost:4040/remoteEntry.js",
       "scope": "BizModule",
       "shareScope": "@sharedscope",
-      "url": "http://localhost:4040/remoteEntry.js",
     },
     "TestModule/Bar": {
       "id": "TestModule/Bar",
+      "manifestUrl": "http://remote-endpoint.com/appshell.manifest.json",
       "metadata": {
         "displayGroup": "main",
         "displayName": "Bar App",
@@ -60,12 +66,13 @@ exports[`mapping configurations to domain objects should match snapshot 1`] = `
         "route": "/bar",
       },
       "module": "./Bar",
+      "remoteEntryUrl": "http://remote-endpoint.com/remoteEntry.js",
       "scope": "TestModule",
       "shareScope": "@sharedscope",
-      "url": "http://remote-endpoint.com/remoteEntry.js",
     },
     "TestModule/Foo": {
       "id": "TestModule/Foo",
+      "manifestUrl": "http://remote-endpoint.com/appshell.manifest.json",
       "metadata": {
         "displayGroup": "main",
         "displayName": "Foo App",
@@ -74,9 +81,9 @@ exports[`mapping configurations to domain objects should match snapshot 1`] = `
         "route": "/foo",
       },
       "module": "./Foo",
+      "remoteEntryUrl": "http://remote-endpoint.com/remoteEntry.js",
       "scope": "TestModule",
       "shareScope": "@sharedscope",
-      "url": "http://remote-endpoint.com",
     },
   },
 }

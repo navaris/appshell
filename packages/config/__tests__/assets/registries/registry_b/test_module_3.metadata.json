@@ -1,0 +1,10 @@
+{
+  "TestModule3/ComponentA": {
+    "argA": "valA",
+    "argB": "valB"
+  },
+  "TestModule3/ComponentB": {
+    "argC": "valC",
+    "argD": "valD"
+  }
+}

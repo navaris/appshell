@@ -3,4 +3,5 @@ build
 coverage
 node_modules
 appshell_configs
+appshell_registry
 appshell.manifest.json

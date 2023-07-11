@@ -1,7 +1,8 @@
 {
   "remotes": {
     "TestModule/Foo": {
-      "url": "${APPS_TEST_URL}/remoteEntry.js",
+      "url": "${APPS_TEST_URL}",
+      "filename": "remoteEntry.js",
       "metadata": {
         "route": "/foo",
         "displayName": "Foo App",
@@ -12,7 +13,8 @@
       "id": "4278464b"
     },
     "TestModule/Bar": {
-      "url": "${APPS_TEST_URL}/remoteEntry.js",
+      "url": "${APPS_TEST_URL}",
+      "filename": "remoteEntry.js",
       "metadata": {
         "route": "/bar",
         "displayName": "Bar App",
@@ -23,7 +25,8 @@
       "id": "42783598"
     },
     "BizModule/Biz": {
-      "url": "http://localhost:4040/remoteEntry.js",
+      "url": "http://localhost:4040",
+      "filename": "remoteEntry.js",
       "metadata": {
         "route": "/biz",
         "displayName": "Biz App",
@@ -32,6 +35,12 @@
         "icon": "ViewList"
       },
       "id": "373793ed"
+    }
+  },
+  "environment": {
+    "TestModule": {
+      "RUNTIME_ENV": "${RUNTIME_ENV}",
+      "RUNTIME_ENV_VERSION": "${RUNTIME_ENV_VERSION}"
     }
   },
   "module": {
@@ -64,5 +73,6 @@
       }
     },
     "shareScope": "@sharedscope"
-  }
+  },
+  "name": "TestModule"
 }

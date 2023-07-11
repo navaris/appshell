@@ -1,8 +1,9 @@
 {
   "remotes": {
-    "TestModule/Bar": {
+    "TestModuleBar/Bar": {
       "id": "TestModule/Bar",
-      "url": "${APPS_TEST_URL}",
+      "manifestUrl": "http://localhost:4040/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:4040/remoteEntry.js",
       "scope": "TestModule",
       "module": "./Bar",
       "metadata": {
@@ -14,8 +15,14 @@
       }
     }
   },
+  "environment": {
+    "test_module_bar": {
+      "RUNTIME_ENV": "Test env",
+      "RUNTIME_ENV_VERSION": "Test version"
+    }
+  },
   "modules": {
-    "TestModule": {
+    "TestModuleBar": {
       "exposes": {
         "./Foo": "./src/Entry1",
         "./Bar": "./src/Entry2"
@@ -25,7 +32,7 @@
         "name": "some shared lib",
         "type": "umd"
       },
-      "name": "TestModule",
+      "name": "TestModuleBar",
       "remotes": {
         "./Remote1": {
           "external": "external module",

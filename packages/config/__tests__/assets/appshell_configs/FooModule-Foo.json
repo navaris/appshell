@@ -3,6 +3,7 @@
     "FooModule/Foo": {
       "id": "FooModule/Foo",
       "url": "${APPS_TEST_URL}",
+      "filename": "remoteEntry.js",
       "metadata": {
         "route": "/foo",
         "displayName": "Foo App",
@@ -12,6 +13,7 @@
       }
     }
   },
+  "environment": {},
   "module": {
     "exposes": {
       "./Foo": "./src/Entry1"

@@ -1,6 +1,7 @@
 remotes:
   PongModule/Pong:
     url: ${SAMPLE_MFE_PONG_URL}
+    filename: ${REMOTE_ENTRY_PATH}
     metadata:
       route: /pong
       displayName: Pong Micro-Frontend
@@ -10,6 +11,7 @@ remotes:
 
   PongModule/CoolComponent:
     url: ${SAMPLE_MFE_PONG_URL}
+    filename: ${REMOTE_ENTRY_PATH}
     metadata:
       route: /cool
       displayName: Cool Shared Component

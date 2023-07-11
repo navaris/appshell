@@ -1,32 +1,33 @@
 /* eslint-disable no-console */
-import { generate } from '@appshell/config';
+import { generateManifest } from '@appshell/config';
 import fs from 'fs';
 import path from 'path';
 
 export type GenerateManifestArgs = {
-  configsDir: string;
-  depth: number;
+  template: string;
   outDir: string;
   outFile: string;
 };
 
-export default (argv: GenerateManifestArgs) => {
-  const { configsDir, depth, outDir, outFile } = argv;
+export default async (argv: GenerateManifestArgs) => {
+  const { template, outDir, outFile } = argv;
 
   try {
     console.log(
-      `generating manifest --configsDir=${configsDir} --outDir=${outDir} --outFile=${outFile}`,
+      `generating manifest --template=${template} --out-dir=${outDir} --out-file=${outFile}`,
     );
 
-    if (!fs.existsSync(configsDir)) {
-      console.log(`configsDir not found '${configsDir}'. skipping manifest generation.`);
+    if (!fs.existsSync(template)) {
+      console.log(`template not found '${template}'. skipping manifest generation.`);
     } else {
-      const config = generate(configsDir, depth);
+      const manifest = await generateManifest(template);
 
-      if (!fs.existsSync(outDir)) {
-        fs.mkdirSync(outDir);
+      if (manifest) {
+        if (!fs.existsSync(outDir)) {
+          fs.mkdirSync(outDir);
+        }
+        fs.writeFileSync(path.join(outDir, outFile), JSON.stringify(manifest));
       }
-      fs.writeFileSync(path.join(outDir, outFile), JSON.stringify(config));
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {

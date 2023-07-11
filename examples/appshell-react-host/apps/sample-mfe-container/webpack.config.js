@@ -22,6 +22,9 @@ module.exports = (env, { mode }) => {
       },
       static: {
         directory: path.join(__dirname, 'dist'),
+        watch: {
+          ignored: [/node_modules/, /dist/],
+        },
       },
       port: process.env.SAMPLE_MFE_CONTAINER_PORT,
     },
@@ -64,13 +67,12 @@ module.exports = (env, { mode }) => {
       ],
     },
     plugins: [
-      isDevelopment && new ReactRefreshWebpackPlugin(),
       new container.ModuleFederationPlugin({
         name: 'ContainerModule',
         exposes: {
           './Container': './src/Container',
         },
-        filename: 'remoteEntry.js',
+        filename: process.env.REMOTE_ENTRY_PATH,
         shared: {
           react: {
             singleton: true,
@@ -88,15 +90,14 @@ module.exports = (env, { mode }) => {
             singleton: true,
             requiredVersion: dependencies['styled-components'],
           },
-          '@appshell/react-federated-component': {
+          '@appshell/react': {
             singleton: true,
-            requiredVersion: dependencies['@appshell/react-federated-component'],
+            requiredVersion: dependencies['@appshell/react'],
           },
         },
       }),
-      new AppshellManifestPlugin({
-        configsDir: process.env.CONFIGS_DIR,
-      }),
+      new AppshellManifestPlugin(),
+      isDevelopment && new ReactRefreshWebpackPlugin(),
       isDevelopment && new ReactRefreshSingleton(),
     ].filter(Boolean),
   };

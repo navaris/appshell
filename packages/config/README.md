@@ -11,9 +11,11 @@
 
 # @appshell/config
 
-Utitliy for generating a `global runtime manifest` for Webpack Module federation micro-frontends.
+Utitliy to generate appshell configuration for building micro-frontends with Appshell and Webpack Module federation.
 
 Working examples can be found [here](https://github.com/navaris/appshell/tree/main/examples).
+
+**Note: This package is no longer published, and it's recommended to use the [@appshell/cli](https://www.npmjs.com/package/@appshell/cli) instead.**
 
 ## Getting Started
 
@@ -35,21 +37,23 @@ or
 pnpm add -D @appshell/config
 ```
 
-The primary export from this package is the `generate` function. It is given a configs dir to process and produces a global runtime manifest.
+## Functions
+
+### `generateManifest`
+
+The `generateManifest` function is given a configs dir to process and produces a merged appshell manifest.
 
 ```ts
-import { generate } from '@appshell/config';
+import { generateManifest } from '@appshell/config';
 
-const manifest = generate<MyMetadata>(process.env.APPSHELL_CONFIGS_DIR);
+const manifest = generateManifest<MyMetadata>(process.env.CONFIGS_DIR);
 ```
 
-![Sample APPSHELL_CONFIGS_DIR](https://github.com/navaris/appshell/blob/main/assets/docs/appshell_configs_dir.png 'APPSHELL_CONFIGS_DIR')
-
-**Where does the content of APPSHELL_CONFIGS_DIR come from?**
+**Where does the content of CONFIGS_DIR come from?**
 
 > Each micro-frontend configured to use [@appshell/manifest-webpack-plugin](https://www.npmjs.com/package/@appshell/manifest-webpack-plugin) emits it's configuration to the configs directory at build time, which is subsequently processed with this utility to reflect the current runtime environment.
 
-Sample content from APPSHELL_CONFIGS_DIR:
+Sample content from CONFIGS_DIR:
 
 ```json
 {
@@ -82,15 +86,21 @@ Sample content from APPSHELL_CONFIGS_DIR:
         "requiredVersion": "^18.2.0"
       }
     }
+  },
+  "environment": {
+    "RUNTIME_ARG_1": "${RUNTIME_ARG_1}",
+    "RUNTIME_ARG_2": "${RUNTIME_ARG_2}"
   }
 }
 ```
 
-**How does my runtime environment get reflected in the global runtime manifest?**
+**How does my runtime environment get reflected in the global appshell manifest?**
 
-> Note the variable expansion syntax `${CRA_MFE_URL}`. When `generate` is called the actual runtime environment values are injected and all configurations are merged into a global runtime manifest.
+> Note the variable expansion syntax `${CRA_MFE_URL}`. When `generateManifest` is called the actual runtime environment values are injected and an appshell manifest is emitted.
 
-Sample global runtime manifest produced by the `generate` function:
+> **Note** the `environment` section defines runtime environment variables that are injected into the global namesapce `window.__appshell_env__[module_name]` when a federated component is loaded. See the examples for a use case.
+
+Sample appshell manifest produced by the `generateManifest` function:
 
 ```json
 {
@@ -170,12 +180,21 @@ Sample global runtime manifest produced by the `generate` function:
         }
       }
     }
+  },
+  "environment": {
+    "CraModule": {
+      "RUNTIME_ARG_1": "Foo",
+      "RUNTIME_ARG_2": "Biz"
+    },
+    "VanillaModule": {
+      "RUNTIME_ARG_1": "Bar"
+    }
   }
 }
 ```
 
-This `global runtime manifest` can be consumed by your micro-frontend Appshell host and used to configure the Appshell accordingly.
+This `appshell manifest` is registered with `APPSHELL_REGISTRY` consumed by the appshell host.
 
 **What if I want to generate the manifest by a startup script instead?**
 
-> This functionality is exposed by the [@appshell/cli](https://www.npmjs.com/package/@appshell/cli) package. You can simply call `appshell generate manifest --configsDir /path/to/appshell_configs` to produce the global runtime manifest on startup.
+> This functionality is exposed by the [@appshell/cli](https://www.npmjs.com/package/@appshell/cli) package. You can simply call `appshell generate manifest --template /path/to/appshell.config.json` to produce the runtime manifest on startup.

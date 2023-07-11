@@ -3,6 +3,7 @@
     "TestModule/Foo": {
       "id": "TestModule/Foo",
       "url": "${APPS_TEST_URL}",
+      "filename": "remoteEntry.js",
       "metadata": {
         "route": "/foo",
         "displayName": "Foo App",
@@ -13,7 +14,8 @@
     },
     "TestModule/Bar": {
       "id": "TestModule/Bar",
-      "url": "${APPS_TEST_URL}/${APPS_TEST_REMOTE_ENTRY_PATH}",
+      "url": "${APPS_TEST_URL}",
+      "filename": "${APPS_TEST_REMOTE_ENTRY_PATH}",
       "metadata": {
         "route": "/bar",
         "displayName": "Bar App",
@@ -24,7 +26,8 @@
     },
     "BizModule/Biz": {
       "id": "BizModule/Biz",
-      "url": "http://localhost:4040/remoteEntry.js",
+      "url": "http://localhost:4040",
+      "filename": "remoteEntry.js",
       "metadata": {
         "route": "/biz",
         "displayName": "Biz App",
@@ -64,5 +67,9 @@
       }
     },
     "shareScope": "@sharedscope"
+  },
+  "environment": {
+    "RUNTIME_ENV": "${RUNTIME_ENV}",
+    "RUNTIME_ENV_VERSION": "${RUNTIME_ENV_VERSION}"
   }
 }

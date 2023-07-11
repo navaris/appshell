@@ -3,7 +3,7 @@ services:
     profiles:
       - host
     # image: appshell/react-host:latest # production image (no hot module replacement support)
-    image: appshell/react-host-developer:latest
+    image: appshell/react-host:developer
     env_file: './${ENV_TARGET}.env'
     deploy:
       mode: replicated
@@ -12,7 +12,7 @@ services:
       - ${APPSHELL_PORT}:${APPSHELL_PORT}
     volumes:
       - ./${ENV_TARGET}.env/:/appshell/${ENV_TARGET}.env
-      - ./appshell_configs:/appshell/appshell_configs
+      - ./appshell_registry:/appshell/appshell_registry
 
   appshell-sample-mfe-apps:
     profiles:
@@ -30,4 +30,4 @@ services:
       - ${SAMPLE_MFE_PONG_PORT}:${SAMPLE_MFE_PONG_PORT}
     volumes:
       - ./${ENV_TARGET}.env/:/appshell/${ENV_TARGET}.env
-      - ./appshell_configs:/appshell/appshell_configs
+      - ./appshell_registry:/appshell/appshell_registry

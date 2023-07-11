@@ -11,6 +11,7 @@ import manifestB from './assets/appshell_manifests/test_b.manifest.json';
 import manifestC from './assets/appshell_manifests/test_c.manifest.json';
 import manifestD from './assets/appshell_manifests/test_d.manifest.json';
 import bizManifest from './assets/appshell_utils/bizmodule-biz.json';
+import environmentCollisions from './assets/appshell_utils/environment-collisions.json';
 import remoteCollisions from './assets/appshell_utils/remote-collisions.json';
 import barManifest from './assets/appshell_utils/testmodule-bar.json';
 import fooManifest from './assets/appshell_utils/testmodule-foo.json';
@@ -166,6 +167,12 @@ describe('utils', () => {
         expect(() =>
           merge<AppshellManifest>(validator, fooManifest, barManifest, remoteCollisions),
         ).toThrow('Multiple remotes with the same key');
+      });
+
+      test('should reject configurations with environment collisions', () => {
+        expect(() =>
+          merge<AppshellManifest>(validator, fooManifest, barManifest, environmentCollisions),
+        ).toThrow('Multiple environments with the same key');
       });
     });
   });

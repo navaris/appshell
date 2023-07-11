@@ -1,71 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generate should generate an appshell manifest from a collection of app manifests 1`] = `
+exports[`generate index should handle a directory 1`] = `
 {
+  "ContainerModule/Container": "http://localhost:30001/appshell.manifest.json",
+  "PingModule/Ping": "http://localhost:30011/appshell.manifest.json",
+  "PongModule/CoolComponent": "http://localhost:30021/appshell.manifest.json",
+  "PongModule/Pong": "http://localhost:30021/appshell.manifest.json",
+  "TestModule1/Component1": "http://test.com/1/appshell.manifest.json",
+  "TestModule1/Component2": "http://test.com/1/appshell.manifest.json",
+  "TestModule2/Component": "http://test.com/2/appshell.manifest.json",
+  "TestModule3/ComponentA": "http://test.com/3/appshell.manifest.json",
+  "TestModule3/ComponentB": "http://test.com/3/appshell.manifest.json",
+}
+`;
+
+exports[`generate index should handle a single index file 1`] = `
+{
+  "ContainerModule/Container": "http://localhost:30001/appshell.manifest.json",
+  "PingModule/Ping": "http://localhost:30011/appshell.manifest.json",
+  "PongModule/CoolComponent": "http://localhost:30021/appshell.manifest.json",
+  "PongModule/Pong": "http://localhost:30021/appshell.manifest.json",
+}
+`;
+
+exports[`generate index should merge valid registry indexes 1`] = `
+{
+  "ContainerModule/Container": "http://localhost:30001/appshell.manifest.json",
+  "PingModule/Ping": "http://localhost:30011/appshell.manifest.json",
+  "PongModule/CoolComponent": "http://localhost:30021/appshell.manifest.json",
+  "PongModule/Pong": "http://localhost:30021/appshell.manifest.json",
+  "TestModule1/Component1": "http://test.com/1/appshell.manifest.json",
+  "TestModule1/Component2": "http://test.com/1/appshell.manifest.json",
+  "TestModule2/Component": "http://test.com/2/appshell.manifest.json",
+  "TestModule3/ComponentA": "http://test.com/3/appshell.manifest.json",
+  "TestModule3/ComponentB": "http://test.com/3/appshell.manifest.json",
+}
+`;
+
+exports[`generate manifest should generate an appshell manifest from the appshell config 1`] = `
+{
+  "environment": {
+    "RUNTIME_ENV": "development",
+    "RUNTIME_ENV_VERSION": "1.0.0",
+  },
   "modules": {
-    "BarModule": {
+    "TestModule": {
       "exposes": {
         "./Bar": "./src/Entry2",
-      },
-      "filename": "remoteEntry.js",
-      "library": {
-        "name": "some shared lib",
-        "type": "umd",
-      },
-      "name": "BarModule",
-      "remoteType": "amd",
-      "remotes": {
-        "./Remote1": {
-          "external": "external module",
-          "shareScope": "@shared",
-        },
-      },
-      "runtime": "runtimeChunk",
-      "shareScope": "@sharedscope",
-      "shared": {
-        "package1": {
-          "requiredVersion": "0.1.0",
-          "singleton": true,
-        },
-        "package2": {
-          "requiredVersion": "1.1.0",
-          "singleton": true,
-        },
-      },
-    },
-    "BizModule": {
-      "exposes": {
-        "./Biz": "./src/Entry1",
-      },
-      "filename": "remoteEntry.js",
-      "library": {
-        "name": "some shared lib",
-        "type": "umd",
-      },
-      "name": "BizModule",
-      "remoteType": "amd",
-      "remotes": {
-        "./Remote1": {
-          "external": "external module",
-          "shareScope": "@shared",
-        },
-      },
-      "runtime": "runtimeChunk",
-      "shareScope": "@sharedscope",
-      "shared": {
-        "package1": {
-          "requiredVersion": "0.1.0",
-          "singleton": true,
-        },
-        "package2": {
-          "requiredVersion": "1.1.0",
-          "singleton": true,
-        },
-      },
-    },
-    "FooModule": {
-      "exposes": {
-        "./Bing": "./src/Entry1",
         "./Foo": "./src/Entry1",
       },
       "filename": "remoteEntry.js",
@@ -73,7 +54,7 @@ exports[`generate should generate an appshell manifest from a collection of app 
         "name": "some shared lib",
         "type": "umd",
       },
-      "name": "FooModule",
+      "name": "TestModule",
       "remoteType": "amd",
       "remotes": {
         "./Remote1": {
@@ -96,22 +77,9 @@ exports[`generate should generate an appshell manifest from a collection of app 
     },
   },
   "remotes": {
-    "BarModule/Bar": {
-      "id": "BarModule/Bar",
-      "metadata": {
-        "displayGroup": "main",
-        "displayName": "Bar App",
-        "icon": "ViewList",
-        "order": 20,
-        "route": "/bar",
-      },
-      "module": "./Bar",
-      "scope": "BarModule",
-      "shareScope": "@sharedscope",
-      "url": "http://remote-module.com/remoteEntry.js",
-    },
     "BizModule/Biz": {
       "id": "BizModule/Biz",
+      "manifestUrl": "http://localhost:4040/appshell.manifest.json",
       "metadata": {
         "displayGroup": "auxiliary",
         "displayName": "Biz App",
@@ -120,26 +88,28 @@ exports[`generate should generate an appshell manifest from a collection of app 
         "route": "/biz",
       },
       "module": "./Biz",
+      "remoteEntryUrl": "http://localhost:4040/remoteEntry.js",
       "scope": "BizModule",
       "shareScope": "@sharedscope",
-      "url": "http://localhost:4040/remoteEntry.js",
     },
-    "FooModule/Bing": {
-      "id": "FooModule/Bing",
+    "TestModule/Bar": {
+      "id": "TestModule/Bar",
+      "manifestUrl": "http://remote-module.com/remoteEntry.js/appshell.manifest.json",
       "metadata": {
         "displayGroup": "main",
-        "displayName": "Foo App",
+        "displayName": "Bar App",
         "icon": "ViewList",
-        "order": 10,
-        "route": "/foo",
+        "order": 20,
+        "route": "/bar",
       },
-      "module": "./Bing",
-      "scope": "FooModule",
+      "module": "./Bar",
+      "remoteEntryUrl": "http://remote-module.com/remoteEntry.js/undefined",
+      "scope": "TestModule",
       "shareScope": "@sharedscope",
-      "url": "http://remote-module.com/remoteEntry.js",
     },
-    "FooModule/Foo": {
-      "id": "FooModule/Foo",
+    "TestModule/Foo": {
+      "id": "TestModule/Foo",
+      "manifestUrl": "http://remote-module.com/remoteEntry.js/appshell.manifest.json",
       "metadata": {
         "displayGroup": "main",
         "displayName": "Foo App",
@@ -148,17 +118,147 @@ exports[`generate should generate an appshell manifest from a collection of app 
         "route": "/foo",
       },
       "module": "./Foo",
-      "scope": "FooModule",
+      "remoteEntryUrl": "http://remote-module.com/remoteEntry.js/remoteEntry.js",
+      "scope": "TestModule",
       "shareScope": "@sharedscope",
-      "url": "http://remote-module.com/remoteEntry.js",
     },
   },
 }
 `;
 
-exports[`generate should produce an empty manifest when no configs are available to process 1`] = `
+exports[`generate metadata should handle a directory 1`] = `
 {
-  "modules": {},
-  "remotes": {},
+  "ContainerModule/Container": {
+    "displayGroup": "main",
+    "displayName": "Host App",
+    "icon": "ViewList",
+    "order": 0,
+    "route": "/",
+  },
+  "PingModule/Ping": {
+    "displayGroup": "main",
+    "displayName": "Ping Micro-Frontend",
+    "icon": "ViewList",
+    "order": 10,
+    "route": "/ping",
+  },
+  "PongModule/CoolComponent": {
+    "displayGroup": "main",
+    "displayName": "Cool Shared Component",
+    "icon": "ViewList",
+    "order": 30,
+    "route": "/cool",
+  },
+  "PongModule/Pong": {
+    "displayGroup": "main",
+    "displayName": "Pong Micro-Frontend",
+    "icon": "ViewList",
+    "order": 20,
+    "route": "/pong",
+  },
+  "TestModule1/Component1": {
+    "foo": "bar",
+  },
+  "TestModule1/Component2": {
+    "biz": "bang",
+  },
+  "TestModule2/Component": {
+    "arg1": "val1",
+    "arg2": "val2",
+    "arg3": "val3",
+  },
+  "TestModule3/ComponentA": {
+    "argA": "valA",
+    "argB": "valB",
+  },
+  "TestModule3/ComponentB": {
+    "argC": "valC",
+    "argD": "valD",
+  },
+}
+`;
+
+exports[`generate metadata should handle a single index file 1`] = `
+{
+  "ContainerModule/Container": {
+    "displayGroup": "main",
+    "displayName": "Host App",
+    "icon": "ViewList",
+    "order": 0,
+    "route": "/",
+  },
+  "PingModule/Ping": {
+    "displayGroup": "main",
+    "displayName": "Ping Micro-Frontend",
+    "icon": "ViewList",
+    "order": 10,
+    "route": "/ping",
+  },
+  "PongModule/CoolComponent": {
+    "displayGroup": "main",
+    "displayName": "Cool Shared Component",
+    "icon": "ViewList",
+    "order": 30,
+    "route": "/cool",
+  },
+  "PongModule/Pong": {
+    "displayGroup": "main",
+    "displayName": "Pong Micro-Frontend",
+    "icon": "ViewList",
+    "order": 20,
+    "route": "/pong",
+  },
+}
+`;
+
+exports[`generate metadata should merge valid registry indexes 1`] = `
+{
+  "ContainerModule/Container": {
+    "displayGroup": "main",
+    "displayName": "Host App",
+    "icon": "ViewList",
+    "order": 0,
+    "route": "/",
+  },
+  "PingModule/Ping": {
+    "displayGroup": "main",
+    "displayName": "Ping Micro-Frontend",
+    "icon": "ViewList",
+    "order": 10,
+    "route": "/ping",
+  },
+  "PongModule/CoolComponent": {
+    "displayGroup": "main",
+    "displayName": "Cool Shared Component",
+    "icon": "ViewList",
+    "order": 30,
+    "route": "/cool",
+  },
+  "PongModule/Pong": {
+    "displayGroup": "main",
+    "displayName": "Pong Micro-Frontend",
+    "icon": "ViewList",
+    "order": 20,
+    "route": "/pong",
+  },
+  "TestModule1/Component1": {
+    "foo": "bar",
+  },
+  "TestModule1/Component2": {
+    "biz": "bang",
+  },
+  "TestModule2/Component": {
+    "arg1": "val1",
+    "arg2": "val2",
+    "arg3": "val3",
+  },
+  "TestModule3/ComponentA": {
+    "argA": "valA",
+    "argB": "valB",
+  },
+  "TestModule3/ComponentB": {
+    "argC": "valC",
+    "argD": "valD",
+  },
 }
 `;

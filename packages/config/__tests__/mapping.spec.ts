@@ -7,11 +7,15 @@ import config from './assets/appshell.config.json';
 describe('mapping configurations to domain objects', () => {
   const APPS_TEST_URL = 'http://remote-endpoint.com';
   const APPS_TEST_REMOTE_ENTRY_PATH = 'remoteEntry.js';
+  const RUNTIME_ENV = 'development';
+  const RUNTIME_ENV_VERSION = '1.0.0';
 
   let appshellManifest: AppshellManifest;
   beforeEach(() => {
     process.env.APPS_TEST_URL = APPS_TEST_URL;
     process.env.APPS_TEST_REMOTE_ENTRY_PATH = APPS_TEST_REMOTE_ENTRY_PATH;
+    process.env.RUNTIME_ENV = RUNTIME_ENV;
+    process.env.RUNTIME_ENV_VERSION = RUNTIME_ENV_VERSION;
     const configMap = configmap.create(config as AppshellConfig);
     appshellManifest = toAppshellManifest(config as AppshellConfig, configMap);
   });
@@ -22,7 +26,7 @@ describe('mapping configurations to domain objects', () => {
 
   it('should replace url placeholders with environment variables', () => {
     expect(
-      values(appshellManifest.remotes).some((remote) => remote.url.includes(APPS_TEST_URL)),
+      values(appshellManifest.remotes).some((remote) => remote.manifestUrl.includes(APPS_TEST_URL)),
     ).toBeTruthy();
   });
 

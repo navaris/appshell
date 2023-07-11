@@ -3,6 +3,39 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-alpha.2](https://github.com/navaris/appshell/compare/@appshell/manifest-webpack-plugin@0.2.0-alpha.1...@appshell/manifest-webpack-plugin@0.2.0-alpha.2) (2023-07-06)
+
+
+### Features
+
+* appshell start, cleanup dev workflow ([74fd2e5](https://github.com/navaris/appshell/commit/74fd2e5a5acd2415482268175c7f3f16cd7c93ec))
+
+
+
+
+
+# [0.2.0-alpha.1](https://github.com/navaris/appshell/compare/@appshell/manifest-webpack-plugin@0.1.8...@appshell/manifest-webpack-plugin@0.2.0-alpha.1) (2023-07-05)
+
+
+### Features
+
+* foundation refactor wip ([339b930](https://github.com/navaris/appshell/commit/339b9306accaa9aba1712f3a0dee6c4cab7ed273))
+
+
+
+
+
+# [0.2.0-alpha.0](https://github.com/navaris/appshell/compare/@appshell/manifest-webpack-plugin@0.1.8...@appshell/manifest-webpack-plugin@0.2.0-alpha.0) (2023-07-05)
+
+
+### Features
+
+* registry index ([8e6ee0a](https://github.com/navaris/appshell/commit/8e6ee0a6a377584efa2ee702168025f46108b8c5))
+
+
+
+
+
 ## [0.1.8](https://github.com/navaris/appshell/compare/@appshell/manifest-webpack-plugin@0.1.8-alpha.2...@appshell/manifest-webpack-plugin@0.1.8) (2023-06-29)
 
 **Note:** Version bump only for package @appshell/manifest-webpack-plugin

@@ -2,7 +2,8 @@
   "remotes": {
     "TestModule/Foo": {
       "id": "TestModule/Foo2",
-      "url": "${APPS_TEST_URL}",
+      "manifestUrl": "http://localhost:4000/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:4000/remoteEntry.js",
       "metadata": {
         "route": "/foo",
         "displayName": "Foo App",
@@ -13,7 +14,8 @@
     },
     "TestModule/Bar": {
       "id": "TestModule/Bar2",
-      "url": "${APPS_TEST_URL}",
+      "manifestUrl": "http://localhost:4000/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:4000/remoteEntry.js",
       "metadata": {
         "route": "/bar",
         "displayName": "Bar App",
@@ -24,7 +26,8 @@
     },
     "BizModule/Biz": {
       "id": "BizModule/Biz2",
-      "url": "http://localhost:4040/remoteEntry.js",
+      "manifestUrl": "http://localhost:4040/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:4040/remoteEntry.js",
       "metadata": {
         "route": "/biz",
         "displayName": "Biz App",
@@ -66,5 +69,6 @@
       },
       "shareScope": "@sharedscope"
     }
-  }
+  },
+  "environment": {}
 }

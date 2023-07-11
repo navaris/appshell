@@ -28,12 +28,13 @@ const mapAppshellEntrypoint = (
 ) => {
   const moduleName = key.replace(/\/.+/, '');
   const moduleKey = key.replace(moduleName, '.');
-  const { id, url } = remote;
+  const { id, url, filename } = remote;
   const { shareScope } = source.module;
 
   return {
     id,
-    url,
+    manifestUrl: `${url}/appshell.manifest.json`,
+    remoteEntryUrl: `${url}/${filename}`,
     scope: moduleName,
     module: moduleKey,
     shareScope,
@@ -60,6 +61,10 @@ createMap<AppshellConfig, AppshellManifest>(
   forMember(
     (destination) => destination.modules,
     mapFrom((source) => ({ [source.module.name || 'unknown']: source.module })),
+  ),
+  forMember(
+    (destination) => destination.environment,
+    mapFrom((source) => source.environment),
   ),
 );
 

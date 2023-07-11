@@ -1,4 +1,4 @@
-import { useManifest } from '@appshell/react-federated-component';
+import { useManifest } from '@appshell/react';
 import React from 'react';
 import { AppShowcase, PackageBlock, Remote } from 'react-appshell-host-components';
 import pkg from '../package.json';

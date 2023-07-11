@@ -2,7 +2,8 @@
   "remotes": {
     "BizModule/Biz": {
       "id": "BizModule/Biz",
-      "url": "http://localhost:4040/remoteEntry.js",
+      "manifestUrl": "http://localhost:4040/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:4040/remoteEntry.js",
       "scope": "BizModule",
       "module": "./Biz",
       "metadata": {
@@ -12,6 +13,12 @@
         "order": 30,
         "icon": "ViewList"
       }
+    }
+  },
+  "environment": {
+    "biz_module": {
+      "RUNTIME_ENV": "Biz env",
+      "RUNTIME_ENV_VERSION": "Biz version"
     }
   },
   "modules": {

@@ -1,30 +1,61 @@
-import { type AppshellManifest } from '@appshell/config';
+/* eslint-disable no-underscore-dangle */
+import { type AppshellIndex, type AppshellManifest } from '@appshell/config';
 import fetchDynamicScript from './fetchDynamicScript';
 import loadFederatedComponent from './loadFederatedComponent';
 
 const fetchedScriptCache = new Set<string>();
+const fetchedManifestCache = new Map<string, AppshellManifest | undefined>();
 
-export default (manifest: AppshellManifest) =>
+const fetchManifest = async (url: string): Promise<AppshellManifest | undefined> => {
+  if (fetchedManifestCache.has(url)) {
+    return fetchedManifestCache.get(url);
+  }
+
+  fetchedManifestCache.set(url, undefined);
+
+  const response = await fetch(url);
+
+  if (response.ok) {
+    return response.json();
+  }
+
+  const message = await response.text();
+  throw new Error(`Failed to get manifest from ${url}. ${message}`);
+};
+
+export default (index: AppshellIndex) =>
   async <TComponent>(key: string) => {
     let Component: TComponent;
-    const remote = manifest.remotes[key];
-    if (!remote) {
-      throw new Error(`Remote resource not found in manifest. Expected: ${key}`);
+    const manifestUrl = index[key];
+    if (!manifestUrl) {
+      throw new Error(`Remote resource not found in registry. Expected: ${key}`);
     }
 
     try {
-      const loaded = fetchedScriptCache.has(remote.url) || (await fetchDynamicScript(remote.url));
-      if (loaded) {
-        fetchedScriptCache.add(remote.url);
-        Component = await loadFederatedComponent<TComponent>(
-          remote.scope,
-          remote.module,
-          remote.shareScope,
-        );
+      const manifest = await fetchManifest(manifestUrl);
 
-        return Component;
+      if (manifest) {
+        fetchedManifestCache.set(manifestUrl, manifest);
+
+        const remote = manifest.remotes[key];
+        window[`__appshell_env__${remote.scope}`] = manifest.environment[remote.scope] || {};
+
+        const loaded =
+          fetchedScriptCache.has(remote.remoteEntryUrl) ||
+          (await fetchDynamicScript(remote.remoteEntryUrl));
+        if (loaded) {
+          fetchedScriptCache.add(remote.remoteEntryUrl);
+          Component = await loadFederatedComponent<TComponent>(
+            remote.scope,
+            remote.module,
+            remote.shareScope,
+          );
+
+          return [Component, manifest] as const;
+        }
       }
-      return null;
+
+      return [null, null] as const;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       throw new Error(`Failed to load component '${key}'. ${err?.toString()}`);

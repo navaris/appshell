@@ -3,6 +3,105 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-alpha.8](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.0-alpha.7...@appshell/react-host@0.2.0-alpha.8) (2023-07-10)
+
+
+### Bug Fixes
+
+* rename @appshell/react-federated-component package to @appshell/react ([0b74498](https://github.com/navaris/appshell/commit/0b74498bf17ba73db4d936c8a012af1d3b111a28))
+
+
+
+
+
+# [0.2.0-alpha.7](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.0-alpha.6...@appshell/react-host@0.2.0-alpha.7) (2023-07-10)
+
+
+### Bug Fixes
+
+* ship developer image with development build, urls for adjunct registries ([333f931](https://github.com/navaris/appshell/commit/333f9314854a93ab3f8e57dfde806baf26012e6c))
+
+
+
+
+
+# [0.2.0-alpha.6](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.0-alpha.5...@appshell/react-host@0.2.0-alpha.6) (2023-07-10)
+
+
+### Bug Fixes
+
+* registry projection, enable env overwrite, refactor docker workflow, consolidate env names ([33a28fe](https://github.com/navaris/appshell/commit/33a28fe76b58e05c5b6b6b33d4b402e52bb29e70))
+
+
+
+
+
+# [0.2.0-alpha.5](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.0-alpha.4...@appshell/react-host@0.2.0-alpha.5) (2023-07-06)
+
+
+### Bug Fixes
+
+* metadata urls ([efcce1c](https://github.com/navaris/appshell/commit/efcce1ce4cb1745afa83661cae1414a73f837483))
+
+
+
+
+
+# [0.2.0-alpha.4](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.0-alpha.3...@appshell/react-host@0.2.0-alpha.4) (2023-07-06)
+
+
+### Bug Fixes
+
+* support metadata generation ([4df202f](https://github.com/navaris/appshell/commit/4df202f0fd3b9ca6c660975b75eb0ac9b60225c2))
+
+
+
+
+
+# [0.2.0-alpha.3](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.0-alpha.2...@appshell/react-host@0.2.0-alpha.3) (2023-07-06)
+
+
+### Bug Fixes
+
+* support metadata flag on cli start ([567cf02](https://github.com/navaris/appshell/commit/567cf02a52150054b855197371681f426382b454))
+
+
+
+
+
+# [0.2.0-alpha.2](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.0-alpha.1...@appshell/react-host@0.2.0-alpha.2) (2023-07-06)
+
+
+### Features
+
+* appshell start, cleanup dev workflow ([74fd2e5](https://github.com/navaris/appshell/commit/74fd2e5a5acd2415482268175c7f3f16cd7c93ec))
+
+
+
+
+
+# [0.2.0-alpha.1](https://github.com/navaris/appshell/compare/@appshell/react-host@0.1.1...@appshell/react-host@0.2.0-alpha.1) (2023-07-05)
+
+
+### Features
+
+* foundation refactor wip ([339b930](https://github.com/navaris/appshell/commit/339b9306accaa9aba1712f3a0dee6c4cab7ed273))
+
+
+
+
+
+# [0.2.0-alpha.0](https://github.com/navaris/appshell/compare/@appshell/react-host@0.1.1...@appshell/react-host@0.2.0-alpha.0) (2023-07-05)
+
+
+### Features
+
+* registry index ([8e6ee0a](https://github.com/navaris/appshell/commit/8e6ee0a6a377584efa2ee702168025f46108b8c5))
+
+
+
+
+
 ## [0.1.1](https://github.com/navaris/appshell/compare/@appshell/react-host@0.1.1-alpha.1...@appshell/react-host@0.1.1) (2023-06-29)
 
 **Note:** Version bump only for package @appshell/react-host

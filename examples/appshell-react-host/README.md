@@ -15,19 +15,21 @@ Consists of 3 micro-frontends, each is configured with `@appshell/manifest-webpa
 
 ## Build time
 
-At build time, each `AppshellManifestPlugin` emits appshell configs into `APPSHELL_CONFIGS_DIR`.
+At build time, each `AppshellManifestPlugin` emits an appshell manifest template to the build directory.
 
 ## Runtime
 
-At runtime or deployment, `@appshell/cli` processes `APPSHELL_CONFIGS_DIR` to generate the `global runtime manifest`. In this example, this is done automatically by the appshell react host `@appshell/react-host`
+At runtime, the manifest template `dist/appshell.config.json` is processed to generate an `appshell manifest`, which has runtime environment variables injected. The manifest is subsequently registered to `APPSHELL_REGISTRY` where it is made available to the appshell host.
+
+The appshell host `@appshell/react-host` produces a `global appshell registry index` that is served up to the application at runtime.
 
 ## Metadata
 
-Since you can associate any kind of metadata with each federated module (via `appshell.config.yaml`), you can use the `global runtime manifest` to configure your appshell by supplying routing information, rendering details, etc.
+You can associate any kind of metadata with each remote module (via `appshell.config.yaml`) and use the metadata to configure your appshell by supplying routing information, rendering details, etc.
 
 ## Consuming federated components
 
-Uses `@appshell/react-federated-component` to dynamically load remote frontends. It uses the remote key to lookup the runtime info for that particular federated component.
+Use `FederatedComponent` from `@appshell/react` to dynamically load remote frontends. It uses the remote key to lookup the runtime info for that particular federated component.
 
 ```typescript
 <Grid>
@@ -41,7 +43,6 @@ Uses `@appshell/react-federated-component` to dynamically load remote frontends.
 ```bash
 cp sample.env .env # create a .env
 
-# note: the appshell webpack plugins emit configurations to the appshell_configs directory.
 docker compose --profile host --profile apps up
 
 # OR
