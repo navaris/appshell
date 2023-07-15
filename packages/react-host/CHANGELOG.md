@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2-alpha.3](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.2-alpha.2...@appshell/react-host@0.2.2-alpha.3) (2023-07-15)
+
+
+### Bug Fixes
+
+* test build pipeline ([cf30b22](https://github.com/navaris/appshell/commit/cf30b22455c9d7f251e382be47b9021180711d7b))
+
+
+
+
+
 ## [0.2.2-alpha.2](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.2-alpha.1...@appshell/react-host@0.2.2-alpha.2) (2023-07-15)
 
 
