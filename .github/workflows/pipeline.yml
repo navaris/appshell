@@ -116,7 +116,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Pull latest
-        run: git pull --depth 1
+        run: git pull
 
       - name: Print last commit
         run: git log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn] %Creset %C(white)%ar' -n 1
