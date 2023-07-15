@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1-alpha.0](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.0...@appshell/react-host@0.2.1-alpha.0) (2023-07-15)
+
+
+### Bug Fixes
+
+* add generate metadata to react-host startup command ([b8ade33](https://github.com/navaris/appshell/commit/b8ade33bc8bdf0d5bc612ce08846f2b9f26a3fd4))
+
+
+
+
+
 # [0.2.0](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.0-alpha.8...@appshell/react-host@0.2.0) (2023-07-11)
 
 
