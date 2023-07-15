@@ -114,12 +114,8 @@ jobs:
     steps:
       - name: Check out the repo
         uses: actions/checkout@v3
-
-      - name: Print last commit
-        run: git log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn] %Creset %C(white)%ar' -n 1
-
-      - name: Pull latest
-        run: git pull
+        with:
+          fetch-depth: 1
 
       - name: Print last commit
         run: git log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn] %Creset %C(white)%ar' -n 1
