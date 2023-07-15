@@ -112,8 +112,17 @@ jobs:
         package-dir: [react-host]
 
     steps:
+      - name: Print last commit
+        run: git log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn] %Creset %C(white)%ar' -n 1
+
       - name: Check out the repo
         uses: actions/checkout@v3
+
+      - name: Pull latest
+        run: git pull
+
+      - name: Print last commit
+        run: git log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn] %Creset %C(white)%ar' -n 1
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
