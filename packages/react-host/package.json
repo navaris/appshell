@@ -36,8 +36,7 @@
     "webpack",
     "module federation",
     "micro-frontends",
-    "appshell",
-    "host"
+    "appshell"
   ],
   "license": "MIT"
 }
