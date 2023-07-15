@@ -115,7 +115,7 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
         with:
-          fetch-depth: 1
+          fetch-depth: 0
 
       - name: Print last commit
         run: git log --pretty=format:'%C(yellow)%h%Cred%d %Creset%s%Cblue [%cn] %Creset %C(white)%ar' -n 1
