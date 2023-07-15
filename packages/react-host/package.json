@@ -1,6 +1,6 @@
 {
   "name": "@appshell/react-host",
-  "version": "0.2.2-alpha.1",
+  "version": "0.2.2-alpha.2",
   "description": "Appshell host for React",
   "main": "index.js",
   "private": true,
