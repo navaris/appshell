@@ -1,12 +1,13 @@
 {
   "name": "@appshell/react-host",
-  "version": "0.2.0",
+  "version": "0.2.1-alpha.0",
   "description": "Appshell host for React",
   "main": "index.js",
   "private": true,
   "scripts": {
     "generate:env": "appshell generate env -e .env --prefix $APPSHELL_ENV_PREFIX",
     "generate:index": "appshell generate index --registry $APPSHELL_ADJUNCT_REGISTRY $APPSHELL_REGISTRY",
+    "generate:metadata": "appshell generate metadata --registry $APPSHELL_ADJUNCT_REGISTRY $APPSHELL_REGISTRY",
     "start": "dotenv -- run-p start:appshell start:run",
     "start:appshell": "appshell start --host --registry $APPSHELL_REGISTRY --adjunct-registry $APPSHELL_ADJUNCT_REGISTRY --env $APPSHELL_ENV --env-prefix $APPSHELL_ENV_PREFIX --env-global-name $APPSHELL_ENV_GLOBAL_VAR",
     "start:run": "webpack-cli serve --mode development",
