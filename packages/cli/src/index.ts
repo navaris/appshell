@@ -225,7 +225,7 @@ const generateEnvCommand: yargs.CommandModule<unknown, GenerateEnvArgs> = {
       })
       .option('globalName', {
         alias: 'g',
-        default: 'appshell_env',
+        default: '__appshell_env__',
         type: 'string',
         description: 'Global variable name window[globalName] used in the output js',
       })

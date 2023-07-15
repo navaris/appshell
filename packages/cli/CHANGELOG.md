@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1-alpha.0](https://github.com/navaris/appshell/compare/@appshell/cli@0.3.0...@appshell/cli@0.3.1-alpha.0) (2023-07-15)
+
+
+### Bug Fixes
+
+* default value for cli generate env --global-name ([040960c](https://github.com/navaris/appshell/commit/040960ce582a752919d59fa347346e2440abf997))
+
+
+
+
+
 # [0.3.0](https://github.com/navaris/appshell/compare/@appshell/cli@0.3.0-alpha.5...@appshell/cli@0.3.0) (2023-07-11)
 
 
