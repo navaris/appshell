@@ -1,15 +1,25 @@
 import { HttpStatusCode } from 'axios';
 import fs from 'fs';
+import https from 'https';
 import axios from '../axios';
 import isValidUrl from './isValidUrl';
 import list from './list';
 
+type LoadJsonOptions = {
+  insecure: boolean;
+  target: string | RegExp;
+};
+
 const loadJson = async <T = Record<string, unknown>>(
   jsonPathOrUrl: string,
+  insecure: boolean,
   target: string | RegExp,
 ): Promise<T[]> => {
   if (isValidUrl(jsonPathOrUrl)) {
-    const resp = await axios.get<T>(jsonPathOrUrl);
+    const resp = await axios.get<T>(
+      jsonPathOrUrl,
+      insecure ? { httpsAgent: new https.Agent({ rejectUnauthorized: false }) } : {},
+    );
     if (resp.status === HttpStatusCode.Ok) {
       return [resp.data];
     }
@@ -19,7 +29,7 @@ const loadJson = async <T = Record<string, unknown>>(
   const stat = fs.statSync(jsonPathOrUrl);
   if (stat.isDirectory()) {
     const files = list(jsonPathOrUrl, 1, target);
-    const entries = files.map((file) => loadJson(file, target));
+    const entries = files.map((file) => loadJson(file, insecure, target));
 
     const docs = await Promise.all(entries).then((items) => items.flat() as T[]);
 
@@ -33,9 +43,12 @@ const loadJson = async <T = Record<string, unknown>>(
 
 export default async <T = Record<string, unknown>>(
   jsonPathOrUrl: string,
-  target: string | RegExp = /\.json$/i,
+  options: LoadJsonOptions = {
+    insecure: false,
+    target: /\.json$/i,
+  },
 ): Promise<T[]> => {
-  const items = await loadJson<T[]>(jsonPathOrUrl, target);
+  const items = await loadJson<T[]>(jsonPathOrUrl, options.insecure, options.target);
 
   return items.flat();
 };

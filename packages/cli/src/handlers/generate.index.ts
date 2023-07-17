@@ -5,12 +5,13 @@ import path from 'path';
 
 export type GenerateIndexArgs = {
   registry: string[] | undefined;
+  insecure: boolean;
   outDir: string;
   outFile: string;
 };
 
 export default async (argv: GenerateIndexArgs): Promise<void> => {
-  const { registry, outDir, outFile } = argv;
+  const { registry, insecure, outDir, outFile } = argv;
   const registries = registry || [];
 
   if (registries.length < 1) {
@@ -19,11 +20,11 @@ export default async (argv: GenerateIndexArgs): Promise<void> => {
   }
 
   console.log(
-    `generating appshell index --out-dir=${outDir} --out-file=${outFile} --registry=${registries}`,
+    `generating appshell index --insecure=${insecure} --out-dir=${outDir} --out-file=${outFile} --registry=${registries}`,
   );
 
   try {
-    const index = await generateIndex(registries);
+    const index = await generateIndex(registries, { insecure });
 
     console.log(`appshell index generated: ${JSON.stringify(index, null, 2)}`);
     if (!fs.existsSync(outDir)) {
