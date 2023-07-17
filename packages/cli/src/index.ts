@@ -53,6 +53,12 @@ const startCommand: yargs.CommandModule<unknown, StartArgs> = {
         type: 'boolean',
         description: 'Flag if this app is a host',
       })
+      .option('insecure', {
+        alias: 'i',
+        default: false,
+        type: 'boolean',
+        description: 'If true, index files are fetched without validating SSL certs',
+      })
       .option('metadata', {
         default: false,
         type: 'boolean',
@@ -126,6 +132,12 @@ const generateIndexCommand: yargs.CommandModule<unknown, GenerateIndexArgs> = {
         type: 'string',
         description: 'Output filename for the appshell index',
       })
+      .option('insecure', {
+        alias: 'i',
+        default: false,
+        type: 'boolean',
+        description: 'If true, index files are fetched without validating SSL certs',
+      })
       .option('registry', {
         alias: 'r',
         string: true,
@@ -154,6 +166,12 @@ const generateMetadataCommand: yargs.CommandModule<unknown, GenerateMetadataArgs
         default: 'appshell.metadata.json',
         type: 'string',
         description: 'Output filename for the appshell manifest',
+      })
+      .option('insecure', {
+        alias: 'i',
+        default: false,
+        type: 'boolean',
+        description: 'If true, index files are fetched without validating SSL certs',
       })
       .option('registry', {
         alias: 'r',

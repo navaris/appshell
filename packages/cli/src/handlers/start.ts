@@ -10,6 +10,7 @@ export type StartArgs = {
 
   remote: boolean;
   host: boolean;
+  insecure: boolean;
   metadata: boolean;
   manifestTemplate: string;
   manifest: string;
@@ -25,6 +26,7 @@ export default async (argv: StartArgs): Promise<void> => {
     outDir,
     remote,
     host,
+    insecure,
     metadata,
     manifest,
     manifestTemplate,
@@ -34,18 +36,7 @@ export default async (argv: StartArgs): Promise<void> => {
 
   // eslint-disable-next-line no-console
   console.log(
-    `starting appshell
-      --env=${env}
-      --env-prefix=${envPrefix}
-      --env-global-name=${envGlobalName}
-      --out-dir=${outDir}
-      --remote=${remote}
-      --host=${host}
-      --metadata=${metadata}
-      --manifest=${manifest}
-      --manifest-template=${manifestTemplate}
-      --registry=${registry}
-      --adjunct-registry=${adjunctRegistry}`,
+    `starting appshell --env=${env} --env-prefix=${envPrefix} --env-global-name=${envGlobalName} --out-dir=${outDir} --remote=${remote} --host=${host} --insecure=${insecure} --metadata=${metadata} --manifest=${manifest} --manifest-template=${manifestTemplate} --registry=${registry} --adjunct-registry=${adjunctRegistry}`,
   );
 
   const prefix = 'appshell';
@@ -83,7 +74,7 @@ export default async (argv: StartArgs): Promise<void> => {
       fs.mkdirSync(registry);
     }
     const watchRegistry = exec(
-      `npm exec -- nodemon --watch ${registry} --delay 500ms --ext json --exec "appshell generate index --registry ${sources} && appshell generate metadata --registry ${sources}"`,
+      `npm exec -- nodemon --watch ${registry} --delay 500ms --ext json --exec "appshell generate index --registry ${sources} --insecure=${insecure} && appshell generate metadata --registry ${sources} --insecure=${insecure}"`,
     );
     watchRegistry.stdout?.on('data', (data) => {
       // eslint-disable-next-line no-console

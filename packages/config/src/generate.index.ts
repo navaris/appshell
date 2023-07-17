@@ -4,7 +4,14 @@ import { isValidUrl, merge } from './utils';
 import loadJson from './utils/loadJson';
 import { appshell_index } from './validators';
 
-export default async (registries: string[]): Promise<AppshellIndex> => {
+type GenerateIndexOptions = {
+  insecure: boolean;
+};
+
+export default async (
+  registries: string[],
+  options: GenerateIndexOptions = { insecure: false },
+): Promise<AppshellIndex> => {
   if (registries.length < 1) {
     console.log(`No registries found. skipping index generation.`);
     return {};
@@ -16,7 +23,10 @@ export default async (registries: string[]): Promise<AppshellIndex> => {
     const indexes = await Promise.all(
       registries.map((reg) => {
         const registry = isValidUrl(reg) ? `${reg}/appshell.index.json` : reg;
-        return loadJson<AppshellIndex>(registry, /(.index.json)/i);
+        return loadJson<AppshellIndex>(registry, {
+          insecure: options.insecure,
+          target: /(.index.json)/i,
+        });
       }),
     ).then((items) => items.flat());
     console.log(`Generating index from ${indexes.length} source${indexes.length === 1 ? '' : 's'}`);
