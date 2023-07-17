@@ -115,6 +115,9 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
 
+      - name: Pull latest
+        run: git pull
+
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:

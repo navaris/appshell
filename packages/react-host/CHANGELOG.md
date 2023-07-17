@@ -3,6 +3,58 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2-alpha.4](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.2-alpha.3...@appshell/react-host@0.2.2-alpha.4) (2023-07-15)
+
+
+### Bug Fixes
+
+* test build pipeline ([7042d33](https://github.com/navaris/appshell/commit/7042d33a61789923d612a74c3d446e07a5739a62))
+
+
+
+
+
+## [0.2.2-alpha.3](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.2-alpha.2...@appshell/react-host@0.2.2-alpha.3) (2023-07-15)
+
+
+### Bug Fixes
+
+* test build pipeline ([cf30b22](https://github.com/navaris/appshell/commit/cf30b22455c9d7f251e382be47b9021180711d7b))
+
+
+
+
+
+## [0.2.2-alpha.2](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.2-alpha.1...@appshell/react-host@0.2.2-alpha.2) (2023-07-15)
+
+
+### Bug Fixes
+
+* test build pipeline ([c2052d4](https://github.com/navaris/appshell/commit/c2052d47b86e0c13531fa779c7a558535d87eff9))
+
+
+
+
+
+## [0.2.2-alpha.1](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.2-alpha.0...@appshell/react-host@0.2.2-alpha.1) (2023-07-15)
+
+
+### Bug Fixes
+
+* test build pipeline ([0f7c0df](https://github.com/navaris/appshell/commit/0f7c0dfa33b46ff6f91becdbcdb145d2ecaf6668))
+
+
+
+
+
+## [0.2.2-alpha.0](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.1...@appshell/react-host@0.2.2-alpha.0) (2023-07-15)
+
+**Note:** Version bump only for package @appshell/react-host
+
+
+
+
+
 ## [0.2.1](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.1-alpha.0...@appshell/react-host@0.2.1) (2023-07-15)
 
 **Note:** Version bump only for package @appshell/react-host
