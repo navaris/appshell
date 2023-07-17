@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2-alpha.0](https://github.com/navaris/appshell/compare/@appshell/cli@0.3.1...@appshell/cli@0.3.2-alpha.0) (2023-07-17)
+
+
+### Bug Fixes
+
+* enable insecure flag for cli generate index, metadata and start commands ([03f5e7f](https://github.com/navaris/appshell/commit/03f5e7fbd2ad3746ce648152c4410025958274a9))
+
+
+
+
+
 ## [0.3.1](https://github.com/navaris/appshell/compare/@appshell/cli@0.3.1-alpha.0...@appshell/cli@0.3.1) (2023-07-15)
 
 **Note:** Version bump only for package @appshell/cli
