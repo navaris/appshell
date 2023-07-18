@@ -41,5 +41,5 @@ export default async (manifest: AppshellManifest, registry: string) => {
 
   updateDocument(`${registry}/appshell.index.json`, index, validators.appshell_index);
   updateDocument(`${registry}/appshell.metadata.json`, metadata, validators.appshell_metadata);
-  updateDocument(`${registry}/appshell.manifest.json`, manifest, validators.appshell_manifest);
+  updateDocument(`${registry}/appshell.manifest.json`, manifest, validators.merge_manifests);
 };

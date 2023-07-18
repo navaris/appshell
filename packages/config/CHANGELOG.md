@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2-alpha.0](https://github.com/navaris/appshell/compare/@appshell/config@0.3.1...@appshell/config@0.3.2-alpha.0) (2023-07-18)
+
+
+### Bug Fixes
+
+* schema validation only when registering manifests ([c0136fb](https://github.com/navaris/appshell/commit/c0136fb1cc9163e575c233e8330593a2a6c5a670))
+
+
+
+
+
 ## [0.3.1](https://github.com/navaris/appshell/compare/@appshell/config@0.3.1-alpha.0...@appshell/config@0.3.1) (2023-07-17)
 
 **Note:** Version bump only for package @appshell/config

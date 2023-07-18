@@ -7,10 +7,9 @@ export type StartArgs = {
   env: string;
   envPrefix: string;
   envGlobalName: string;
-
   remote: boolean;
   host: boolean;
-  insecure: boolean;
+  validateRegistrySslCert: boolean;
   metadata: boolean;
   manifestTemplate: string;
   manifest: string;
@@ -26,7 +25,7 @@ export default async (argv: StartArgs): Promise<void> => {
     outDir,
     remote,
     host,
-    insecure,
+    validateRegistrySslCert,
     metadata,
     manifest,
     manifestTemplate,
@@ -36,7 +35,7 @@ export default async (argv: StartArgs): Promise<void> => {
 
   // eslint-disable-next-line no-console
   console.log(
-    `starting appshell --env=${env} --env-prefix=${envPrefix} --env-global-name=${envGlobalName} --out-dir=${outDir} --remote=${remote} --host=${host} --insecure=${insecure} --metadata=${metadata} --manifest=${manifest} --manifest-template=${manifestTemplate} --registry=${registry} --adjunct-registry=${adjunctRegistry}`,
+    `starting appshell --env=${env} --env-prefix=${envPrefix} --env-global-name=${envGlobalName} --out-dir=${outDir} --remote=${remote} --host=${host} --validate-registry-ssl-cert=${validateRegistrySslCert} --metadata=${metadata} --manifest=${manifest} --manifest-template=${manifestTemplate} --registry=${registry} --adjunct-registry=${adjunctRegistry}`,
   );
 
   const prefix = 'appshell';
@@ -74,7 +73,7 @@ export default async (argv: StartArgs): Promise<void> => {
       fs.mkdirSync(registry);
     }
     const watchRegistry = exec(
-      `npm exec -- nodemon --watch ${registry} --delay 500ms --ext json --exec "appshell generate index --registry ${sources} --insecure=${insecure} && appshell generate metadata --registry ${sources} --insecure=${insecure}"`,
+      `npm exec -- nodemon --watch ${registry} --delay 500ms --ext json --exec "appshell generate index --registry ${sources} --validate-registry-ssl-cert ${!!validateRegistrySslCert} && appshell generate metadata --registry ${sources} --validate-registry-ssl-cert=${validateRegistrySslCert}"`,
     );
     watchRegistry.stdout?.on('data', (data) => {
       // eslint-disable-next-line no-console
