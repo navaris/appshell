@@ -53,11 +53,12 @@ const startCommand: yargs.CommandModule<unknown, StartArgs> = {
         type: 'boolean',
         description: 'Flag if this app is a host',
       })
-      .option('insecure', {
-        alias: 'i',
-        default: false,
+      .option('validateRegistrySslCert', {
+        alias: 'v',
+        default: true,
         type: 'boolean',
-        description: 'If true, index files are fetched without validating SSL certs',
+        description:
+          "If false, registry files are fetched without validating the registry's SSL cert",
       })
       .option('metadata', {
         default: false,
@@ -132,11 +133,12 @@ const generateIndexCommand: yargs.CommandModule<unknown, GenerateIndexArgs> = {
         type: 'string',
         description: 'Output filename for the appshell index',
       })
-      .option('insecure', {
-        alias: 'i',
-        default: false,
+      .option('validateRegistrySslCert', {
+        alias: 'v',
+        default: true,
         type: 'boolean',
-        description: 'If true, index files are fetched without validating SSL certs',
+        description:
+          "If false, registry files are fetched without validating the registry's SSL cert",
       })
       .option('registry', {
         alias: 'r',
@@ -167,11 +169,12 @@ const generateMetadataCommand: yargs.CommandModule<unknown, GenerateMetadataArgs
         type: 'string',
         description: 'Output filename for the appshell manifest',
       })
-      .option('insecure', {
-        alias: 'i',
-        default: false,
+      .option('validateRegistrySslCert', {
+        alias: 'v',
+        default: true,
         type: 'boolean',
-        description: 'If true, index files are fetched without validating SSL certs',
+        description:
+          "If false, registry files are fetched without validating the registry's SSL cert",
       })
       .option('registry', {
         alias: 'r',
