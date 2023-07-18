@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.3-alpha.0](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.2...@appshell/react-host@0.2.3-alpha.0) (2023-07-18)
+
+
+### Bug Fixes
+
+* use --validate-registry-ssl-cert instead of --insecure ([88a0575](https://github.com/navaris/appshell/commit/88a0575c52617a08da4b8bc08288ebce8f103586))
+
+
+
+
+
 ## [0.2.2](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.2-alpha.5...@appshell/react-host@0.2.2) (2023-07-17)
 
 **Note:** Version bump only for package @appshell/react-host
