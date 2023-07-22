@@ -12,7 +12,7 @@
   "scripts": {
     "bootstrap": "npx lerna bootstrap",
     "build": "dotenv -- lerna run --scope=react-appshell-host-components build && dotenv -- lerna run --ignore=react-appshell-host-components build",
-    "clean": "lerna run --parallel clean && rm -rf coverage appshell_registry",
+    "clean": "lerna run --parallel clean && rm -rf coverage appshell_registry ../global-runtime-manifest",
     "lint": "eslint apps/**/*.ts",
     "register": "dotenv -- lerna run --parallel register",
     "serve": "dotenv -- lerna run --parallel serve",

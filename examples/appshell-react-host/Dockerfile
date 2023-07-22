@@ -10,6 +10,7 @@ WORKDIR /appshell
 
 ### DEPENDENCIES
 FROM base AS dependencies
+RUN apk add --update python3 make g++ && rm -rf /var/cache/apk/*
 # Copy source
 COPY . .
 # Install dependencies
