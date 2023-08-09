@@ -1,0 +1,158 @@
+{
+  "remotes": {
+    "PongModule/Pong": {
+      "id": "6b3cbfed",
+      "manifestUrl": "http://localhost:30021/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:30021/remoteEntry.js",
+      "scope": "PongModule",
+      "module": "./Pong",
+      "metadata": {
+        "route": "/pong",
+        "displayName": "Pong Micro-Frontend",
+        "displayGroup": "main",
+        "order": 20,
+        "icon": "ViewList"
+      }
+    },
+    "PongModule/CoolComponent": {
+      "id": "6554a942",
+      "manifestUrl": "http://localhost:30021/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:30021/remoteEntry.js",
+      "scope": "PongModule",
+      "module": "./CoolComponent",
+      "metadata": {
+        "route": "/cool",
+        "displayName": "Cool Shared Component",
+        "displayGroup": "main",
+        "order": 30,
+        "icon": "ViewList"
+      }
+    },
+    "ContainerModule/Container": {
+      "id": "33a5786e",
+      "manifestUrl": "http://localhost:30001/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:30001/remoteEntry.js",
+      "scope": "ContainerModule",
+      "module": "./Container",
+      "metadata": {
+        "route": "/",
+        "displayName": "Host App",
+        "displayGroup": "main",
+        "order": 0,
+        "icon": "ViewList"
+      }
+    },
+    "PingModule/Ping": {
+      "id": "2009efad",
+      "manifestUrl": "http://localhost:30011/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:30011/remoteEntry.js",
+      "scope": "PingModule",
+      "module": "./Ping",
+      "metadata": {
+        "route": "/ping",
+        "displayName": "Ping Micro-Frontend",
+        "displayGroup": "main",
+        "order": 10,
+        "icon": "ViewList"
+      }
+    }
+  },
+  "modules": {
+    "PongModule": {
+      "name": "PongModule",
+      "exposes": {
+        "./Pong": "./src/Pong",
+        "./CoolComponent": "./src/CoolRemoteComponent"
+      },
+      "filename": "remoteEntry.js",
+      "shared": {
+        "react": {
+          "singleton": true,
+          "requiredVersion": "18.2.0"
+        },
+        "react-dom": {
+          "singleton": true,
+          "requiredVersion": "18.2.0"
+        },
+        "react-refresh": {
+          "singleton": true,
+          "requiredVersion": "^0.14.0"
+        },
+        "styled-components": {
+          "singleton": true,
+          "requiredVersion": "6.0.0-rc.3"
+        },
+        "@appshell/react": {
+          "singleton": true,
+          "requiredVersion": "^0.1.0-alpha.6"
+        }
+      }
+    },
+    "ContainerModule": {
+      "name": "ContainerModule",
+      "exposes": {
+        "./Container": "./src/Container"
+      },
+      "filename": "remoteEntry.js",
+      "shared": {
+        "react": {
+          "singleton": true,
+          "requiredVersion": "18.2.0"
+        },
+        "react-dom": {
+          "singleton": true,
+          "requiredVersion": "18.2.0"
+        },
+        "react-refresh": {
+          "singleton": true,
+          "requiredVersion": "^0.14.0"
+        },
+        "styled-components": {
+          "singleton": true,
+          "requiredVersion": "6.0.0-rc.3"
+        },
+        "@appshell/react": {
+          "singleton": true,
+          "requiredVersion": "^0.1.0-alpha.6"
+        }
+      }
+    },
+    "PingModule": {
+      "name": "PingModule",
+      "exposes": {
+        "./Ping": "./src/Ping"
+      },
+      "filename": "remoteEntry.js",
+      "shared": {
+        "react": {
+          "singleton": true,
+          "requiredVersion": "18.2.0"
+        },
+        "react-dom": {
+          "singleton": true,
+          "requiredVersion": "18.2.0"
+        },
+        "react-refresh": {
+          "singleton": true,
+          "requiredVersion": "^0.14.0"
+        },
+        "styled-components": {
+          "singleton": true,
+          "requiredVersion": "6.0.0-rc.3"
+        },
+        "@appshell/react": {
+          "singleton": true,
+          "requiredVersion": "^0.1.0-alpha.6"
+        }
+      }
+    }
+  },
+  "environment": {
+    "ContainerModule": {
+      "BACKGROUND_COLOR": "#282c34"
+    },
+    "PingModule": {
+      "COLOR": "#282c34"
+    }
+  }
+}
