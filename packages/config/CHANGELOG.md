@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0-alpha.0](https://github.com/navaris/appshell/compare/@appshell/config@0.3.2...@appshell/config@0.4.0-alpha.0) (2023-08-09)
+
+
+### Features
+
+* deregister cli command ([#24](https://github.com/navaris/appshell/issues/24)) ([746e827](https://github.com/navaris/appshell/commit/746e8273b366543a606cecadf18554bfc094143e))
+
+
+
+
+
 ## [0.3.2](https://github.com/navaris/appshell/compare/@appshell/config@0.3.2-alpha.0...@appshell/config@0.3.2) (2023-07-18)
 
 **Note:** Version bump only for package @appshell/config
