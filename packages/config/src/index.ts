@@ -2,6 +2,7 @@
  * @appshell/config package API
  */
 export { default as configmap } from './configmap';
+export { default as deregister } from './deregister';
 export { default as generateEnv } from './generate.env';
 export { default as generateIndex } from './generate.index';
 export { default as generateManifest } from './generate.manifest';

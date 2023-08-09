@@ -6,6 +6,7 @@
 
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
+import deregisterManifestHandler, { DeregisterManifestArgs } from './handlers/deregister';
 import generateEnvHandler, { GenerateEnvArgs } from './handlers/generate.env';
 import generateIndexHandler, { GenerateIndexArgs } from './handlers/generate.index';
 import generateManifestHandler, { GenerateManifestArgs } from './handlers/generate.manifest';
@@ -113,6 +114,28 @@ const registerManifestCommand: yargs.CommandModule<unknown, RegisterManifestArgs
         description: 'Registry path for the appshell manifests',
       }),
   handler: registerManifestHandler,
+};
+
+const deregisterManifestCommand: yargs.CommandModule<unknown, DeregisterManifestArgs> = {
+  command: 'deregister',
+  describe: 'Deregister one or more appshell manifests',
+  // eslint-disable-next-line @typescript-eslint/no-shadow
+  builder: (yargs) =>
+    yargs
+      .option('key', {
+        alias: 'k',
+        string: true,
+        type: 'array',
+        requiresArg: true,
+        description: 'One or more keys for manifests to deregister',
+      })
+      .option('registry', {
+        alias: 'r',
+        default: 'appshell_registry',
+        type: 'string',
+        description: 'Registry path for the appshell manifests',
+      }),
+  handler: deregisterManifestHandler,
 };
 
 const generateIndexCommand: yargs.CommandModule<unknown, GenerateIndexArgs> = {
@@ -275,5 +298,6 @@ yargs(hideBin(process.argv))
         .demandCommand(),
   })
   .command(registerManifestCommand)
+  .command(deregisterManifestCommand)
   .command(startCommand)
   .parse();
