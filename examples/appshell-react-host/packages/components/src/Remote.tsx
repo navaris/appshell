@@ -1,4 +1,4 @@
-import { AppshellRemote } from '@appshell/config';
+import { AppshellRemote } from '@appshell/core';
 import React, { FC } from 'react';
 import styled from 'styled-components';
 

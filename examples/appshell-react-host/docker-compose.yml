@@ -4,7 +4,7 @@ services:
       - host
     # image: appshell/react-host:latest # production image (no hot module replacement support)
     image: appshell/react-host:developer
-    env_file: './${ENV_TARGET}.env'
+    env_file: ./${ENV_TARGET}.env
     deploy:
       mode: replicated
       replicas: ${APPSHELL_CONTAINER_SCALE}
@@ -17,9 +17,9 @@ services:
   appshell-sample-mfe-apps:
     profiles:
       - apps
-    env_file: './${ENV_TARGET}.env'
+    env_file: ./${ENV_TARGET}.env
     build:
-      context: '.'
+      context: .
       target: ${BUILD_TARGET}
     deploy:
       mode: replicated
