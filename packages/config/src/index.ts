@@ -10,6 +10,7 @@ export { default as register } from './register';
 export type {
   AppshellConfig,
   AppshellConfigRemote,
+  AppshellGlobalConfig,
   AppshellIndex,
   AppshellManifest,
   AppshellRemote,
