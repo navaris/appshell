@@ -135,10 +135,12 @@ export default class AppshellManifestPlugin {
     AppshellManifestPlugin.validate(template);
 
     compiler.hooks.afterEmit.tap(PLUGIN_NAME, (compilation) => {
-      const outputFile = path.resolve(
-        compilation.outputOptions.path || '',
-        'appshell.template.json',
-      );
+      const outputDir = path.resolve(compilation.outputOptions.path || '');
+      const outputFile = path.resolve(outputDir, 'appshell.template.json');
+
+      if (!fs.existsSync(outputDir)) {
+        fs.mkdirSync(outputDir, { recursive: true });
+      }
 
       fs.writeFileSync(outputFile, JSON.stringify(template));
     });

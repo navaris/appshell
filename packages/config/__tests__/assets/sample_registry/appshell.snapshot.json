@@ -55,6 +55,20 @@
         "order": 10,
         "icon": "ViewList"
       }
+    },
+    "PingModule/AnotherComponent": {
+      "id": "2009efad",
+      "manifestUrl": "http://localhost:30011/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:30011/remoteEntry.js",
+      "scope": "PingModule",
+      "module": "./AnotherComponent",
+      "metadata": {
+        "route": "/ping",
+        "displayName": "Ping Micro-Frontend",
+        "displayGroup": "main",
+        "order": 10,
+        "icon": "ViewList"
+      }
     }
   },
   "modules": {

@@ -33,6 +33,23 @@
       "displayGroup": "main",
       "order": 10,
       "icon": "ViewList"
+    },
+    "PingModule/AnotherComponent": {
+      "route": "/another",
+      "displayName": "Ping Micro-Frontend",
+      "displayGroup": "main",
+      "order": 10,
+      "icon": "ViewList"
+    }
+  },
+  "overrides": {
+    "environment": {
+      "ContainerModule": {
+        "BACKGROUND_COLOR": "green"
+      },
+      "PingModule": {
+        "COLOR": "red"
+      }
     }
   }
 }

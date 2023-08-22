@@ -46,6 +46,13 @@ describe('deregister', () => {
           icon: 'ViewList',
         },
       },
+      overrides: {
+        environment: {
+          ContainerModule: {
+            BACKGROUND_COLOR: 'green',
+          },
+        },
+      },
     };
     const expectedSnapshot = {
       remotes: {
@@ -160,7 +167,7 @@ describe('deregister', () => {
       },
     };
 
-    await deregister('PingModule/Ping', registryDir);
+    await deregister('PingModule', registryDir);
 
     expect(writeFileSyncSpy).toHaveBeenCalledWith(
       `${registryDir}/appshell.config.json`,
@@ -174,18 +181,18 @@ describe('deregister', () => {
   });
 
   it('should warn when deregistering entry that does not exist from registry', async () => {
-    const componentKey = 'DoesNotExistModule/DoesNotExist';
+    const componentKey = 'DoesNotExistModule';
     const consoleSpy = jest.spyOn(console, 'log');
     await deregister(componentKey, registryDir);
 
     expect(consoleSpy).toHaveBeenCalledWith(
-      chalk.yellow(`index entry not found for '${componentKey}'`),
+      chalk.yellow(`index entry not found for '${componentKey}/*'`),
     );
     expect(consoleSpy).toHaveBeenCalledWith(
-      chalk.yellow(`metadata entry not found for '${componentKey}'`),
+      chalk.yellow(`metadata entry not found for '${componentKey}/*'`),
     );
     expect(consoleSpy).toHaveBeenCalledWith(
-      chalk.yellow(`manifest entry not found for remotes[${componentKey}]`),
+      chalk.yellow(`manifest entry not found for remotes[${componentKey}/*]`),
     );
     expect(consoleSpy).toHaveBeenCalledWith(
       chalk.yellow(`manifest entry not found for modules[${componentKey}]`),
@@ -199,7 +206,7 @@ describe('deregister', () => {
     const consoleSpy = jest.spyOn(console, 'log');
     const registry = path.resolve(`packages/${packageName}/__tests__/assets/empty_dir`);
 
-    await deregister('PingModule/Ping', registry);
+    await deregister('PingModule', registry);
 
     expect(consoleSpy).toHaveBeenCalledWith(
       chalk.yellow(`registry file not found ${registry}/appshell.config.json`),
