@@ -61,8 +61,8 @@ const updateGlobalConfig = (registry: string, key: string) => {
   fs.writeFileSync(file, JSON.stringify(doc));
 };
 
-const updateManifest = (registry: string, key: string) => {
-  const file = `${registry}/appshell.manifest.json`;
+const updateSnapshot = (registry: string, key: string) => {
+  const file = `${registry}/appshell.snapshot.json`;
 
   if (!fs.existsSync(file)) {
     console.log(chalk.yellow(`registry file not found ${file}`));
@@ -91,5 +91,5 @@ export default async (manifestKey: string, registry: string) => {
   }
 
   updateGlobalConfig(registry, manifestKey);
-  updateManifest(registry, manifestKey);
+  updateSnapshot(registry, manifestKey);
 };

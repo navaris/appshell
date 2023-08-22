@@ -45,7 +45,7 @@ export default async (manifest: AppshellManifest, registryPathOrUrl: string) => 
     validators.AppshellGlobalConfigValidator,
   );
   updateDocument(
-    `${registryPathOrUrl}/appshell.manifest.json`,
+    `${registryPathOrUrl}/appshell.snapshot.json`,
     manifest,
     validators.AppshellManifestValidator,
   );

@@ -32,7 +32,7 @@ describe('register', () => {
 
     const registry = fs.readdirSync(registryDir);
 
-    expect(registry).toContain('appshell.manifest.json');
     expect(registry).toContain('appshell.config.json');
+    expect(registry).toContain('appshell.snapshot.json');
   });
 });

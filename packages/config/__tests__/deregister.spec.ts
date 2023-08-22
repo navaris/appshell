@@ -47,7 +47,7 @@ describe('deregister', () => {
         },
       },
     };
-    const expectedManifest = {
+    const expectedSnapshot = {
       remotes: {
         'PongModule/Pong': {
           id: '6b3cbfed',
@@ -168,8 +168,8 @@ describe('deregister', () => {
     );
 
     expect(writeFileSyncSpy).toHaveBeenCalledWith(
-      `${registryDir}/appshell.manifest.json`,
-      JSON.stringify(expectedManifest),
+      `${registryDir}/appshell.snapshot.json`,
+      JSON.stringify(expectedSnapshot),
     );
   });
 
@@ -205,7 +205,7 @@ describe('deregister', () => {
       chalk.yellow(`registry file not found ${registry}/appshell.config.json`),
     );
     expect(consoleSpy).toHaveBeenCalledWith(
-      chalk.yellow(`registry file not found ${registry}/appshell.manifest.json`),
+      chalk.yellow(`registry file not found ${registry}/appshell.snapshot.json`),
     );
   });
 });
