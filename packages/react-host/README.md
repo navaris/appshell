@@ -63,9 +63,9 @@ APPSHELL_ROOT_PROPS='{"foo":"bar"}'
 APPSHELL_BASE_REGISTRY=http://prod.url.com/registry ./path/to/appshell_registry
 # File to setup the environment. Defaults to .env
 APPSHELL_ENV=.env
-# Prefix used to specify which env vars to include when generating runtime.env.js. Leaving this empty will include ALL variables in the .env
+# Prefix used to specify which env vars to include when generating appshell.env.js. Leaving this empty will include ALL variables in the .env
 APPSHELL_ENV_PREFIX=APPSHELL_
-# Name of global variable used in the generated runtime.env.js. Defaults to window.__appshell_env__
+# Name of global variable used in the generated appshell.env.js. Defaults to window.__appshell_env__
 APPSHELL_ENV_GLOBAL_VAR=__appshell_env__
 # Background color of splash screen
 APPSHELL_THEME_COLOR=

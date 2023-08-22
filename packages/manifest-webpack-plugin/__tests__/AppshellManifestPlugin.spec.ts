@@ -101,7 +101,7 @@ describe('AppshellManifestPlugin', () => {
     });
 
     it('should write configuration to configsDir', () => {
-      const writeFileSyncSpy = jest.spyOn(fs, 'writeFileSync');
+      const writeFileSyncSpy = jest.spyOn(fs, 'writeFileSync').mockImplementation();
       const plugin = new AppshellManifestPlugin({ config });
 
       plugin.apply(compiler as any);

@@ -226,7 +226,7 @@ const generateEnvCommand: yargs.CommandModule<unknown, GenerateEnvArgs> = {
       })
       .option('outFile', {
         alias: 'f',
-        default: 'runtime.env.js',
+        default: 'appshell.env.js',
         type: 'string',
         description: 'Output filename for the runtime environment js',
       })

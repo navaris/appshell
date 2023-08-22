@@ -259,8 +259,8 @@ Options:
       --help     Show help                                                  [boolean]
       --version  Show version number                                        [boolean]
   -e, --env      The .env file to process                                   [string] [default: ".env"]
-  -o, --outDir   Output location for the runtime environment js             [string] [default: "."]
-  -f, --outFile  Output filename for the runtime environment js             [string] [default: "runtime.env.js"]
+  -o, --outDir   Output location for the appshell environment js             [string] [default: "."]
+  -f, --outFile  Output filename for the appshell environment js             [string] [default: "appshell.env.js"]
   -p, --prefix   Only capture environment variables that start with prefix  [string] [default: ""]
   -g, --globalName     Global variable name window[globalName] used in the output js    [string] [default: "__appshell_env__"]
 ```
@@ -271,7 +271,7 @@ Options:
 appshell generate env -e .env --prefix APPSHELL_ --outDir dist
 ```
 
-Sample output `runtime.env.js`
+Sample output `appshell.env.js`
 
 ```js
 window.__appshell_env__ = {
@@ -283,5 +283,5 @@ window.__appshell_env__ = {
 Include in the public html
 
 ```html
-<script src="runtime.env.js"></script>
+<script src="appshell.env.js"></script>
 ```
