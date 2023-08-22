@@ -109,14 +109,14 @@ describe('generate', () => {
     const testGlobalConfig = [
       `packages/${packageName}/__tests__/assets/registries/appshell.config.json`,
     ];
-    const adjunctRegistries = [
+    const baseRegistries = [
       `packages/${packageName}/__tests__/assets/registries/registry_a`,
       `packages/${packageName}/__tests__/assets/registries/registry_b`,
     ];
     const remoteRegistries = ['https://test.com/registry'];
 
     it('should merge multiple valid global configurations', async () => {
-      const config = await generateGlobalConfig([...adjunctRegistries, ...testGlobalConfig]);
+      const config = await generateGlobalConfig([...baseRegistries, ...testGlobalConfig]);
 
       expect(config).toMatchSnapshot();
     });
@@ -128,7 +128,7 @@ describe('generate', () => {
     });
 
     it('should handle a directory', async () => {
-      const config = await generateGlobalConfig(adjunctRegistries);
+      const config = await generateGlobalConfig(baseRegistries);
 
       expect(config).toMatchSnapshot();
     });

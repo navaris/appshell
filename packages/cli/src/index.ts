@@ -85,12 +85,13 @@ const startCommand: yargs.CommandModule<unknown, StartArgs> = {
         type: 'string',
         description: 'Registry with which the app is registered',
       })
-      .option('adjunctRegistry', {
+      .option('baseRegistry', {
         alias: 'a',
         default: [],
         string: true,
         type: 'array',
-        description: 'One or more adjunct registries to incorporate',
+        description:
+          'One or more base registries to incorporate into the global appshell configuration',
       }),
   handler: startHandler,
 };

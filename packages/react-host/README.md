@@ -60,7 +60,7 @@ APPSHELL_ROOT=ContainerModule/App
 # Props to be passed to federated component specified by APPSHELL_ROOT, as a serialized JSON string.
 APPSHELL_ROOT_PROPS='{"foo":"bar"}'
 # Collection of registries that will be incorporated into the current registry output
-APPSHELL_ADJUNCT_REGISTRY=http://prod.url.com/registry ./path/to/appshell_registry
+APPSHELL_BASE_REGISTRY=http://prod.url.com/registry ./path/to/appshell_registry
 # File to setup the environment. Defaults to .env
 APPSHELL_ENV=.env
 # Prefix used to specify which env vars to include when generating runtime.env.js. Leaving this empty will include ALL variables in the .env

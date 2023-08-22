@@ -6,9 +6,9 @@
   "private": true,
   "scripts": {
     "generate:env": "appshell generate env -e .env --prefix $APPSHELL_ENV_PREFIX",
-    "generate:register": "appshell generate register --validate-registry-ssl-cert $APPSHELL_VALIDATE_REGISTRY_SSL_CERT --registry $APPSHELL_ADJUNCT_REGISTRY $APPSHELL_REGISTRY",
+    "generate:register": "appshell generate register --validate-registry-ssl-cert $APPSHELL_VALIDATE_REGISTRY_SSL_CERT --registry $APPSHELL_BASE_REGISTRY $APPSHELL_REGISTRY",
     "start": "dotenv -- run-p start:appshell start:run",
-    "start:appshell": "appshell start --host --validate-registry-ssl-cert $APPSHELL_VALIDATE_REGISTRY_SSL_CERT --registry $APPSHELL_REGISTRY --adjunct-registry $APPSHELL_ADJUNCT_REGISTRY --env $APPSHELL_ENV --env-prefix $APPSHELL_ENV_PREFIX --env-global-name $APPSHELL_ENV_GLOBAL_VAR",
+    "start:appshell": "appshell start --host --validate-registry-ssl-cert $APPSHELL_VALIDATE_REGISTRY_SSL_CERT --registry $APPSHELL_REGISTRY --base-registry $APPSHELL_BASE_REGISTRY --env $APPSHELL_ENV --env-prefix $APPSHELL_ENV_PREFIX --env-global-name $APPSHELL_ENV_GLOBAL_VAR",
     "start:run": "webpack-cli serve --mode development",
     "prebuild": "yarn clean",
     "build": "webpack --mode production",
