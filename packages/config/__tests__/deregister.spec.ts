@@ -15,34 +15,35 @@ describe('deregister', () => {
     jest.restoreAllMocks();
   });
 
-  it('should unregister entry from registry', async () => {
-    await deregister('PingModule/Ping', registryDir);
-    const expectedIndex = {
-      'PongModule/Pong': 'http://localhost:30021/appshell.manifest.json',
-      'PongModule/CoolComponent': 'http://localhost:30021/appshell.manifest.json',
-      'ContainerModule/Container': 'http://localhost:30001/appshell.manifest.json',
-    };
-    const expectedMetadata = {
-      'PongModule/Pong': {
-        route: '/pong',
-        displayName: 'Pong Micro-Frontend',
-        displayGroup: 'main',
-        order: 20,
-        icon: 'ViewList',
+  it('should deregister entry from registry', async () => {
+    const expectedRegister = {
+      index: {
+        'PongModule/Pong': 'http://localhost:30021/appshell.manifest.json',
+        'PongModule/CoolComponent': 'http://localhost:30021/appshell.manifest.json',
+        'ContainerModule/Container': 'http://localhost:30001/appshell.manifest.json',
       },
-      'PongModule/CoolComponent': {
-        route: '/cool',
-        displayName: 'Cool Shared Component',
-        displayGroup: 'main',
-        order: 30,
-        icon: 'ViewList',
-      },
-      'ContainerModule/Container': {
-        route: '/',
-        displayName: 'Host App',
-        displayGroup: 'main',
-        order: 0,
-        icon: 'ViewList',
+      metadata: {
+        'PongModule/Pong': {
+          route: '/pong',
+          displayName: 'Pong Micro-Frontend',
+          displayGroup: 'main',
+          order: 20,
+          icon: 'ViewList',
+        },
+        'PongModule/CoolComponent': {
+          route: '/cool',
+          displayName: 'Cool Shared Component',
+          displayGroup: 'main',
+          order: 30,
+          icon: 'ViewList',
+        },
+        'ContainerModule/Container': {
+          route: '/',
+          displayName: 'Host App',
+          displayGroup: 'main',
+          order: 0,
+          icon: 'ViewList',
+        },
       },
     };
     const expectedManifest = {
@@ -158,19 +159,48 @@ describe('deregister', () => {
       },
     };
 
-    expect(writeFileSyncSpy).toHaveBeenCalledWith(
-      `${registryDir}/appshell.index.json`,
-      JSON.stringify(expectedIndex),
-    );
+    await deregister('PingModule/Ping', registryDir);
 
     expect(writeFileSyncSpy).toHaveBeenCalledWith(
-      `${registryDir}/appshell.metadata.json`,
-      JSON.stringify(expectedMetadata),
+      `${registryDir}/appshell.register.json`,
+      JSON.stringify(expectedRegister),
     );
 
     expect(writeFileSyncSpy).toHaveBeenCalledWith(
       `${registryDir}/appshell.manifest.json`,
       JSON.stringify(expectedManifest),
+    );
+  });
+
+  it('should warn when deregistering entry that does not exist from registry', async () => {
+    const componentKey = 'DoesNotExistModule/DoesNotExist';
+    const consoleSpy = jest.spyOn(console, 'warn');
+    await deregister(componentKey, registryDir);
+
+    expect(consoleSpy).toHaveBeenCalledWith(`index entry not found for '${componentKey}'`);
+    expect(consoleSpy).toHaveBeenCalledWith(`metadata entry not found for '${componentKey}'`);
+    expect(consoleSpy).toHaveBeenCalledWith(
+      `manifest entry not found for remotes[${componentKey}]`,
+    );
+    expect(consoleSpy).toHaveBeenCalledWith(
+      `manifest entry not found for modules[${componentKey}]`,
+    );
+    expect(consoleSpy).toHaveBeenCalledWith(
+      `manifest entry not found for environment[${componentKey}]`,
+    );
+  });
+
+  it('should warn when deregistering from file that does not exist', async () => {
+    const consoleSpy = jest.spyOn(console, 'warn');
+    const registry = path.resolve(`packages/${packageName}/__tests__/assets/empty_dir`);
+
+    await deregister('PingModule/Ping', registry);
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      `registry file not found ${registry}/appshell.register.json`,
+    );
+    expect(consoleSpy).toHaveBeenCalledWith(
+      `registry file not found ${registry}/appshell.manifest.json`,
     );
   });
 });

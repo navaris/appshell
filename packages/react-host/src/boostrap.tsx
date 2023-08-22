@@ -13,8 +13,7 @@ const props = JSON.parse(APPSHELL_ENV.APPSHELL_ROOT_PROPS);
 root.render(
   <React.StrictMode>
     <ReactHost
-      indexUrl={APPSHELL_ENV.APPSHELL_INDEX_URL}
-      metadataUrl={APPSHELL_ENV.APPSHELL_METADATA_URL}
+      registerUrl={APPSHELL_ENV.APPSHELL_INDEX_URL}
       remote={APPSHELL_ENV.APPSHELL_ROOT}
       fallback={<Splash />}
       {...props}

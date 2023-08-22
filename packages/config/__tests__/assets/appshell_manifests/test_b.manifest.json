@@ -63,5 +63,12 @@
       },
       "shareScope": "@sharedscope"
     }
+  },
+  "overrides": {
+    "environment": {
+      "test_module_a": {
+        "RUNTIME_ENV": "A env override"
+      }
+    }
   }
 }

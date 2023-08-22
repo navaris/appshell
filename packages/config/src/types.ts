@@ -21,6 +21,7 @@ export type AppshellConfig<TMetadata = Metadata> = {
   remotes?: Record<string, AppshellConfigRemote<TMetadata>>;
   module: ModuleFederationPluginOptions;
   environment?: Record<string, unknown>;
+  overrides?: AppshellOverrides;
 };
 
 /** Appshell manifest types */
@@ -34,15 +35,26 @@ export type AppshellRemote<TMetadata = Metadata> = {
   metadata: TMetadata;
 };
 
+export type AppshellOverrides = {
+  environment: Record<string, Record<string, string | number | undefined>>;
+};
+
 export type AppshellManifest<TMetadata = Metadata> = {
   remotes: Record<string, AppshellRemote<TMetadata>>;
   modules: Record<string, ModuleFederationPluginOptions>;
   environment: Record<string, Record<string, string | number | undefined>>;
+  overrides?: AppshellOverrides;
 };
 
 export type AppshellIndex = Record<string, string>;
 
 export type Metadata = Record<string, unknown>;
+
+export type AppshellRegister<TMetadata = Metadata> = {
+  index: AppshellIndex;
+  metadata?: Record<string, TMetadata>;
+  overrides?: AppshellOverrides;
+};
 
 /**
  * Advanced configuration for modules that should be exposed by this container.

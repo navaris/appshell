@@ -352,6 +352,13 @@ exports[`utils merge should merge manifests from right to left with merge valida
       },
     },
   },
+  "overrides": {
+    "environment": {
+      "test_module_a": {
+        "RUNTIME_ENV": "A env override",
+      },
+    },
+  },
   "remotes": {
     "BizModule/Biz": {
       "id": "BizModule/Biz",

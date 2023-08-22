@@ -1,63 +1,41 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { AppshellIndex, Metadata } from '@appshell/config';
+import { AppshellRegister } from 'packages/config/src/types';
 import React, { FC, ReactNode, useEffect } from 'react';
-import { MetadataProvider } from '../contexts/MetadataContext';
 import { RegistryProvider } from '../contexts/RegistryContext';
 import FederatedComponent from './FederatedComponent';
 
 const ReactHost: FC<{
-  indexUrl: string;
-  metadataUrl: string;
+  registerUrl: string;
   remote: string;
   fallback?: ReactNode;
   [x: string]: unknown;
-}> = ({ indexUrl, metadataUrl, remote, fallback, ...rest }) => {
-  const [index, setIndex] = React.useState<AppshellIndex>();
-  const [metadata, setMetadata] = React.useState<Metadata>();
+}> = ({ registerUrl, remote, fallback, ...rest }) => {
+  const [register, setRegister] = React.useState<AppshellRegister>();
 
   useEffect(() => {
-    const fetchIndex = async () => {
-      const res = await fetch(indexUrl);
+    const fetchRegister = async () => {
+      const res = await fetch(registerUrl);
 
       if (res.ok) {
         const data = await res.json();
-        setIndex(data);
+        setRegister(data);
       } else {
-        setIndex({});
+        setRegister({ index: {} });
       }
     };
 
-    if (!index) {
-      fetchIndex();
+    if (!register) {
+      fetchRegister();
     }
-  }, [index, indexUrl]);
+  }, [register, registerUrl]);
 
-  useEffect(() => {
-    const fetchMetadata = async () => {
-      const res = await fetch(metadataUrl);
-
-      if (res.ok) {
-        const data = await res.json();
-        setMetadata(data);
-      } else {
-        setMetadata({});
-      }
-    };
-
-    if (!metadata) {
-      fetchMetadata();
-    }
-  }, [metadata, metadataUrl]);
-
-  if (!index || !metadata) {
+  if (!register) {
     return null;
   }
 
   return (
-    <RegistryProvider index={index}>
-      <MetadataProvider metata={metadata}>
-        <FederatedComponent remote={remote} fallback={fallback} {...rest} />
-      </MetadataProvider>
+    <RegistryProvider register={register}>
+      <FederatedComponent remote={remote} fallback={fallback} {...rest} />
     </RegistryProvider>
   );
 };

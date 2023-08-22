@@ -1,0 +1,27 @@
+{
+  "title": "AppshellRegister",
+  "type": "object",
+  "properties": {
+    "index": {
+      "description": "Index of mfe components { [mfe component key]:[manifest url] }",
+      "type": "object",
+      "additionalProperties": true
+    },
+    "metadata": {
+      "description": "Metadata of mfe components { [mfe component key]:[metadata] }",
+      "type": "object",
+      "additionalProperties": true
+    },
+    "overrides": {
+      "description": "Overrides to apply",
+      "type": "object",
+      "properties": {
+        "environment": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "required": ["index"],
+  "additionalProperties": false
+}

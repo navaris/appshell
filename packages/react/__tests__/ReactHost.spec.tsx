@@ -23,8 +23,7 @@ jest.mock('../src/components/FederatedComponent', () => ({
 }));
 
 describe('RenderHost', () => {
-  const indexUrl = 'http://test.com/appshell.index.json';
-  const metadataUrl = 'http://test.com/appshell.metadata.json';
+  const registerUrl = 'http://test.com/appshell.register.json';
   const remote = 'TestModule/TestComponent';
 
   let useState: jest.SpyInstance;
@@ -36,9 +35,7 @@ describe('RenderHost', () => {
     // useEffect = jest.spyOn(React, 'useEffect');
     useState = jest.spyOn(React, 'useState');
     fetch.mockIf(
-      (req) =>
-        req.url === 'http://test.com/appshell.metadata.json' ||
-        req.url === 'http://test.com/appshell.index.json',
+      (req) => req.url === 'http://test.com/appshell.register.json',
       () => Promise.resolve({ ok: true, body: JSON.stringify({ test: 'data' }) }),
     );
   });
@@ -51,14 +48,7 @@ describe('RenderHost', () => {
     mockUseState({ index: 'foo' });
     mockUseState({ metadata: 'bar' });
     const { container } = await act(() =>
-      render(
-        <ReactHost
-          indexUrl={indexUrl}
-          metadataUrl={metadataUrl}
-          remote={remote}
-          fallback="Loading"
-        />,
-      ),
+      render(<ReactHost registerUrl={registerUrl} remote={remote} fallback="Loading" />),
     );
 
     expect(container).toMatchSnapshot();
@@ -68,12 +58,7 @@ describe('RenderHost', () => {
     mockUseState(undefined);
     mockUseState({ metadata: 'bar' });
     const { container } = render(
-      <ReactHost
-        indexUrl={indexUrl}
-        metadataUrl={metadataUrl}
-        remote={remote}
-        fallback="Loading"
-      />,
+      <ReactHost registerUrl={registerUrl} remote={remote} fallback="Loading" />,
     );
 
     expect(container).toMatchSnapshot();
@@ -83,12 +68,7 @@ describe('RenderHost', () => {
     mockUseState({ index: 'foo' });
     mockUseState(undefined);
     const { container } = render(
-      <ReactHost
-        indexUrl={indexUrl}
-        metadataUrl={metadataUrl}
-        remote={remote}
-        fallback="Loading"
-      />,
+      <ReactHost registerUrl={registerUrl} remote={remote} fallback="Loading" />,
     );
 
     expect(container).toMatchSnapshot();
@@ -98,14 +78,7 @@ describe('RenderHost', () => {
     mockUseState({ index: 'foo' });
     mockUseState({ metadata: 'bar' });
     await act(() =>
-      render(
-        <ReactHost
-          indexUrl={indexUrl}
-          metadataUrl={metadataUrl}
-          remote={remote}
-          fallback="Loading"
-        />,
-      ),
+      render(<ReactHost registerUrl={registerUrl} remote={remote} fallback="Loading" />),
     );
 
     await expect(screen.getByText(/test component/i)).toBeInTheDocument();
@@ -116,15 +89,7 @@ describe('RenderHost', () => {
     mockUseState({ metadata: 'bar' });
     const federatedComponentSpy = jest.spyOn(FederatedComponent, 'default');
     await act(() =>
-      render(
-        <ReactHost
-          indexUrl={indexUrl}
-          metadataUrl={metadataUrl}
-          remote={remote}
-          foo="bar"
-          fallback="Loading"
-        />,
-      ),
+      render(<ReactHost registerUrl={registerUrl} remote={remote} foo="bar" fallback="Loading" />),
     );
 
     await expect(screen.getByText(/test component/i)).toBeInTheDocument();

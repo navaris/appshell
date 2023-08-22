@@ -3,9 +3,8 @@ import https from 'https';
 import { keys, values } from 'lodash';
 import path from 'path';
 import generateEnv from '../src/generate.env';
-import generateIndex from '../src/generate.index';
 import generate from '../src/generate.manifest';
-import generateMetadata from '../src/generate.metadata';
+import generateRegister from '../src/generate.register';
 import * as utils from '../src/utils';
 import manifest from './assets/appshell.manifest.json';
 import mockAxios from './utils/axios';
@@ -94,7 +93,7 @@ describe('generate', () => {
     });
   });
 
-  describe('index', () => {
+  describe('register', () => {
     let agentConstructorSpy: jest.SpyInstance;
     let consoleSpy: jest.SpyInstance;
     beforeEach(() => {
@@ -107,42 +106,44 @@ describe('generate', () => {
       consoleSpy.mockRestore();
     });
 
-    const singleIndex = [`packages/${packageName}/__tests__/assets/registries/appshell.index.json`];
+    const singleRegister = [
+      `packages/${packageName}/__tests__/assets/registries/appshell.register.json`,
+    ];
     const adjunctRegistries = [
       `packages/${packageName}/__tests__/assets/registries/registry_a`,
       `packages/${packageName}/__tests__/assets/registries/registry_b`,
     ];
     const remoteRegistries = ['https://test.com/registry'];
 
-    it('should merge valid registry indexes', async () => {
-      const index = await generateIndex([...adjunctRegistries, ...singleIndex]);
+    it('should merge multiple valid registers', async () => {
+      const register = await generateRegister([...adjunctRegistries, ...singleRegister]);
 
-      expect(index).toMatchSnapshot();
+      expect(register).toMatchSnapshot();
     });
 
-    it('should handle a single index file', async () => {
-      const index = await generateIndex(singleIndex);
+    it('should handle a single register file', async () => {
+      const register = await generateRegister(singleRegister);
 
-      expect(index).toMatchSnapshot();
+      expect(register).toMatchSnapshot();
     });
 
     it('should handle a directory', async () => {
-      const index = await generateIndex(adjunctRegistries);
+      const register = await generateRegister(adjunctRegistries);
 
-      expect(index).toMatchSnapshot();
+      expect(register).toMatchSnapshot();
     });
 
     it('should log error and return empty if something goes wrong', async () => {
       jest.spyOn(utils, 'merge').mockImplementationOnce(() => {
         throw new Error('Something went wrong');
       });
-      const index = await generateIndex(singleIndex);
+      const register = await generateRegister(singleRegister);
 
       expect(consoleSpy).toHaveBeenCalledWith(
         'Error generating appshell index',
         'Something went wrong',
       );
-      expect(index).toMatchObject({});
+      expect(register).toMatchObject({});
     });
 
     it('should configure http client when insecure is true', async () => {
@@ -150,7 +151,7 @@ describe('generate', () => {
         .onGet(/\/registry/i)
         .reply(HttpStatusCode.Ok, { status: HttpStatusCode.Ok, statusText: 'OK', data: {} });
 
-      await generateIndex(remoteRegistries, { insecure: true });
+      await generateRegister(remoteRegistries, { insecure: true });
 
       expect(agentConstructorSpy).toHaveBeenCalledWith({ rejectUnauthorized: false });
     });
@@ -160,81 +161,7 @@ describe('generate', () => {
         .onGet(/\/registry/i)
         .reply(HttpStatusCode.Ok, { status: HttpStatusCode.Ok, statusText: 'OK', data: {} });
 
-      await generateIndex(remoteRegistries, { insecure: false });
-
-      expect(agentConstructorSpy).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('metadata', () => {
-    let agentConstructorSpy: jest.SpyInstance;
-    let consoleSpy: jest.SpyInstance;
-    beforeEach(() => {
-      agentConstructorSpy = jest.spyOn(https, 'Agent').mockReturnThis();
-      consoleSpy = jest.spyOn(console, 'error');
-    });
-
-    afterEach(() => {
-      agentConstructorSpy.mockRestore();
-      consoleSpy.mockRestore();
-    });
-
-    const singleIndex = [
-      `packages/${packageName}/__tests__/assets/registries/appshell.metadata.json`,
-    ];
-    const adjunctRegistries = [
-      `packages/${packageName}/__tests__/assets/registries/registry_a`,
-      `packages/${packageName}/__tests__/assets/registries/registry_b`,
-    ];
-    const remoteRegistries = ['https://test.com/registry'];
-
-    it('should merge valid registry indexes', async () => {
-      const index = await generateMetadata([...adjunctRegistries, ...singleIndex]);
-
-      expect(index).toMatchSnapshot();
-    });
-
-    it('should handle a single index file', async () => {
-      const index = await generateMetadata(singleIndex);
-
-      expect(index).toMatchSnapshot();
-    });
-
-    it('should handle a directory', async () => {
-      const index = await generateMetadata(adjunctRegistries);
-
-      expect(index).toMatchSnapshot();
-    });
-
-    it('should log error and return empty if something goes wrong', async () => {
-      jest.spyOn(utils, 'merge').mockImplementationOnce(() => {
-        throw new Error('Something went wrong');
-      });
-      const index = await generateMetadata(singleIndex);
-
-      expect(consoleSpy).toHaveBeenCalledWith(
-        'Error generating appshell metadata',
-        'Something went wrong',
-      );
-      expect(index).toMatchObject({});
-    });
-
-    it('should configure http client when insecure is true', async () => {
-      mockAxios
-        .onGet(/\/registry/i)
-        .reply(HttpStatusCode.Ok, { status: HttpStatusCode.Ok, statusText: 'OK', data: {} });
-
-      await generateMetadata(remoteRegistries, { insecure: true });
-
-      expect(agentConstructorSpy).toHaveBeenCalledWith({ rejectUnauthorized: false });
-    });
-
-    it('should not configure http client when insecure is false', async () => {
-      mockAxios
-        .onGet(/\/registry/i)
-        .reply(HttpStatusCode.Ok, { status: HttpStatusCode.Ok, statusText: 'OK', data: {} });
-
-      await generateMetadata(remoteRegistries, { insecure: false });
+      await generateRegister(remoteRegistries, { insecure: false });
 
       expect(agentConstructorSpy).not.toHaveBeenCalled();
     });

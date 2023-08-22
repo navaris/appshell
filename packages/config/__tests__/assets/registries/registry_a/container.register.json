@@ -1,0 +1,14 @@
+{
+  "index": {
+    "ContainerModule/Container": "http://localhost:30001/appshell.manifest.json"
+  },
+  "metadata": {
+    "ContainerModule/Container": {
+      "route": "/",
+      "displayName": "Host App",
+      "displayGroup": "main",
+      "order": 0,
+      "icon": "ViewList"
+    }
+  }
+}

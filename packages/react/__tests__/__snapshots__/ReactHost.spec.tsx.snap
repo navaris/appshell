@@ -10,4 +10,10 @@ exports[`RenderHost should match snapshot 1`] = `
 
 exports[`RenderHost should render empty when index is pending 1`] = `<div />`;
 
-exports[`RenderHost should render empty when metadata is pending 1`] = `<div />`;
+exports[`RenderHost should render empty when metadata is pending 1`] = `
+<div>
+  <div>
+    test component
+  </div>
+</div>
+`;
