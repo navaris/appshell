@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-underscore-dangle */
 import { AppshellConfig, Schema, utils, validators } from '@appshell/config';
-import { ModuleFederationPluginOptions } from '@appshell/config/src/types';
+import { AppshellTemplate, ModuleFederationPluginOptions } from '@appshell/config/src/types';
 import fs from 'fs';
 import hash_sum from 'hash-sum';
 import { entries, keys } from 'lodash';
@@ -60,30 +60,40 @@ export default class AppshellManifestPlugin {
     return mfPlugin;
   }
 
-  static prepare(config: AppshellConfig, plugin: ModuleFederationPluginInstance) {
-    entries(config.remotes).forEach(([key, remote]) => {
+  static createTemplate(
+    config: AppshellConfig,
+    plugin: ModuleFederationPluginInstance,
+  ): AppshellTemplate {
+    const name = config.name || plugin._options?.name;
+    const template: AppshellTemplate = {
+      name,
+      ...config,
+      module: plugin._options || {},
+      environment: config.environment
+        ? {
+            [name || 'unknown']: config.environment,
+          }
+        : {},
+    };
+
+    entries(template.remotes).forEach(([key, remote]) => {
       remote.id = hash_sum(key);
     });
-    config.module = plugin._options || {};
-    config.name = config.name || config.module.name;
-    config.environment = config.environment
-      ? {
-          [config.name || 'unknown']: config.environment,
-        }
-      : {};
+
+    return template;
   }
 
-  static validate(config: AppshellConfig) {
-    if (!config.module.name) {
+  static validate(template: AppshellTemplate) {
+    if (!template.module.name) {
       throw new Error('Module name is required.');
     }
 
-    validators.appshell_config.validate(config);
+    validators.appshell_template.validate(template);
 
-    const pluginRemotes = keys(config.module.exposes).map((key) =>
-      path.join(`${config.module.name}/${path.basename(key)}`),
+    const pluginRemotes = keys(template.module.exposes).map((key) =>
+      path.join(`${template.module.name}/${path.basename(key)}`),
     );
-    const configuredRemotes = keys(config.remotes);
+    const configuredRemotes = keys(template.remotes);
 
     if (!pluginRemotes.every((remote) => configuredRemotes.includes(remote))) {
       throw new Error(
@@ -94,7 +104,7 @@ export default class AppshellManifestPlugin {
     if (
       !configuredRemotes
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        .filter((key) => key.startsWith(config.module.name!))
+        .filter((key) => key.startsWith(template.module.name!))
         .every((remote) => pluginRemotes.includes(remote))
     ) {
       throw new Error(
@@ -121,8 +131,8 @@ export default class AppshellManifestPlugin {
       throw new Error('Webpack ModuleFederationPlugin is required to use this plugin.');
     }
 
-    AppshellManifestPlugin.prepare(config, plugin);
-    AppshellManifestPlugin.validate(config);
+    const template = AppshellManifestPlugin.createTemplate(config, plugin);
+    AppshellManifestPlugin.validate(template);
 
     compiler.hooks.afterEmit.tap(PLUGIN_NAME, (compilation) => {
       const outputFile = path.resolve(
@@ -130,7 +140,7 @@ export default class AppshellManifestPlugin {
         'appshell.template.json',
       );
 
-      fs.writeFileSync(outputFile, JSON.stringify(config));
+      fs.writeFileSync(outputFile, JSON.stringify(template));
     });
   }
 }

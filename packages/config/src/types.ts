@@ -19,6 +19,14 @@ export type AppshellConfigRemote<TMetadata = Metadata> = {
 export type AppshellConfig<TMetadata = Metadata> = {
   name?: string;
   remotes?: Record<string, AppshellConfigRemote<TMetadata>>;
+  environment?: Record<string, unknown>;
+  overrides?: AppshellOverrides;
+};
+
+/* appshell.template.json */
+export type AppshellTemplate<TMetadata = Metadata> = {
+  name?: string;
+  remotes?: Record<string, AppshellConfigRemote<TMetadata>>;
   module: ModuleFederationPluginOptions;
   environment?: Record<string, unknown>;
   overrides?: AppshellOverrides;

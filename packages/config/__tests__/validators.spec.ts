@@ -1,5 +1,5 @@
-import appshellConfigValidator from '../src/validators/appshell.config';
 import appshellManifestValidator from '../src/validators/appshell.manifest';
+import appshellTemplateValidator from '../src/validators/appshell.template';
 import appshellConfigRemoteCollisions from './assets/appshell.config-remote-collision.json';
 import validManifest from './assets/appshell.json';
 import appshellManifestRemoteCollisions from './assets/appshell.manifest-remote-collision.json';
@@ -11,19 +11,19 @@ type AnyConfig = any;
 
 describe('validators', () => {
   describe('appshell.config validator', () => {
-    it('should pass a valid appshell config', () => {
-      expect(() => appshellConfigValidator.validate(validAppshellConfig)).not.toThrow();
+    it('should pass a valid appshell config template', () => {
+      expect(() => appshellTemplateValidator.validate(validAppshellConfig)).not.toThrow();
     });
 
     it('should throw if multiple remotes with the same ID', () => {
       expect(() =>
-        appshellConfigValidator.validate<AnyConfig>(bizAppshellConfig, bizAppshellConfig),
+        appshellTemplateValidator.validate<AnyConfig>(bizAppshellConfig, bizAppshellConfig),
       ).toThrow(/multiple remotes with the same ID/i);
     });
 
     it('should throw if multiple remotes with the same key', () => {
       expect(() =>
-        appshellConfigValidator.validate<AnyConfig>(
+        appshellTemplateValidator.validate<AnyConfig>(
           bizAppshellConfig,
           appshellConfigRemoteCollisions,
         ),

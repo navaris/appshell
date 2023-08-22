@@ -2,23 +2,23 @@ import { compact, keys, uniq, uniqBy, values } from 'lodash';
 import { validate } from 'schema-utils';
 import { Schema } from 'schema-utils/declarations/validate';
 import schema from '../schemas/appshell.template.json';
-import { AppshellConfig, ConfigValidator } from '../types';
+import { AppshellTemplate, ConfigValidator } from '../types';
 
-const hasIDCollisions = (...documents: AppshellConfig[]) => {
+const hasIDCollisions = (...documents: AppshellTemplate[]) => {
   const allRemotes = compact(documents.flatMap((document) => values(document.remotes)));
   const uniqueIds = uniqBy(allRemotes, (remote) => remote.id);
 
   return uniqueIds.length !== allRemotes.length;
 };
 
-const hasRemoteCollisions = (...documents: AppshellConfig[]) => {
+const hasRemoteCollisions = (...documents: AppshellTemplate[]) => {
   const allRemoteKeys = documents.flatMap((document) => keys(document.remotes));
   const uniqueRemotes = uniq(allRemoteKeys);
 
   return uniqueRemotes.length !== allRemoteKeys.length;
 };
 
-const hasEnvironmentCollisions = (...documents: AppshellConfig[]) => {
+const hasEnvironmentCollisions = (...documents: AppshellTemplate[]) => {
   const allEnvironmentKeys = documents.flatMap((document) => keys(document.environment));
   const uniqueEnvironments = uniq(allEnvironmentKeys);
 
@@ -26,7 +26,7 @@ const hasEnvironmentCollisions = (...documents: AppshellConfig[]) => {
 };
 
 export default {
-  validate: (...documents: AppshellConfig[]) => {
+  validate: (...documents: AppshellTemplate[]) => {
     // schema validation
     documents.forEach((document) => validate(schema as Schema, document));
 

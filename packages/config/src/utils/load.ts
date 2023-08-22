@@ -14,9 +14,8 @@ const load = <TSchema>(configPath: string): TSchema => {
   }
 
   const configYAML = fs.readFileSync(configPath).toString();
-  const config = yaml.parse(configYAML);
 
-  return config;
+  return yaml.parse(configYAML);
 };
 
 /**

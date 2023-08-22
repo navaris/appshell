@@ -1,8 +1,8 @@
 import { entries, values } from 'lodash';
 import configmap from '../src/configmap';
 import { toAppshellManifest } from '../src/mappers';
-import { AppshellConfig, AppshellManifest } from '../src/types';
-import config from './assets/appshell.template.json';
+import { AppshellManifest, AppshellTemplate } from '../src/types';
+import template from './assets/appshell.template.json';
 
 describe('mapping configurations to domain objects', () => {
   const APPS_TEST_URL = 'http://remote-endpoint.com';
@@ -16,8 +16,8 @@ describe('mapping configurations to domain objects', () => {
     process.env.APPS_TEST_REMOTE_ENTRY_PATH = APPS_TEST_REMOTE_ENTRY_PATH;
     process.env.RUNTIME_ENV = RUNTIME_ENV;
     process.env.RUNTIME_ENV_VERSION = RUNTIME_ENV_VERSION;
-    const configMap = configmap.create(config as AppshellConfig);
-    appshellManifest = toAppshellManifest(config as AppshellConfig, configMap);
+    const configMap = configmap.create(template as AppshellTemplate);
+    appshellManifest = toAppshellManifest(template as AppshellTemplate, configMap);
   });
 
   it('should match snapshot', () => {
