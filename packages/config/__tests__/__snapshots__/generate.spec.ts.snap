@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generate manifest should generate an appshell manifest from the appshell config 1`] = `
+exports[`generate manifest should generate an appshell manifest from the config template 1`] = `
 {
   "environment": {
     "RUNTIME_ENV": "development",

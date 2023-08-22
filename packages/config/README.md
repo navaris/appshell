@@ -197,4 +197,4 @@ This `appshell manifest` is registered with `APPSHELL_REGISTRY` consumed by the 
 
 **What if I want to generate the manifest by a startup script instead?**
 
-> This functionality is exposed by the [@appshell/cli](https://www.npmjs.com/package/@appshell/cli) package. You can simply call `appshell generate manifest --template /path/to/appshell.config.json` to produce the runtime manifest on startup.
+> This functionality is exposed by the [@appshell/cli](https://www.npmjs.com/package/@appshell/cli) package. You can simply call `appshell generate manifest --template /path/to/appshell.template.json` to produce the runtime manifest on startup.

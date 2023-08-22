@@ -2,7 +2,7 @@ import { entries, values } from 'lodash';
 import configmap from '../src/configmap';
 import { toAppshellManifest } from '../src/mappers';
 import { AppshellConfig, AppshellManifest } from '../src/types';
-import config from './assets/appshell.config.json';
+import config from './assets/appshell.template.json';
 
 describe('mapping configurations to domain objects', () => {
   const APPS_TEST_URL = 'http://remote-endpoint.com';

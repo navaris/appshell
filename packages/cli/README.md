@@ -72,7 +72,7 @@ Generate the appshell global runtime manifest
 Options:
       --help        Show help                                           [boolean]
       --version     Show version number                                 [boolean]
-  -t, --template  Path to the appshell manifest template to process     [string] [default: "appshell.config.json"]
+  -t, --template  Path to the appshell config template to process     [string] [default: "appshell.template.json"]
   -o, --outDir      Output location for the appshell manifest           [string] [default: "dist"]
   -f, --outFile     Output filename for the appshell manifest           [string] [default: "appshell.manifest.json"]
 ```
@@ -80,14 +80,14 @@ Options:
 ### Sample usage
 
 ```bash
-appshell generate manifest --template dist/appshell.config.json
+appshell generate manifest --template dist/appshell.template.json
 ```
 
 **Where does the content of APPSHELL_REGISTRY come from?**
 
 > Each micro-frontend configured to use [@appshell/manifest-webpack-plugin](https://www.npmjs.com/package/@appshell/manifest-webpack-plugin) emits a manifest template, which is subsequently used to generate a manifest for the remote module. This manifest is then registered with the APPSHELL_REGISTRY.
 
-Sample manifest template `appshell.config.json`:
+Sample config template `appshell.template.json`:
 
 ```json
 {

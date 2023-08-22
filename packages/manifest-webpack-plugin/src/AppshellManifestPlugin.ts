@@ -125,8 +125,10 @@ export default class AppshellManifestPlugin {
     AppshellManifestPlugin.validate(config);
 
     compiler.hooks.afterEmit.tap(PLUGIN_NAME, (compilation) => {
-      const configName = path.basename(this.defaults.config, path.extname(this.defaults.config));
-      const outputFile = path.resolve(compilation.outputOptions.path || '', `${configName}.json`);
+      const outputFile = path.resolve(
+        compilation.outputOptions.path || '',
+        'appshell.template.json',
+      );
 
       fs.writeFileSync(outputFile, JSON.stringify(config));
     });

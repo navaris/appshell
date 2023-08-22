@@ -1,7 +1,7 @@
 import { compact, keys, uniq, uniqBy, values } from 'lodash';
 import { validate } from 'schema-utils';
 import { Schema } from 'schema-utils/declarations/validate';
-import schema from '../schemas/appshell.config.json';
+import schema from '../schemas/appshell.template.json';
 import { AppshellConfig, ConfigValidator } from '../types';
 
 const hasIDCollisions = (...documents: AppshellConfig[]) => {

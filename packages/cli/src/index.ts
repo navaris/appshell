@@ -67,9 +67,9 @@ const startCommand: yargs.CommandModule<unknown, StartArgs> = {
       })
       .option('manifestTemplate', {
         alias: 't',
-        default: 'appshell.config.json',
+        default: 'appshell.template.json',
         type: 'string',
-        description: 'Path to the appshell manifest template to process',
+        description: 'Path to the appshell config template to process',
       })
       .option('manifest', {
         alias: 'm',
@@ -180,9 +180,9 @@ const generateManifestCommand: yargs.CommandModule<unknown, GenerateManifestArgs
     yargs
       .option('template', {
         alias: 't',
-        default: 'appshell.config.json',
+        default: 'appshell.template.json',
         type: 'string',
-        description: 'Path to the appshell manifest template to process',
+        description: 'Path to the appshell config template to process',
       })
       .option('outDir', {
         alias: 'o',

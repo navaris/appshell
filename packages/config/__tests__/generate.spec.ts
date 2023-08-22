@@ -49,16 +49,16 @@ describe('generate', () => {
   });
 
   describe('manifest', () => {
-    const appshellConfig = path.resolve(
-      `packages/${packageName}/__tests__/assets/appshell.config.json`,
+    const configTemplate = path.resolve(
+      `packages/${packageName}/__tests__/assets/appshell.template.json`,
     );
 
     process.env.APPS_TEST_URL = 'http://remote-module.com/remoteEntry.js';
     process.env.RUNTIME_ENV = 'development';
     process.env.RUNTIME_ENV_VERSION = '1.0.0';
 
-    it('should generate an appshell manifest from the appshell config', async () => {
-      const config = await generate(appshellConfig);
+    it('should generate an appshell manifest from the config template', async () => {
+      const config = await generate(configTemplate);
 
       expect(config).toMatchSnapshot();
     });
@@ -70,7 +70,7 @@ describe('generate', () => {
     });
 
     it('should contain all remotes', async () => {
-      const config = await generate(appshellConfig);
+      const config = await generate(configTemplate);
       const expectedRemotes = keys(manifest.remotes);
       const actualRemotes = keys(config?.remotes);
 
@@ -78,7 +78,7 @@ describe('generate', () => {
     });
 
     it('should apply environment variables to configuration', async () => {
-      const config = await generate(appshellConfig);
+      const config = await generate(configTemplate);
 
       const actualUrls = values(config?.remotes).flatMap((remote) => remote.manifestUrl);
 
@@ -87,7 +87,7 @@ describe('generate', () => {
     });
 
     it('should capture metadata', async () => {
-      const config = await generate<TestMetadata>(appshellConfig);
+      const config = await generate<TestMetadata>(configTemplate);
 
       expect(values(config?.remotes).flatMap((remote) => remote.metadata)).toHaveLength(3);
     });
