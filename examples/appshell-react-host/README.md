@@ -19,9 +19,9 @@ At build time, each `AppshellManifestPlugin` emits an appshell manifest template
 
 ## Runtime
 
-At runtime, the config template `dist/appshell.template.json` is processed to generate an `appshell instance` document, which has runtime environment variables injected. The appshell instance is subsequently registered to `APPSHELL_REGISTRY` where it is made available to the appshell host.
+At runtime, the config template `dist/appshell.template.json` is processed to generate an `appshell manifest`, which is a final runtime configuration for a given micro-frontend. The appshell manifest is subsequently registered to `APPSHELL_REGISTRY` where it is made available to the appshell host.
 
-The appshell host `@appshell/react-host` produces a `global appshell registry index` that is served up to the application at runtime.
+The appshell host `@appshell/react-host` produces a `global appshell configuration` that is served up to the application at runtime.
 
 ## Metadata
 

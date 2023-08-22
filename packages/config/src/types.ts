@@ -58,7 +58,7 @@ export type AppshellIndex = Record<string, string>;
 
 export type Metadata = Record<string, unknown>;
 
-export type AppshellRegister<TMetadata = Metadata> = {
+export type AppshellGlobalConfig<TMetadata = Metadata> = {
   index: AppshellIndex;
   metadata?: Record<string, TMetadata>;
   overrides?: AppshellOverrides;

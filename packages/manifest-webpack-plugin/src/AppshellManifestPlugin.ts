@@ -88,7 +88,7 @@ export default class AppshellManifestPlugin {
       throw new Error('Module name is required.');
     }
 
-    validators.appshell_template.validate(template);
+    validators.AppshellTemplateValidator.validate(template);
 
     const pluginRemotes = keys(template.module.exposes).map((key) =>
       path.join(`${template.module.name}/${path.basename(key)}`),

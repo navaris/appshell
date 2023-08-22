@@ -8,8 +8,10 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import deregisterManifestHandler, { DeregisterManifestArgs } from './handlers/deregister';
 import generateEnvHandler, { GenerateEnvArgs } from './handlers/generate.env';
+import generateGlobalConfigHandler, {
+  GenerateGlobalConfigArgs,
+} from './handlers/generate.global-config';
 import generateManifestHandler, { GenerateManifestArgs } from './handlers/generate.manifest';
-import generateRegisterHandler, { GenerateRegisterArgs } from './handlers/generate.register';
 import registerManifestHandler, { RegisterManifestArgs } from './handlers/register';
 import startHandler, { StartArgs } from './handlers/start';
 
@@ -137,9 +139,10 @@ const deregisterManifestCommand: yargs.CommandModule<unknown, DeregisterManifest
   handler: deregisterManifestHandler,
 };
 
-const generateRegisterCommand: yargs.CommandModule<unknown, GenerateRegisterArgs> = {
-  command: 'register',
-  describe: 'Generate the appshell register by merging sources specifed by --registry options',
+const generateGlobalConfigCommand: yargs.CommandModule<unknown, GenerateGlobalConfigArgs> = {
+  command: 'global-config',
+  describe:
+    'Generate the global appshell configuration by merging sources specifed by --registry options',
   // eslint-disable-next-line @typescript-eslint/no-shadow
   builder: (yargs) =>
     yargs
@@ -147,13 +150,13 @@ const generateRegisterCommand: yargs.CommandModule<unknown, GenerateRegisterArgs
         alias: 'o',
         default: 'dist',
         type: 'string',
-        description: 'Output location for the appshell register',
+        description: 'Output location for the global appshell configuration',
       })
       .option('outFile', {
         alias: 'f',
-        default: 'appshell.register.json',
+        default: 'appshell.config.json',
         type: 'string',
-        description: 'Output filename for the appshell register',
+        description: 'Output filename for the global appshell configuration',
       })
       .option('validateRegistrySslCert', {
         alias: 'v',
@@ -167,9 +170,10 @@ const generateRegisterCommand: yargs.CommandModule<unknown, GenerateRegisterArgs
         string: true,
         type: 'array',
         requiresArg: true,
-        description: 'One or more registies to merge into a single appshell register',
+        description:
+          'One or more registries to query for other global configurations to merge into a single global appshell configuration',
       }),
-  handler: generateRegisterHandler,
+  handler: generateGlobalConfigHandler,
 };
 
 const generateManifestCommand: yargs.CommandModule<unknown, GenerateManifestArgs> = {
@@ -257,7 +261,7 @@ yargs(hideBin(process.argv))
       yargs
         .command(generateManifestCommand)
         .command(generateEnvCommand)
-        .command(generateRegisterCommand)
+        .command(generateGlobalConfigCommand)
         .demandCommand(),
   })
   .command(registerManifestCommand)

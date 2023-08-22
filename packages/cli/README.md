@@ -56,7 +56,7 @@ Generates a resource
 Commands:
   appshell generate manifest  Generate the appshell manifest by processing the template specified by --template
   appshell generate env       Generate the runtime environment js file that reflects the current process.env
-  appshell generate index     Generate the appshell index file by merging sources specifed by --registry options
+  appshell generate global-config     Generate the global appshell configuration file by merging sources specifed by --registry options
   appshell generate metadata  Generate the appshell metadata file by merging sources specifed by --registry options
 ```
 

@@ -3,8 +3,8 @@ import https from 'https';
 import { keys, values } from 'lodash';
 import path from 'path';
 import generateEnv from '../src/generate.env';
+import generateGlobalConfig from '../src/generate.global-config';
 import generate from '../src/generate.manifest';
-import generateRegister from '../src/generate.register';
 import * as utils from '../src/utils';
 import manifest from './assets/appshell.manifest.json';
 import mockAxios from './utils/axios';
@@ -106,8 +106,8 @@ describe('generate', () => {
       consoleSpy.mockRestore();
     });
 
-    const singleRegister = [
-      `packages/${packageName}/__tests__/assets/registries/appshell.register.json`,
+    const testGlobalConfig = [
+      `packages/${packageName}/__tests__/assets/registries/appshell.config.json`,
     ];
     const adjunctRegistries = [
       `packages/${packageName}/__tests__/assets/registries/registry_a`,
@@ -115,35 +115,35 @@ describe('generate', () => {
     ];
     const remoteRegistries = ['https://test.com/registry'];
 
-    it('should merge multiple valid registers', async () => {
-      const register = await generateRegister([...adjunctRegistries, ...singleRegister]);
+    it('should merge multiple valid global configurations', async () => {
+      const config = await generateGlobalConfig([...adjunctRegistries, ...testGlobalConfig]);
 
-      expect(register).toMatchSnapshot();
+      expect(config).toMatchSnapshot();
     });
 
-    it('should handle a single register file', async () => {
-      const register = await generateRegister(singleRegister);
+    it('should handle a single global configuration file', async () => {
+      const config = await generateGlobalConfig(testGlobalConfig);
 
-      expect(register).toMatchSnapshot();
+      expect(config).toMatchSnapshot();
     });
 
     it('should handle a directory', async () => {
-      const register = await generateRegister(adjunctRegistries);
+      const config = await generateGlobalConfig(adjunctRegistries);
 
-      expect(register).toMatchSnapshot();
+      expect(config).toMatchSnapshot();
     });
 
     it('should log error and return empty if something goes wrong', async () => {
       jest.spyOn(utils, 'merge').mockImplementationOnce(() => {
         throw new Error('Something went wrong');
       });
-      const register = await generateRegister(singleRegister);
+      const config = await generateGlobalConfig(testGlobalConfig);
 
       expect(consoleSpy).toHaveBeenCalledWith(
-        'Error generating appshell index',
+        'Error generating global appshell configuration',
         'Something went wrong',
       );
-      expect(register).toMatchObject({});
+      expect(config).toMatchObject({});
     });
 
     it('should configure http client when insecure is true', async () => {
@@ -151,7 +151,7 @@ describe('generate', () => {
         .onGet(/\/registry/i)
         .reply(HttpStatusCode.Ok, { status: HttpStatusCode.Ok, statusText: 'OK', data: {} });
 
-      await generateRegister(remoteRegistries, { insecure: true });
+      await generateGlobalConfig(remoteRegistries, { insecure: true });
 
       expect(agentConstructorSpy).toHaveBeenCalledWith({ rejectUnauthorized: false });
     });
@@ -161,7 +161,7 @@ describe('generate', () => {
         .onGet(/\/registry/i)
         .reply(HttpStatusCode.Ok, { status: HttpStatusCode.Ok, statusText: 'OK', data: {} });
 
-      await generateRegister(remoteRegistries, { insecure: false });
+      await generateGlobalConfig(remoteRegistries, { insecure: false });
 
       expect(agentConstructorSpy).not.toHaveBeenCalled();
     });

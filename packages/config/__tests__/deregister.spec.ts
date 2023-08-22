@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import fs from 'fs';
 import path from 'path';
 import deregister from '../src/deregister';
@@ -16,7 +17,7 @@ describe('deregister', () => {
   });
 
   it('should deregister entry from registry', async () => {
-    const expectedRegister = {
+    const expectedGlobalConfig = {
       index: {
         'PongModule/Pong': 'http://localhost:30021/appshell.manifest.json',
         'PongModule/CoolComponent': 'http://localhost:30021/appshell.manifest.json',
@@ -162,8 +163,8 @@ describe('deregister', () => {
     await deregister('PingModule/Ping', registryDir);
 
     expect(writeFileSyncSpy).toHaveBeenCalledWith(
-      `${registryDir}/appshell.register.json`,
-      JSON.stringify(expectedRegister),
+      `${registryDir}/appshell.config.json`,
+      JSON.stringify(expectedGlobalConfig),
     );
 
     expect(writeFileSyncSpy).toHaveBeenCalledWith(
@@ -174,33 +175,37 @@ describe('deregister', () => {
 
   it('should warn when deregistering entry that does not exist from registry', async () => {
     const componentKey = 'DoesNotExistModule/DoesNotExist';
-    const consoleSpy = jest.spyOn(console, 'warn');
+    const consoleSpy = jest.spyOn(console, 'log');
     await deregister(componentKey, registryDir);
 
-    expect(consoleSpy).toHaveBeenCalledWith(`index entry not found for '${componentKey}'`);
-    expect(consoleSpy).toHaveBeenCalledWith(`metadata entry not found for '${componentKey}'`);
     expect(consoleSpy).toHaveBeenCalledWith(
-      `manifest entry not found for remotes[${componentKey}]`,
+      chalk.yellow(`index entry not found for '${componentKey}'`),
     );
     expect(consoleSpy).toHaveBeenCalledWith(
-      `manifest entry not found for modules[${componentKey}]`,
+      chalk.yellow(`metadata entry not found for '${componentKey}'`),
     );
     expect(consoleSpy).toHaveBeenCalledWith(
-      `manifest entry not found for environment[${componentKey}]`,
+      chalk.yellow(`manifest entry not found for remotes[${componentKey}]`),
+    );
+    expect(consoleSpy).toHaveBeenCalledWith(
+      chalk.yellow(`manifest entry not found for modules[${componentKey}]`),
+    );
+    expect(consoleSpy).toHaveBeenCalledWith(
+      chalk.yellow(`manifest entry not found for environment[${componentKey}]`),
     );
   });
 
   it('should warn when deregistering from file that does not exist', async () => {
-    const consoleSpy = jest.spyOn(console, 'warn');
+    const consoleSpy = jest.spyOn(console, 'log');
     const registry = path.resolve(`packages/${packageName}/__tests__/assets/empty_dir`);
 
     await deregister('PingModule/Ping', registry);
 
     expect(consoleSpy).toHaveBeenCalledWith(
-      `registry file not found ${registry}/appshell.register.json`,
+      chalk.yellow(`registry file not found ${registry}/appshell.config.json`),
     );
     expect(consoleSpy).toHaveBeenCalledWith(
-      `registry file not found ${registry}/appshell.manifest.json`,
+      chalk.yellow(`registry file not found ${registry}/appshell.manifest.json`),
     );
   });
 });

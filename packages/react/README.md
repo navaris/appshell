@@ -50,40 +50,22 @@ import { FederatedComponent, ManifestProvider } from '@appshell/react';
 </App>
 ```
 
-## useRegistry
+## useGlobalConfig
 
-For access to the registry index.
+For access to the global appshell config.
 
 ```tsx
-import { RegistryProvider, useRegistry } from '@appshell/react';
+import { GlobalConfigProvider, useGlobalConfig } from '@appshell/react';
 
 const MyComponent = () => {
-  const index = useRegistry();
+  const config = useGlobalConfig();
 
   ...
 }
 
-<RegistryProvider index={index}>
+<RegistryProvider config={config}>
   <MyComponent />
 </RegistryProvider>
-```
-
-## useMetadata
-
-For access to the registry metadata.
-
-```tsx
-import { MetadataProvider, useMetadata } from '@appshell/react';
-
-const MyComponent = () => {
-  const metadata = useMetadata();
-
-  ...
-}
-
-<MetadataProvider metadata={metadata}>
-  <MyComponent />
-</MetadataProvider>
 ```
 
 ## useManifest

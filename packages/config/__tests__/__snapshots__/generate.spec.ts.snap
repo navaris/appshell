@@ -154,7 +154,7 @@ exports[`generate register should handle a directory 1`] = `
 }
 `;
 
-exports[`generate register should handle a single register file 1`] = `
+exports[`generate register should handle a single global configuration file 1`] = `
 {
   "index": {
     "ContainerModule/Container": "http://localhost:30001/appshell.manifest.json",
@@ -202,7 +202,7 @@ exports[`generate register should handle a single register file 1`] = `
 }
 `;
 
-exports[`generate register should merge multiple valid registers 1`] = `
+exports[`generate register should merge multiple valid global configurations 1`] = `
 {
   "index": {
     "ContainerModule/Container": "http://localhost:30001/appshell.manifest.json",

@@ -1,42 +1,42 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { AppshellRegister } from 'packages/config/src/types';
+import { AppshellGlobalConfig } from 'packages/config/src/types';
 import React, { FC, ReactNode, useEffect } from 'react';
-import { RegistryProvider } from '../contexts/RegistryContext';
+import { GlobalConfigProvider } from '../contexts/GlobalConfigContext';
 import FederatedComponent from './FederatedComponent';
 
 const ReactHost: FC<{
-  registerUrl: string;
+  configUrl: string;
   remote: string;
   fallback?: ReactNode;
   [x: string]: unknown;
-}> = ({ registerUrl, remote, fallback, ...rest }) => {
-  const [register, setRegister] = React.useState<AppshellRegister>();
+}> = ({ configUrl, remote, fallback, ...rest }) => {
+  const [config, setGlobalConfig] = React.useState<AppshellGlobalConfig>();
 
   useEffect(() => {
-    const fetchRegister = async () => {
-      const res = await fetch(registerUrl);
+    const fetchGlobalConfig = async () => {
+      const res = await fetch(configUrl);
 
       if (res.ok) {
         const data = await res.json();
-        setRegister(data);
+        setGlobalConfig(data);
       } else {
-        setRegister({ index: {} });
+        setGlobalConfig({ index: {} });
       }
     };
 
-    if (!register) {
-      fetchRegister();
+    if (!config) {
+      fetchGlobalConfig();
     }
-  }, [register, registerUrl]);
+  }, [config, configUrl]);
 
-  if (!register) {
+  if (!config) {
     return null;
   }
 
   return (
-    <RegistryProvider register={register}>
+    <GlobalConfigProvider config={config}>
       <FederatedComponent remote={remote} fallback={fallback} {...rest} />
-    </RegistryProvider>
+    </GlobalConfigProvider>
   );
 };
 

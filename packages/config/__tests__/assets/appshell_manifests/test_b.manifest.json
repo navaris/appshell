@@ -1,7 +1,9 @@
 {
   "remotes": {
     "TestModuleB/Foo": {
-      "id": "TestModule/Foo",
+      "id": "TestModuleB/Foo",
+      "scope": "TestModuleB",
+      "module": "./Foo",
       "manifestUrl": "http://localhost:8080/foo/appshell.manifest.json",
       "remoteEntryUrl": "http://localhost:8080/foo/remoteEntry.js",
       "metadata": {
@@ -13,7 +15,9 @@
       }
     },
     "TestModuleB/Bar": {
-      "id": "TestModule/Bar",
+      "id": "TestModuleB/Bar",
+      "scope": "TestModuleB",
+      "module": "./Bar",
       "manifestUrl": "http://localhost:8080/bar/appshell.manifest.json",
       "remoteEntryUrl": "http://localhost:8080/bar/remoteEntry.js",
       "metadata": {

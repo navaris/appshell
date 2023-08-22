@@ -1,6 +1,6 @@
 import fs from 'fs';
 import axios from './axios';
-import { AppshellManifest, AppshellRegister, ConfigValidator } from './types';
+import { AppshellGlobalConfig, AppshellManifest, ConfigValidator } from './types';
 import { isValidUrl, merge } from './utils';
 import * as validators from './validators';
 
@@ -36,17 +36,17 @@ export default async (manifest: AppshellManifest, registryPathOrUrl: string) => 
 
       return acc;
     },
-    { index: {}, metadata: {}, overrides: manifest.overrides } as AppshellRegister,
+    { index: {}, metadata: {}, overrides: manifest.overrides } as AppshellGlobalConfig,
   );
 
   updateDocument(
-    `${registryPathOrUrl}/appshell.register.json`,
+    `${registryPathOrUrl}/appshell.config.json`,
     registry,
-    validators.appshell_register,
+    validators.AppshellGlobalConfigValidator,
   );
   updateDocument(
     `${registryPathOrUrl}/appshell.manifest.json`,
     manifest,
-    validators.merge_manifests,
+    validators.AppshellManifestValidator,
   );
 };

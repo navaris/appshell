@@ -1,5 +1,5 @@
-import appshellManifestValidator from '../src/validators/appshell.manifest';
-import appshellTemplateValidator from '../src/validators/appshell.template';
+import chalk from 'chalk';
+import { AppshellManifestValidator, AppshellTemplateValidator } from '../src/validators';
 import appshellConfigRemoteCollisions from './assets/appshell.config-remote-collision.json';
 import validManifest from './assets/appshell.json';
 import appshellManifestRemoteCollisions from './assets/appshell.manifest-remote-collision.json';
@@ -10,45 +10,58 @@ import bizAppshellConfig from './assets/appshell_configs/BizModule-Biz.json';
 type AnyConfig = any;
 
 describe('validators', () => {
-  describe('appshell.config validator', () => {
+  let consoleSpy: jest.SpyInstance;
+  beforeEach(() => {
+    consoleSpy = jest.spyOn(console, 'log');
+  });
+
+  afterEach(() => {
+    consoleSpy.mockRestore();
+  });
+
+  describe('AppshellTemplateValidator', () => {
     it('should pass a valid appshell config template', () => {
-      expect(() => appshellTemplateValidator.validate(validAppshellConfig)).not.toThrow();
+      AppshellTemplateValidator.validate(validAppshellConfig);
+
+      expect(consoleSpy).not.toHaveBeenCalled();
     });
 
     it('should throw if multiple remotes with the same ID', () => {
-      expect(() =>
-        appshellTemplateValidator.validate<AnyConfig>(bizAppshellConfig, bizAppshellConfig),
-      ).toThrow(/multiple remotes with the same ID/i);
+      AppshellTemplateValidator.validate<AnyConfig>(bizAppshellConfig, bizAppshellConfig);
+
+      expect(consoleSpy).toHaveBeenCalledWith(chalk.yellow('Multiple remotes with the same ID'));
     });
 
     it('should throw if multiple remotes with the same key', () => {
-      expect(() =>
-        appshellTemplateValidator.validate<AnyConfig>(
-          bizAppshellConfig,
-          appshellConfigRemoteCollisions,
-        ),
-      ).toThrow(/multiple remotes with the same key/i);
+      AppshellTemplateValidator.validate<AnyConfig>(
+        bizAppshellConfig,
+        appshellConfigRemoteCollisions,
+      );
+
+      expect(consoleSpy).toHaveBeenCalledWith(chalk.yellow('Multiple remotes with the same key'));
     });
   });
 
-  describe('appshell.manifest validator', () => {
+  describe('AppshellManifestValidator', () => {
     it('should pass a valid appshell manifest', () => {
-      expect(() => appshellManifestValidator.validate(validManifest)).not.toThrow();
+      AppshellManifestValidator.validate(validManifest);
+
+      expect(consoleSpy).not.toHaveBeenCalled();
     });
 
     it('should throw if multiple remotes with the same ID', () => {
-      expect(() =>
-        appshellManifestValidator.validate<AnyConfig>(validManifest, validManifest),
-      ).toThrow(/multiple remotes with the same ID/i);
+      AppshellManifestValidator.validate<AnyConfig>(validManifest, validManifest);
+
+      expect(consoleSpy).toHaveBeenCalledWith(chalk.yellow('Multiple remotes with the same ID'));
     });
 
     it('should throw if multiple remotes with the same key', () => {
-      expect(() =>
-        appshellManifestValidator.validate<AnyConfig>(
-          validManifest,
-          appshellManifestRemoteCollisions,
-        ),
-      ).toThrow(/multiple remotes with the same key/i);
+      AppshellManifestValidator.validate<AnyConfig>(
+        validManifest,
+        appshellManifestRemoteCollisions,
+      );
+
+      expect(consoleSpy).toHaveBeenCalledWith(chalk.yellow('Multiple remotes with the same key'));
     });
   });
 });

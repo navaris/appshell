@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { type AppshellManifest } from '@appshell/config';
-import { AppshellRegister } from 'packages/config/src/types';
+import { AppshellGlobalConfig } from 'packages/config/src/types';
 import fetchDynamicScript from './fetchDynamicScript';
 import loadFederatedComponent from './loadFederatedComponent';
 
@@ -24,10 +24,10 @@ const fetchManifest = async (url: string): Promise<AppshellManifest | undefined>
   throw new Error(`Failed to get manifest from ${url}. ${message}`);
 };
 
-export default (register: AppshellRegister) =>
+export default (config: AppshellGlobalConfig) =>
   async <TComponent>(key: string) => {
     let Component: TComponent;
-    const manifestUrl = register.index[key];
+    const manifestUrl = config.index[key];
     if (!manifestUrl) {
       throw new Error(`Remote resource not found in registry. Expected: ${key}`);
     }

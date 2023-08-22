@@ -23,7 +23,7 @@ jest.mock('../src/components/FederatedComponent', () => ({
 }));
 
 describe('RenderHost', () => {
-  const registerUrl = 'http://test.com/appshell.register.json';
+  const configUrl = 'http://test.com/appshell.config.json';
   const remote = 'TestModule/TestComponent';
 
   let useState: jest.SpyInstance;
@@ -32,10 +32,9 @@ describe('RenderHost', () => {
   };
 
   beforeEach(() => {
-    // useEffect = jest.spyOn(React, 'useEffect');
     useState = jest.spyOn(React, 'useState');
     fetch.mockIf(
-      (req) => req.url === 'http://test.com/appshell.register.json',
+      (req) => req.url === 'http://test.com/appshell.config.json',
       () => Promise.resolve({ ok: true, body: JSON.stringify({ test: 'data' }) }),
     );
   });
@@ -45,54 +44,38 @@ describe('RenderHost', () => {
   });
 
   it('should match snapshot', async () => {
-    mockUseState({ index: 'foo' });
-    mockUseState({ metadata: 'bar' });
+    mockUseState({ config: 'foo' });
     const { container } = await act(() =>
-      render(<ReactHost registerUrl={registerUrl} remote={remote} fallback="Loading" />),
+      render(<ReactHost configUrl={configUrl} remote={remote} fallback="Loading" />),
     );
 
     expect(container).toMatchSnapshot();
   });
 
-  it('should render empty when index is pending', async () => {
-    mockUseState(undefined);
-    mockUseState({ metadata: 'bar' });
-    const { container } = render(
-      <ReactHost registerUrl={registerUrl} remote={remote} fallback="Loading" />,
-    );
-
-    expect(container).toMatchSnapshot();
-  });
-
-  it('should render empty when metadata is pending', async () => {
-    mockUseState({ index: 'foo' });
+  it('should render empty when config is pending', async () => {
     mockUseState(undefined);
     const { container } = render(
-      <ReactHost registerUrl={registerUrl} remote={remote} fallback="Loading" />,
+      <ReactHost configUrl={configUrl} remote={remote} fallback="Loading" />,
     );
 
     expect(container).toMatchSnapshot();
   });
 
-  it('should render component when index and metadata are available', async () => {
-    mockUseState({ index: 'foo' });
-    mockUseState({ metadata: 'bar' });
-    await act(() =>
-      render(<ReactHost registerUrl={registerUrl} remote={remote} fallback="Loading" />),
-    );
+  it('should render component when config is available', async () => {
+    mockUseState({ config: 'foo' });
+    await act(() => render(<ReactHost configUrl={configUrl} remote={remote} fallback="Loading" />));
 
-    await expect(screen.getByText(/test component/i)).toBeInTheDocument();
+    expect(screen.getByText(/test component/i)).toBeInTheDocument();
   });
 
   it('should pass props to federated component when available', async () => {
-    mockUseState({ index: 'foo' });
-    mockUseState({ metadata: 'bar' });
+    mockUseState({ config: 'foo' });
     const federatedComponentSpy = jest.spyOn(FederatedComponent, 'default');
     await act(() =>
-      render(<ReactHost registerUrl={registerUrl} remote={remote} foo="bar" fallback="Loading" />),
+      render(<ReactHost configUrl={configUrl} remote={remote} foo="bar" fallback="Loading" />),
     );
 
-    await expect(screen.getByText(/test component/i)).toBeInTheDocument();
+    expect(screen.getByText(/test component/i)).toBeInTheDocument();
 
     expect(federatedComponentSpy).toHaveBeenCalledWith(
       { fallback: 'Loading', foo: 'bar', remote: 'TestModule/TestComponent' },
