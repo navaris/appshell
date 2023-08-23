@@ -11,7 +11,7 @@ const generateSpy = jest
 const writeFileSyncSpy = jest.spyOn(fs, 'writeFileSync');
 
 describe('generate.manifest', () => {
-  const template = 'assets/appshell.config.json';
+  const template = 'assets/appshell.template.json';
   const outDir = 'assets/';
   const outFile = 'appshell.manifest.json';
 

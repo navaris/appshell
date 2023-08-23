@@ -1,43 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generate index should handle a directory 1`] = `
-{
-  "ContainerModule/Container": "http://localhost:30001/appshell.manifest.json",
-  "PingModule/Ping": "http://localhost:30011/appshell.manifest.json",
-  "PongModule/CoolComponent": "http://localhost:30021/appshell.manifest.json",
-  "PongModule/Pong": "http://localhost:30021/appshell.manifest.json",
-  "TestModule1/Component1": "http://test.com/1/appshell.manifest.json",
-  "TestModule1/Component2": "http://test.com/1/appshell.manifest.json",
-  "TestModule2/Component": "http://test.com/2/appshell.manifest.json",
-  "TestModule3/ComponentA": "http://test.com/3/appshell.manifest.json",
-  "TestModule3/ComponentB": "http://test.com/3/appshell.manifest.json",
-}
-`;
-
-exports[`generate index should handle a single index file 1`] = `
-{
-  "ContainerModule/Container": "http://localhost:30001/appshell.manifest.json",
-  "PingModule/Ping": "http://localhost:30011/appshell.manifest.json",
-  "PongModule/CoolComponent": "http://localhost:30021/appshell.manifest.json",
-  "PongModule/Pong": "http://localhost:30021/appshell.manifest.json",
-}
-`;
-
-exports[`generate index should merge valid registry indexes 1`] = `
-{
-  "ContainerModule/Container": "http://localhost:30001/appshell.manifest.json",
-  "PingModule/Ping": "http://localhost:30011/appshell.manifest.json",
-  "PongModule/CoolComponent": "http://localhost:30021/appshell.manifest.json",
-  "PongModule/Pong": "http://localhost:30021/appshell.manifest.json",
-  "TestModule1/Component1": "http://test.com/1/appshell.manifest.json",
-  "TestModule1/Component2": "http://test.com/1/appshell.manifest.json",
-  "TestModule2/Component": "http://test.com/2/appshell.manifest.json",
-  "TestModule3/ComponentA": "http://test.com/3/appshell.manifest.json",
-  "TestModule3/ComponentB": "http://test.com/3/appshell.manifest.json",
-}
-`;
-
-exports[`generate manifest should generate an appshell manifest from the appshell config 1`] = `
+exports[`generate manifest should generate an appshell manifest from the config template 1`] = `
 {
   "environment": {
     "RUNTIME_ENV": "development",
@@ -126,139 +89,187 @@ exports[`generate manifest should generate an appshell manifest from the appshel
 }
 `;
 
-exports[`generate metadata should handle a directory 1`] = `
+exports[`generate register should handle a directory 1`] = `
 {
-  "ContainerModule/Container": {
-    "displayGroup": "main",
-    "displayName": "Host App",
-    "icon": "ViewList",
-    "order": 0,
-    "route": "/",
+  "index": {
+    "ContainerModule/Container": "http://localhost:30001/appshell.manifest.json",
+    "PingModule/Ping": "http://localhost:30011/appshell.manifest.json",
+    "PongModule/CoolComponent": "http://localhost:30021/appshell.manifest.json",
+    "PongModule/Pong": "http://localhost:30021/appshell.manifest.json",
+    "TestModule1/Component1": "http://test.com/1/appshell.manifest.json",
+    "TestModule1/Component2": "http://test.com/1/appshell.manifest.json",
+    "TestModule2/Component": "http://test.com/2/appshell.manifest.json",
+    "TestModule3/ComponentA": "http://test.com/3/appshell.manifest.json",
+    "TestModule3/ComponentB": "http://test.com/3/appshell.manifest.json",
   },
-  "PingModule/Ping": {
-    "displayGroup": "main",
-    "displayName": "Ping Micro-Frontend",
-    "icon": "ViewList",
-    "order": 10,
-    "route": "/ping",
-  },
-  "PongModule/CoolComponent": {
-    "displayGroup": "main",
-    "displayName": "Cool Shared Component",
-    "icon": "ViewList",
-    "order": 30,
-    "route": "/cool",
-  },
-  "PongModule/Pong": {
-    "displayGroup": "main",
-    "displayName": "Pong Micro-Frontend",
-    "icon": "ViewList",
-    "order": 20,
-    "route": "/pong",
-  },
-  "TestModule1/Component1": {
-    "foo": "bar",
-  },
-  "TestModule1/Component2": {
-    "biz": "bang",
-  },
-  "TestModule2/Component": {
-    "arg1": "val1",
-    "arg2": "val2",
-    "arg3": "val3",
-  },
-  "TestModule3/ComponentA": {
-    "argA": "valA",
-    "argB": "valB",
-  },
-  "TestModule3/ComponentB": {
-    "argC": "valC",
-    "argD": "valD",
+  "metadata": {
+    "ContainerModule/Container": {
+      "displayGroup": "main",
+      "displayName": "Host App",
+      "icon": "ViewList",
+      "order": 0,
+      "route": "/",
+    },
+    "PingModule/Ping": {
+      "displayGroup": "main",
+      "displayName": "Ping Micro-Frontend",
+      "icon": "ViewList",
+      "order": 10,
+      "route": "/ping",
+    },
+    "PongModule/CoolComponent": {
+      "displayGroup": "main",
+      "displayName": "Cool Shared Component",
+      "icon": "ViewList",
+      "order": 30,
+      "route": "/cool",
+    },
+    "PongModule/Pong": {
+      "displayGroup": "main",
+      "displayName": "Pong Micro-Frontend",
+      "icon": "ViewList",
+      "order": 20,
+      "route": "/pong",
+    },
+    "TestModule1/Component1": {
+      "foo": "bar",
+    },
+    "TestModule1/Component2": {
+      "biz": "bang",
+    },
+    "TestModule2/Component": {
+      "arg1": "val1",
+      "arg2": "val2",
+      "arg3": "val3",
+    },
+    "TestModule3/ComponentA": {
+      "argA": "valA",
+      "argB": "valB",
+    },
+    "TestModule3/ComponentB": {
+      "argC": "valC",
+      "argD": "valD",
+    },
   },
 }
 `;
 
-exports[`generate metadata should handle a single index file 1`] = `
+exports[`generate register should handle a single global configuration file 1`] = `
 {
-  "ContainerModule/Container": {
-    "displayGroup": "main",
-    "displayName": "Host App",
-    "icon": "ViewList",
-    "order": 0,
-    "route": "/",
+  "index": {
+    "ContainerModule/Container": "http://localhost:30001/appshell.manifest.json",
+    "PingModule/Ping": "http://localhost:30011/appshell.manifest.json",
+    "PongModule/CoolComponent": "http://localhost:30021/appshell.manifest.json",
+    "PongModule/Pong": "http://localhost:30021/appshell.manifest.json",
   },
-  "PingModule/Ping": {
-    "displayGroup": "main",
-    "displayName": "Ping Micro-Frontend",
-    "icon": "ViewList",
-    "order": 10,
-    "route": "/ping",
+  "metadata": {
+    "ContainerModule/Container": {
+      "displayGroup": "main",
+      "displayName": "Host App",
+      "icon": "ViewList",
+      "order": 0,
+      "route": "/",
+    },
+    "PingModule/Ping": {
+      "displayGroup": "main",
+      "displayName": "Ping Micro-Frontend",
+      "icon": "ViewList",
+      "order": 10,
+      "route": "/ping",
+    },
+    "PongModule/CoolComponent": {
+      "displayGroup": "main",
+      "displayName": "Cool Shared Component",
+      "icon": "ViewList",
+      "order": 30,
+      "route": "/cool",
+    },
+    "PongModule/Pong": {
+      "displayGroup": "main",
+      "displayName": "Pong Micro-Frontend",
+      "icon": "ViewList",
+      "order": 20,
+      "route": "/pong",
+    },
   },
-  "PongModule/CoolComponent": {
-    "displayGroup": "main",
-    "displayName": "Cool Shared Component",
-    "icon": "ViewList",
-    "order": 30,
-    "route": "/cool",
-  },
-  "PongModule/Pong": {
-    "displayGroup": "main",
-    "displayName": "Pong Micro-Frontend",
-    "icon": "ViewList",
-    "order": 20,
-    "route": "/pong",
+  "overrides": {
+    "environment": {
+      "ContainerModule/Container": {
+        "ENV_VAR_A": "Overridden value of A",
+      },
+    },
   },
 }
 `;
 
-exports[`generate metadata should merge valid registry indexes 1`] = `
+exports[`generate register should merge multiple valid global configurations 1`] = `
 {
-  "ContainerModule/Container": {
-    "displayGroup": "main",
-    "displayName": "Host App",
-    "icon": "ViewList",
-    "order": 0,
-    "route": "/",
+  "index": {
+    "ContainerModule/Container": "http://localhost:30001/appshell.manifest.json",
+    "PingModule/Ping": "http://localhost:30011/appshell.manifest.json",
+    "PongModule/CoolComponent": "http://localhost:30021/appshell.manifest.json",
+    "PongModule/Pong": "http://localhost:30021/appshell.manifest.json",
+    "TestModule1/Component1": "http://test.com/1/appshell.manifest.json",
+    "TestModule1/Component2": "http://test.com/1/appshell.manifest.json",
+    "TestModule2/Component": "http://test.com/2/appshell.manifest.json",
+    "TestModule3/ComponentA": "http://test.com/3/appshell.manifest.json",
+    "TestModule3/ComponentB": "http://test.com/3/appshell.manifest.json",
   },
-  "PingModule/Ping": {
-    "displayGroup": "main",
-    "displayName": "Ping Micro-Frontend",
-    "icon": "ViewList",
-    "order": 10,
-    "route": "/ping",
+  "metadata": {
+    "ContainerModule/Container": {
+      "displayGroup": "main",
+      "displayName": "Host App",
+      "icon": "ViewList",
+      "order": 0,
+      "route": "/",
+    },
+    "PingModule/Ping": {
+      "displayGroup": "main",
+      "displayName": "Ping Micro-Frontend",
+      "icon": "ViewList",
+      "order": 10,
+      "route": "/ping",
+    },
+    "PongModule/CoolComponent": {
+      "displayGroup": "main",
+      "displayName": "Cool Shared Component",
+      "icon": "ViewList",
+      "order": 30,
+      "route": "/cool",
+    },
+    "PongModule/Pong": {
+      "displayGroup": "main",
+      "displayName": "Pong Micro-Frontend",
+      "icon": "ViewList",
+      "order": 20,
+      "route": "/pong",
+    },
+    "TestModule1/Component1": {
+      "foo": "bar",
+    },
+    "TestModule1/Component2": {
+      "biz": "bang",
+    },
+    "TestModule2/Component": {
+      "arg1": "val1",
+      "arg2": "val2",
+      "arg3": "val3",
+    },
+    "TestModule3/ComponentA": {
+      "argA": "valA",
+      "argB": "valB",
+    },
+    "TestModule3/ComponentB": {
+      "argC": "valC",
+      "argD": "valD",
+    },
   },
-  "PongModule/CoolComponent": {
-    "displayGroup": "main",
-    "displayName": "Cool Shared Component",
-    "icon": "ViewList",
-    "order": 30,
-    "route": "/cool",
-  },
-  "PongModule/Pong": {
-    "displayGroup": "main",
-    "displayName": "Pong Micro-Frontend",
-    "icon": "ViewList",
-    "order": 20,
-    "route": "/pong",
-  },
-  "TestModule1/Component1": {
-    "foo": "bar",
-  },
-  "TestModule1/Component2": {
-    "biz": "bang",
-  },
-  "TestModule2/Component": {
-    "arg1": "val1",
-    "arg2": "val2",
-    "arg3": "val3",
-  },
-  "TestModule3/ComponentA": {
-    "argA": "valA",
-    "argB": "valB",
-  },
-  "TestModule3/ComponentB": {
-    "argC": "valC",
-    "argD": "valD",
+  "overrides": {
+    "environment": {
+      "ContainerModule/Container": {
+        "ENV_VAR_A": "Overridden value of A",
+      },
+    },
   },
 }
 `;

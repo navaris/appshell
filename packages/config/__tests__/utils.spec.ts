@@ -1,11 +1,11 @@
+import chalk from 'chalk';
 import fs from 'fs';
 import path from 'path';
 import { AppshellManifest } from '../src/types';
 import { merge } from '../src/utils';
 import copy from '../src/utils/copy';
 import load from '../src/utils/load';
-import validator from '../src/validators/appshell.manifest';
-import mergeValidator from '../src/validators/merge.manifests';
+import validator from '../src/validators/AppshellManifestValidator';
 import manifestA from './assets/appshell_manifests/test_a.manifest.json';
 import manifestB from './assets/appshell_manifests/test_b.manifest.json';
 import manifestC from './assets/appshell_manifests/test_c.manifest.json';
@@ -111,19 +111,22 @@ describe('utils', () => {
   });
 
   describe('merge', () => {
+    let consoleSpy: jest.SpyInstance;
+    beforeEach(() => {
+      consoleSpy = jest.spyOn(console, 'log');
+    });
+
+    afterEach(() => {
+      consoleSpy.mockRestore();
+    });
+
     test('should merge multiple valid configurations', () => {
       const config = merge<AppshellManifest>(validator, fooManifest, barManifest, bizManifest);
       expect(config).toMatchSnapshot();
     });
 
     test('should merge manifests from right to left with merge validator', () => {
-      const config = merge<AppshellManifest>(
-        mergeValidator,
-        manifestA,
-        manifestB,
-        manifestC,
-        manifestD,
-      );
+      const config = merge<AppshellManifest>(validator, manifestA, manifestB, manifestC, manifestD);
 
       expect(config).toMatchSnapshot();
     });
@@ -164,15 +167,17 @@ describe('utils', () => {
       });
 
       test('should reject configurations with remotes collisions', () => {
-        expect(() =>
-          merge<AppshellManifest>(validator, fooManifest, barManifest, remoteCollisions),
-        ).toThrow('Multiple remotes with the same key');
+        merge<AppshellManifest>(validator, fooManifest, barManifest, remoteCollisions);
+
+        expect(consoleSpy).toHaveBeenCalledWith(chalk.yellow('Multiple remotes with the same key'));
       });
 
       test('should reject configurations with environment collisions', () => {
-        expect(() =>
-          merge<AppshellManifest>(validator, fooManifest, barManifest, environmentCollisions),
-        ).toThrow('Multiple environments with the same key');
+        merge<AppshellManifest>(validator, fooManifest, barManifest, environmentCollisions);
+
+        expect(consoleSpy).toHaveBeenCalledWith(
+          chalk.yellow('Multiple environments with the same key'),
+        );
       });
     });
   });

@@ -10,11 +10,11 @@ export default async (argv: DeregisterManifestArgs) => {
   const { key: keys, registry } = argv;
 
   try {
-    console.log(`deregistering manifest --key=${keys} --registry=${registry}`);
+    console.log(`deregistering app --key=${keys} --registry=${registry}`);
 
-    const manifestKeys = (keys as string[]) || [];
+    const moduleNames = (keys as string[]) || [];
 
-    await Promise.all(manifestKeys.map(async (manifestKey) => deregister(manifestKey, registry)));
+    await Promise.all(moduleNames.map(async (moduleName) => deregister(moduleName, registry)));
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {

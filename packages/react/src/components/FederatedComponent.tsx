@@ -3,7 +3,7 @@ import { AppshellIndex } from '@appshell/config';
 import remoteLoader from '@appshell/loader';
 import React, { ComponentType, ReactElement, ReactNode, useEffect, useState } from 'react';
 import { ManifestProvider } from '../contexts/ManifestContext';
-import useRegistry from '../hooks/useRegistry';
+import useGlobalConfig from '../hooks/useGlobalConfig';
 import LoadingError from './LoadingError';
 
 export type ExtendedProps = Record<string, unknown>;
@@ -24,12 +24,12 @@ const FederatedComponent = <TProps extends ExtendedProps>({
   fallback,
   ...rest
 }: FederatedComponentProps<TProps>): ReactElement<TProps> => {
-  const index = useRegistry();
+  const config = useGlobalConfig();
   const [element, setElement] = useState<ReactElement>();
 
   useEffect(() => {
     let active = false;
-    const loadComponent = remoteLoader(index);
+    const loadComponent = remoteLoader(config);
 
     async function load() {
       try {
@@ -58,7 +58,7 @@ const FederatedComponent = <TProps extends ExtendedProps>({
       active = false;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [remote, index]);
+  }, [remote, config]);
 
   // eslint-disable-next-line no-console
   console.debug(`rendering FederatedComponent[${remote}], loading=${!element}`);

@@ -15,11 +15,11 @@ class MockCompiler {
 
   compilation: Partial<Compilation>;
 
-  handlers: Record<string, () => void> = {};
+  handlers: Record<string, (compilation: Partial<Compilation>) => void> = {};
 
   hooks = {
     afterEmit: {
-      tap: (name: string, callback: () => void) => {
+      tap: (name: string, callback: (compilation: Partial<Compilation>) => void) => {
         this.handlers[name] = callback;
       },
     },
@@ -101,7 +101,7 @@ describe('AppshellManifestPlugin', () => {
     });
 
     it('should write configuration to configsDir', () => {
-      const writeFileSyncSpy = jest.spyOn(fs, 'writeFileSync');
+      const writeFileSyncSpy = jest.spyOn(fs, 'writeFileSync').mockImplementation();
       const plugin = new AppshellManifestPlugin({ config });
 
       plugin.apply(compiler as any);

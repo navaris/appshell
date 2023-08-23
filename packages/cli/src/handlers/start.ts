@@ -14,7 +14,7 @@ export type StartArgs = {
   manifestTemplate: string;
   manifest: string;
   registry: string;
-  adjunctRegistry: string[];
+  baseRegistry: string[];
 };
 
 export default async (argv: StartArgs): Promise<void> => {
@@ -30,16 +30,16 @@ export default async (argv: StartArgs): Promise<void> => {
     manifest,
     manifestTemplate,
     registry,
-    adjunctRegistry,
+    baseRegistry,
   } = argv;
 
   // eslint-disable-next-line no-console
   console.log(
-    `starting appshell --env=${env} --env-prefix=${envPrefix} --env-global-name=${envGlobalName} --out-dir=${outDir} --remote=${remote} --host=${host} --validate-registry-ssl-cert=${validateRegistrySslCert} --metadata=${metadata} --manifest=${manifest} --manifest-template=${manifestTemplate} --registry=${registry} --adjunct-registry=${adjunctRegistry}`,
+    `starting appshell --env=${env} --env-prefix=${envPrefix} --env-global-name=${envGlobalName} --out-dir=${outDir} --remote=${remote} --host=${host} --validate-registry-ssl-cert=${validateRegistrySslCert} --metadata=${metadata} --manifest=${manifest} --manifest-template=${manifestTemplate} --registry=${registry} --base-registry=${baseRegistry}`,
   );
 
   const prefix = 'appshell';
-  const sources = adjunctRegistry.concat(registry).join(' ');
+  const sources = baseRegistry.concat(registry).join(' ');
 
   if (remote) {
     const templatePath = path.join(outDir, manifestTemplate);
@@ -73,7 +73,7 @@ export default async (argv: StartArgs): Promise<void> => {
       fs.mkdirSync(registry);
     }
     const watchRegistry = exec(
-      `npm exec -- nodemon --watch ${registry} --delay 500ms --ext json --exec "appshell generate index --registry ${sources} --validate-registry-ssl-cert ${!!validateRegistrySslCert} && appshell generate metadata --registry ${sources} --validate-registry-ssl-cert=${validateRegistrySslCert}"`,
+      `npm exec -- nodemon --watch ${registry} --delay 500ms --ext json --exec "appshell generate global-config --registry ${sources} --validate-registry-ssl-cert ${!!validateRegistrySslCert}"`,
     );
     watchRegistry.stdout?.on('data', (data) => {
       // eslint-disable-next-line no-console

@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import configmap from './configmap';
 import { toAppshellManifest } from './mappers/appshell.config';
-import { AppshellConfig } from './types';
+import { AppshellTemplate } from './types';
 
 /**
  * Generates an appshell manifest
@@ -19,7 +19,7 @@ export default async <TMetadata extends Record<string, unknown>>(templatePath: s
   }
 
   const file = fs.readFileSync(path.resolve(templatePath), 'utf-8');
-  const template = JSON.parse(file) as AppshellConfig;
+  const template = JSON.parse(file) as AppshellTemplate;
   const configMap = configmap.create(template);
 
   return toAppshellManifest<TMetadata>(template, configMap);

@@ -1,64 +1,42 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { AppshellIndex, Metadata } from '@appshell/config';
+import { AppshellGlobalConfig } from 'packages/config/src/types';
 import React, { FC, ReactNode, useEffect } from 'react';
-import { MetadataProvider } from '../contexts/MetadataContext';
-import { RegistryProvider } from '../contexts/RegistryContext';
+import { GlobalConfigProvider } from '../contexts/GlobalConfigContext';
 import FederatedComponent from './FederatedComponent';
 
 const ReactHost: FC<{
-  indexUrl: string;
-  metadataUrl: string;
+  configUrl: string;
   remote: string;
   fallback?: ReactNode;
   [x: string]: unknown;
-}> = ({ indexUrl, metadataUrl, remote, fallback, ...rest }) => {
-  const [index, setIndex] = React.useState<AppshellIndex>();
-  const [metadata, setMetadata] = React.useState<Metadata>();
+}> = ({ configUrl, remote, fallback, ...rest }) => {
+  const [config, setGlobalConfig] = React.useState<AppshellGlobalConfig>();
 
   useEffect(() => {
-    const fetchIndex = async () => {
-      const res = await fetch(indexUrl);
+    const fetchGlobalConfig = async () => {
+      const res = await fetch(configUrl);
 
       if (res.ok) {
         const data = await res.json();
-        setIndex(data);
+        setGlobalConfig(data);
       } else {
-        setIndex({});
+        setGlobalConfig({ index: {} });
       }
     };
 
-    if (!index) {
-      fetchIndex();
+    if (!config) {
+      fetchGlobalConfig();
     }
-  }, [index, indexUrl]);
+  }, [config, configUrl]);
 
-  useEffect(() => {
-    const fetchMetadata = async () => {
-      const res = await fetch(metadataUrl);
-
-      if (res.ok) {
-        const data = await res.json();
-        setMetadata(data);
-      } else {
-        setMetadata({});
-      }
-    };
-
-    if (!metadata) {
-      fetchMetadata();
-    }
-  }, [metadata, metadataUrl]);
-
-  if (!index || !metadata) {
+  if (!config) {
     return null;
   }
 
   return (
-    <RegistryProvider index={index}>
-      <MetadataProvider metata={metadata}>
-        <FederatedComponent remote={remote} fallback={fallback} {...rest} />
-      </MetadataProvider>
-    </RegistryProvider>
+    <GlobalConfigProvider config={config}>
+      <FederatedComponent remote={remote} fallback={fallback} {...rest} />
+    </GlobalConfigProvider>
   );
 };
 

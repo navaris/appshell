@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import fs from 'fs';
 import path from 'path';
 import deregister from '../src/deregister';
@@ -15,37 +16,45 @@ describe('deregister', () => {
     jest.restoreAllMocks();
   });
 
-  it('should unregister entry from registry', async () => {
-    await deregister('PingModule/Ping', registryDir);
-    const expectedIndex = {
-      'PongModule/Pong': 'http://localhost:30021/appshell.manifest.json',
-      'PongModule/CoolComponent': 'http://localhost:30021/appshell.manifest.json',
-      'ContainerModule/Container': 'http://localhost:30001/appshell.manifest.json',
+  it('should deregister entry from registry', async () => {
+    const expectedGlobalConfig = {
+      index: {
+        'PongModule/Pong': 'http://localhost:30021/appshell.manifest.json',
+        'PongModule/CoolComponent': 'http://localhost:30021/appshell.manifest.json',
+        'ContainerModule/Container': 'http://localhost:30001/appshell.manifest.json',
+      },
+      metadata: {
+        'PongModule/Pong': {
+          route: '/pong',
+          displayName: 'Pong Micro-Frontend',
+          displayGroup: 'main',
+          order: 20,
+          icon: 'ViewList',
+        },
+        'PongModule/CoolComponent': {
+          route: '/cool',
+          displayName: 'Cool Shared Component',
+          displayGroup: 'main',
+          order: 30,
+          icon: 'ViewList',
+        },
+        'ContainerModule/Container': {
+          route: '/',
+          displayName: 'Host App',
+          displayGroup: 'main',
+          order: 0,
+          icon: 'ViewList',
+        },
+      },
+      overrides: {
+        environment: {
+          ContainerModule: {
+            BACKGROUND_COLOR: 'green',
+          },
+        },
+      },
     };
-    const expectedMetadata = {
-      'PongModule/Pong': {
-        route: '/pong',
-        displayName: 'Pong Micro-Frontend',
-        displayGroup: 'main',
-        order: 20,
-        icon: 'ViewList',
-      },
-      'PongModule/CoolComponent': {
-        route: '/cool',
-        displayName: 'Cool Shared Component',
-        displayGroup: 'main',
-        order: 30,
-        icon: 'ViewList',
-      },
-      'ContainerModule/Container': {
-        route: '/',
-        displayName: 'Host App',
-        displayGroup: 'main',
-        order: 0,
-        icon: 'ViewList',
-      },
-    };
-    const expectedManifest = {
+    const expectedSnapshot = {
       remotes: {
         'PongModule/Pong': {
           id: '6b3cbfed',
@@ -158,19 +167,52 @@ describe('deregister', () => {
       },
     };
 
+    await deregister('PingModule', registryDir);
+
     expect(writeFileSyncSpy).toHaveBeenCalledWith(
-      `${registryDir}/appshell.index.json`,
-      JSON.stringify(expectedIndex),
+      `${registryDir}/appshell.config.json`,
+      JSON.stringify(expectedGlobalConfig),
     );
 
     expect(writeFileSyncSpy).toHaveBeenCalledWith(
-      `${registryDir}/appshell.metadata.json`,
-      JSON.stringify(expectedMetadata),
+      `${registryDir}/appshell.snapshot.json`,
+      JSON.stringify(expectedSnapshot),
     );
+  });
 
-    expect(writeFileSyncSpy).toHaveBeenCalledWith(
-      `${registryDir}/appshell.manifest.json`,
-      JSON.stringify(expectedManifest),
+  it('should warn when deregistering entry that does not exist from registry', async () => {
+    const componentKey = 'DoesNotExistModule';
+    const consoleSpy = jest.spyOn(console, 'log');
+    await deregister(componentKey, registryDir);
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      chalk.yellow(`index entry not found for '${componentKey}/*'`),
+    );
+    expect(consoleSpy).toHaveBeenCalledWith(
+      chalk.yellow(`metadata entry not found for '${componentKey}/*'`),
+    );
+    expect(consoleSpy).toHaveBeenCalledWith(
+      chalk.yellow(`manifest entry not found for remotes[${componentKey}/*]`),
+    );
+    expect(consoleSpy).toHaveBeenCalledWith(
+      chalk.yellow(`manifest entry not found for modules[${componentKey}]`),
+    );
+    expect(consoleSpy).toHaveBeenCalledWith(
+      chalk.yellow(`manifest entry not found for environment[${componentKey}]`),
+    );
+  });
+
+  it('should warn when deregistering from file that does not exist', async () => {
+    const consoleSpy = jest.spyOn(console, 'log');
+    const registry = path.resolve(`packages/${packageName}/__tests__/assets/empty_dir`);
+
+    await deregister('PingModule', registry);
+
+    expect(consoleSpy).toHaveBeenCalledWith(
+      chalk.yellow(`registry file not found ${registry}/appshell.config.json`),
+    );
+    expect(consoleSpy).toHaveBeenCalledWith(
+      chalk.yellow(`registry file not found ${registry}/appshell.snapshot.json`),
     );
   });
 });

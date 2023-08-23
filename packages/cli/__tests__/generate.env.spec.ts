@@ -7,7 +7,7 @@ describe('generate.env', () => {
   const prefix = '';
   const env = 'packages/cli/__tests__/assets/test.env';
   const outDir = path.resolve('packages/cli/__tests__/assets/temp');
-  const outFile = 'runtime.env.js';
+  const outFile = 'appshell.env.js';
   const globalName = 'appshell_env';
   const overwrite = true;
 
@@ -94,7 +94,7 @@ describe('generate.env', () => {
         env: 'assets/does_not_exist.env',
         prefix,
         outDir,
-        outFile: 'runtime.env.js',
+        outFile: 'appshell.env.js',
         globalName,
         overwrite,
       }),

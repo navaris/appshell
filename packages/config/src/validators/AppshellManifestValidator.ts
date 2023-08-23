@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+import chalk from 'chalk';
 import { keys, uniq, values } from 'lodash';
 import { validate } from 'schema-utils';
 import { Schema } from 'schema-utils/declarations/validate';
@@ -34,15 +36,15 @@ export default {
 
     // logical validation
     if (hasIDCollisions(...documents)) {
-      throw new Error('Multiple remotes with the same ID');
+      console.log(chalk.yellow('Multiple remotes with the same ID'));
     }
 
     if (hasRemoteCollisions(...documents)) {
-      throw new Error('Multiple remotes with the same key');
+      console.log(chalk.yellow('Multiple remotes with the same key'));
     }
 
     if (hasEnvironmentCollisions(...documents)) {
-      throw new Error('Multiple environments with the same key');
+      console.log(chalk.yellow('Multiple environments with the same key'));
     }
   },
 } as ConfigValidator;

@@ -1,5 +1,6 @@
 /** @jest-environment jsdom */
-import { AppshellIndex, AppshellManifest } from '@appshell/config';
+import { AppshellManifest } from '@appshell/config';
+import { AppshellRegister } from '@appshell/config/src/types';
 import fetch, { enableFetchMocks } from 'jest-fetch-mock';
 import * as fetchDynamicScript from '../src/fetchDynamicScript';
 import * as loadFederatedComponent from '../src/loadFederatedComponent';
@@ -25,8 +26,11 @@ describe('remoteLoader', () => {
     modules: {},
     environment: {},
   };
-  const index: AppshellIndex = {
-    'TestModule/TestComponent': 'http://test.com/appshell.manifest.json',
+  const register: AppshellRegister = {
+    index: {
+      'TestModule/TestComponent': 'http://test.com/appshell.manifest.json',
+    },
+    metadata: {},
   };
 
   beforeEach(() => {
@@ -42,7 +46,7 @@ describe('remoteLoader', () => {
       .spyOn(loadFederatedComponent, 'default')
       .mockResolvedValue(Promise.resolve(ExpectedComponent));
 
-    const loadRemote = remoteLoader(index);
+    const loadRemote = remoteLoader(register);
     const [ActualComponent, actualManifest] = await loadRemote('TestModule/TestComponent');
 
     expect(ActualComponent).toEqual(ExpectedComponent);
@@ -58,7 +62,7 @@ describe('remoteLoader', () => {
       .spyOn(loadFederatedComponent, 'default')
       .mockResolvedValue(Promise.resolve(ExpectedComponent));
 
-    const loadRemote = remoteLoader(index);
+    const loadRemote = remoteLoader(register);
 
     await loadRemote('TestModule/TestComponent');
     await loadRemote('TestModule/TestComponent');
@@ -71,7 +75,7 @@ describe('remoteLoader', () => {
     const ExpectedComponent = () => 'test component';
     jest.spyOn(loadFederatedComponent, 'default').mockResolvedValue(ExpectedComponent);
 
-    const loadRemote = remoteLoader(index);
+    const loadRemote = remoteLoader(register);
 
     await expect(loadRemote('TestModule/DoesNotExist')).rejects.toThrow(
       /Remote resource not found in registry/i,
@@ -82,7 +86,7 @@ describe('remoteLoader', () => {
     jest.spyOn(fetchDynamicScript, 'default').mockReturnValueOnce(Promise.resolve(true));
     jest.spyOn(loadFederatedComponent, 'default').mockRejectedValue(new Error('failed'));
 
-    const loadRemote = remoteLoader(index);
+    const loadRemote = remoteLoader(register);
 
     await expect(loadRemote('TestModule/TestComponent')).rejects.toThrow(
       /Failed to load component/i,
