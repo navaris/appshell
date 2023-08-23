@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.3.0-alpha.0](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.3...@appshell/react-host@0.3.0-alpha.0) (2023-08-23)
+
+
+### Features
+
+* consolidate runtime artifacts ([#26](https://github.com/navaris/appshell/issues/26)) ([a29479a](https://github.com/navaris/appshell/commit/a29479a49f0c5ec1273c9f8e4c7384096f2d4ba0))
+
+
+
+
+
 ## [0.2.3](https://github.com/navaris/appshell/compare/@appshell/react-host@0.2.3-alpha.0...@appshell/react-host@0.2.3) (2023-07-18)
 
 **Note:** Version bump only for package @appshell/react-host

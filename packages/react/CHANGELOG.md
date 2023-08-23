@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-alpha.0](https://github.com/navaris/appshell/compare/@appshell/react@0.1.0...@appshell/react@0.2.0-alpha.0) (2023-08-23)
+
+
+### Features
+
+* consolidate runtime artifacts ([#26](https://github.com/navaris/appshell/issues/26)) ([a29479a](https://github.com/navaris/appshell/commit/a29479a49f0c5ec1273c9f8e4c7384096f2d4ba0))
+
+
+
+
+
 # [0.1.0](https://github.com/navaris/appshell/compare/@appshell/react@0.1.0-alpha.6...@appshell/react@0.1.0) (2023-07-11)
 
 **Note:** Version bump only for package @appshell/react
