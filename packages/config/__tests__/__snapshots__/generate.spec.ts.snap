@@ -194,7 +194,7 @@ exports[`generate register should handle a single global configuration file 1`] 
   },
   "overrides": {
     "environment": {
-      "ContainerModule/Container": {
+      "ContainerModule": {
         "ENV_VAR_A": "Overridden value of A",
       },
     },
@@ -266,7 +266,7 @@ exports[`generate register should merge multiple valid global configurations 1`]
   },
   "overrides": {
     "environment": {
-      "ContainerModule/Container": {
+      "ContainerModule": {
         "ENV_VAR_A": "Overridden value of A",
       },
     },

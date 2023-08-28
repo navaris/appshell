@@ -40,7 +40,12 @@ export default (config: AppshellGlobalConfig) =>
 
         const remote = manifest.remotes[key];
 
-        window[`__appshell_env__${remote.scope}`] = manifest.environment[remote.scope] || {};
+        const environment = manifest.environment[remote.scope] || {};
+        const overrides = config.overrides?.environment[remote.scope] || {};
+        window[`__appshell_env__${remote.scope}`] = {
+          ...environment,
+          ...overrides,
+        };
 
         const loaded =
           fetchedScriptCache.has(remote.remoteEntryUrl) ||

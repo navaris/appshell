@@ -37,7 +37,7 @@
   },
   "overrides": {
     "environment": {
-      "ContainerModule/Container": {
+      "ContainerModule": {
         "ENV_VAR_A": "Overridden value of A"
       }
     }
