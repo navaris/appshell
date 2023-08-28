@@ -1,6 +1,6 @@
 {
   "name": "@appshell/config",
-  "version": "0.5.0-alpha.1",
+  "version": "0.5.0",
   "description": "Utility for producing a global appshell manifest for module federation micro-frontends",
   "main": "dist/main.js",
   "types": "dist/types/index.d.ts",
