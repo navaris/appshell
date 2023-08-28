@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0-alpha.1](https://github.com/navaris/appshell/compare/@appshell/loader@0.2.0-alpha.0...@appshell/loader@0.2.0-alpha.1) (2023-08-28)
+
+
+### Features
+
+* environment variable override for federated components ([#27](https://github.com/navaris/appshell/issues/27)) ([d32de0b](https://github.com/navaris/appshell/commit/d32de0b0d1cbb1792715e1b363c80ed4600df155))
+
+
+
+
+
 # [0.2.0-alpha.0](https://github.com/navaris/appshell/compare/@appshell/loader@0.1.0...@appshell/loader@0.2.0-alpha.0) (2023-08-23)
 
 
