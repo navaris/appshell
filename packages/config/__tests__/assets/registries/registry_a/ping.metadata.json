@@ -1,9 +1,0 @@
-{
-  "PingModule/Ping": {
-    "route": "/ping",
-    "displayName": "Ping Micro-Frontend",
-    "displayGroup": "main",
-    "order": 10,
-    "icon": "ViewList"
-  }
-}

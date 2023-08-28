@@ -15,6 +15,6 @@ module.exports = {
     ],
   },
   testEnvironment: 'node',
-  transformIgnorePatterns: ['<rootDir>/node_modules/(?!(yaml)/)'],
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!(yaml|chalk)/)'],
   coverageReporters: ['text', 'cobertura'],
 };

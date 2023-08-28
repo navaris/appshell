@@ -3,10 +3,10 @@ import { pojos, PojosMetadataMap } from '@automapper/pojos';
 import { entries } from 'lodash';
 import configmap from '../configmap';
 import {
-  AppshellConfig,
   AppshellConfigRemote,
   AppshellManifest,
   AppshellRemote,
+  AppshellTemplate,
   ConfigMap,
 } from '../types';
 
@@ -15,14 +15,14 @@ const mapper = createMapper({
 });
 
 function createMetadata() {
-  PojosMetadataMap.create<AppshellConfig>('AppshellConfig', {});
+  PojosMetadataMap.create<AppshellTemplate>('AppshellTemplate', {});
   PojosMetadataMap.create<AppshellManifest>('AppshellManifest', {});
 }
 
 createMetadata();
 
 const mapAppshellEntrypoint = (
-  source: AppshellConfig,
+  source: AppshellTemplate,
   key: string,
   remote: AppshellConfigRemote,
 ) => {
@@ -42,15 +42,15 @@ const mapAppshellEntrypoint = (
   };
 };
 
-const mapRemotes = (source: AppshellConfig) =>
+const mapRemotes = (source: AppshellTemplate) =>
   entries(source.remotes).reduce((acc, [key, remote]) => {
     acc[key] = mapAppshellEntrypoint(source, key, remote);
     return acc;
   }, {} as Record<string, AppshellRemote>);
 
-createMap<AppshellConfig, AppshellManifest>(
+createMap<AppshellTemplate, AppshellManifest>(
   mapper,
-  'AppshellConfig',
+  'AppshellTemplate',
   'AppshellManifest',
   forMember(
     (destination) => destination.remotes,
@@ -70,12 +70,12 @@ createMap<AppshellConfig, AppshellManifest>(
 
 // eslint-disable-next-line import/prefer-default-export
 export const toAppshellManifest = <TMetadata extends Record<string, unknown>>(
-  config: AppshellConfig,
+  template: AppshellTemplate,
   args: ConfigMap,
 ) => {
-  const manifest = mapper.map<AppshellConfig, AppshellManifest<TMetadata>>(
-    config,
-    'AppshellConfig',
+  const manifest = mapper.map<AppshellTemplate, AppshellManifest<TMetadata>>(
+    template,
+    'AppshellTemplate',
     'AppshellManifest',
   );
   return configmap.apply(manifest, args);

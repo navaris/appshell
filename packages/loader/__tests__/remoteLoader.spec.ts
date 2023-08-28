@@ -1,5 +1,6 @@
 /** @jest-environment jsdom */
-import { AppshellIndex, AppshellManifest } from '@appshell/config';
+import { AppshellManifest } from '@appshell/config';
+import { AppshellGlobalConfig } from '@appshell/config/src/types';
 import fetch, { enableFetchMocks } from 'jest-fetch-mock';
 import * as fetchDynamicScript from '../src/fetchDynamicScript';
 import * as loadFederatedComponent from '../src/loadFederatedComponent';
@@ -23,10 +24,24 @@ describe('remoteLoader', () => {
       },
     },
     modules: {},
-    environment: {},
+    environment: {
+      TestModule: {
+        ENV_VAR_A: 'Original value for A',
+      },
+    },
   };
-  const index: AppshellIndex = {
-    'TestModule/TestComponent': 'http://test.com/appshell.manifest.json',
+  const config: AppshellGlobalConfig = {
+    index: {
+      'TestModule/TestComponent': 'http://test.com/appshell.manifest.json',
+    },
+    metadata: {},
+    overrides: {
+      environment: {
+        TestModule: {
+          ENV_VAR_A: 'New value for A',
+        },
+      },
+    },
   };
 
   beforeEach(() => {
@@ -42,7 +57,7 @@ describe('remoteLoader', () => {
       .spyOn(loadFederatedComponent, 'default')
       .mockResolvedValue(Promise.resolve(ExpectedComponent));
 
-    const loadRemote = remoteLoader(index);
+    const loadRemote = remoteLoader(config);
     const [ActualComponent, actualManifest] = await loadRemote('TestModule/TestComponent');
 
     expect(ActualComponent).toEqual(ExpectedComponent);
@@ -58,7 +73,7 @@ describe('remoteLoader', () => {
       .spyOn(loadFederatedComponent, 'default')
       .mockResolvedValue(Promise.resolve(ExpectedComponent));
 
-    const loadRemote = remoteLoader(index);
+    const loadRemote = remoteLoader(config);
 
     await loadRemote('TestModule/TestComponent');
     await loadRemote('TestModule/TestComponent');
@@ -67,11 +82,26 @@ describe('remoteLoader', () => {
     expect(fetchDynamicScriptSpy).toHaveBeenCalledTimes(1);
   });
 
+  it('should apply overridden environment values', async () => {
+    const ExpectedComponent = () => 'test component';
+    jest.spyOn(fetchDynamicScript, 'default').mockReturnValueOnce(Promise.resolve(true));
+    jest
+      .spyOn(loadFederatedComponent, 'default')
+      .mockResolvedValue(Promise.resolve(ExpectedComponent));
+
+    const loadRemote = remoteLoader(config);
+
+    await loadRemote('TestModule/TestComponent');
+
+    // eslint-disable-next-line no-underscore-dangle
+    expect(window.__appshell_env__TestModule).toMatchObject({ ENV_VAR_A: 'New value for A' });
+  });
+
   it('should throw if remote key is not found in the registry', async () => {
     const ExpectedComponent = () => 'test component';
     jest.spyOn(loadFederatedComponent, 'default').mockResolvedValue(ExpectedComponent);
 
-    const loadRemote = remoteLoader(index);
+    const loadRemote = remoteLoader(config);
 
     await expect(loadRemote('TestModule/DoesNotExist')).rejects.toThrow(
       /Remote resource not found in registry/i,
@@ -82,7 +112,7 @@ describe('remoteLoader', () => {
     jest.spyOn(fetchDynamicScript, 'default').mockReturnValueOnce(Promise.resolve(true));
     jest.spyOn(loadFederatedComponent, 'default').mockRejectedValue(new Error('failed'));
 
-    const loadRemote = remoteLoader(index);
+    const loadRemote = remoteLoader(config);
 
     await expect(loadRemote('TestModule/TestComponent')).rejects.toThrow(
       /Failed to load component/i,

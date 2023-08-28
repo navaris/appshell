@@ -1,100 +1,116 @@
+/* eslint-disable no-console */
+/* eslint-disable no-param-reassign */
+import chalk from 'chalk';
 import fs from 'fs';
 import axios from './axios';
-import { AppshellIndex, AppshellManifest, ConfigValidator } from './types';
+import { AppshellGlobalConfig, AppshellManifest } from './types';
 import { isValidUrl } from './utils';
 import * as validators from './validators';
 
-const remove = {
-  index: (file: string, key: string) => {
-    const doc: AppshellIndex = JSON.parse(fs.readFileSync(file, 'utf-8'));
+const getModuleName = (key: string) => key.split('/')[0];
 
-    if (!doc[key]) {
-      // eslint-disable-next-line no-console
-      console.warn(`index entry not found for '${key}'`);
-      return doc;
-    }
+const removeFromGlobalConfig = (doc: AppshellGlobalConfig, targetModule: string) => {
+  const indexKeys = Object.keys(doc.index).filter((key) => getModuleName(key) === targetModule);
+  const metadataKeys = Object.keys(doc.metadata || {}).filter(
+    (key) => getModuleName(key) === targetModule,
+  );
 
-    delete doc[key];
+  if (indexKeys.length) {
+    indexKeys.forEach((key) => {
+      delete doc.index[key];
+    });
+  } else {
+    console.log(chalk.yellow(`index entry not found for '${targetModule}/*'`));
+  }
 
-    return doc;
-  },
-  metadata: (file: string, key: string) => {
-    const doc: Record<string, unknown> = JSON.parse(fs.readFileSync(file, 'utf-8'));
+  if (doc.metadata && metadataKeys.length) {
+    metadataKeys.forEach((key) => {
+      if (doc.metadata) {
+        delete doc.metadata[key];
+      }
+    });
+  } else {
+    console.log(chalk.yellow(`metadata entry not found for '${targetModule}/*'`));
+  }
 
-    if (!doc[key]) {
-      // eslint-disable-next-line no-console
-      console.warn(`metadata entry not found for '${key}'`);
-      return doc;
-    }
+  if (doc.overrides?.environment && doc.overrides.environment[targetModule]) {
+    delete doc.overrides.environment[targetModule];
+  } else {
+    console.log(`no environment override for '${targetModule}'`);
+  }
 
-    delete doc[key];
-
-    return doc;
-  },
-  manifest: (file: string, key: string) => {
-    const doc: AppshellManifest = JSON.parse(fs.readFileSync(file, 'utf-8'));
-    const targetModule = key.split('/')[0];
-
-    if (!doc.remotes[key]) {
-      // eslint-disable-next-line no-console
-      console.warn(`manifest entry not found for remotes[${key}]`);
-    }
-
-    if (!doc.modules[targetModule]) {
-      // eslint-disable-next-line no-console
-      console.warn(`manifest entry not found for modules[${key}]`);
-    }
-
-    if (!doc.environment[targetModule]) {
-      // eslint-disable-next-line no-console
-      console.log(`manifest entry not found for environment[${key}]`);
-    }
-
-    delete doc.remotes[key];
-    delete doc.modules[targetModule];
-    delete doc.environment[targetModule];
-
-    return doc;
-  },
+  return doc;
 };
 
-const updateDocument = (
-  registry: string,
-  collection: 'index' | 'metadata' | 'manifest',
-  key: string,
-  validator: ConfigValidator,
-) => {
-  const file = `${registry}/appshell.${collection}.json`;
+const removeFromManifest = (doc: AppshellManifest, targetModule: string) => {
+  const remotes = Object.keys(doc.remotes).filter((key) => getModuleName(key) === targetModule);
+
+  if (!remotes.length) {
+    console.log(chalk.yellow(`manifest entry not found for remotes[${targetModule}/*]`));
+  }
+
+  if (!doc.modules[targetModule]) {
+    console.log(chalk.yellow(`manifest entry not found for modules[${targetModule}]`));
+  }
+
+  if (!doc.environment[targetModule]) {
+    console.log(chalk.yellow(`manifest entry not found for environment[${targetModule}]`));
+  }
+
+  remotes.forEach((key) => {
+    delete doc.remotes[key];
+  });
+  delete doc.modules[targetModule];
+  delete doc.environment[targetModule];
+
+  return doc;
+};
+
+const updateGlobalConfig = (registry: string, targetModule: string) => {
+  const file = `${registry}/appshell.config.json`;
 
   if (!fs.existsSync(file)) {
-    // eslint-disable-next-line no-console
-    console.warn(`registry file not found ${file}`);
+    console.log(chalk.yellow(`registry file not found ${file}`));
     return;
   }
 
-  const doc = remove[collection](file, key);
+  const config: AppshellGlobalConfig = JSON.parse(fs.readFileSync(file, 'utf-8'));
+  const doc = removeFromGlobalConfig(config, targetModule);
 
-  validator.validate(doc);
+  validators.AppshellGlobalConfigValidator.validate(doc);
 
   fs.writeFileSync(file, JSON.stringify(doc));
 };
 
-export default async (manifestKey: string, registry: string) => {
-  // eslint-disable-next-line no-console
+const updateSnapshot = (registry: string, targetModule: string) => {
+  const file = `${registry}/appshell.snapshot.json`;
+
+  if (!fs.existsSync(file)) {
+    console.log(chalk.yellow(`registry file not found ${file}`));
+    return;
+  }
+
+  const snapshot: AppshellManifest = JSON.parse(fs.readFileSync(file, 'utf-8'));
+  const doc = removeFromManifest(snapshot, targetModule);
+
+  validators.AppshellManifestValidator.validate(doc);
+
+  fs.writeFileSync(file, JSON.stringify(doc));
+};
+
+export default async (moduleName: string, registry: string) => {
   console.log(`deregistering manifest from registry ${registry}`);
 
   if (isValidUrl(registry)) {
-    await axios.delete(registry, { data: { manifestKey } });
+    await axios.delete(registry, { data: { moduleName } });
 
     return;
   }
 
   if (!fs.existsSync(registry)) {
-    // eslint-disable-next-line no-console
-    console.warn(`registry location not found ${registry}`);
+    console.log(chalk.yellow(`registry location not found ${registry}`));
   }
 
-  updateDocument(registry, 'index', manifestKey, validators.appshell_index);
-  updateDocument(registry, 'metadata', manifestKey, validators.appshell_metadata);
-  updateDocument(registry, 'manifest', manifestKey, validators.merge_manifests);
+  updateGlobalConfig(registry, moduleName);
+  updateSnapshot(registry, moduleName);
 };

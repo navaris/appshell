@@ -35,24 +35,24 @@ or
 pnpm add -D @appshell/loader
 ```
 
-The default export from this package is the loader function. It is given a manifest and returns an async function that can be called to dynamically load federated components.
+The default export from this package is the loader function. It is given the global appshell configuration, and returns an async function that can be called to dynamically load federated components.
 
 ```ts
 import componentLoader from '@appshell/loader';
 
-const load = componentLoader(index);
+const load = componentLoader(config);
 
 const Component = load<MyComponent>('MyModule/MyComponent');
 
 render(<Component />);
 ```
 
-**Where does the index come from?**
+**Where does the global appshell configuration come from?**
 
 > See [@appshell/cli](https://www.npmjs.com/package/@appshell/cli)
 
 ```bash
-appshell generate index --manifest dist/appshell.manifest.json
+appshell generate global-config --registry appshell_registry_path
 ```
 
 **Do you have any framework specific loaders?**

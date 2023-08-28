@@ -352,6 +352,13 @@ exports[`utils merge should merge manifests from right to left with merge valida
       },
     },
   },
+  "overrides": {
+    "environment": {
+      "test_module_a": {
+        "RUNTIME_ENV": "A env override",
+      },
+    },
+  },
   "remotes": {
     "BizModule/Biz": {
       "id": "BizModule/Biz",
@@ -368,7 +375,7 @@ exports[`utils merge should merge manifests from right to left with merge valida
       "scope": "BizModule",
     },
     "TestModuleA/Foo": {
-      "id": "TestModule/Foo",
+      "id": "TestModuleA/Foo",
       "manifestUrl": "http://localhost:8080/appshell.manifest.json",
       "metadata": {
         "displayGroup": "main",
@@ -377,10 +384,12 @@ exports[`utils merge should merge manifests from right to left with merge valida
         "order": 10,
         "route": "/foo",
       },
+      "module": "./Foo",
       "remoteEntryUrl": "http://localhost:8080/remoteEntry.js",
+      "scope": "TestModuleA",
     },
     "TestModuleB/Bar": {
-      "id": "TestModule/Bar",
+      "id": "TestModuleB/Bar",
       "manifestUrl": "http://localhost:8080/bar/appshell.manifest.json",
       "metadata": {
         "displayGroup": "main",
@@ -389,10 +398,12 @@ exports[`utils merge should merge manifests from right to left with merge valida
         "order": 10,
         "route": "/foo",
       },
+      "module": "./Bar",
       "remoteEntryUrl": "http://localhost:8080/bar/remoteEntry.js",
+      "scope": "TestModuleB",
     },
     "TestModuleB/Foo": {
-      "id": "TestModule/Foo",
+      "id": "TestModuleB/Foo",
       "manifestUrl": "http://localhost:8080/foo/appshell.manifest.json",
       "metadata": {
         "displayGroup": "main",
@@ -401,10 +412,12 @@ exports[`utils merge should merge manifests from right to left with merge valida
         "order": 20,
         "route": "/foo",
       },
+      "module": "./Foo",
       "remoteEntryUrl": "http://localhost:8080/foo/remoteEntry.js",
+      "scope": "TestModuleB",
     },
     "TestModuleC/Foo": {
-      "id": "TestModule/Foo",
+      "id": "TestModuleC/Foo",
       "manifestUrl": "http://localhost:8080/foo_c/appshell.manifest.json",
       "metadata": {
         "displayGroup": "main",
@@ -413,7 +426,9 @@ exports[`utils merge should merge manifests from right to left with merge valida
         "order": 30,
         "route": "/foo_c",
       },
+      "module": "./Foo",
       "remoteEntryUrl": "http://localhost:8080/foo_c/remoteEntry.js",
+      "scope": "TestModuleC",
     },
   },
 }

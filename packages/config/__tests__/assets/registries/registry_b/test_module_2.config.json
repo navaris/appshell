@@ -1,0 +1,12 @@
+{
+  "index": {
+    "TestModule2/Component": "http://test.com/2/appshell.manifest.json"
+  },
+  "metadata": {
+    "TestModule2/Component": {
+      "arg1": "val1",
+      "arg2": "val2",
+      "arg3": "val3"
+    }
+  }
+}

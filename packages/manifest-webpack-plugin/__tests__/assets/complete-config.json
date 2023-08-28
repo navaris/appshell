@@ -1,4 +1,5 @@
 {
+  "name": "TestModule",
   "remotes": {
     "TestModule/Foo": {
       "url": "${APPS_TEST_URL}",
@@ -73,6 +74,5 @@
       }
     },
     "shareScope": "@sharedscope"
-  },
-  "name": "TestModule"
+  }
 }

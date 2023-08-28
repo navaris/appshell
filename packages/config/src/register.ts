@@ -1,6 +1,6 @@
 import fs from 'fs';
 import axios from './axios';
-import { AppshellManifest, ConfigValidator } from './types';
+import { AppshellGlobalConfig, AppshellManifest, ConfigValidator } from './types';
 import { isValidUrl, merge } from './utils';
 import * as validators from './validators';
 
@@ -14,32 +14,43 @@ const updateDocument = (file: string, data: object, validator: ConfigValidator) 
   fs.writeFileSync(file, JSON.stringify(merge(validator, doc, data)));
 };
 
-export default async (manifest: AppshellManifest, registry: string) => {
+export default async (manifest: AppshellManifest, registryPathOrUrl: string) => {
   // eslint-disable-next-line no-console
-  console.log(`registering manifest to registry ${registry}`);
+  console.log(`registering manifest to registry ${registryPathOrUrl}`);
 
-  if (isValidUrl(registry)) {
-    await axios.post(registry, manifest);
+  if (isValidUrl(registryPathOrUrl)) {
+    await axios.post(registryPathOrUrl, manifest);
 
     return;
   }
 
-  if (!fs.existsSync(registry)) {
-    fs.mkdirSync(registry, { recursive: true });
+  if (!fs.existsSync(registryPathOrUrl)) {
+    fs.mkdirSync(registryPathOrUrl, { recursive: true });
   }
 
-  const metadata = Object.entries(manifest.remotes).reduce((acc, [key, remote]) => {
-    acc[key] = remote.metadata;
+  const registry = Object.entries(manifest.remotes).reduce(
+    (acc, [key, remote]) => {
+      acc.index[key] = remote.manifestUrl;
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      acc.metadata![key] = remote.metadata;
 
-    return acc;
-  }, {} as Record<string, object>);
-  const index = Object.entries(manifest.remotes).reduce((acc, [key, remote]) => {
-    acc[key] = remote.manifestUrl;
+      return acc;
+    },
+    {
+      index: {},
+      metadata: {},
+      overrides: process.env.NODE_ENV !== 'production' ? manifest.overrides : {},
+    } as AppshellGlobalConfig,
+  );
 
-    return acc;
-  }, {} as Record<string, string>);
-
-  updateDocument(`${registry}/appshell.index.json`, index, validators.appshell_index);
-  updateDocument(`${registry}/appshell.metadata.json`, metadata, validators.appshell_metadata);
-  updateDocument(`${registry}/appshell.manifest.json`, manifest, validators.merge_manifests);
+  updateDocument(
+    `${registryPathOrUrl}/appshell.config.json`,
+    registry,
+    validators.AppshellGlobalConfigValidator,
+  );
+  updateDocument(
+    `${registryPathOrUrl}/appshell.snapshot.json`,
+    manifest,
+    validators.AppshellManifestValidator,
+  );
 };

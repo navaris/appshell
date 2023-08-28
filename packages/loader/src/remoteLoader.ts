@@ -1,5 +1,6 @@
 /* eslint-disable no-underscore-dangle */
-import { type AppshellIndex, type AppshellManifest } from '@appshell/config';
+import { type AppshellManifest } from '@appshell/config';
+import { AppshellGlobalConfig } from 'packages/config/src/types';
 import fetchDynamicScript from './fetchDynamicScript';
 import loadFederatedComponent from './loadFederatedComponent';
 
@@ -23,10 +24,10 @@ const fetchManifest = async (url: string): Promise<AppshellManifest | undefined>
   throw new Error(`Failed to get manifest from ${url}. ${message}`);
 };
 
-export default (index: AppshellIndex) =>
+export default (config: AppshellGlobalConfig) =>
   async <TComponent>(key: string) => {
     let Component: TComponent;
-    const manifestUrl = index[key];
+    const manifestUrl = config.index[key];
     if (!manifestUrl) {
       throw new Error(`Remote resource not found in registry. Expected: ${key}`);
     }
@@ -38,7 +39,13 @@ export default (index: AppshellIndex) =>
         fetchedManifestCache.set(manifestUrl, manifest);
 
         const remote = manifest.remotes[key];
-        window[`__appshell_env__${remote.scope}`] = manifest.environment[remote.scope] || {};
+
+        const environment = manifest.environment[remote.scope] || {};
+        const overrides = config.overrides?.environment[remote.scope] || {};
+        window[`__appshell_env__${remote.scope}`] = {
+          ...environment,
+          ...overrides,
+        };
 
         const loaded =
           fetchedScriptCache.has(remote.remoteEntryUrl) ||

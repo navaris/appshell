@@ -15,7 +15,7 @@ export default async (argv: GenerateEnvArgs): Promise<void> => {
   const { env, globalName, outDir, outFile, prefix, overwrite } = argv;
   // eslint-disable-next-line no-console
   console.log(
-    `generating runtime env js --env=${env} --prefix=${prefix} --out-dir=${outDir} --out-file=${outFile} --global-name=${globalName} --overwrite=${overwrite}`,
+    `generating appshell.env.js --env=${env} --prefix=${prefix} --out-dir=${outDir} --out-file=${outFile} --global-name=${globalName} --overwrite=${overwrite}`,
   );
 
   const environment = await generateEnv(env, prefix, overwrite);

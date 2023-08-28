@@ -1,0 +1,45 @@
+{
+  "index": {
+    "ContainerModule/Container": "http://localhost:30001/appshell.manifest.json",
+    "PingModule/Ping": "http://localhost:30011/appshell.manifest.json",
+    "PongModule/Pong": "http://localhost:30021/appshell.manifest.json",
+    "PongModule/CoolComponent": "http://localhost:30021/appshell.manifest.json"
+  },
+  "metadata": {
+    "ContainerModule/Container": {
+      "route": "/",
+      "displayName": "Host App",
+      "displayGroup": "main",
+      "order": 0,
+      "icon": "ViewList"
+    },
+    "PingModule/Ping": {
+      "route": "/ping",
+      "displayName": "Ping Micro-Frontend",
+      "displayGroup": "main",
+      "order": 10,
+      "icon": "ViewList"
+    },
+    "PongModule/Pong": {
+      "route": "/pong",
+      "displayName": "Pong Micro-Frontend",
+      "displayGroup": "main",
+      "order": 20,
+      "icon": "ViewList"
+    },
+    "PongModule/CoolComponent": {
+      "route": "/cool",
+      "displayName": "Cool Shared Component",
+      "displayGroup": "main",
+      "order": 30,
+      "icon": "ViewList"
+    }
+  },
+  "overrides": {
+    "environment": {
+      "ContainerModule": {
+        "ENV_VAR_A": "Overridden value of A"
+      }
+    }
+  }
+}

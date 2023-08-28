@@ -1,10 +1,10 @@
 import { validate } from 'schema-utils';
 import { Schema } from 'schema-utils/declarations/validate';
-import schema from '../schemas/appshell.manifest.json';
-import { AppshellManifest, ConfigValidator } from '../types';
+import schema from '../schemas/appshell.register.json';
+import { AppshellGlobalConfig, ConfigValidator } from '../types';
 
 export default {
-  validate: (...documents: AppshellManifest[]) => {
+  validate: (...documents: AppshellGlobalConfig[]) => {
     // schema validation
     documents.forEach((document) => validate(schema as Schema, document));
   },

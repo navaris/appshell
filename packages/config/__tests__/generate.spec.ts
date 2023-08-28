@@ -3,9 +3,8 @@ import https from 'https';
 import { keys, values } from 'lodash';
 import path from 'path';
 import generateEnv from '../src/generate.env';
-import generateIndex from '../src/generate.index';
+import generateGlobalConfig from '../src/generate.global-config';
 import generate from '../src/generate.manifest';
-import generateMetadata from '../src/generate.metadata';
 import * as utils from '../src/utils';
 import manifest from './assets/appshell.manifest.json';
 import mockAxios from './utils/axios';
@@ -50,16 +49,16 @@ describe('generate', () => {
   });
 
   describe('manifest', () => {
-    const appshellConfig = path.resolve(
-      `packages/${packageName}/__tests__/assets/appshell.config.json`,
+    const configTemplate = path.resolve(
+      `packages/${packageName}/__tests__/assets/appshell.template.json`,
     );
 
     process.env.APPS_TEST_URL = 'http://remote-module.com/remoteEntry.js';
     process.env.RUNTIME_ENV = 'development';
     process.env.RUNTIME_ENV_VERSION = '1.0.0';
 
-    it('should generate an appshell manifest from the appshell config', async () => {
-      const config = await generate(appshellConfig);
+    it('should generate an appshell manifest from the config template', async () => {
+      const config = await generate(configTemplate);
 
       expect(config).toMatchSnapshot();
     });
@@ -71,7 +70,7 @@ describe('generate', () => {
     });
 
     it('should contain all remotes', async () => {
-      const config = await generate(appshellConfig);
+      const config = await generate(configTemplate);
       const expectedRemotes = keys(manifest.remotes);
       const actualRemotes = keys(config?.remotes);
 
@@ -79,7 +78,7 @@ describe('generate', () => {
     });
 
     it('should apply environment variables to configuration', async () => {
-      const config = await generate(appshellConfig);
+      const config = await generate(configTemplate);
 
       const actualUrls = values(config?.remotes).flatMap((remote) => remote.manifestUrl);
 
@@ -88,13 +87,13 @@ describe('generate', () => {
     });
 
     it('should capture metadata', async () => {
-      const config = await generate<TestMetadata>(appshellConfig);
+      const config = await generate<TestMetadata>(configTemplate);
 
       expect(values(config?.remotes).flatMap((remote) => remote.metadata)).toHaveLength(3);
     });
   });
 
-  describe('index', () => {
+  describe('register', () => {
     let agentConstructorSpy: jest.SpyInstance;
     let consoleSpy: jest.SpyInstance;
     beforeEach(() => {
@@ -107,42 +106,44 @@ describe('generate', () => {
       consoleSpy.mockRestore();
     });
 
-    const singleIndex = [`packages/${packageName}/__tests__/assets/registries/appshell.index.json`];
-    const adjunctRegistries = [
+    const testGlobalConfig = [
+      `packages/${packageName}/__tests__/assets/registries/appshell.config.json`,
+    ];
+    const baseRegistries = [
       `packages/${packageName}/__tests__/assets/registries/registry_a`,
       `packages/${packageName}/__tests__/assets/registries/registry_b`,
     ];
     const remoteRegistries = ['https://test.com/registry'];
 
-    it('should merge valid registry indexes', async () => {
-      const index = await generateIndex([...adjunctRegistries, ...singleIndex]);
+    it('should merge multiple valid global configurations', async () => {
+      const config = await generateGlobalConfig([...baseRegistries, ...testGlobalConfig]);
 
-      expect(index).toMatchSnapshot();
+      expect(config).toMatchSnapshot();
     });
 
-    it('should handle a single index file', async () => {
-      const index = await generateIndex(singleIndex);
+    it('should handle a single global configuration file', async () => {
+      const config = await generateGlobalConfig(testGlobalConfig);
 
-      expect(index).toMatchSnapshot();
+      expect(config).toMatchSnapshot();
     });
 
     it('should handle a directory', async () => {
-      const index = await generateIndex(adjunctRegistries);
+      const config = await generateGlobalConfig(baseRegistries);
 
-      expect(index).toMatchSnapshot();
+      expect(config).toMatchSnapshot();
     });
 
     it('should log error and return empty if something goes wrong', async () => {
       jest.spyOn(utils, 'merge').mockImplementationOnce(() => {
         throw new Error('Something went wrong');
       });
-      const index = await generateIndex(singleIndex);
+      const config = await generateGlobalConfig(testGlobalConfig);
 
       expect(consoleSpy).toHaveBeenCalledWith(
-        'Error generating appshell index',
+        'Error generating global appshell configuration',
         'Something went wrong',
       );
-      expect(index).toMatchObject({});
+      expect(config).toMatchObject({});
     });
 
     it('should configure http client when insecure is true', async () => {
@@ -150,7 +151,7 @@ describe('generate', () => {
         .onGet(/\/registry/i)
         .reply(HttpStatusCode.Ok, { status: HttpStatusCode.Ok, statusText: 'OK', data: {} });
 
-      await generateIndex(remoteRegistries, { insecure: true });
+      await generateGlobalConfig(remoteRegistries, { insecure: true });
 
       expect(agentConstructorSpy).toHaveBeenCalledWith({ rejectUnauthorized: false });
     });
@@ -160,81 +161,7 @@ describe('generate', () => {
         .onGet(/\/registry/i)
         .reply(HttpStatusCode.Ok, { status: HttpStatusCode.Ok, statusText: 'OK', data: {} });
 
-      await generateIndex(remoteRegistries, { insecure: false });
-
-      expect(agentConstructorSpy).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('metadata', () => {
-    let agentConstructorSpy: jest.SpyInstance;
-    let consoleSpy: jest.SpyInstance;
-    beforeEach(() => {
-      agentConstructorSpy = jest.spyOn(https, 'Agent').mockReturnThis();
-      consoleSpy = jest.spyOn(console, 'error');
-    });
-
-    afterEach(() => {
-      agentConstructorSpy.mockRestore();
-      consoleSpy.mockRestore();
-    });
-
-    const singleIndex = [
-      `packages/${packageName}/__tests__/assets/registries/appshell.metadata.json`,
-    ];
-    const adjunctRegistries = [
-      `packages/${packageName}/__tests__/assets/registries/registry_a`,
-      `packages/${packageName}/__tests__/assets/registries/registry_b`,
-    ];
-    const remoteRegistries = ['https://test.com/registry'];
-
-    it('should merge valid registry indexes', async () => {
-      const index = await generateMetadata([...adjunctRegistries, ...singleIndex]);
-
-      expect(index).toMatchSnapshot();
-    });
-
-    it('should handle a single index file', async () => {
-      const index = await generateMetadata(singleIndex);
-
-      expect(index).toMatchSnapshot();
-    });
-
-    it('should handle a directory', async () => {
-      const index = await generateMetadata(adjunctRegistries);
-
-      expect(index).toMatchSnapshot();
-    });
-
-    it('should log error and return empty if something goes wrong', async () => {
-      jest.spyOn(utils, 'merge').mockImplementationOnce(() => {
-        throw new Error('Something went wrong');
-      });
-      const index = await generateMetadata(singleIndex);
-
-      expect(consoleSpy).toHaveBeenCalledWith(
-        'Error generating appshell metadata',
-        'Something went wrong',
-      );
-      expect(index).toMatchObject({});
-    });
-
-    it('should configure http client when insecure is true', async () => {
-      mockAxios
-        .onGet(/\/registry/i)
-        .reply(HttpStatusCode.Ok, { status: HttpStatusCode.Ok, statusText: 'OK', data: {} });
-
-      await generateMetadata(remoteRegistries, { insecure: true });
-
-      expect(agentConstructorSpy).toHaveBeenCalledWith({ rejectUnauthorized: false });
-    });
-
-    it('should not configure http client when insecure is false', async () => {
-      mockAxios
-        .onGet(/\/registry/i)
-        .reply(HttpStatusCode.Ok, { status: HttpStatusCode.Ok, statusText: 'OK', data: {} });
-
-      await generateMetadata(remoteRegistries, { insecure: false });
+      await generateGlobalConfig(remoteRegistries, { insecure: false });
 
       expect(agentConstructorSpy).not.toHaveBeenCalled();
     });

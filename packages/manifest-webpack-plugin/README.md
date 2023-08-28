@@ -142,7 +142,7 @@ environment:
 > Use [@appshell/cli](https://www.npmjs.com/package/@appshell/config) in a startup script:
 
 ```bash
-appshell generate manifest --template appshell.config.json
+appshell generate manifest --template appshell.template.json
 ```
 
 Sample `appshell manifest`:

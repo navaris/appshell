@@ -1,6 +1,0 @@
-{
-  "ContainerModule/Container": "http://localhost:30001/appshell.manifest.json",
-  "PingModule/Ping": "http://localhost:30011/appshell.manifest.json",
-  "PongModule/Pong": "http://localhost:30021/appshell.manifest.json",
-  "PongModule/CoolComponent": "http://localhost:30021/appshell.manifest.json"
-}

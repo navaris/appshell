@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.5.0-alpha.1](https://github.com/navaris/appshell/compare/@appshell/config@0.5.0-alpha.0...@appshell/config@0.5.0-alpha.1) (2023-08-28)
+
+
+### Features
+
+* environment variable override for federated components ([#27](https://github.com/navaris/appshell/issues/27)) ([d32de0b](https://github.com/navaris/appshell/commit/d32de0b0d1cbb1792715e1b363c80ed4600df155))
+
+
+
+
+
+# [0.5.0-alpha.0](https://github.com/navaris/appshell/compare/@appshell/config@0.4.0...@appshell/config@0.5.0-alpha.0) (2023-08-23)
+
+
+### Features
+
+* consolidate runtime artifacts ([#26](https://github.com/navaris/appshell/issues/26)) ([a29479a](https://github.com/navaris/appshell/commit/a29479a49f0c5ec1273c9f8e4c7384096f2d4ba0))
+
+
+
+
+
 # [0.4.0](https://github.com/navaris/appshell/compare/@appshell/config@0.4.0-alpha.0...@appshell/config@0.4.0) (2023-08-09)
 
 **Note:** Version bump only for package @appshell/config

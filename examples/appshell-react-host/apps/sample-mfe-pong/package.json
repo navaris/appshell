@@ -4,9 +4,9 @@
   "description": "",
   "main": "dist/main.js",
   "scripts": {
-    "generate:manifest": "appshell generate manifest --template dist/appshell.config.json",
+    "generate:manifest": "appshell generate manifest --template dist/appshell.template.json",
     "register": "appshell register --manifest dist/appshell.manifest.json --registry $SAMPLE_MFE_REGISTRY",
-    "watch:config": "nodemon --watch dist/appshell.config.json --exec run-s generate:manifest register",
+    "watch:config": "nodemon --watch dist/appshell.template.json --exec run-s generate:manifest register",
     "start": "dotenv -- run-p start:appshell start:run",
     "start:appshell": "appshell start --remote --registry $SAMPLE_MFE_REGISTRY",
     "start:run": "webpack-cli serve --mode development",

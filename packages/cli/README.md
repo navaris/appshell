@@ -56,7 +56,7 @@ Generates a resource
 Commands:
   appshell generate manifest  Generate the appshell manifest by processing the template specified by --template
   appshell generate env       Generate the runtime environment js file that reflects the current process.env
-  appshell generate index     Generate the appshell index file by merging sources specifed by --registry options
+  appshell generate global-config     Generate the global appshell configuration file by merging sources specifed by --registry options
   appshell generate metadata  Generate the appshell metadata file by merging sources specifed by --registry options
 ```
 
@@ -72,7 +72,7 @@ Generate the appshell global runtime manifest
 Options:
       --help        Show help                                           [boolean]
       --version     Show version number                                 [boolean]
-  -t, --template  Path to the appshell manifest template to process     [string] [default: "appshell.config.json"]
+  -t, --template  Path to the appshell config template to process     [string] [default: "appshell.template.json"]
   -o, --outDir      Output location for the appshell manifest           [string] [default: "dist"]
   -f, --outFile     Output filename for the appshell manifest           [string] [default: "appshell.manifest.json"]
 ```
@@ -80,14 +80,14 @@ Options:
 ### Sample usage
 
 ```bash
-appshell generate manifest --template dist/appshell.config.json
+appshell generate manifest --template dist/appshell.template.json
 ```
 
 **Where does the content of APPSHELL_REGISTRY come from?**
 
 > Each micro-frontend configured to use [@appshell/manifest-webpack-plugin](https://www.npmjs.com/package/@appshell/manifest-webpack-plugin) emits a manifest template, which is subsequently used to generate a manifest for the remote module. This manifest is then registered with the APPSHELL_REGISTRY.
 
-Sample manifest template `appshell.config.json`:
+Sample config template `appshell.template.json`:
 
 ```json
 {
@@ -259,8 +259,8 @@ Options:
       --help     Show help                                                  [boolean]
       --version  Show version number                                        [boolean]
   -e, --env      The .env file to process                                   [string] [default: ".env"]
-  -o, --outDir   Output location for the runtime environment js             [string] [default: "."]
-  -f, --outFile  Output filename for the runtime environment js             [string] [default: "runtime.env.js"]
+  -o, --outDir   Output location for the appshell environment js             [string] [default: "."]
+  -f, --outFile  Output filename for the appshell environment js             [string] [default: "appshell.env.js"]
   -p, --prefix   Only capture environment variables that start with prefix  [string] [default: ""]
   -g, --globalName     Global variable name window[globalName] used in the output js    [string] [default: "__appshell_env__"]
 ```
@@ -271,7 +271,7 @@ Options:
 appshell generate env -e .env --prefix APPSHELL_ --outDir dist
 ```
 
-Sample output `runtime.env.js`
+Sample output `appshell.env.js`
 
 ```js
 window.__appshell_env__ = {
@@ -283,5 +283,5 @@ window.__appshell_env__ = {
 Include in the public html
 
 ```html
-<script src="runtime.env.js"></script>
+<script src="appshell.env.js"></script>
 ```

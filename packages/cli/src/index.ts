@@ -8,9 +8,10 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import deregisterManifestHandler, { DeregisterManifestArgs } from './handlers/deregister';
 import generateEnvHandler, { GenerateEnvArgs } from './handlers/generate.env';
-import generateIndexHandler, { GenerateIndexArgs } from './handlers/generate.index';
+import generateGlobalConfigHandler, {
+  GenerateGlobalConfigArgs,
+} from './handlers/generate.global-config';
 import generateManifestHandler, { GenerateManifestArgs } from './handlers/generate.manifest';
-import generateMetadataHandler, { GenerateMetadataArgs } from './handlers/generate.metadata';
 import registerManifestHandler, { RegisterManifestArgs } from './handlers/register';
 import startHandler, { StartArgs } from './handlers/start';
 
@@ -68,9 +69,9 @@ const startCommand: yargs.CommandModule<unknown, StartArgs> = {
       })
       .option('manifestTemplate', {
         alias: 't',
-        default: 'appshell.config.json',
+        default: 'appshell.template.json',
         type: 'string',
-        description: 'Path to the appshell manifest template to process',
+        description: 'Path to the appshell config template to process',
       })
       .option('manifest', {
         alias: 'm',
@@ -84,12 +85,13 @@ const startCommand: yargs.CommandModule<unknown, StartArgs> = {
         type: 'string',
         description: 'Registry with which the app is registered',
       })
-      .option('adjunctRegistry', {
+      .option('baseRegistry', {
         alias: 'a',
         default: [],
         string: true,
         type: 'array',
-        description: 'One or more adjunct registries to incorporate',
+        description:
+          'One or more base registries to incorporate into the global appshell configuration',
       }),
   handler: startHandler,
 };
@@ -138,9 +140,10 @@ const deregisterManifestCommand: yargs.CommandModule<unknown, DeregisterManifest
   handler: deregisterManifestHandler,
 };
 
-const generateIndexCommand: yargs.CommandModule<unknown, GenerateIndexArgs> = {
-  command: 'index',
-  describe: 'Generate the appshell index file by merging sources specifed by --registry options',
+const generateGlobalConfigCommand: yargs.CommandModule<unknown, GenerateGlobalConfigArgs> = {
+  command: 'global-config',
+  describe:
+    'Generate the global appshell configuration by merging sources specifed by --registry options',
   // eslint-disable-next-line @typescript-eslint/no-shadow
   builder: (yargs) =>
     yargs
@@ -148,13 +151,13 @@ const generateIndexCommand: yargs.CommandModule<unknown, GenerateIndexArgs> = {
         alias: 'o',
         default: 'dist',
         type: 'string',
-        description: 'Output location for the appshell index',
+        description: 'Output location for the global appshell configuration',
       })
       .option('outFile', {
         alias: 'f',
-        default: 'appshell.index.json',
+        default: 'appshell.config.json',
         type: 'string',
-        description: 'Output filename for the appshell index',
+        description: 'Output filename for the global appshell configuration',
       })
       .option('validateRegistrySslCert', {
         alias: 'v',
@@ -168,44 +171,10 @@ const generateIndexCommand: yargs.CommandModule<unknown, GenerateIndexArgs> = {
         string: true,
         type: 'array',
         requiresArg: true,
-        description: 'One or more registies to merge into a single appshell index',
-      }),
-  handler: generateIndexHandler,
-};
-
-const generateMetadataCommand: yargs.CommandModule<unknown, GenerateMetadataArgs> = {
-  command: 'metadata',
-  describe: 'Generate the appshell metadata file by merging sources specifed by --registry options',
-  // eslint-disable-next-line @typescript-eslint/no-shadow
-  builder: (yargs) =>
-    yargs
-      .option('outDir', {
-        alias: 'o',
-        default: 'dist',
-        requiresArg: true,
-        type: 'string',
-        description: 'Output location for the appshell manifest',
-      })
-      .option('outFile', {
-        alias: 'f',
-        default: 'appshell.metadata.json',
-        type: 'string',
-        description: 'Output filename for the appshell manifest',
-      })
-      .option('validateRegistrySslCert', {
-        alias: 'v',
-        default: true,
-        type: 'boolean',
         description:
-          "If false, registry files are fetched without validating the registry's SSL cert",
-      })
-      .option('registry', {
-        alias: 'r',
-        type: 'array',
-        requiresArg: true,
-        description: 'One or more registies to merge into a single appshell index',
+          'One or more registries to query for other global configurations to merge into a single global appshell configuration',
       }),
-  handler: generateMetadataHandler,
+  handler: generateGlobalConfigHandler,
 };
 
 const generateManifestCommand: yargs.CommandModule<unknown, GenerateManifestArgs> = {
@@ -216,9 +185,9 @@ const generateManifestCommand: yargs.CommandModule<unknown, GenerateManifestArgs
     yargs
       .option('template', {
         alias: 't',
-        default: 'appshell.config.json',
+        default: 'appshell.template.json',
         type: 'string',
-        description: 'Path to the appshell manifest template to process',
+        description: 'Path to the appshell config template to process',
       })
       .option('outDir', {
         alias: 'o',
@@ -257,7 +226,7 @@ const generateEnvCommand: yargs.CommandModule<unknown, GenerateEnvArgs> = {
       })
       .option('outFile', {
         alias: 'f',
-        default: 'runtime.env.js',
+        default: 'appshell.env.js',
         type: 'string',
         description: 'Output filename for the runtime environment js',
       })
@@ -293,8 +262,7 @@ yargs(hideBin(process.argv))
       yargs
         .command(generateManifestCommand)
         .command(generateEnvCommand)
-        .command(generateIndexCommand)
-        .command(generateMetadataCommand)
+        .command(generateGlobalConfigCommand)
         .demandCommand(),
   })
   .command(registerManifestCommand)

@@ -1,0 +1,14 @@
+{
+  "index": {
+    "PingModule/Ping": "http://localhost:30011/appshell.manifest.json"
+  },
+  "metadata": {
+    "PingModule/Ping": {
+      "route": "/ping",
+      "displayName": "Ping Micro-Frontend",
+      "displayGroup": "main",
+      "order": 10,
+      "icon": "ViewList"
+    }
+  }
+}
