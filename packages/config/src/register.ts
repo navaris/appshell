@@ -36,7 +36,11 @@ export default async (manifest: AppshellManifest, registryPathOrUrl: string) => 
 
       return acc;
     },
-    { index: {}, metadata: {}, overrides: manifest.overrides } as AppshellGlobalConfig,
+    {
+      index: {},
+      metadata: {},
+      overrides: process.env.NODE_ENV !== 'production' ? manifest.overrides : {},
+    } as AppshellGlobalConfig,
   );
 
   updateDocument(
