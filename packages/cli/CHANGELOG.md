@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.3](https://github.com/navaris/appshell/compare/@appshell/cli@0.5.2...@appshell/cli@0.5.3) (2023-08-29)
+
+
+### Bug Fixes
+
+* appshell loader override check ([aedda4a](https://github.com/navaris/appshell/commit/aedda4abf81560297dce03df09fba68e8785242f))
+
+
+
+
+
 ## [0.5.2](https://github.com/navaris/appshell/compare/@appshell/cli@0.5.1...@appshell/cli@0.5.2) (2023-08-29)
 
 

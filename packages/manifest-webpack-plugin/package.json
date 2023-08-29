@@ -1,6 +1,6 @@
 {
   "name": "@appshell/manifest-webpack-plugin",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Webpack plugin used to generate a global Appshell configuration for micro-frontends built with Module Federation",
   "main": "dist/main.js",
   "types": "dist/types/manifest-webpack-plugin/src/index.d.ts",

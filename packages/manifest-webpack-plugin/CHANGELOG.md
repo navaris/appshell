@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/navaris/appshell/compare/@appshell/manifest-webpack-plugin@0.3.1...@appshell/manifest-webpack-plugin@0.3.2) (2023-08-29)
+
+
+### Bug Fixes
+
+* appshell loader override check ([aedda4a](https://github.com/navaris/appshell/commit/aedda4abf81560297dce03df09fba68e8785242f))
+
+
+
+
+
 ## [0.3.1](https://github.com/navaris/appshell/compare/@appshell/manifest-webpack-plugin@0.3.0...@appshell/manifest-webpack-plugin@0.3.1) (2023-08-29)
 
 
