@@ -23,6 +23,9 @@
   "bin": {
     "appshell": "./dist/main.js"
   },
+  "dependencies": {
+    "@appshell/config": "^0.5.1"
+  },
   "keywords": [
     "webpack",
     "module federation",
