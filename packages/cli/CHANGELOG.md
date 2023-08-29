@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.2](https://github.com/navaris/appshell/compare/@appshell/cli@0.5.1...@appshell/cli@0.5.2) (2023-08-29)
+
+
+### Bug Fixes
+
+* update cli appshell dependencies ([4780792](https://github.com/navaris/appshell/commit/47807929845471c48e47627c4baba985ac13cc4e))
+
+
+
+
+
 ## [0.5.1](https://github.com/navaris/appshell/compare/@appshell/cli@0.5.0...@appshell/cli@0.5.1) (2023-08-29)
 
 
