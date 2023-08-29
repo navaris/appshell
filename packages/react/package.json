@@ -1,7 +1,7 @@
 {
   "name": "@appshell/react",
   "version": "0.2.0",
-  "description": "React utilities for loading federated components",
+  "description": "React utilities for building micro-frontends with Appshell and Module Federation",
   "main": "dist/main.js",
   "types": "dist/types/react/src/index.d.ts",
   "repository": "https://github.com/navaris/appshell.git",
