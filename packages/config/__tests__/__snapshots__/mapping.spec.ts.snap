@@ -39,6 +39,11 @@ exports[`mapping configurations to domain objects should match snapshot 1`] = `
       },
     },
   },
+  "overrides": {
+    "environment": {
+      "RUNTIME_ENV": "New value for RUNTIME_ENV",
+    },
+  },
   "remotes": {
     "BizModule/Biz": {
       "id": "BizModule/Biz",

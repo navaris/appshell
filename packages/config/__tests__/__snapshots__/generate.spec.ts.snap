@@ -39,6 +39,11 @@ exports[`generate manifest should generate an appshell manifest from the config 
       },
     },
   },
+  "overrides": {
+    "environment": {
+      "RUNTIME_ENV": "New value for RUNTIME_ENV",
+    },
+  },
   "remotes": {
     "BizModule/Biz": {
       "id": "BizModule/Biz",
