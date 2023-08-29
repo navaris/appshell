@@ -9,6 +9,7 @@ export type StartArgs = {
   envGlobalName: string;
   remote: boolean;
   host: boolean;
+  allowOverrides: boolean;
   validateRegistrySslCert: boolean;
   metadata: boolean;
   manifestTemplate: string;
@@ -25,6 +26,7 @@ export default async (argv: StartArgs): Promise<void> => {
     outDir,
     remote,
     host,
+    allowOverrides,
     validateRegistrySslCert,
     metadata,
     manifest,
@@ -35,7 +37,7 @@ export default async (argv: StartArgs): Promise<void> => {
 
   // eslint-disable-next-line no-console
   console.log(
-    `starting appshell --env=${env} --env-prefix=${envPrefix} --env-global-name=${envGlobalName} --out-dir=${outDir} --remote=${remote} --host=${host} --validate-registry-ssl-cert=${validateRegistrySslCert} --metadata=${metadata} --manifest=${manifest} --manifest-template=${manifestTemplate} --registry=${registry} --base-registry=${baseRegistry}`,
+    `starting appshell --env=${env} --env-prefix=${envPrefix} --env-global-name=${envGlobalName} --out-dir=${outDir} --remote=${remote} --host=${host} --allow-overrides=${allowOverrides} --validate-registry-ssl-cert=${validateRegistrySslCert} --metadata=${metadata} --manifest=${manifest} --manifest-template=${manifestTemplate} --registry=${registry} --base-registry=${baseRegistry}`,
   );
 
   const prefix = 'appshell';
@@ -52,7 +54,7 @@ export default async (argv: StartArgs): Promise<void> => {
     }
 
     const watchTemplate = exec(
-      `npm exec -- nodemon --watch ${templatePath} --exec "appshell generate manifest --template ${templatePath} && appshell register --manifest ${manifestPath} --registry ${registry}"`,
+      `npm exec -- nodemon --watch ${templatePath} --exec "appshell generate manifest --template ${templatePath} && appshell register --manifest ${manifestPath} --registry ${registry} --allow-overrides ${allowOverrides}"`,
     );
     watchTemplate.stdout?.on('data', (data) => {
       // eslint-disable-next-line no-console

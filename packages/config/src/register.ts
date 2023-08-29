@@ -17,7 +17,7 @@ const updateDocument = (file: string, data: object, validator: ConfigValidator) 
 export default async (
   manifest: AppshellManifest,
   registryPathOrUrl: string,
-  allowOverride = false,
+  allowOverrides = false,
 ) => {
   // eslint-disable-next-line no-console
   console.log(`registering manifest to registry ${registryPathOrUrl}`);
@@ -43,7 +43,7 @@ export default async (
     {
       index: {},
       metadata: {},
-      overrides: allowOverride ? manifest.overrides : {},
+      overrides: allowOverrides ? manifest.overrides : {},
     } as AppshellGlobalConfig,
   );
 

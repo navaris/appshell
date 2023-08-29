@@ -55,6 +55,11 @@ const startCommand: yargs.CommandModule<unknown, StartArgs> = {
         type: 'boolean',
         description: 'Flag if this app is a host',
       })
+      .option('allowOverrides', {
+        default: false,
+        type: 'boolean',
+        description: 'Allow overrides to be propagated',
+      })
       .option('validateRegistrySslCert', {
         alias: 'v',
         default: true,
@@ -109,8 +114,8 @@ const registerManifestCommand: yargs.CommandModule<unknown, RegisterManifestArgs
         requiresArg: true,
         description: 'One or more manifests to register',
       })
-      .option('allowOverride', {
-        default: process.env.NODE_ENV !== 'production',
+      .option('allowOverrides', {
+        default: false,
         type: 'boolean',
         description: 'Allow overrides to be propagated',
       })
