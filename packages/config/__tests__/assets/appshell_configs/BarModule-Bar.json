@@ -48,5 +48,12 @@
       }
     },
     "shareScope": "@sharedscope"
+  },
+  "overrides": {
+    "environment": {
+      "bar_module": {
+        "RUNTIME_ENV": "New value for RUNTIME_ENV"
+      }
+    }
   }
 }

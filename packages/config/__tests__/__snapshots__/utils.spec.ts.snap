@@ -2,6 +2,13 @@
 
 exports[`utils load consuming the configuration should read and parse the configuration file 1`] = `
 {
+  "overrides": {
+    "environment": {
+      "BizModule": {
+        "ENV_VAR_A": "New value for ENV_VAR_A",
+      },
+    },
+  },
   "remotes": {
     "BizModule/Biz": {
       "filename": "remoteEntry.js",
@@ -42,6 +49,13 @@ exports[`utils load consuming the configuration should read and parse the config
 
 exports[`utils load consuming the configuration should read and parse the configuration file 2`] = `
 {
+  "overrides": {
+    "environment": {
+      "BizModule": {
+        "ENV_VAR_A": "New value for ENV_VAR_A",
+      },
+    },
+  },
   "remotes": {
     "BizModule/Biz": {
       "filename": "remoteEntry.js",

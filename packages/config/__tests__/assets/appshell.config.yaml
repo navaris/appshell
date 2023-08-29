@@ -28,3 +28,8 @@ remotes:
       displayGroup: auxiliary
       order: 30
       icon: ViewList
+
+overrides:
+  environment:
+    BizModule:
+      ENV_VAR_A: New value for ENV_VAR_A

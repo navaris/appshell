@@ -1,6 +1,6 @@
 import { validate } from 'schema-utils';
 import { Schema } from 'schema-utils/declarations/validate';
-import schema from '../schemas/appshell.register.json';
+import schema from '../schemas/appshell.config.json';
 import { AppshellGlobalConfig, ConfigValidator } from '../types';
 
 export default {

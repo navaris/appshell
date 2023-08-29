@@ -25,23 +25,17 @@
       "description": "Overrides to apply",
       "type": "object",
       "properties": {
-        "remotes": {
-          "type": "object",
-          "additionalProperties": {
-            "anyOf": [
-              {
-                "$ref": "#/definitions/Entrypoint"
-              }
-            ]
-          }
-        },
         "environment": {
           "type": "object"
         }
       }
     }
   },
-  "required": ["remotes", "modules", "environment"],
+  "required": [
+    "remotes",
+    "modules",
+    "environment"
+  ],
   "definitions": {
     "Entrypoint": {
       "title": "Module entrypoint",
@@ -77,7 +71,10 @@
           "additionalProperties": true
         }
       },
-      "required": ["manifestUrl", "remoteEntryUrl"],
+      "required": [
+        "manifestUrl",
+        "remoteEntryUrl"
+      ],
       "additionalProperties": false
     }
   },

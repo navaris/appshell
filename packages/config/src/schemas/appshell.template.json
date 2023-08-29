@@ -24,6 +24,15 @@
     "environment": {
       "description": "Runtime environment configuration",
       "type": "object"
+    },
+    "overrides": {
+      "description": "Overrides to apply",
+      "type": "object",
+      "properties": {
+        "environment": {
+          "type": "object"
+        }
+      }
     }
   },
   "definitions": {
@@ -49,7 +58,10 @@
           "additionalProperties": true
         }
       },
-      "required": ["url", "filename"],
+      "required": [
+        "url",
+        "filename"
+      ],
       "additionalProperties": false
     }
   },
