@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/navaris/appshell/compare/@appshell/manifest-webpack-plugin@0.3.0...@appshell/manifest-webpack-plugin@0.3.1) (2023-08-29)
+
+
+### Bug Fixes
+
+* update manifest webpack plugin ([5ba2eca](https://github.com/navaris/appshell/commit/5ba2eca015d0482ab95ee5ef677b75a699327987))
+
+
+
+
+
 # [0.3.0](https://github.com/navaris/appshell/compare/@appshell/manifest-webpack-plugin@0.3.0-alpha.0...@appshell/manifest-webpack-plugin@0.3.0) (2023-08-28)
 
 **Note:** Version bump only for package @appshell/manifest-webpack-plugin
