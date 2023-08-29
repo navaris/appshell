@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/navaris/appshell/compare/@appshell/manifest-webpack-plugin@0.3.2...@appshell/manifest-webpack-plugin@0.3.3) (2023-08-29)
+
+
+### Bug Fixes
+
+* override support for template mapper ([e79ad36](https://github.com/navaris/appshell/commit/e79ad36158c22ae0e6977bfff810cec543e0f828))
+
+
+
+
+
 ## [0.3.2](https://github.com/navaris/appshell/compare/@appshell/manifest-webpack-plugin@0.3.1...@appshell/manifest-webpack-plugin@0.3.2) (2023-08-29)
 
 

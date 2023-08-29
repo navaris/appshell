@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.4](https://github.com/navaris/appshell/compare/@appshell/cli@0.5.3...@appshell/cli@0.5.4) (2023-08-29)
+
+
+### Bug Fixes
+
+* override support for template mapper ([e79ad36](https://github.com/navaris/appshell/commit/e79ad36158c22ae0e6977bfff810cec543e0f828))
+
+
+
+
+
 ## [0.5.3](https://github.com/navaris/appshell/compare/@appshell/cli@0.5.2...@appshell/cli@0.5.3) (2023-08-29)
 
 
