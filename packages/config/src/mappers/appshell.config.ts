@@ -66,6 +66,10 @@ createMap<AppshellTemplate, AppshellManifest>(
     (destination) => destination.environment,
     mapFrom((source) => source.environment),
   ),
+  forMember(
+    (destination) => destination.overrides,
+    mapFrom((source) => source.overrides),
+  ),
 );
 
 // eslint-disable-next-line import/prefer-default-export

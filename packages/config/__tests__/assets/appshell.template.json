@@ -71,5 +71,12 @@
   "environment": {
     "RUNTIME_ENV": "${RUNTIME_ENV}",
     "RUNTIME_ENV_VERSION": "${RUNTIME_ENV_VERSION}"
+  },
+  "overrides": {
+    "environment": {
+      "BizModule": {
+        "RUNTIME_ENV": "New value of RUNTIME_ENV"
+      }
+    }
   }
 }
