@@ -41,7 +41,8 @@ export default (config: AppshellGlobalConfig) =>
         const remote = manifest.remotes[key];
 
         const environment = manifest.environment[remote.scope] || {};
-        const overrides = config.overrides?.environment[remote.scope] || {};
+        const overrides =
+          (config.overrides?.environment && config.overrides?.environment[remote.scope]) || {};
         window[`__appshell_env__${remote.scope}`] = {
           ...environment,
           ...overrides,

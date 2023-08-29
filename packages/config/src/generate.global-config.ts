@@ -24,7 +24,7 @@ export default async (
   );
 
   try {
-    const registers = await Promise.all(
+    const configs = await Promise.all(
       registries.map((reg) => {
         const registry = isValidUrl(reg) ? `${reg}/appshell.config.json` : reg;
         return loadJson<AppshellGlobalConfig>(registry, {
@@ -34,12 +34,12 @@ export default async (
       }),
     ).then((items) => items.flat());
     console.log(
-      `Generating global configuration from ${registers.length} source${
-        registers.length === 1 ? '' : 's'
+      `Generating global configuration from ${configs.length} source${
+        configs.length === 1 ? '' : 's'
       }`,
     );
 
-    return merge(AppshellGlobalConfigValidator, ...registers) as AppshellGlobalConfig;
+    return merge(AppshellGlobalConfigValidator, ...configs) as AppshellGlobalConfig;
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {

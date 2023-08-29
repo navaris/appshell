@@ -24,14 +24,14 @@ export default async (argv: GenerateGlobalConfigArgs): Promise<void> => {
   );
 
   try {
-    const register = await generateGlobalConfig(registries, { insecure: !validateRegistrySslCert });
+    const config = await generateGlobalConfig(registries, { insecure: !validateRegistrySslCert });
 
-    console.log(`global appshell configuration generated: ${JSON.stringify(register, null, 2)}`);
+    console.log(`global appshell configuration generated: ${JSON.stringify(config, null, 2)}`);
     if (!fs.existsSync(outDir)) {
       fs.mkdirSync(outDir);
     }
 
-    fs.writeFileSync(path.join(outDir, outFile), JSON.stringify(register));
+    fs.writeFileSync(path.join(outDir, outFile), JSON.stringify(config));
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (err: any) {
