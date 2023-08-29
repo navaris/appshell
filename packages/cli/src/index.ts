@@ -109,6 +109,11 @@ const registerManifestCommand: yargs.CommandModule<unknown, RegisterManifestArgs
         requiresArg: true,
         description: 'One or more manifests to register',
       })
+      .option('allowOverride', {
+        default: process.env.NODE_ENV !== 'production',
+        type: 'boolean',
+        description: 'Allow overrides to be propagated',
+      })
       .option('registry', {
         alias: 'r',
         default: 'appshell_registry',

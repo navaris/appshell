@@ -5,13 +5,16 @@ import fs from 'fs';
 export type RegisterManifestArgs = {
   manifest: string[] | undefined;
   registry: string;
+  allowOverride: boolean;
 };
 
 export default async (argv: RegisterManifestArgs) => {
-  const { manifest: manifestPathOrUrls, registry } = argv;
+  const { manifest: manifestPathOrUrls, registry, allowOverride } = argv;
 
   try {
-    console.log(`registering manifest --manifest=${manifestPathOrUrls} --registry=${registry}`);
+    console.log(
+      `registering manifest --manifest=${manifestPathOrUrls} --registry=${registry} --allow-override=${allowOverride}`,
+    );
 
     const manifests = (manifestPathOrUrls as string[]) || [];
     const registrations = manifests.map(async (manifestPathOrUrl) => {
@@ -21,7 +24,7 @@ export default async (argv: RegisterManifestArgs) => {
 
       const manifest = JSON.parse(fs.readFileSync(manifestPathOrUrl, 'utf-8')) as AppshellManifest;
 
-      return register(manifest, registry);
+      return register(manifest, registry, allowOverride);
     });
 
     await Promise.all(registrations);

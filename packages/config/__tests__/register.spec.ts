@@ -37,7 +37,6 @@ describe('register', () => {
   });
 
   it('should not register overrides in production', () => {
-    process.env.NODE_ENV = 'production';
     [manifestAPath, manifestBPath, manifestCPath].forEach((manifestPath) => {
       const file = fs.readFileSync(manifestPath, 'utf-8');
       const manifest = JSON.parse(file) as AppshellManifest;
@@ -52,12 +51,11 @@ describe('register', () => {
   });
 
   it('should register overrides in non-production environments', () => {
-    process.env.NODE_ENV = 'development';
     [manifestAPath, manifestBPath, manifestCPath].forEach((manifestPath) => {
       const file = fs.readFileSync(manifestPath, 'utf-8');
       const manifest = JSON.parse(file) as AppshellManifest;
 
-      register(manifest, registryDir);
+      register(manifest, registryDir, true);
     });
 
     const json = fs.readFileSync(`${registryDir}/appshell.config.json`, 'utf-8');

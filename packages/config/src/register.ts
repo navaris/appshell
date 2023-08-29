@@ -14,7 +14,11 @@ const updateDocument = (file: string, data: object, validator: ConfigValidator) 
   fs.writeFileSync(file, JSON.stringify(merge(validator, doc, data)));
 };
 
-export default async (manifest: AppshellManifest, registryPathOrUrl: string) => {
+export default async (
+  manifest: AppshellManifest,
+  registryPathOrUrl: string,
+  allowOverride = false,
+) => {
   // eslint-disable-next-line no-console
   console.log(`registering manifest to registry ${registryPathOrUrl}`);
 
@@ -39,7 +43,7 @@ export default async (manifest: AppshellManifest, registryPathOrUrl: string) => 
     {
       index: {},
       metadata: {},
-      overrides: process.env.NODE_ENV !== 'production' ? manifest.overrides : {},
+      overrides: allowOverride ? manifest.overrides : {},
     } as AppshellGlobalConfig,
   );
 
