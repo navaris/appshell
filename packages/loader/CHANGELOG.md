@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.1](https://github.com/navaris/appshell/compare/@appshell/loader@0.2.0...@appshell/loader@0.2.1) (2023-08-29)
+
+
+### Bug Fixes
+
+* appshell loader override check ([aedda4a](https://github.com/navaris/appshell/commit/aedda4abf81560297dce03df09fba68e8785242f))
+
+
+
+
+
 # [0.2.0](https://github.com/navaris/appshell/compare/@appshell/loader@0.2.0-alpha.1...@appshell/loader@0.2.0) (2023-08-28)
 
 **Note:** Version bump only for package @appshell/loader
