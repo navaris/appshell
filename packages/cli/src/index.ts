@@ -57,7 +57,7 @@ const startCommand: yargs.CommandModule<unknown, StartArgs> = {
       })
       .option('allowOverrides', {
         default: false,
-
+        boolean: false,
         type: 'boolean',
         description: 'Allow overrides to be propagated',
       })
