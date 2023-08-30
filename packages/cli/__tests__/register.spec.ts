@@ -20,7 +20,7 @@ describe('register.manifest', () => {
       'assets/appshell3.manifest.json',
     ];
 
-    await registerManifestHandler({ manifest: manifests, registry, allowOverride: false });
+    await registerManifestHandler({ manifest: manifests, registry, allowOverrides: false });
 
     manifests.forEach((manifest) => {
       expect(existsSyncSpy).toHaveBeenCalledWith(manifest);
@@ -39,7 +39,7 @@ describe('register.manifest', () => {
       'assets/appshell2.manifest.json',
       'assets/appshell3.manifest.json',
     ];
-    await registerManifestHandler({ manifest: manifests, registry, allowOverride: false });
+    await registerManifestHandler({ manifest: manifests, registry, allowOverrides: false });
 
     expect(registerSpy).not.toHaveBeenCalled();
     expect(consoleSpy).toHaveBeenCalledTimes(1);
