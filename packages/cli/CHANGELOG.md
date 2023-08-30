@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.5.7](https://github.com/navaris/appshell/compare/@appshell/cli@0.5.6...@appshell/cli@0.5.7) (2023-08-30)
+
+
+### Bug Fixes
+
+* make --allow-overrides not a boolean flag ([0645ebe](https://github.com/navaris/appshell/commit/0645ebee7bfc84ba443925092871e659824a3550))
+* make --allow-overrides not a boolean flag for start ([01aa9dd](https://github.com/navaris/appshell/commit/01aa9ddcc2a62965b1519ff63810892f4261880a))
+
+
+
+
+
 ## [0.5.6](https://github.com/navaris/appshell/compare/@appshell/cli@0.5.5...@appshell/cli@0.5.6) (2023-08-29)
 
 
