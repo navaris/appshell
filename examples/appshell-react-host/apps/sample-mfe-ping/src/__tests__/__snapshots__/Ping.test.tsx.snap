@@ -23,7 +23,8 @@ exports[`should match snapshot 1`] = `
       >
         {
   "id": "2009efad",
-  "url": "http://localhost:3001/remoteEntry.js",
+  "manifestUrl": "http://localhost:3001/appshell.manifest.json",
+  "remoteEntryUrl": "http://localhost:3001/remoteEntry.js",
   "scope": "PingModule",
   "module": "./Ping",
   "metadata": {

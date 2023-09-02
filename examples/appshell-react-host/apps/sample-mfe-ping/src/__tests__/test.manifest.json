@@ -2,7 +2,8 @@
   "remotes": {
     "ContainerModule/Container": {
       "id": "33a5786e",
-      "url": "http://localhost:3000/remoteEntry.js",
+      "manifestUrl": "http://localhost:3000/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:3000/remoteEntry.js",
       "scope": "ContainerModule",
       "module": "./Container",
       "metadata": {
@@ -15,7 +16,8 @@
     },
     "PingModule/Ping": {
       "id": "2009efad",
-      "url": "http://localhost:3001/remoteEntry.js",
+      "manifestUrl": "http://localhost:3001/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:3001/remoteEntry.js",
       "scope": "PingModule",
       "module": "./Ping",
       "metadata": {
@@ -28,7 +30,8 @@
     },
     "PongModule/Pong": {
       "id": "6b3cbfed",
-      "url": "http://localhost:3002/remoteEntry.js",
+      "manifestUrl": "http://localhost:3002/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:3002/remoteEntry.js",
       "scope": "PongModule",
       "module": "./Pong",
       "metadata": {
@@ -41,7 +44,8 @@
     },
     "PongModule/CoolComponent": {
       "id": "6554a942",
-      "url": "http://localhost:3002/remoteEntry.js",
+      "manifestUrl": "http://localhost:3002/appshell.manifest.json",
+      "remoteEntryUrl": "http://localhost:3002/remoteEntry.js",
       "scope": "PongModule",
       "module": "./CoolComponent",
       "metadata": {
@@ -142,5 +146,6 @@
         }
       }
     }
-  }
+  },
+  "environment": {}
 }

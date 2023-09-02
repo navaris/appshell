@@ -23,8 +23,8 @@
     "test:ci": "yarn test a --watchAll=false"
   },
   "dependencies": {
-    "@appshell/core": "^0.1.0",
-    "@appshell/react": "^0.1.0",
+    "@appshell/core": "0.2.0",
+    "@appshell/react": "0.2.1",
     "@testing-library/jest-dom": "5.16.5",
     "@testing-library/react": "13.4.0",
     "@testing-library/user-event": "13.5.0",
@@ -46,8 +46,8 @@
     "webpack-dev-server": "^4.0.0"
   },
   "devDependencies": {
-    "@appshell/cli": "^0.4.0",
-    "@appshell/manifest-webpack-plugin": "^0.2.0",
+    "@appshell/cli": "0.5.7",
+    "@appshell/manifest-webpack-plugin": "0.3.3",
     "@babel/core": "^7.14.3",
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.22.5",

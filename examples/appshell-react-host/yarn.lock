@@ -15,25 +15,25 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@appshell/cli@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@appshell/cli/-/cli-0.4.0.tgz#ec1a27e5b11bd01a64bbc3ce6622ed09c8a0791e"
-  integrity sha512-5Q3dTAHwXqJj+ValTd50/Uf+mOIC4dvut/Z8sf0bFIIYAUrBsandhcuh93QyvHhMUlO9mcZhhjhCNllKNXkfPg==
+"@appshell/cli@0.5.7":
+  version "0.5.7"
+  resolved "https://registry.yarnpkg.com/@appshell/cli/-/cli-0.5.7.tgz#e4eef7eb414f019dc22696b3945865e6e01491ec"
+  integrity sha512-qr9bou/4SkYkGwqLWo00LtBjfWQDy6G5rsvP+6PhwwtkVfS11s9ivd81MqDo3t51cYZhVmlzsZuidbWKmntQ8g==
 
-"@appshell/core@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@appshell/core/-/core-0.1.0.tgz#b0f60b8d2606a4344a0264a4eebc21b72fba4129"
-  integrity sha512-3R0dMbeysSLny2ISw/qYCdtwWJsKGp4QbkNgNE5JgvP13GoCG4AQ5aJd1TOy1W9BxJmDcYcL6C76pcqK33TjOQ==
-
-"@appshell/manifest-webpack-plugin@^0.2.0":
+"@appshell/core@0.2.0":
   version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@appshell/manifest-webpack-plugin/-/manifest-webpack-plugin-0.2.0.tgz#307de7df415d42babbb560f84fdf7c5e0d24c2dd"
-  integrity sha512-4YMn3uzhpH6h2s/tV9E8ZXYV/CCrQZsw+0SFmBTUfmLXjkpdBiiXKABSNCPStGuR20m0OPlgPp2mA4UPhcy+Og==
+  resolved "https://registry.yarnpkg.com/@appshell/core/-/core-0.2.0.tgz#d5d2f0a8f33f69197a8e653e36894ffdc1f74693"
+  integrity sha512-BUBuPMKlATnJ39mU300LdFHGw1eBsijHy7rX7yGXG1c0205g6tcGU+MhpwKSqGv7guPGIeNkV2aBd2UaeMlbOg==
 
-"@appshell/react@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@appshell/react/-/react-0.1.0.tgz#3a1b995e0f6b7a1e1548e3e89e909ef633d68e68"
-  integrity sha512-qP5S/sE69/gCmmTcz9+XK78ei871m4/meaYSiZHQLwwauFpdqoXsRqrcHsD7VxnPeqjigvzy5RwMa0sIya02oA==
+"@appshell/manifest-webpack-plugin@0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@appshell/manifest-webpack-plugin/-/manifest-webpack-plugin-0.3.3.tgz#bc61aaa8c5ecc05bc535543f5afe4965ef5e97d2"
+  integrity sha512-8Y2b+ZxTnqAeN0uygPn3Q+66qq8kFn3kzwFv3+727+1ckWwMcUov+iBNVbgNhOnZizjs7hNxcxFSQqvU3gBeXQ==
+
+"@appshell/react@0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@appshell/react/-/react-0.2.1.tgz#f14b476a8c18048c668e9735e324a03a12a1f8a5"
+  integrity sha512-T0PssAlqTQTzPQVm8SECFobTY2XT6XHK1zKqMIolQAVBW4YSKiZkBapeAVD1FqTPG+/33WNIJ2N6u5DaS5GAYQ==
 
 "@babel/cli@^7.21.0":
   version "7.22.10"
