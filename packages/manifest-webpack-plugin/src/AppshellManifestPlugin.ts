@@ -90,8 +90,8 @@ export default class AppshellManifestPlugin {
 
     validators.AppshellTemplateValidator.validate(template);
 
-    const pluginRemotes = keys(template.module.exposes).map((key) =>
-      path.join(`${template.module.name}/${path.basename(key)}`),
+    const pluginRemotes = keys(template.module.exposes).map(
+      (key) => `${template.module.name}/${path.basename(key)}`,
     );
     const configuredRemotes = keys(template.remotes);
 
