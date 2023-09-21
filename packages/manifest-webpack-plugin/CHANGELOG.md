@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.4](https://github.com/navaris/appshell/compare/@appshell/manifest-webpack-plugin@0.3.3...@appshell/manifest-webpack-plugin@0.3.4) (2023-09-21)
+
+
+### Bug Fixes
+
+* entrypoint validation in manifest plugin for windows ([54768ee](https://github.com/navaris/appshell/commit/54768ee8c14e5678dc4b235d7eca4762e081cbbc))
+
+
+
+
+
 ## [0.3.3](https://github.com/navaris/appshell/compare/@appshell/manifest-webpack-plugin@0.3.2...@appshell/manifest-webpack-plugin@0.3.3) (2023-08-29)
 
 
