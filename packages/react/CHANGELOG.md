@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.2.2](https://github.com/navaris/appshell/compare/@appshell/react@0.2.1...@appshell/react@0.2.2) (2024-01-04)
+
+
+### Bug Fixes
+
+* capture direct dependencies passed to FederatedComponent for re-render ([3621879](https://github.com/navaris/appshell/commit/36218793a5cb47f74bd8d1ce93deffdb1b85cd1c))
+
+
+
+
+
 ## [0.2.1](https://github.com/navaris/appshell/compare/@appshell/react@0.2.0...@appshell/react@0.2.1) (2023-08-29)
 
 
