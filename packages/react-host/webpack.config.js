@@ -68,6 +68,7 @@ module.exports = (env, { mode }) => {
         APPSHELL_DESCRIPTION: JSON.stringify(process.env.APPSHELL_DESCRIPTION),
         APPSHELL_PUBLIC_URL: JSON.stringify(process.env.APPSHELL_PUBLIC_URL),
         APPSHELL_THEME_COLOR: JSON.stringify(process.env.APPSHELL_THEME_COLOR),
+        APPSHELL_STYLESHEET_URL: JSON.stringify(process.env.APPSHELL_STYLESHEET_URL || 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'),
       }),
       new CopyPlugin({
         patterns: [
