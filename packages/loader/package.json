@@ -1,6 +1,6 @@
 {
   "name": "@appshell/loader",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Utility for loading Appshell components",
   "main": "dist/main.js",
   "types": "dist/loader/src/index.d.ts",
