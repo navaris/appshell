@@ -1,4 +1,4 @@
-import { FederatedComponent } from '@appshell/react';
+import { AppshellComponent } from '@appshell/react';
 import React from 'react';
 import { PackageBlock } from 'react-appshell-host-components';
 import Loading from 'react-spinners/MoonLoader';
@@ -68,8 +68,8 @@ const Container = () => (
       </Grid>
       <pre>This application is composed from 3 micro-frontends.</pre>
       <Grid>
-        <FederatedComponent remote="PingModule/Ping" fallback={<Loading color="orangered" />} />
-        <FederatedComponent remote="PongModule/Pong" fallback={<Loading color="orangered" />} />
+        <AppshellComponent remote="PingModule/Ping" fallback={<Loading color="orangered" />} />
+        <AppshellComponent remote="PongModule/Pong" fallback={<Loading color="orangered" />} />
       </Grid>
     </Header>
   </AppContainer>

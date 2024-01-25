@@ -16,7 +16,7 @@ type ShareScopes = keyof typeof __webpack_share_scopes__;
 export default async <TComponent>(scope: string, module: string, shareScope = 'default') => {
   // eslint-disable-next-line no-console
   console.debug(
-    `loading federated component: { scope: ${scope}, module: ${module}, shareScope: ${shareScope} }`,
+    `loading Appshell component: { scope: ${scope}, module: ${module}, shareScope: ${shareScope} }`,
   );
 
   // Initializes the share scope. This fills it with known provided modules from this build and all remotes
@@ -39,7 +39,7 @@ export default async <TComponent>(scope: string, module: string, shareScope = 'd
 
   // eslint-disable-next-line no-console
   console.debug(
-    `federated component loaded: { scope: ${scope}, module: ${module}, shareScope: ${shareScope} }`,
+    `Appshell component loaded: { scope: ${scope}, module: ${module}, shareScope: ${shareScope} }`,
   );
 
   const Component = Module.default;

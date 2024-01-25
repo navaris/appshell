@@ -1,7 +1,7 @@
 /**
  * This file is used to provide runtime environment values to the application.
  * The variable __appshell_env__ContainerModule is injected into the window object
- * when the remote module is consumed via FederatedComponent.
+ * when the remote module is consumed via AppshellComponent.
  */
 
 // eslint-disable-next-line no-underscore-dangle

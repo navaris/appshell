@@ -7,7 +7,7 @@ type ErrorProps = {
 
 const LoadingError: FC<ErrorProps> = ({ remote, reason }) => (
   <div style={{ border: '3px solid red' }}>
-    <h5>{`Error loading federated component '${remote}.'`}</h5>
+    <h5>{`Error loading Appshell component '${remote}.'`}</h5>
     <span style={{ fontSize: '1rem' }}>{reason}</span>
   </div>
 );

@@ -14,16 +14,16 @@ declare global {
   }
 }
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-constraint
-export type FederatedComponentProps<TProps extends ExtendedProps = ExtendedProps> = {
+export type AppshellComponentProps<TProps extends ExtendedProps = ExtendedProps> = {
   remote: string;
   fallback?: ReactNode;
 } & TProps;
 
-const FederatedComponent = <TProps extends ExtendedProps>({
+const AppshellComponent = <TProps extends ExtendedProps>({
   remote,
   fallback,
   ...rest
-}: FederatedComponentProps<TProps>): ReactElement<TProps> => {
+}: AppshellComponentProps<TProps>): ReactElement<TProps> => {
   const config = useGlobalConfig();
   const [element, setElement] = useState<ReactElement>();
 
@@ -61,13 +61,19 @@ const FederatedComponent = <TProps extends ExtendedProps>({
   }, [remote, config, ...Object.values(rest)]);
 
   // eslint-disable-next-line no-console
-  console.debug(`rendering FederatedComponent[${remote}], loading=${!element}`);
+  console.debug(`rendering AppshellComponent[${remote}], loading=${!element}`);
   // eslint-disable-next-line react/jsx-no-useless-fragment
   return <>{element || fallback}</>;
 };
 
-FederatedComponent.defaultProps = {
+AppshellComponent.defaultProps = {
   fallback: undefined,
 };
 
-export default FederatedComponent;
+export default AppshellComponent;
+
+/**
+ * @deprecated This component is deprecated and will be removed in future versions.
+ * Please use AppshellComponent instead.
+ */
+export const FederatedComponent = AppshellComponent;

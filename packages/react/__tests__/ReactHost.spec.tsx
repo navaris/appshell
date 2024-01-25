@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { act, render, screen } from '@testing-library/react';
 import fetch, { enableFetchMocks } from 'jest-fetch-mock';
 import React from 'react';
-import * as FederatedComponent from '../src/components/FederatedComponent';
+import * as AppshellComponent from '../src/components/AppshellComponent';
 import ReactHost from '../src/components/ReactHost';
 
 enableFetchMocks();
@@ -17,7 +17,7 @@ jest.mock('@appshell/core', () => ({
   },
 }));
 
-jest.mock('../src/components/FederatedComponent', () => ({
+jest.mock('../src/components/AppshellComponent', () => ({
   __esModule: true,
   default: () => <div>test component</div>,
 }));
@@ -68,16 +68,16 @@ describe('RenderHost', () => {
     expect(screen.getByText(/test component/i)).toBeInTheDocument();
   });
 
-  it('should pass props to federated component when available', async () => {
+  it('should pass props to Appshell component when available', async () => {
     mockUseState({ config: 'foo' });
-    const federatedComponentSpy = jest.spyOn(FederatedComponent, 'default');
+    const appshellComponentSpy = jest.spyOn(AppshellComponent, 'default');
     await act(() =>
       render(<ReactHost configUrl={configUrl} remote={remote} foo="bar" fallback="Loading" />),
     );
 
     expect(screen.getByText(/test component/i)).toBeInTheDocument();
 
-    expect(federatedComponentSpy).toHaveBeenCalledWith(
+    expect(appshellComponentSpy).toHaveBeenCalledWith(
       { fallback: 'Loading', foo: 'bar', remote: 'TestModule/TestComponent' },
       {},
     );

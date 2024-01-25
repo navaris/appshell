@@ -35,17 +35,17 @@ or
 pnpm add -D @appshell/react
 ```
 
-## FederatedComponent
+## AppshellComponent
 
-React component that dynamically loads federated components.
+React component that dynamically loads Appshell components.
 
 ```tsx
-import { FederatedComponent, ManifestProvider } from '@appshell/react';
+import { AppshellComponent, ManifestProvider } from '@appshell/react';
 
 <App>
   <ManifestProvider manifest={manifest}>
-    <FederatedComponent remote="PingModule/Ping">
-    <FederatedComponent remote="PongModule/Pong">
+    <AppshellComponent remote="PingModule/Ping">
+    <AppshellComponent remote="PongModule/Pong">
   </ManifestProvider>
 </App>
 ```
