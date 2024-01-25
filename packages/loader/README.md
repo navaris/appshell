@@ -11,7 +11,7 @@
 
 # @appshell/loader
 
-Dynamically load federated components for micro-frontends built with Appshell and Webpack Module federation.
+Dynamically load Appshell components for micro-frontends built with Appshell and Webpack Module federation.
 
 Working examples can be found [here](https://github.com/navaris/appshell/tree/main/examples).
 
@@ -35,7 +35,7 @@ or
 pnpm add -D @appshell/loader
 ```
 
-The default export from this package is the loader function. It is given the global appshell configuration, and returns an async function that can be called to dynamically load federated components.
+The default export from this package is the loader function. It is given the global appshell configuration, and returns an async function that can be called to dynamically load Appshell components.
 
 ```ts
 import componentLoader from '@appshell/loader';

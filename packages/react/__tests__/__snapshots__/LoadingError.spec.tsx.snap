@@ -9,7 +9,7 @@ exports[`LoadingError should match snapshot 1`] = `
         style="border: 3px solid red;"
       >
         <h5>
-          Error loading federated component 'TestModule/TestComponent.'
+          Error loading Appshell component 'TestModule/TestComponent.'
         </h5>
         <span
           style="font-size: 1rem;"
@@ -24,7 +24,7 @@ exports[`LoadingError should match snapshot 1`] = `
       style="border: 3px solid red;"
     >
       <h5>
-        Error loading federated component 'TestModule/TestComponent.'
+        Error loading Appshell component 'TestModule/TestComponent.'
       </h5>
       <span
         style="font-size: 1rem;"

@@ -2,7 +2,7 @@
 import { AppshellGlobalConfig } from 'packages/config/src/types';
 import React, { FC, ReactNode, useEffect } from 'react';
 import { GlobalConfigProvider } from '../contexts/GlobalConfigContext';
-import FederatedComponent from './FederatedComponent';
+import AppshellComponent from './AppshellComponent';
 
 const ReactHost: FC<{
   configUrl: string;
@@ -35,7 +35,7 @@ const ReactHost: FC<{
 
   return (
     <GlobalConfigProvider config={config}>
-      <FederatedComponent remote={remote} fallback={fallback} {...rest} />
+      <AppshellComponent remote={remote} fallback={fallback} {...rest} />
     </GlobalConfigProvider>
   );
 };

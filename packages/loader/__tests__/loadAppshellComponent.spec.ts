@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
 /* eslint-disable no-underscore-dangle */
-import loadFederatedComponent from '../src/loadFederatedComponent';
+import loadAppshellComponent from '../src/loadAppshellComponent';
 import { ModuleContainer, ShareScope } from '../src/types';
 
 type ComponentType = () => string;
@@ -49,7 +49,7 @@ const containers: Record<string, Record<string, ModuleContainer<ComponentType>>>
   },
 };
 
-describe('loadFederatedComponent', () => {
+describe('loadAppshellComponent', () => {
   beforeEach(() => {
     window.__webpack_init_sharing__ = jest.fn(async (shareScope: string) => {
       // eslint-disable-next-line @typescript-eslint/dot-notation
@@ -70,12 +70,12 @@ describe('loadFederatedComponent', () => {
     window.__webpack_share_scopes__ = {};
   });
 
-  it('should load the federated component from the default scope', async () => {
+  it('should load the Appshell component from the default scope', async () => {
     const scope = 'TestModule';
     const module = './TestComponent';
     const shareScope = undefined;
 
-    const Component = await loadFederatedComponent<ComponentType>(scope, module, shareScope);
+    const Component = await loadAppshellComponent<ComponentType>(scope, module, shareScope);
 
     expect(Component).toBe(TestComponent);
   });
@@ -85,7 +85,7 @@ describe('loadFederatedComponent', () => {
     const module = './TestComponent';
     const shareScope = 'does_not_exist';
 
-    await expect(loadFederatedComponent<ComponentType>(scope, module, shareScope)).rejects.toThrow(
+    await expect(loadAppshellComponent<ComponentType>(scope, module, shareScope)).rejects.toThrow(
       /Failed to find module container/i,
     );
   });
@@ -95,7 +95,7 @@ describe('loadFederatedComponent', () => {
     const module = './TestComponent';
     const shareScope = 'no_factory';
 
-    await expect(loadFederatedComponent<ComponentType>(scope, module, shareScope)).rejects.toThrow(
+    await expect(loadAppshellComponent<ComponentType>(scope, module, shareScope)).rejects.toThrow(
       /Invalid factory produced/i,
     );
   });

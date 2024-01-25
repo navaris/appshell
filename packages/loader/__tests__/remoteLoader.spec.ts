@@ -3,13 +3,13 @@ import { AppshellManifest } from '@appshell/config';
 import { AppshellGlobalConfig } from '@appshell/config/src/types';
 import fetch, { enableFetchMocks } from 'jest-fetch-mock';
 import * as fetchDynamicScript from '../src/fetchDynamicScript';
-import * as loadFederatedComponent from '../src/loadFederatedComponent';
+import * as loadAppshellComponent from '../src/loadAppshellComponent';
 import remoteLoader from '../src/remoteLoader';
 
 enableFetchMocks();
 
 jest.mock('../src/fetchDynamicScript');
-jest.mock('../src/loadFederatedComponent');
+jest.mock('../src/loadAppshellComponent');
 
 describe('remoteLoader', () => {
   const manifest: AppshellManifest = {
@@ -50,11 +50,11 @@ describe('remoteLoader', () => {
     );
   });
 
-  it('should return the federated component if it is found in the registry', async () => {
+  it('should return the Appshell component if it is found in the registry', async () => {
     const ExpectedComponent = () => 'test component';
     jest.spyOn(fetchDynamicScript, 'default').mockReturnValueOnce(Promise.resolve(true));
     jest
-      .spyOn(loadFederatedComponent, 'default')
+      .spyOn(loadAppshellComponent, 'default')
       .mockResolvedValue(Promise.resolve(ExpectedComponent));
 
     const loadRemote = remoteLoader(config);
@@ -70,7 +70,7 @@ describe('remoteLoader', () => {
       .spyOn(fetchDynamicScript, 'default')
       .mockReturnValueOnce(Promise.resolve(true));
     jest
-      .spyOn(loadFederatedComponent, 'default')
+      .spyOn(loadAppshellComponent, 'default')
       .mockResolvedValue(Promise.resolve(ExpectedComponent));
 
     const loadRemote = remoteLoader(config);
@@ -86,7 +86,7 @@ describe('remoteLoader', () => {
     const ExpectedComponent = () => 'test component';
     jest.spyOn(fetchDynamicScript, 'default').mockReturnValueOnce(Promise.resolve(true));
     jest
-      .spyOn(loadFederatedComponent, 'default')
+      .spyOn(loadAppshellComponent, 'default')
       .mockResolvedValue(Promise.resolve(ExpectedComponent));
 
     const loadRemote = remoteLoader(config);
@@ -99,7 +99,7 @@ describe('remoteLoader', () => {
 
   it('should throw if remote key is not found in the registry', async () => {
     const ExpectedComponent = () => 'test component';
-    jest.spyOn(loadFederatedComponent, 'default').mockResolvedValue(ExpectedComponent);
+    jest.spyOn(loadAppshellComponent, 'default').mockResolvedValue(ExpectedComponent);
 
     const loadRemote = remoteLoader(config);
 
@@ -108,9 +108,9 @@ describe('remoteLoader', () => {
     );
   });
 
-  it('should throw if load federated component fails', async () => {
+  it('should throw if load Appshell component fails', async () => {
     jest.spyOn(fetchDynamicScript, 'default').mockReturnValueOnce(Promise.resolve(true));
-    jest.spyOn(loadFederatedComponent, 'default').mockRejectedValue(new Error('failed'));
+    jest.spyOn(loadAppshellComponent, 'default').mockRejectedValue(new Error('failed'));
 
     const loadRemote = remoteLoader(config);
 

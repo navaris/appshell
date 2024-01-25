@@ -27,14 +27,14 @@ The appshell host `@appshell/react-host` produces a `global appshell configurati
 
 You can associate any kind of metadata with each remote module (via `appshell.config.yaml`) and use the metadata to configure your appshell by supplying routing information, rendering details, etc.
 
-## Consuming federated components
+## Consuming Appshell components
 
-Use `FederatedComponent` from `@appshell/react` to dynamically load remote frontends. It uses the remote key to lookup the runtime info for that particular federated component.
+Use `AppshellComponent` from `@appshell/react` to dynamically load remote frontends. It uses the remote key to lookup the runtime info for that particular Appshell component.
 
 ```typescript
 <Grid>
-  <FederatedComponent remote="PingModule/App" />
-  <FederatedComponent remote="PongModule/App" />
+  <AppshellComponent remote="PingModule/App" />
+  <AppshellComponent remote="PongModule/App" />
 </Grid>
 ```
 

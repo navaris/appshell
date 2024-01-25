@@ -132,7 +132,7 @@ Sample config template `appshell.template.json`:
 
 > Note the variable expansion syntax `${CRA_MFE_URL}`. When `appshell generate manifest` is called the actual runtime environment values are injected in order to produce the remote module's appshell manifest.
 
-> **Note** the `environment` section defines runtime environment variables that are injected into the global namesapce `window.__appshell_env__[module_name]` when a federated component is loaded. See the examples for a use case.
+> **Note** the `environment` section defines runtime environment variables that are injected into the global namesapce `window.__appshell_env__[module_name]` when an Appshell component is loaded. See the examples for a use case.
 
 Sample appshell manifest produced by the `appshell generate manifest` function:
 

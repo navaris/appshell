@@ -2,7 +2,7 @@
 import { type AppshellManifest } from '@appshell/config';
 import { AppshellGlobalConfig } from 'packages/config/src/types';
 import fetchDynamicScript from './fetchDynamicScript';
-import loadFederatedComponent from './loadFederatedComponent';
+import loadAppshellComponent from './loadAppshellComponent';
 
 const fetchedScriptCache = new Set<string>();
 const fetchedManifestCache = new Map<string, AppshellManifest | undefined>();
@@ -53,7 +53,7 @@ export default (config: AppshellGlobalConfig) =>
           (await fetchDynamicScript(remote.remoteEntryUrl));
         if (loaded) {
           fetchedScriptCache.add(remote.remoteEntryUrl);
-          Component = await loadFederatedComponent<TComponent>(
+          Component = await loadAppshellComponent<TComponent>(
             remote.scope,
             remote.module,
             remote.shareScope,

@@ -6,7 +6,7 @@ const ReactRefreshSingleton = require('single-react-refresh-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const { dependencies } = require('../../package.json');
-const federatedComponentPkg = require('../react/package.json');
+const appshellReactPkg = require('../react/package.json');
 
 module.exports = (env, { mode }) => {
   const isDevelopment = mode === 'development';
@@ -68,7 +68,10 @@ module.exports = (env, { mode }) => {
         APPSHELL_DESCRIPTION: JSON.stringify(process.env.APPSHELL_DESCRIPTION),
         APPSHELL_PUBLIC_URL: JSON.stringify(process.env.APPSHELL_PUBLIC_URL),
         APPSHELL_THEME_COLOR: JSON.stringify(process.env.APPSHELL_THEME_COLOR),
-        APPSHELL_STYLESHEET_URL: JSON.stringify(process.env.APPSHELL_STYLESHEET_URL || 'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap'),
+        APPSHELL_STYLESHEET_URL: JSON.stringify(
+          process.env.APPSHELL_STYLESHEET_URL ||
+            'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap',
+        ),
       }),
       new CopyPlugin({
         patterns: [
@@ -101,7 +104,7 @@ module.exports = (env, { mode }) => {
           },
           '@appshell/react': {
             singleton: true,
-            requiredVersion: federatedComponentPkg.version,
+            requiredVersion: appshellReactPkg.version,
           },
         },
       }),
