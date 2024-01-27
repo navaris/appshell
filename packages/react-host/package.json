@@ -5,17 +5,21 @@
   "main": "index.js",
   "private": true,
   "scripts": {
+    "generate": "run-p generate:*",
     "generate:env": "appshell generate env -e .env --prefix $APPSHELL_ENV_PREFIX",
     "generate:global-config": "appshell generate global-config --validate-registry-ssl-cert $APPSHELL_VALIDATE_REGISTRY_SSL_CERT --registry $APPSHELL_BASE_REGISTRY $APPSHELL_REGISTRY",
-    "start": "dotenv -- run-p start:appshell start:run",
+    "start": "dotenv -- run-p start:appshell start:dev",
+    "start:dev": "run-s build:development start:server",
     "start:appshell": "appshell start --host --validate-registry-ssl-cert $APPSHELL_VALIDATE_REGISTRY_SSL_CERT --registry $APPSHELL_REGISTRY --base-registry $APPSHELL_BASE_REGISTRY --env $APPSHELL_ENV --env-prefix $APPSHELL_ENV_PREFIX --env-global-name $APPSHELL_ENV_GLOBAL_VAR",
-    "start:run": "webpack-cli serve --mode development",
+    "start:server": "NODE_ENV=development node dist/server.js",
     "prebuild": "yarn clean",
-    "build": "webpack --mode production",
-    "build:development": "webpack --mode development",
-    "serve": "dotenv -- run-s generate:env serve:run",
-    "serve:run": "serve dist -p $APPSHELL_PORT",
-    "serve:developer": "dotenv -- run-p start:appshell serve:run",
+    "build": "webpack --mode production && yarn build:server",
+    "build:development": "webpack --mode development && yarn build:server",
+    "build:server": "tsc -p tsconfig.server.json",
+    "copy:config": "cp -R ./appshell_registry/* ./dist/",
+    "serve": "dotenv -- run-s generate:env copy:config serve:server",
+    "serve:server": "NODE_ENV=production node dist/server.js",
+    "serve:developer": "dotenv -- run-p start:appshell start:server",
     "clean": "rm -rf dist"
   },
   "author": "Robert Hamilton <rh@navaris.com>",
@@ -37,5 +41,16 @@
     "micro-frontends",
     "appshell"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/ejs": "^3.1.5",
+    "@types/webpack-hot-middleware": "2.25.0",
+    "webpack-dev-middleware": "^7.0.0",
+    "webpack-hot-middleware": "^2.26.0",
+    "webpack-node-externals": "^3.0.0"
+  }
 }

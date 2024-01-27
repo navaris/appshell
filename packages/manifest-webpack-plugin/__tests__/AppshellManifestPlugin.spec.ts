@@ -8,7 +8,7 @@ import sampleConfig from './assets/complete-config.json';
 import missingConfiguredEntrypoint from './assets/missing-configured-entrypoint.json';
 import missingRemoteEntrypoint from './assets/missing-remote-entrypoint.json';
 import { MODULE_FEDERATION_PLUGIN_OPTIONS } from './assets/module-federation-plugin-options';
-import webpackConfig from './assets/webpack.config.js';
+import webpackConfig from './assets/webpack.config';
 
 class MockCompiler {
   options: Partial<WebpackOptionsNormalized>;

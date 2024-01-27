@@ -19,7 +19,7 @@
     "sourceMap": true,
     "strict": true,
     "target": "esnext",
-    "plugins": [{ "name": "@typescript-eslint"}]
+    "plugins": [{ "name": "@typescript-eslint" }]
   },
   "include": ["./packages/*/src", "./examples/**/src", "./**/__tests__", "./**/__fixtures__"],
   "exclude": ["dist", "node_modules"]

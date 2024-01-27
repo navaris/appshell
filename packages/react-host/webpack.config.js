@@ -1,7 +1,6 @@
 const path = require('path');
-const { container, DefinePlugin } = require('webpack');
+const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshSingleton = require('single-react-refresh-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
@@ -12,7 +11,12 @@ module.exports = (env, { mode }) => {
   const isDevelopment = mode === 'development';
 
   return {
-    entry: './src/index',
+    entry: isDevelopment
+      ? [
+          'webpack-hot-middleware/client', // HMR entry point
+          './src/index',
+        ]
+      : './src/index',
     mode,
     devtool: isDevelopment ? 'eval-source-map' : false,
     devServer: {
@@ -63,31 +67,16 @@ module.exports = (env, { mode }) => {
       ],
     },
     plugins: [
-      new DefinePlugin({
-        APPSHELL_TITLE: JSON.stringify(process.env.APPSHELL_TITLE),
-        APPSHELL_DESCRIPTION: JSON.stringify(process.env.APPSHELL_DESCRIPTION),
-        APPSHELL_PUBLIC_URL: JSON.stringify(process.env.APPSHELL_PUBLIC_URL),
-        APPSHELL_THEME_COLOR: JSON.stringify(process.env.APPSHELL_THEME_COLOR),
-        APPSHELL_STYLESHEET_URL: JSON.stringify(
-          process.env.APPSHELL_STYLESHEET_URL ||
-            'https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap',
-        ),
-      }),
       new CopyPlugin({
         patterns: [
+          { from: 'public/index.html', to: './views' },
+          { from: 'public/favicon.ico', to: '.' },
           { from: 'public/manifest.json', to: '.' },
           { from: 'public/logo192.png', to: '.' },
           { from: 'public/logo512.png', to: '.' },
-          { from: 'serve.json', to: '.' },
         ],
       }),
-      new HtmlWebpackPlugin({
-        publicPath: path.join(process.env.APPSHELL_PUBLIC_URL || '', '/'),
-        title: process.env.APPSHELL_TITLE,
-        favicon: './public/favicon.ico',
-        template: './public/index.html',
-      }),
-      new container.ModuleFederationPlugin({
+      new webpack.container.ModuleFederationPlugin({
         name: 'Appshell',
         shared: {
           react: {
@@ -108,6 +97,7 @@ module.exports = (env, { mode }) => {
           },
         },
       }),
+      isDevelopment && new webpack.HotModuleReplacementPlugin(),
       isDevelopment && new ReactRefreshWebpackPlugin(),
       isDevelopment && new ReactRefreshSingleton(),
     ].filter(Boolean),

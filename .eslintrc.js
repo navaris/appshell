@@ -31,23 +31,23 @@ module.exports = {
   },
   settings: {
     'import/parsers': {
-      '@typescript-eslint/parser': ['.ts', '.tsx'],
+      '@typescript-eslint/parser': ['.js', '.ts', '.tsx'],
     },
     'import/resolver': {
       node: {
         paths: ['src'],
-        extensions: ['.ts', '.tsx'],
+        extensions: ['.js', '.ts', '.tsx'],
       },
       typescript: {
         alwaysTryTypes: true,
-        extensions: ['.ts'],
+        extensions: ['.js', '.ts'],
         project,
       },
     },
   },
   overrides: [
     {
-      files: ['*.ts'],
+      files: ['*.js', '*.ts'],
       parserOptions: {
         project,
       },

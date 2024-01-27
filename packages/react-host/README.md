@@ -75,8 +75,8 @@ APPSHELL_PRIMARY_COLOR=
 APPSHELL_TITLE=My App
 # Description of the application
 APPSHELL_DESCRIPTION=Appshell React host
-# Custom URL for global stylesheet (defaults to Google Roboto)
-APPSHELL_STYLESHEET_URL=
+# Custom URL for global stylesheet
+APPSHELL_STYLESHEET_URL=https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap
 
 APPSHELL_CONTAINER_SCALE=1
 ENV_TARGET=

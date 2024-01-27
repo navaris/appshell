@@ -30,10 +30,10 @@
   resolved "https://registry.yarnpkg.com/@appshell/manifest-webpack-plugin/-/manifest-webpack-plugin-0.3.3.tgz#bc61aaa8c5ecc05bc535543f5afe4965ef5e97d2"
   integrity sha512-8Y2b+ZxTnqAeN0uygPn3Q+66qq8kFn3kzwFv3+727+1ckWwMcUov+iBNVbgNhOnZizjs7hNxcxFSQqvU3gBeXQ==
 
-"@appshell/react@0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@appshell/react/-/react-0.2.1.tgz#f14b476a8c18048c668e9735e324a03a12a1f8a5"
-  integrity sha512-T0PssAlqTQTzPQVm8SECFobTY2XT6XHK1zKqMIolQAVBW4YSKiZkBapeAVD1FqTPG+/33WNIJ2N6u5DaS5GAYQ==
+"@appshell/react@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@appshell/react/-/react-0.3.0.tgz#17fbdcb604b89ed605741ef8be6224e23f4025e1"
+  integrity sha512-NT/V9WxAj3m7U3fG8ozXGKHhGRro8J/mD3tshtJNBDZgmLR4M0FspaZrF26XhTddM+yV1yc3D7+yyKP/Il7vkw==
 
 "@babel/cli@^7.21.0":
   version "7.22.10"
