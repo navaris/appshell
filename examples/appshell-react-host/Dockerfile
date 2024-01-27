@@ -1,5 +1,5 @@
 ### BASE
-FROM node:16-alpine AS base
+FROM node:20-alpine AS base
 LABEL maintainer "Robert Hamilton <rh@navaris.com>"
 
 # Set the working directory

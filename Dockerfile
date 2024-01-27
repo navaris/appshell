@@ -1,5 +1,5 @@
 ### BASE
-FROM node:16-alpine AS base
+FROM node:20-alpine AS base
 LABEL maintainer "Robert Hamilton <rh@navaris.com>"
 # Set the working directory
 WORKDIR /appshell
@@ -29,7 +29,7 @@ FROM base AS dependencies
 # Copy source
 COPY . .
 # Install dependencies
-RUN yarn --pure-lockfile
+RUN yarn --pure-lockfile 
 
 ### BUILD
 FROM dependencies as build
@@ -43,7 +43,7 @@ ENV SOURCE_DIR=${SOURCE_DIR}
 ENV APPSHELL_CONTAINER_COMMAND=${APPSHELL_CONTAINER_COMMAND:-'yarn serve'}
 
 # Install global dependencies
-RUN yarn global add dotenv-cli serve
+RUN yarn global add dotenv-cli
 
 WORKDIR /appshell/${SOURCE_DIR}
 
@@ -56,6 +56,7 @@ COPY --from=build /appshell/${SOURCE_DIR}/dist ./dist
 
 COPY --from=build /appshell/packages/cli /appshell/packages/cli
 RUN yarn global add file:/appshell/packages/cli
+RUN yarn install --pure-lockfile --production
 
 
 ### DEVELOPMENT
