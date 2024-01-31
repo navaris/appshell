@@ -16,8 +16,9 @@
     "build": "webpack --mode production && yarn build:server",
     "build:development": "webpack --mode development && yarn build:server",
     "build:server": "tsc -p tsconfig.server.json",
-    "copy:config": "cp -R ./appshell_registry/* ./dist/",
-    "serve": "dotenv -- run-s generate:env copy:config serve:server",
+    "copy:config": "if [ -d ./appshell_registry ]; then cp -R ./appshell_registry/* ./dist/; fi",
+    "serve": "dotenv -- run-s generate:env serve:server",
+    "serve:prod": "dotenv -- run-s generate:env copy:config serve:server",
     "serve:server": "NODE_ENV=production node dist/server.js",
     "serve:developer": "dotenv -- run-p start:appshell start:server",
     "clean": "rm -rf dist"
