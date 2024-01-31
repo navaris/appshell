@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.4.2](https://github.com/navaris/appshell/compare/@appshell/react-host@0.4.1...@appshell/react-host@0.4.2) (2024-01-31)
+
+
+### Bug Fixes
+
+* appshell host startup script ([#34](https://github.com/navaris/appshell/issues/34)) ([e136d73](https://github.com/navaris/appshell/commit/e136d73fb92c8dfcb90648dcb0eb7b2ec8a365b1))
+
+
+
+
+
 ## [0.4.1](https://github.com/navaris/appshell/compare/@appshell/react-host@0.4.0...@appshell/react-host@0.4.1) (2024-01-27)
 
 
